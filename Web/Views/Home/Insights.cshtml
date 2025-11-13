@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Insights";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Header -->
+<section class="py-5 text-center bg-dark text-white">
+    <div class="container">
+        <h1 class="fw-bold">Insights</h1>
+        <p class="lead mb-0">
+            Explore SGRC’s expert perspectives on power systems, cybersecurity, and the energy transition.
+        </p>
+    </div>
+</section>
+
+<!-- Featured Insight -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <img src="~/images/insights/featured.jpg" alt="Featured Insight" class="img-fluid rounded shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-3">The Future of Grid Stability in a Renewable World</h2>
+                <p>
+                    As renewable energy penetration grows, ensuring dynamic grid stability becomes critical.
+                    SGRC’s experts discuss advanced FACTS devices, SVCs, and digital simulations that enable
+                    resilient and adaptive energy systems across the globe.
+                </p>
+                <p class="text-muted mb-1"><small><i class="bi bi-calendar"></i> October 20, 2025</small></p>
+                <a href="#" class="btn btn-primary mt-2">Read Full Insight</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Insights Grid -->
+<section class="py-5">
+    <div class="container">
+        <h3 class="fw-bold mb-4 text-center">Latest Expert Insights</h3>
+        <div class="row g-4">
+
+            <!-- Insight 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="~/images/insights/insight1.jpg" class="card-img-top" alt="Insight 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Cybersecurity in Modern Power Systems</h5>
+                        <p class="card-text">How SGRC integrates cybersecurity and data protection in grid monitoring and automation.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insight 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="~/images/insights/insight2.jpg" class="card-img-top" alt="Insight 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Optimizing Reactive Power in High-Voltage Networks</h5>
+                        <p class="card-text">Advanced simulation techniques and FACTS modeling for voltage control and reactive optimization.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insight 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="~/images/insights/insight3.jpg" class="card-img-top" alt="Insight 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Centers and Sustainable Power Integration</h5>
+                        <p class="card-text">A deep dive into how power system studies support data-driven sustainability goals.</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-5 bg-primary text-white text-center">
+    <div class="container">
+        <h2 class="fw-bold">Collaborate with SGRC Experts</h2>
+        <p class="mb-4">
+            Looking for deeper insights or consulting support? Engage with our specialists to explore customized power system solutions.
+        </p>
+        <a href="@Url.Action("ContactUs","Home")" class="btn btn-light text-primary fw-bold">Contact Our Experts</a>
+    </div>
+</section>
+
+

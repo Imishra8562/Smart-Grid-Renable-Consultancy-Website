@@ -1,0 +1,174 @@
+﻿@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ====== Page Title Section ====== -->
+<section class="page-title" style="background-image:url('~/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+    <div class="auto-container">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Contact <span class="text-danger">Us</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Careers</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- End Page Title -->
+<!-- Contact Page Section -->
+<section class="contact-page-section">
+    <div class="map-section">
+        <div class="map-outer">
+            <div class="map-canvas"
+                 data-zoom="12"
+                 data-lat="28.6139"
+                 data-lng="77.2090"
+                 data-type="roadmap"
+                 data-hue="#004aad"
+                 data-title="SGRC HQ"
+                 data-icon-path="/images/icons/map-marker.png"
+                 data-content="New Delhi, India<br><a href='mailto:info@sgrc.co.in'>info@sgrc.co.in</a>">
+            </div>
+        </div>
+    </div>
+
+    <div class="auto-container">
+        <div class="inner-container">
+            <h2>We’d love to hear from you — <br> Connect with <span>SGRC Consulting</span></h2>
+            <div class="row clearfix">
+
+                <!-- Info Column -->
+                <div class="info-column col-lg-7 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="text">
+                            Please contact us using the details below. For additional information on our power system consulting services, or to discuss your project requirements, get in touch with our global offices or local agents.
+                        </div>
+                        <ul class="list-style-five">
+                            <li><span class="icon fa fa-building"></span> SGRC Consulting Services Pvt. Ltd.<br> A-105, Energy Park, New Delhi, India</li>
+                            <li><span class="icon fa fa-phone"></span> +91 98765 43210</li>
+                            <li><span class="icon fa fa-envelope-o"></span> info@sgrc.co.in</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Form Column -->
+                <div class="form-column col-lg-5 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="contact-form">
+                            <form method="post" asp-action="SendContact" id="contact-form">
+                                <div class="form-group">
+                                    <input type="text" name="FullName" placeholder="Full Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="Email" placeholder="Email Address" required>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select-box" name="Topic">
+                                        <option>Select Topic</option>
+                                        <option>Power System Consulting</option>
+                                        <option>Renewable Integration</option>
+                                        <option>Cybersecurity Solutions</option>
+                                        <option>Training & Workshops</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="Message" placeholder="Write your message..." required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="theme-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Contact Page Section -->
+<!-- Contact Info Section -->
+<!--<section class="contact-info-section" style="background-image:url(/images/background/10.jpg)">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="column col-lg-4 col-md-6 col-sm-12">
+                <h4>United Kingdom</h4>
+                <ul class="list-style-six">
+                    <li><span class="icon flaticon-map-1"></span> 24 New Bond Street, London W1S 2RR</li>
+                    <li><span class="icon flaticon-phone-receiver"></span> +44 203 987 4567</li>
+                    <li><span class="icon flaticon-e-mail-envelope"></span> uk@sgrc.co.in</li>
+                </ul>
+            </div>
+            <div class="column col-lg-4 col-md-6 col-sm-12">
+                <h4>Australia</h4>
+                <ul class="list-style-six">
+                    <li><span class="icon flaticon-map-1"></span> 13 Dixon Street, Sydney NSW 2000</li>
+                    <li><span class="icon flaticon-phone-receiver"></span> +61 290 123 456</li>
+                    <li><span class="icon flaticon-e-mail-envelope"></span> au@sgrc.co.in</li>
+                </ul>
+            </div>
+            <div class="column col-lg-4 col-md-6 col-sm-12">
+                <h4>Netherlands</h4>
+                <ul class="list-style-six">
+                    <li><span class="icon flaticon-map-1"></span> Nieuwe Leliestraat 27-HS, 101J Amsterdam</li>
+                    <li><span class="icon flaticon-phone-receiver"></span> +31 203 456 789</li>
+                    <li><span class="icon flaticon-e-mail-envelope"></span> nl@sgrc.co.in</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>-->
+<!-- End Contact Info Section -->
+<!-- Worldwide Agents Section -->
+<section class="contact-info-section" style="background-image:url(/images/background/world-agents-bg.jpg)">
+    <div class="auto-container text-center">
+        <h2 class="mb-5 text-white">Worldwide <span style="color:#ffc400;">Agents</span></h2>
+        <p class="text-white mb-4">
+            SGRC’s network of trusted agents across the globe provides localized expertise, ensuring efficient communication,
+            regulatory alignment, and project success in every region.
+        </p>
+
+        <div class="row justify-content-center">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="agent-card bg-white p-4 rounded shadow-sm">
+                    <h5>Asia-Pacific</h5>
+                    <p class="mb-1">Regional Partner: PowerTech Solutions</p>
+                    <p><i class="fa fa-envelope"></i> apac@sgrc.co.in</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="agent-card bg-white p-4 rounded shadow-sm">
+                    <h5>Europe</h5>
+                    <p class="mb-1">Regional Partner: GridVision BV</p>
+                    <p><i class="fa fa-envelope"></i> europe@sgrc.co.in</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="agent-card bg-white p-4 rounded shadow-sm">
+                    <h5>Middle East & Africa</h5>
+                    <p class="mb-1">Regional Partner: EnerSys Global</p>
+                    <p><i class="fa fa-envelope"></i> mea@sgrc.co.in</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="agent-card bg-white p-4 rounded shadow-sm">
+                    <h5>North America</h5>
+                    <p class="mb-1">Regional Partner: GridEdge Consultants</p>
+                    <p><i class="fa fa-envelope"></i> na@sgrc.co.in</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <a href="@Url.Action("BecomeAgent", "Home")" class="theme-btn btn-style-two">Become an SGRC Agent</a>
+        </div>
+    </div>
+</section>
+<!-- End Worldwide Agents Section -->

@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ====== Page Title Section ====== -->
+<section class="page-title" style="background-image:url('/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+    <div class="auto-container">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Join <span class="text-danger">Events</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Events</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Hero Section -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Events & Conferences</h2>
+        <p class="lead mb-0">
+            Join SGRC at global forums, workshops, and webinars driving innovation in energy, sustainability, and power systems.
+        </p>
+    </div>
+</section>
+
+<!-- Upcoming Events -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center text-primary mb-5 fw-bold">Upcoming Events</h2>
+        <div class="row g-4">
+
+            <!-- Event 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/event1.jpg" class="card-img-top" alt="Energy Transition Summit">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Global Energy Transition Summit 2025</h5>
+                        <p class="card-text">SGRC experts will present on renewable integration and decarbonization pathways for the next decade.</p>
+                        <p class="text-muted mb-1"><i class="bi bi-calendar"></i> March 12–14, 2025</p>
+                        <p class="text-muted"><i class="bi bi-geo-alt"></i> Singapore Expo Center</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Register Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/event2.jpg" class="card-img-top" alt="Power System Workshop">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Power System Stability Workshop</h5>
+                        <p class="card-text">Hands-on sessions on dynamic modeling, SVCs, and FACTS-based control design using PSCAD & PSS®E.</p>
+                        <p class="text-muted mb-1"><i class="bi bi-calendar"></i> June 5–7, 2025</p>
+                        <p class="text-muted"><i class="bi bi-geo-alt"></i> Berlin, Germany</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/event3.jpg" class="card-img-top" alt="Cybersecurity Forum">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Energy Cybersecurity Forum 2025</h5>
+                        <p class="card-text">Discussing advanced protection frameworks and resilient digital infrastructures for smart grids.</p>
+                        <p class="text-muted mb-1"><i class="bi bi-calendar"></i> September 10, 2025</p>
+                        <p class="text-muted"><i class="bi bi-geo-alt"></i> Virtual Event</p>
+                        <a href="#" class="btn btn-outline-primary btn-sm">Join Online</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Past Events -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center text-primary mb-5 fw-bold">Past Events & Highlights</h2>
+        <div class="row g-4">
+
+            <!-- Past Event 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/past1.jpg" class="card-img-top" alt="Green Energy Forum">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Green Energy Forum 2024</h5>
+                        <p class="card-text">Focused on integrating large-scale renewables into existing transmission grids.</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">View Summary</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Event 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/past2.jpg" class="card-img-top" alt="Sustainability Summit">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Sustainability Summit 2024</h5>
+                        <p class="card-text">Showcased SGRC’s sustainability roadmap and carbon-neutral initiatives.</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Event 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="~/images/events/past3.jpg" class="card-img-top" alt="Digital Grid Conference">
+                    <div class="card-body">
+                        <h5 class="card-title fw-semibold">Digital Grid Conference 2023</h5>
+                        <p class="card-text">Discussed smart grid analytics, IoT integration, and next-gen monitoring systems.</p>
+                        <a href="#" class="btn btn-outline-secondary btn-sm">Explore</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h2 class="fw-bold mb-3">Host or Partner with SGRC</h2>
+        <p class="mb-4">Collaborate with SGRC to organize workshops and conferences that shape the future of energy and innovation.</p>
+        <a href="@Url.Action("ContactUs", "Home")" class="btn btn-light text-primary fw-bold px-4">Contact Our Events Team</a>
+    </div>
+</section>

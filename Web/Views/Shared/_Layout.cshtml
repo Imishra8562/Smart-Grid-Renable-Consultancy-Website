@@ -27,12 +27,79 @@
     <div class="page-wrapper">
 
         <!-- Preloader -->
-        <div class="preloader"></div>
+        @*<div class="preloader"></div>*@
         <!--Header-->
         @Html.Action("Header", "Home")
         <!--Body-->
         @RenderBody()
         <!--Main Footer-->
+        <!-- Call To Action Section -->
+        <section class="call-back-section" style="background-image: url(../../Content/images/background/6.jpg)">
+            <div class="auto-container">
+                <div class="row clearfix">
+                    <!-- Form Column -->
+                    <div class="form-column col-lg-8 col-md-12 col-sm-12">
+                        <div class="inner-column">
+
+                            <!-- Request Form -->
+                            <div class="request-form">
+                                <!--Request Form-->
+                                <form method="post" action="https://html.themexriver.com/finano/contact.html">
+                                    <div class="row clearfix">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label>Email Address</label>
+                                            <input type="text" name="text" placeholder="" required>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label>Business Type</label>
+                                            <select class="custom-select-box">
+                                                <option>- Select -</option>
+                                                <option>Business One</option>
+                                                <option>Business Two</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label>Email Address</label>
+                                            <input type="text" name="text" placeholder="" required>
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-12">
+                                            <label>&nbsp;</label>
+                                            <button class="theme-btn btn-style-thirteen" type="submit" name="submit-form">Submit now <span class="icon fa fa-angle-right"></span></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Title Column -->
+                    <div class="title-column col-lg-4 col-md-12 col-sm-12">
+                        <div class="inner-column">
+                            <h2>Request a call back</h2>
+                            <div class="text">If you want to discuss your business with our fine consultants, please schedule a meeting through this contact form</div>
+                            <a href="/contact" class="btn btn-warning px-4 fw-semibold">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Call To Action Section -->
+        <!-- Map Section -->
+        <section class="map-section">
+            <!--Map Outer-->
+            <div class="map-outer">
+                <!-- Embedded Google Map -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.226487816004!2d85.10038574849222!3d25.627947088975233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed59d33323a043%3A0x1ea60707cc44762c!2sPatliputra%20Colony%2C%20Patna%2C%20Bihar!5e0!3m2!1sen!2sin!4v1760459671690!5m2!1sen!2sin"
+                        width="100%"
+                        height="450"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+
         @Html.Action("Footer", "Home")
     </div>
     <!--End pagewrapper-->
@@ -51,5 +118,6 @@
     <script src="~/Content/http://maps.google.com/maps/api/js?key=AIzaSyDTPlX-43R1TpcQUyWjFgiSfL_BiGxslZU"></script>
     <script src="~/Content/js/map-script.js"></script>
     <!--End Google Map APi-->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

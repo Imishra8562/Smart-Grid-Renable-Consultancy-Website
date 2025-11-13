@@ -1,220 +1,182 @@
-﻿<!-- Main Header-->
-<header class="main-header header-style-five">
+﻿<!-- ====== HEADER START ====== -->
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1050;
+    font-family: 'Poppins', sans-serif;
+  }
 
-    <!--Header Top-->
+  body { padding-top: 150px; }
+
+  .header-top {
+    background-color: #0a0a0a;
+    color: #f8f9fa;
+    font-size: 14px;
+    padding: 6px 0;
+    z-index: 1060;
+    position: relative;
+  }
+
+  .header-top .contact-list { list-style: none; margin: 0; padding: 0; }
+  .header-top .contact-list li { display: inline-block; margin-right: 20px; }
+  .header-top i { color: #00bcd4; margin-right: 8px; }
+
+  .header-upper {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-upper.scrolled {
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(25px);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+  }
+
+  .logo-box img {
+    width: 140px;
+    height: 80px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+  }
+
+  .header-upper.scrolled .logo-box img {
+    width: 120px;
+    height: 70px;
+  }
+
+  .navbar-nav { margin-left: auto; align-items: center; }
+  .navbar-nav .nav-link {
+    color: #222 !important;
+    font-weight: 500;
+    padding: 12px 18px;
+    transition: color 0.3s ease;
+  }
+  .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #00bcd4 !important; }
+
+  .dropdown-menu {
+    background: rgba(17, 17, 17, 0.95);
+    border: none; border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: dropdownFade 0.25s ease;
+  }
+  .dropdown-item { color: #f8f9fa; padding: 10px 16px; font-size: 15px; }
+  .dropdown-item:hover { background-color: #00bcd4; color: #fff; }
+
+  @@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* MOBILE STYLES */
+  @@media (max-width: 992px) {
+    .navbar { padding: 0; }
+    .navbar-brand { flex-grow: 1; }
+
+    .mobile-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .menu-label { display: flex; align-items: center; font-weight: 600; color: #000; font-size: 16px; letter-spacing: 0.5px; cursor: pointer; }
+    .menu-label i { margin-left: 8px; font-size: 18px; }
+
+    .navbar-collapse { width: 100%; background: rgba(0,0,0,0.95); text-align: center; border-radius: 0 0 10px 10px; padding-bottom: 10px; }
+    .navbar-nav { flex-direction: column; }
+    .navbar-nav .nav-link { color: #fff !important; padding: 12px 0; }
+  }
+</style>
+
+<header>
+    <!-- TOP BAR -->
     <div class="header-top">
-        <div class="auto-container">
-            <div class="inner-container clearfix">
-                <div class="top-left">
-                    <ul class="contact-list clearfix">
-                        <li><i class="fa fa-envelope-o"></i> finan@mail.com</li>
-                        <li><i class="fa fa-phone"></i><a href="#">+1 401 572 4423</a></li>
-                        <li><i class="fa fa-map-marker"></i><a href="#">121 King Street, USA, Newyork</a></li>
+        <div class="container d-flex justify-content-between align-items-center">
+            <ul class="contact-list mb-0">
+                <li><i class="fa fa-envelope"></i> sgrc@mail.com</li>
+                <li>
+                    <i class="fa fa-phone"></i>
+                    <a href="tel:+916396415468" class="text-white text-decoration-none">+91 6396415468</a>
+                </li>
+                <li><i class="fa fa-map-marker"></i> Patliputra Colony</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <div class="header-upper py-2" id="mainHeader">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light">
+
+                <!-- Mobile header row: logo left, MENU + icon right -->
+                <div class="mobile-header w-100 d-lg-none">
+                    <a class="navbar-brand logo-box" href="@Url.Action("Index","Home")">
+                        <img src="~/Content/images/logo.png" alt="Logo" title="Logo">
+                    </a>
+
+                    <!-- menu label toggles bootstrap collapse -->
+                    <div class="menu-label" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false">
+                        MENU <i class="fa fa-bars"></i>
+                    </div>
+                </div>
+
+                <!-- Desktop Logo (hidden on mobile) -->
+                <a class="navbar-brand logo-box d-none d-lg-block" href="@Url.Action("Index","Home")">
+                    <img src="~/Content/images/logo.png" alt="Logo" title="Logo">
+                </a>
+
+                <!-- Collapsible nav -->
+                <div class="collapse navbar-collapse justify-content-center" id="mainNav">
+                    <ul class="navbar-nav fw-semibold align-items-center">
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">Home</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("About","Home")">About Us</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("OurTeam","Home")">Our Team</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Overview","Home")">Overview</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Industries","Home")">Industries</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("EngineeringServices","Home")">Engineering Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("KnowledgeBase","Home")">Knowledge Base</a></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Training & Events</a>
+                            <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("Training","Home")">Training</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Events","Home")">Events</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Courses","Home")">Courses</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("PastWebinars","Home")">Past Webinars</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Investor & Sustainability</a>
+                            <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
+                                <li><a class="dropdown-item" href="@Url.Action("InvestorRelations","Home")">Investor Relations</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Sustainability","Home")">Sustainability</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Careers","Home")">Careers</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                     </ul>
                 </div>
-                <div class="top-right">
 
-                    <!--Cart Box-->
-                    <div class="cart-box">
-                        <div class="cart-box-btn dropdown-toggle"><span class="fa fa-shopping-cart"></span><span class="total-cart">0</span></div>
-                    </div>
-
-                    <!--Language-->
-                    <div class="language dropdown">
-                        <a class="btn btn-default dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#"><span class="flag-icon"><img src="~/Content/images/icons/flag-icon.png" alt="" /></span>En</a>
-                        <ul class="dropdown-menu style-one" aria-labelledby="dropdownMenu2">
-                            <li><a href="#">English</a></li>
-                            <li><a href="#">German</a></li>
-                            <li><a href="#">Arabic</a></li>
-                            <li><a href="#">Hindi</a></li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
+            </nav>
         </div>
     </div>
-    <!-- End Header Top -->
-    <!--Header-Upper-->
-    <div class="header-upper">
-        <div class="auto-container">
-            <div class="clearfix">
-
-                <div class="pull-left logo-box">
-                    <div class="logo"><a href="index.html"><img src="~/Content/images/logo-7.png" alt="" title=""></a></div>
-                </div>
-
-                <div class="nav-outer clearfix">
-
-                    <!-- Main Menu -->
-                    <nav class="main-menu navbar-expand-md">
-                        <div class="navbar-header">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-
-                        <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent">
-                            <ul class="navigation clearfix">
-                                <li class="current dropdown">
-                                    <a href="#">Home</a>
-                                    <ul>
-                                        <li><a href="index.html">Home Page 01</a></li>
-                                        <li><a href="index-2.html">Home Page 02</a></li>
-                                        <li><a href="index-3.html">Home Page 03</a></li>
-                                        <li><a href="index-4.html">Home Page 04</a></li>
-                                        <li><a href="index-5.html">Home Page 05</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">About Us</a>
-                                    <ul>
-                                        <li><a href="about.html">About Us</a></li>
-                                        <li><a href="team.html">Our Team</a></li>
-                                        <li><a href="case-studies.html">Case Studies</a></li>
-                                        <li><a href="testimonial.html">Testimonial</a></li>
-                                        <li><a href="not-found.html">Error Page</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Services</a>
-                                    <ul>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="services-2.html">Services Two</a></li>
-                                        <li><a href="services-single.html">Services Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Portfolio</a>
-                                    <ul>
-                                        <li><a href="portfolio-2-column.html">Portfolio Two Column</a></li>
-                                        <li><a href="portfolio-3-column.html">Portfolio Three Column</a></li>
-                                        <li><a href="portfolio-4-column.html">Portfolio Four Column</a></li>
-                                        <li><a href="portfolio-masonry.html">Portfolio Masonry</a></li>
-                                        <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Our Blog</a></li>
-                                        <li><a href="blog-list.html">Blog List</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="contact.html">Contact us</a></li>
-                            </ul>
-                        </div>
-
-                    </nav>
-
-                    <!--Outer Box-->
-                    <div class="outer-box">
-
-                        <!--Search Box-->
-                        <div class="search-box-outer">
-                            <div class="dropdown">
-                                <button class="search-box-btn dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-search"></span></button>
-                                <ul class="dropdown-menu pull-right search-panel" aria-labelledby="dropdownMenu3">
-                                    <li class="panel-outer">
-                                        <div class="form-container">
-                                            <form method="post" action="https://html.themexriver.com/finano/blog.html">
-                                                <div class="form-group">
-                                                    <input type="search" name="field-name" value="" placeholder="Search Here" required>
-                                                    <button type="submit" class="search-btn"><span class="fa fa-search"></span></button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!--End Header Upper-->
-    <!--Sticky Header-->
-    <div class="sticky-header">
-        <div class="auto-container clearfix">
-            <!--Logo-->
-            <div class="logo pull-left">
-                <a href="index.html" class="img-responsive"><img src="~/Content/images/logo-small-2.png" alt="" title=""></a>
-            </div>
-
-            <!--Right Col-->
-            <div class="right-col pull-right">
-                <!-- Main Menu -->
-                <nav class="main-menu navbar-expand-md">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <div class="navbar-collapse collapse clearfix" id="navbarSupportedContent1">
-                        <ul class="navigation clearfix">
-                            <li class="current dropdown">
-                                <a href="#">Home</a>
-                                <ul>
-                                    <li><a href="index.html">Home Page 01</a></li>
-                                    <li><a href="index-2.html">Home Page 02</a></li>
-                                    <li><a href="index-3.html">Home Page 03</a></li>
-                                    <li><a href="index-4.html">Home Page 04</a></li>
-                                    <li><a href="index-5.html">Home Page 05</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">About Us</a>
-                                <ul>
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="team.html">Our Team</a></li>
-                                    <li><a href="case-studies.html">Case Studies</a></li>
-                                    <li><a href="testimonial.html">Testimonial</a></li>
-                                    <li><a href="not-found.html">Error Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Services</a>
-                                <ul>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="services-2.html">Services Two</a></li>
-                                    <li><a href="services-single.html">Services Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Portfolio</a>
-                                <ul>
-                                    <li><a href="portfolio-2-column.html">Portfolio Two Column</a></li>
-                                    <li><a href="portfolio-3-column.html">Portfolio Three Column</a></li>
-                                    <li><a href="portfolio-4-column.html">Portfolio Four Column</a></li>
-                                    <li><a href="portfolio-masonry.html">Portfolio Masonry</a></li>
-                                    <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog.html">Our Blog</a></li>
-                                    <li><a href="blog-list.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact us</a></li>
-                        </ul>
-                    </div>
-                </nav><!-- Main Menu End-->
-            </div>
-
-        </div>
-    </div>
-    <!--End Sticky Header-->
-
 </header>
-<!--End Main Header -->
+
+<script>
+    window.addEventListener('scroll', function () {
+        const header = document.getElementById('mainHeader');
+        if (window.scrollY > 50) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+    });
+</script>
+
+<!-- CDN LINKS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- ====== HEADER END ====== -->

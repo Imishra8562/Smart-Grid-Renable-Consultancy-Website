@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Training";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ====== Page Title Section (Updated Style) ====== -->
+<section class="page-title" style="background-image:url('~/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+    <div class="auto-container">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Training <span class="text-warning">&Event</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Training</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- Overview -->
+<section class="py-5 bg-light text-center">
+    <div class="container">
+        <h2 class="fw-bold text-danger mb-4">Our Training Philosophy</h2>
+        <p class="mx-auto text-muted" style="max-width:800px;">
+            SGRC’s Training Programs combine practical insights and technical expertise to prepare professionals for
+            the challenges of modern power systems. From renewable integration to cybersecurity, our modules are designed
+            to enhance real-world performance and strategic understanding.
+        </p>
+    </div>
+</section>
+
+<!-- Training Categories -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold text-danger mb-5">Training Programs</h2>
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1581091870638-6c75c0ee0c2e" class="card-img-top" alt="Power System Studies">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-dark">Power System Studies</h5>
+                        <p class="text-muted">
+                            Learn system modeling, load flow, short-circuit, and stability analysis using tools like PSS®E, ETAP, and PowerFactory.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-end">
+                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984" class="card-img-top" alt="Smart Grid & Cybersecurity">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-dark">Smart Grid & Cybersecurity</h5>
+                        <p class="text-muted">
+                            Understand grid automation, cybersecurity frameworks, and protection strategies for digital energy networks.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-end">
+                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" class="card-img-top" alt="Renewable Integration">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-dark">Renewable Integration</h5>
+                        <p class="text-muted">
+                            Explore challenges and solutions for integrating solar, wind, and battery systems into existing power grids.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-end">
+                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Benefits -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center fw-bold text-danger mb-4">Why Train with SGRC?</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-3 col-sm-6">
+                <div class="p-4 bg-white border rounded-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark">Expert Faculty</h5>
+                    <p class="text-muted">Learn from globally experienced engineers and consultants specializing in power systems and energy transition.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="p-4 bg-white border rounded-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark">Industry Tools</h5>
+                    <p class="text-muted">Hands-on sessions using PSS®E, ETAP, DigSILENT, PSCAD, and other commercial simulation platforms.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="p-4 bg-white border rounded-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark">Customized Programs</h5>
+                    <p class="text-muted">Tailored courses for utilities, transmission operators, and energy startups worldwide.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="p-4 bg-white border rounded-4 shadow-sm h-100">
+                    <h5 class="fw-bold text-dark">Certification</h5>
+                    <p class="text-muted">Earn SGRC certification to validate your technical expertise and professional growth.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "PulseJournal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Hero Section -->
+<section class="bg-dark text-white text-center py-5">
+    <div class="container">
+        <h1 class="fw-bold">Pulse Journal</h1>
+        <p class="lead mt-3">
+            Stay informed with SGRC’s latest research, expert opinions, and technical perspectives
+            driving the future of energy systems.
+        </p>
+    </div>
+</section>
+
+<!-- Articles Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Latest Insights</h2>
+            <p class="text-muted">
+                Explore our latest articles, white papers, and technical thought leadership from SGRC experts.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Article 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Energy Transition">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Shaping the Energy Transition</h5>
+                        <p class="card-text text-muted">
+                            How SGRC is accelerating global decarbonization through digital innovation
+                            and power system modernization.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-outline-primary w-100">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Cybersecurity">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Cybersecurity in Critical Infrastructure</h5>
+                        <p class="card-text text-muted">
+                            Protecting digital power systems against emerging threats in a
+                            hyper-connected world.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-outline-primary w-100">Read More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <img src="https://via.placeholder.com/400x250" class="card-img-top" alt="Grid Innovation">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Digitalization of Power Grids</h5>
+                        <p class="card-text text-muted">
+                            Leveraging data analytics, AI, and IoT for a smarter, more resilient energy ecosystem.
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <a href="#" class="btn btn-outline-primary w-100">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="bg-primary text-white text-center py-5">
+    <div class="container">
+        <h2 class="fw-bold">Contribute or Collaborate</h2>
+        <p class="mb-4">
+            SGRC welcomes contributions from researchers, partners, and professionals working toward a
+            sustainable energy future.
+        </p>
+        <a href="@Url.Action("ContactUs","Home")" class="btn btn-light btn-lg">Contact Our Editorial Team</a>
+    </div>
+</section>

@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Industries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ====== Page Title Section (Updated Style) ====== -->
+<section class="page-title" style="background-image:url('~/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+
+    <div class="auto-container">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Indus<span class="text-warning">tries</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Industries</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- ====== Industries Grid Section ====== -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="fw-bold text-dark">Industries We Serve</h2>
+            <p class="text-secondary mx-auto" style="max-width: 700px;">
+                SGRC provides specialized engineering and consulting services across a range of industries,
+                helping clients navigate the challenges of modern power systems and sustainable energy transformation.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var industry in new[]
+            {
+                new { Name = "Commercial & Industrial", Desc = "Power quality, energy efficiency, and operational optimization for industrial facilities.", Action = "CommercialIndustrial" },
+                new { Name = "Government", Desc = "Infrastructure planning and reliable power solutions for government and public utilities.", Action = "Government" },
+                new { Name = "Investment Stakeholders", Desc = "Financial analysis and risk management for investors in power and infrastructure projects.", Action = "InvestmentStakeholders" },
+                new { Name = "Data Centers & Large Loads", Desc = "High-reliability power design, redundancy planning, and load management for critical systems.", Action = "DataCentersLargeLoads" },
+                new { Name = "Power Delivery", Desc = "Transmission and distribution planning, grid analysis, and power flow optimization.", Action = "PowerDelivery" },
+                new { Name = "Power Generation", Desc = "Performance and stability studies for thermal, hydro, and renewable generation plants.", Action = "PowerGeneration" },
+                new { Name = "Renewable Energy Integration", Desc = "Advanced analysis for integrating solar, wind, and hybrid renewable systems into modern grids.", Action = "RenewablesEnergyIntegration" }
+            })
+            {
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <a href="@Url.Action(industry.Action, "Industries")" class="text-decoration-none text-dark">
+                        <div class="card h-100 border-0 shadow-sm text-center bg-white">
+                            <div class="card-body py-4">
+                                <div class="mb-3">
+                                    <i class="bi bi-lightning-charge-fill fs-1 text-danger"></i>
+                                </div>
+                                <h5 class="fw-bold text-dark mb-2">@industry.Name</h5>
+                                <p class="text-secondary small">@industry.Desc</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 pb-4">
+                                <span class="btn btn-outline-danger btn-sm px-4">Explore</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+}
