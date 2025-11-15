@@ -54,12 +54,19 @@
     <Compile Include="Index\Index_Features.cs" />
     <Compile Include="Index\Index_Seo.cs" />
     <Compile Include="Index\Index_Services.cs" />
+    <Compile Include="Index\Index_Services_Business.cs" />
     <Compile Include="Index\Index_Slider.cs" />
+    <Compile Include="Index\Index_Features_Business.cs" />
+    <Compile Include="Index\Index_Slider_Business.cs" />
+    <Compile Include="Index\Index_Team_Business.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Team\Team.cs" />
+    <Compile Include="Index\Index_Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Team\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

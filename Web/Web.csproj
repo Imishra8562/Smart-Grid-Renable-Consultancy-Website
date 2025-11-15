@@ -125,6 +125,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Model\MasterModel.cs" />
     <Compile Include="Controllers\Core\HasPermissionAttribute.cs" />
     <Compile Include="Controllers\Core\SessionExpireFilterAttribute.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
@@ -984,6 +985,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="Areas\Admin\Views\Master\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
@@ -1003,6 +1005,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EmployeeDashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexSeo.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -1033,6 +1036,14 @@
     <Content Include="Views\Home\Industries.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">
+      <Project>{74427CB8-3011-4326-AEFF-C830B968969C}</Project>
+      <Name>BusinessLayer.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
+      <Project>{a03d5ce6-38d9-4c8e-8027-f711e53856dd}</Project>
+      <Name>BusinessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{46178ea4-77ad-4a64-88dd-13b8acfecae9}</Project>
       <Name>Common</Name>

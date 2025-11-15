@@ -1,85 +1,92 @@
-﻿@{
-    ViewBag.Title = "About Us";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿[HttpPost]
+[ValidateInput(false)]
+public ActionResult SaveIndexSeo(MasterModel Model)
+{
+    MasterModel MModel = new MasterModel();
+    Model.Index_Seo_Obj.Created_By = 1;
+    Model.Index_Seo_Obj.Created_IP = SystemIP();
+
+    Random rnd = new Random();
+    int Code = rnd.Next(1000000, 9999999);
+    Model.Index_Seo_Obj.Index_Seo_Code = "B2BC-" + Code.ToString();
+    int No = 0;
+    if (Model.Index_Seo_Og_Image != null)
+    {
+        string fullPath = Request.MapPath("/Upload/IndexSeo/ogimage/");
+        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Seo_Obj.Index_Seo_Code + "*"));
+        foreach (string f in files)
+        {
+            No += 1;
+        }
+        string extension = System.IO.Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
+        Model.Index_Seo_Og_Image.SaveAs(Server.MapPath("~/Upload/IndexSeo/ogimage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension));
+        string FilePathForPhoto = "~/Upload/IndexSeo/ogimage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+        Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
+    }
+    No = 0;
+    if (Model.Index_Seo_Image != null)
+    {
+        string fullPath = Request.MapPath("/Upload/IndexSeo/heroimage/");
+        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.IndexSeo_Obj.IndexSeo_Code + "*"));
+        foreach (string f in files)
+        {
+            No += 1;
+        }
+        string extension = System.IO.Path.GetExtension(Model.Index_Seo_Image.FileName);
+        Model.Index_Seo_Image.SaveAs(Server.MapPath("~/Upload/IndexSeo/heroimage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension));
+        string FilePathForPhoto = "~/Upload/IndexSeo/heroimage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+        Model.Index_Seo_Obj.Index_Seo_Image = FilePathForPhoto;
+    }
+    int Id = Manger.SaveIndexSeo(Model.Index_Seo_Obj);
+
+    return RedirectToAction("IndexSeo");
+}
+[HttpPost]
+[ValidateInput(false)]
+public ActionResult UpdateIndexSeo(IndexSeoModel Model)
+{
+    IMasterManager Manger = new IndexSeoManager();
+    Model.IndexSeo_Obj.Modified_By = 1;
+    Model.IndexSeo_Obj.Modified_On = DateTime.Now;
+    Model.IndexSeo_Obj.Modified_IP = SystemIP();
+
+    int No = 0;
+    if (Model.IndexSeo_Og_Image != null)
+    {
+        string fullPath = Request.MapPath("/Upload/IndexSeo/heroimage/");
+        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.IndexSeo_Obj.IndexSeo_Code + "*"));
+        foreach (string f in files)
+        {
+            No += 1;
+        }
+        string extension = System.IO.Path.GetExtension(Model.IndexSeo_Og_Image.FileName);
+        Model.IndexSeo_Og_Image.SaveAs(Server.MapPath("~/Upload/IndexSeo/heroimage/" + Model.IndexSeo_Obj.IndexSeo_Code + "_" + No + extension));
+        string FilePathForPhoto = "~/Upload/IndexSeo/heroimage/" + Model.IndexSeo_Obj.IndexSeo_Code + "_" + No + extension;
+        Model.IndexSeo_Obj.IndexSeo_Og_Image = FilePathForPhoto;
+    }
+    No = 0;
+    if (Model.IndexSeo_HeroImage != null)
+    {
+        string fullPath = Request.MapPath("/Upload/IndexSeo/heroimage/");
+        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.IndexSeo_Obj.IndexSeo_Code + "*"));
+        foreach (string f in files)
+        {
+            No += 1;
+        }
+        string extension = System.IO.Path.GetExtension(Model.IndexSeo_HeroImage.FileName);
+        Model.IndexSeo_HeroImage.SaveAs(Server.MapPath("~/Upload/IndexSeo/heroimage/" + Model.IndexSeo_Obj.IndexSeo_Code + "_" + No + extension));
+        string FilePathForPhoto = "~/Upload/IndexSeo/heroimage/" + Model.IndexSeo_Obj.IndexSeo_Code + "_" + No + extension;
+        Model.IndexSeo_Obj.IndexSeo_HeroImage = FilePathForPhoto;
+    }
+    int Id = Manger.UpdateIndexSeo(Model.IndexSeo_Obj);
+
+    return RedirectToAction("IndexSeo");
 }
 
-<!-- ====== Page Title Section ====== -->
-<section class="page-title bg-dark text-center text-light py-5">
-    <div class="container" data-aos="fade-down">
-        <h1 class="display-5 fw-bold">About <span class="text-danger">Us</span></h1>
-        <ul class="breadcrumb justify-content-center mt-3">
-            <li class="breadcrumb-item">
-                <a href="@Url.Action("Index","Home")" class="text-light text-decoration-none">Home</a>
-            </li>
-            <li class="breadcrumb-item active text-danger">About Us</li>
-        </ul>
-    </div>
-</section>
-
-<!-- ====== WHO WE ARE ====== -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
-                <img src="~/Content/images/resource/about-img.jpg" class="img-fluid rounded shadow" alt="About">
-            </div>
-            <div class="col-lg-6" data-aos="fade-left">
-                <h2 class="fw-bold text-dark mb-3">Who We Are</h2>
-                <p class="text-secondary">We are a forward-thinking company dedicated to delivering innovative solutions in engineering, IT, and technology. Our mission is to empower clients through cutting-edge services and sustainable strategies that create measurable results.</p>
-                <p class="text-secondary">With a passionate team and years of experience, we focus on excellence, collaboration, and client satisfaction.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== MISSION & VISION ====== -->
-<section class="py-5 bg-dark text-light">
-    <div class="container text-center">
-        <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-up">
-                <div class="p-4 bg-black rounded shadow-sm h-100 border border-danger">
-                    <h4 class="fw-bold text-danger mb-3">Our Mission</h4>
-                    <p class="text-light mb-0">To deliver innovative, reliable, and high-quality solutions that help organizations achieve their goals efficiently.</p>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="150">
-                <div class="p-4 bg-black rounded shadow-sm h-100 border border-danger">
-                    <h4 class="fw-bold text-danger mb-3">Our Vision</h4>
-                    <p class="text-light mb-0">To become a global leader in technology services by empowering businesses and individuals through innovation and integrity.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== COUNTER SECTION ====== -->
-<section class="py-5 bg-danger text-center text-light">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-3" data-aos="fade-up">
-                <h2 class="fw-bold">1200+</h2>
-                <p>Finished Projects</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
-                <h2 class="fw-bold">195</h2>
-                <p>Team Members</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
-                <h2 class="fw-bold">850+</h2>
-                <p>Happy Clients</p>
-            </div>
-            <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
-                <h2 class="fw-bold">26+</h2>
-                <p>Years Experience</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-@section Scripts {
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-    </script>
+public ActionResult DeleteIndexSeo(int Index_Seo_Id)
+{
+    MasterModel Model = new MasterModel();
+    IMasterManager Manger = new IndexSeoManager();
+    int id = Manger.DeleteIndexSeo(Index_Seo_Id);
+    return RedirectToAction("IndexSeo");
 }

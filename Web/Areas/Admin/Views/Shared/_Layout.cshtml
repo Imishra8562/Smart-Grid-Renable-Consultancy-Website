@@ -106,6 +106,25 @@
     <!-- Template js-->
     <script src="~/Areas/Admin/Content/assets/js/script.js"></script>
     <script src="~/Areas/Admin/Content/assets/js/theme-customizer/customizer.js"></script>
-    <!-- login js-->
+    <!-- Form Validation-->
+    <script>
+        (function () {
+            'use strict';
+
+            var forms = document.querySelectorAll('.needs-validation');
+
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+
+        })();
+    </script>
 </body>
 </html>

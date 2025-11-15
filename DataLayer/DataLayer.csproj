@@ -53,6 +53,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BaseRepository.cs" />
+    <Compile Include="Index\Index_Features_Repository.cs" />
+    <Compile Include="Index\Index_Seo_Repository.cs" />
+    <Compile Include="Index\Index_Services_Repository.cs" />
+    <Compile Include="Index\Index_Slider_Repository.cs" />
+    <Compile Include="Index\Index_Team_Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
