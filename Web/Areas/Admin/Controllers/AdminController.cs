@@ -3,6 +3,7 @@ using BusinessLayer.Interface;
 using Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security;
@@ -75,22 +76,14 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-
-            // Always initialize the object to avoid null
-            Model.Index_Seo_Obj = new Index_Seo();
-
-            // List
             Model.List_Index_Seo_Obj = Manager.GetIndexSeo(0, null);
-
-            // Edit mode
             if (Index_Seo_Id.HasValue)
             {
-                Model.Index_Seo_Obj = Manager.GetIndexSeo(Index_Seo_Id, null).FirstOrDefault()?? new Index_Seo();
+                Model.Index_Seo_Obj = Manager.GetIndexSeo(Index_Seo_Id, null).FirstOrDefault();
             }
-
             return View(Model);
         }
-
+        
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult SaveIndexSeo(MasterModel Model)
@@ -106,6 +99,11 @@ namespace Web.Areas.Admin.Controllers
             if (Model.Index_Seo_Og_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/Index/IndexSeoImage/");
+                // Create folder if not exists
+                if (!Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
                 string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Seo_Obj.Index_Seo_Code + "*"));
                 foreach (string f in files)
                 {
@@ -128,7 +126,6 @@ namespace Web.Areas.Admin.Controllers
             Model.Index_Seo_Obj.Modified_By = 1;
             Model.Index_Seo_Obj.Modified_On = DateTime.Now;
             Model.Index_Seo_Obj.Modified_IP = SystemIP();
-
             int No = 0;
             if (Model.Index_Seo_Og_Image != null)
             {
@@ -143,11 +140,11 @@ namespace Web.Areas.Admin.Controllers
                 string FilePathForPhoto = "~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
                 Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
             }
-            
             int Id = Manager.UpdateIndexSeo(Model.Index_Seo_Obj);
 
             return RedirectToAction("IndexSeo");
         }
+
         [HttpGet]
         public ActionResult DeleteIndexSeo(int Index_Seo_Id)
         {
@@ -187,6 +184,7 @@ namespace Web.Areas.Admin.Controllers
             if (Model.Index_Features_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/Index/IndexFeaturesImage/");
+
                 string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Features_Obj.Index_Features_Code + "*"));
                 foreach (string f in files)
                 {

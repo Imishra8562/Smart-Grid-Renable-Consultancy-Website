@@ -10,7 +10,6 @@ namespace Web.Areas.Admin.Model
 	public class MasterModel
 	{
         #region Index Seo
-        [Required(ErrorMessage = "Please upload OG Image")]
         public HttpPostedFileBase Index_Seo_Og_Image { get; set; }
         public Index_Seo Index_Seo_Obj { get; set; }
         public IList<Index_Seo> List_Index_Seo_Obj { get; set; }
