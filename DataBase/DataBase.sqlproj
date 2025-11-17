@@ -94,4 +94,7 @@
     <Build Include="dbo\Stored Procedures\Index\sp_Add_Index_Slider.sql" />
     <Build Include="dbo\Stored Procedures\Index\sp_Add_Index_Team.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DataBase.publish.xml" />
+  </ItemGroup>
 </Project>

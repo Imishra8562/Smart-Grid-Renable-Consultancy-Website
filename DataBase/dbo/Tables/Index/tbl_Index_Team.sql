@@ -4,6 +4,7 @@
     [Index_Team_Member_Name]          NVARCHAR(MAX) NULL, 
     [Index_Team_Member_Designation]   NVARCHAR(MAX) NULL,
     [Index_Team_Member_Image]         NVARCHAR(MAX) NULL,
+    [Index_Team_Member_Code]          NVARCHAR(MAX) NULL,
     [Index_Team_Member_Facebook_Url]  NVARCHAR(MAX) NULL,
     [Index_Team_Member_Twitter_Url]   NVARCHAR(MAX) NULL,
     [Index_Team_Member_Linkedin_Url]  NVARCHAR(MAX) NULL,

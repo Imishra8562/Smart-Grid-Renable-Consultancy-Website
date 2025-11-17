@@ -2,6 +2,7 @@
 @Index_Team_Member_Name          NVARCHAR(MAX)=NULL, 
 @Index_Team_Member_Designation   NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Image         NVARCHAR(MAX)=NULL,
+@Index_Team_Member_Code          NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Facebook_Url  NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Twitter_Url   NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Linkedin_Url  NVARCHAR(MAX)=NULL,
@@ -27,7 +28,8 @@ BEGIN TRY
          INSERT INTO tbl_Index_Team(
 		 Index_Team_Member_Name,         
 		 Index_Team_Member_Designation , 
-		 Index_Team_Member_Image  ,      
+		 Index_Team_Member_Image  , 
+		 Index_Team_Member_Code ,
 		 Index_Team_Member_Facebook_Url ,
 		 Index_Team_Member_Twitter_Url,  
 		 Index_Team_Member_Linkedin_Url ,
@@ -37,7 +39,8 @@ BEGIN TRY
 		 VALUES(
 		 @Index_Team_Member_Name,         
 		 @Index_Team_Member_Designation , 
-		 @Index_Team_Member_Image  ,      
+		 @Index_Team_Member_Image  , 
+		 @Index_Team_Member_Code ,
 		 @Index_Team_Member_Facebook_Url ,
 		 @Index_Team_Member_Twitter_Url,  
 		 @Index_Team_Member_Linkedin_Url ,

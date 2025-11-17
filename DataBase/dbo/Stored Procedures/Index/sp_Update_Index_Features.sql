@@ -22,14 +22,14 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Features SET 
-         @Index_Features_Image        =@Index_Features_Image        ,
-         @Index_Features_Title        =@Index_Features_Title        ,
-         @Index_Features_Headline1    =@Index_Features_Headline1    ,
-         @Index_Features_SubHeadline1 =@Index_Features_SubHeadline1 ,
-         @Index_Features_Headline2    =@Index_Features_Headline2    ,
-         @Index_Features_SubHeadline2 =@Index_Features_SubHeadline2 ,
-         @Index_Features_Headline3    =@Index_Features_Headline3    ,
-         @Index_Features_SubHeadline3 =@Index_Features_SubHeadline3 ,              
+         Index_Features_Image        =@Index_Features_Image        ,
+         Index_Features_Title        =@Index_Features_Title        ,
+         Index_Features_Headline1    =@Index_Features_Headline1    ,
+         Index_Features_SubHeadline1 =@Index_Features_SubHeadline1 ,
+         Index_Features_Headline2    =@Index_Features_Headline2    ,
+         Index_Features_SubHeadline2 =@Index_Features_SubHeadline2 ,
+         Index_Features_Headline3    =@Index_Features_Headline3    ,
+         Index_Features_SubHeadline3 =@Index_Features_SubHeadline3 ,              
 		 Modified_On=@Modified_On,Modified_IP=@Modified_IP,Modified_By=@Modified_By
 
 		WHERE Index_Features_Id=@Index_Features_Id 

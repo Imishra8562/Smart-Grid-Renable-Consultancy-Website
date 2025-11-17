@@ -1,15 +1,17 @@
-﻿@{
+﻿@model Web.Areas.Admin.Model.MasterModel
+@{
     ViewBag.Title = "IndexSeo";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int i = 0;
 }
 
 <div class="page-body">
+
+    <!-- Page header -->
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-sm-6">
-                    <h3>Index SEO</h3>
-                </div>
+                <div class="col-sm-6"><h3>Index SEO</h3></div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
@@ -21,106 +23,164 @@
         </div>
     </div>
 
-    <!-- Form Start -->
-    <div class="container-fluid form-validate">
+    <!-- SEO FORM -->
+    <div class="card">
+        <div class="card-header pb-0"><h4>Index SEO Details</h4></div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("SaveIndexSeo", "Admin", FormMethod.Post,
+                   new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+            {
+
+                <!-- Page Title + Slug -->
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <label class="form-label">Page Title</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Page_Title,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter page title.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">SEO Slug (URL)</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Slug,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter slug.</div>
+                    </div>
+                </div>
+
+                <!-- Keywords + Description -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Meta Keywords</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Keyword,
+                        new { @class = "form-control", rows = "3", required = "required" })
+                        <div class="invalid-feedback">Please enter meta keywords.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Meta Description</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Description,
+                        new { @class = "form-control", rows = "3", required = "required" })
+                        <div class="invalid-feedback">Please enter meta description.</div>
+                    </div>
+                </div>
+
+                <!-- OG Image + Alt Tag -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                
+                        <label class="form-label">OG Image</label>
+                
+                        @{
+                            var imagePath = Model.Index_Seo_Obj != null &&
+                                            !string.IsNullOrEmpty(Model.Index_Seo_Obj.Index_Seo_Og_Image)
+                                            ? Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)
+                                            : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                        }
+                
+                        @Html.TextBoxFor(m => m.Index_Seo_Og_Image, new
+                        {
+                            @class = "dropify",
+                            type = "file",
+                            data_default_file = imagePath,
+                            data_max_file_size = "5M",
+                            data_allowed_file_extensions = "jpg png jpeg webp"
+                        })
+                    </div>
+                
+                    <div class="col-md-6">
+                        <label class="form-label">Image Alt Tag</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Image_Alt_Tag,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter alt tag.</div>
+                    </div>
+                </div>
+
+
+                <!-- OG Title + OG Description -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">OG Title</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Title,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">OG Description</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Description,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                    </div>
+                </div>
+
+                <!-- Hidden -->
+                @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Id)
+                @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Code)
+
+                <button class="btn btn-primary mt-3" type="submit">Save SEO</button>
+            }
+        </div>
+    </div>
+
+    <!-- SEO LIST -->
+    <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-sm-12">
 
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h4>Index SEO Details</h4>
+                        <h4>Index SEO List</h4>
                     </div>
 
                     <div class="card-body">
-                        <form class="needs-validation" novalidate="">
 
-                            <div class="row g-3">
+                        <div class="table-responsive theme-scrollbar">
 
-                                <!-- Index_Seo_Code -->
-                                <div class="col-md-4">
-                                    <label class="form-label">SEO Code</label>
-                                    <input class="form-control" name="Index_Seo_Code" type="text" required="">
-                                    <div class="invalid-feedback">Please enter SEO code.</div>
-                                </div>
+                            <table class="display datatable" id="basic-1">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Headline</th>
+                                        <th>Hero Image</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
 
-                                <!-- Index_Seo_Page_Title -->
-                                <div class="col-md-8">
-                                    <label class="form-label">Page Title</label>
-                                    <input class="form-control" name="Index_Seo_Page_Title" type="text" required="">
-                                    <div class="invalid-feedback">Please enter page title.</div>
-                                </div>
+                                <tbody>
+                                    @if (Model.List_Index_Seo_Obj != null && Model.List_Index_Seo_Obj.Count > 0)
+                                    {
+                                        foreach (var items in Model.List_Index_Seo_Obj)
+                                        {
+                                            <tr>
+                                                <td>@(++i)</td>
+                                                <td>@items.Index_Seo_Slug</td>
 
-                            </div>
+                                                <td>
+                                                    @if (!string.IsNullOrEmpty(items.Index_Seo_Og_Image))
+                                                    {
+                                                        <img src="@Url.Content(items.Index_Seo_Og_Image)" style="width:150px;height:100px;" />
+                                                    }
+                                                    else
+                                                    { <span class="text-danger">No Image</span>}
+                                                </td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <div class="btn-group">
+                                                            <a href="@Url.Action("Index_Seo", "Admin", new { Index_Seo_Id = items.Index_Seo_Id })" class="btn btn-warning" role="button">Edit</a>
 
-                            <div class="row g-3 mt-2">
+                                                            <a href="@Url.Action("DeleteIndexSeo", "Admin", new { Index_Seo_Id = items.Index_Seo_Id })" class="btn btn-danger" role="button">Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
 
-                                <!-- Index_Seo_Meta_Keyword -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Meta Keywords</label>
-                                    <input class="form-control" name="Index_Seo_Meta_Keyword" type="text" required="">
-                                    <div class="invalid-feedback">Please enter meta keywords.</div>
-                                </div>
+                            </table>
 
-                                <!-- Index_Seo_Meta_Description -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Meta Description</label>
-                                    <input class="form-control" name="Index_Seo_Meta_Description" type="text" required="">
-                                    <div class="invalid-feedback">Please enter meta description.</div>
-                                </div>
+                        </div>
 
-                            </div>
-
-                            <div class="row g-3 mt-2">
-
-                                <!-- Index_Seo_Og_Image -->
-                                <div class="col-md-6">
-                                    <label class="form-label">OG Image URL</label>
-                                    <input class="form-control" name="Index_Seo_Og_Image" type="text" required>
-                                    <div class="invalid-feedback">Please enter OG image URL.</div>
-                                </div>
-
-                                <!-- Index_Seo_Image_Alt_Tag -->
-                                <div class="col-md-6">
-                                    <label class="form-label">Image Alt Tag</label>
-                                    <input class="form-control" name="Index_Seo_Image_Alt_Tag" type="text" required>
-                                    <div class="invalid-feedback">Please enter image alt tag.</div>
-                                </div>
-
-                            </div>
-
-                            <div class="row g-3 mt-2">
-
-                                <!-- Index_Seo_Og_Title -->
-                                <div class="col-md-6">
-                                    <label class="form-label">OG Title</label>
-                                    <input class="form-control" name="Index_Seo_Og_Title" type="text" required>
-                                    <div class="invalid-feedback">Please enter OG title.</div>
-                                </div>
-
-                                <!-- Index_Seo_Og_Description -->
-                                <div class="col-md-6">
-                                    <label class="form-label">OG Description</label>
-                                    <input class="form-control" name="Index_Seo_Og_Description" type="text" required>
-                                    <div class="invalid-feedback">Please enter OG description.</div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="row g-3 mt-2">
-
-                                <!-- Index_Seo_Slug -->
-                                <div class="col-md-12">
-                                    <label class="form-label">SEO Slug (URL)</label>
-                                    <input class="form-control" name="Index_Seo_Slug" type="text" required="">
-                                    <div class="invalid-feedback">Please enter slug.</div>
-                                </div>
-
-                            </div>
-
-                            <button class="btn btn-primary mt-3" type="submit">Save SEO</button>
-
-                        </form>
                     </div>
 
                 </div>
@@ -128,4 +188,141 @@
             </div>
         </div>
     </div>
+
+</div>
+else
+<div class="page-body">
+
+    <!-- Page header -->
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6"><h3>Index SEO</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">Index</li>
+                        <li class="breadcrumb-item active">Index SEO</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO FORM -->
+    <div class="card">
+        <div class="card-header pb-0"><h4>Index SEO Details</h4></div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("SaveIndexSeo", "Admin", FormMethod.Post,
+                   new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+            {
+
+                <!-- Page Title + Slug -->
+                <div class="row g-3">
+                    <div class="col-md-8">
+                        <label class="form-label">Page Title</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Page_Title,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter page title.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">SEO Slug (URL)</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Slug,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter slug.</div>
+                    </div>
+                </div>
+
+                <!-- Keywords + Description -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Meta Keywords</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Keyword,
+                        new { @class = "form-control", rows = "3", required = "required" })
+                        <div class="invalid-feedback">Please enter meta keywords.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Meta Description</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Description,
+                        new { @class = "form-control", rows = "3", required = "required" })
+                        <div class="invalid-feedback">Please enter meta description.</div>
+                    </div>
+                </div>
+
+                <!-- OG Image + Alt Tag -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+
+                        <label class="form-label">OG Image</label>
+
+                        @{
+                            var imagePath = Model.Index_Seo_Obj != null &&
+                                            !string.IsNullOrEmpty(Model.Index_Seo_Obj.Index_Seo_Og_Image)
+                                            ? Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)
+                                            : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                        }
+
+                        @Html.TextBoxFor(m => m.Index_Seo_Og_Image, new
+                        {
+                            @class = "dropify",
+                            type = "file",
+                            data_default_file = imagePath,
+                            data_max_file_size = "5M",
+                            data_allowed_file_extensions = "jpg png jpeg webp"
+                        })
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Image Alt Tag</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Image_Alt_Tag,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                        <div class="invalid-feedback">Please enter alt tag.</div>
+                    </div>
+                </div>
+
+
+                <!-- OG Title + OG Description -->
+                <div class="row g-3 mt-2">
+                    <div class="col-md-6">
+                        <label class="form-label">OG Title</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Title,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">OG Description</label>
+                        @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Description,
+                        new { @class = "form-control", required = "required", rows = "2" })
+                    </div>
+                </div>
+
+                <!-- Hidden -->
+                @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Id)
+                @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Code)
+
+                <button class="btn btn-primary mt-3" type="submit">Save SEO</button>
+            }
+        </div>
+    </div>
+
+    @section Scripts {
+
+        <script>
+            $(document).ready(function () {
+                /* Dropify */
+                $('.dropify').dropify();
+                /* DataTables - safe initialization */
+                if (!$.fn.DataTable.isDataTable('#basic-1')) {
+                    $('#basic-1').DataTable({
+                        responsive: true
+                    });
+                }
+            });
+        </script>
+
+
+    }
 </div>

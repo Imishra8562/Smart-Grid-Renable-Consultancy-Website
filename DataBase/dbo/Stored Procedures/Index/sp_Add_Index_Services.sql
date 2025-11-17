@@ -29,7 +29,6 @@ BEGIN TRY
 		 Created_By,Created_IP)
 
 		 VALUES(
-		 @Index_Services_Code,
 		 @Index_Services_Code,      
 		 @Index_Services_Icon ,      
 		 @Index_Services_Title ,     

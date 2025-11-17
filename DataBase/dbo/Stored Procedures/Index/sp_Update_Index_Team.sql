@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Index_Team]
 @Index_Team_Id               INT=NULL,
 @Index_Team_Member_Name          NVARCHAR(MAX)=NULL, 
+@Index_Team_Member_Code          NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Designation   NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Image         NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Facebook_Url  NVARCHAR(MAX)=NULL,
@@ -20,13 +21,13 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Team SET 
-         @Index_Team_Member_Name          =@Index_Team_Member_Name         , 
-         @Index_Team_Member_Designation   =@Index_Team_Member_Designation  ,
-         @Index_Team_Member_Image         =@Index_Team_Member_Image        ,
-         @Index_Team_Member_Facebook_Url  =@Index_Team_Member_Facebook_Url ,
-         @Index_Team_Member_Twitter_Url   =@Index_Team_Member_Twitter_Url  ,
-         @Index_Team_Member_Linkedin_Url  =@Index_Team_Member_Linkedin_Url ,
-         @Index_Team_Member_Instagram_Url=@Index_Team_Member_Instagram_Url ,
+         Index_Team_Member_Name          =@Index_Team_Member_Name         , 
+         Index_Team_Member_Designation   =@Index_Team_Member_Designation  ,
+         Index_Team_Member_Image         =@Index_Team_Member_Image        ,
+         Index_Team_Member_Facebook_Url  =@Index_Team_Member_Facebook_Url ,
+         Index_Team_Member_Twitter_Url   =@Index_Team_Member_Twitter_Url  ,
+         Index_Team_Member_Linkedin_Url  =@Index_Team_Member_Linkedin_Url ,
+         Index_Team_Member_Instagram_Url=@Index_Team_Member_Instagram_Url ,
 		 Modified_On=@Modified_On,Modified_IP=@Modified_IP,Modified_By=@Modified_By
 
 		WHERE Index_Team_Id=@Index_Team_Id 

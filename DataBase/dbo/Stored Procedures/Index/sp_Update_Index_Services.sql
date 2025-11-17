@@ -17,9 +17,9 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Services SET 
-         @Index_Services_Icon         =@Index_Services_Icon        ,
-         @Index_Services_Title        =@Index_Services_Title       ,
-         @Index_Services_Description  =@Index_Services_Description ,
+         Index_Services_Icon         =@Index_Services_Icon        ,
+         Index_Services_Title        =@Index_Services_Title       ,
+         Index_Services_Description  =@Index_Services_Description ,
 		 Modified_On=@Modified_On,Modified_IP=@Modified_IP,Modified_By=@Modified_By
 
 		WHERE Index_Services_Id=@Index_Services_Id 

@@ -759,6 +759,20 @@
     <Content Include="Areas\Admin\Content\assets\js\vector-map\map\jquery-jvectormap-uk-mill-en.js" />
     <Content Include="Areas\Admin\Content\assets\js\vector-map\map\jquery-jvectormap-us-aea-en.js" />
     <Content Include="Areas\Admin\Content\assets\js\vector-map\map\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Areas\Admin\Content\datatable\button-ext\buttons.html5.min.js" />
+    <Content Include="Areas\Admin\Content\datatable\button-ext\buttons.print.min.js" />
+    <Content Include="Areas\Admin\Content\datatable\button-ext\dataTables.buttons.min.js" />
+    <Content Include="Areas\Admin\Content\datatable\button-ext\jszip.min.js" />
+    <Content Include="Areas\Admin\Content\datatable\custom_miscellaneous.js" />
+    <Content Include="Areas\Admin\Content\datatable\datatables.css" />
+    <Content Include="Areas\Admin\Content\datatable\datatables.js" />
+    <Content Include="Areas\Admin\Content\Dropify\css\dropify.css" />
+    <Content Include="Areas\Admin\Content\Dropify\css\dropify.min.css" />
+    <Content Include="Areas\Admin\Content\Dropify\file-upload.png" />
+    <Content Include="Areas\Admin\Content\Dropify\js\dropify.js" />
+    <Content Include="Areas\Admin\Content\Dropify\js\dropify.min.js" />
+    <Content Include="Areas\Admin\Content\izitoast\iziToast.min.css" />
+    <Content Include="Areas\Admin\Content\izitoast\iziToast.min.js" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\custom-animate.css" />
@@ -987,6 +1001,11 @@
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Areas\Admin\Views\Master\" />
     <Folder Include="Models\" />
+    <Folder Include="Upload\Index\IndexFeaturesImage\" />
+    <Folder Include="Upload\Index\IndexSeoImage\" />
+    <Folder Include="Upload\Index\IndexServicesIcon\" />
+    <Folder Include="Upload\Index\IndexSliderImage\" />
+    <Folder Include="Upload\Index\IndexTeamMemberImage\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>

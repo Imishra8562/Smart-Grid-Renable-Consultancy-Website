@@ -22,14 +22,14 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Seo SET 
-         @Index_Seo_Page_Title       =@Index_Seo_Page_Title       ,
-         @Index_Seo_Meta_Keyword     =@Index_Seo_Meta_Keyword     ,
-         @Index_Seo_Meta_Description =@Index_Seo_Meta_Description ,
-         @Index_Seo_Og_Image         =@Index_Seo_Og_Image         ,
-         @Index_Seo_Image_Alt_Tag    =@Index_Seo_Image_Alt_Tag    ,
-         @Index_Seo_Og_Title         =@Index_Seo_Og_Title         ,
-         @Index_Seo_Og_Description   =@Index_Seo_Og_Description   ,
-         @Index_Seo_Slug             =@Index_Seo_Slug             , 
+         Index_Seo_Page_Title       =@Index_Seo_Page_Title       ,
+         Index_Seo_Meta_Keyword     =@Index_Seo_Meta_Keyword     ,
+         Index_Seo_Meta_Description =@Index_Seo_Meta_Description ,
+         Index_Seo_Og_Image         =@Index_Seo_Og_Image         ,
+         Index_Seo_Image_Alt_Tag    =@Index_Seo_Image_Alt_Tag    ,
+         Index_Seo_Og_Title         =@Index_Seo_Og_Title         ,
+         Index_Seo_Og_Description   =@Index_Seo_Og_Description   ,
+         Index_Seo_Slug             =@Index_Seo_Slug             , 
 		 Modified_On=@Modified_On,Modified_IP=@Modified_IP,Modified_By=@Modified_By
 
 		WHERE Index_Seo_Id=@Index_Seo_Id 

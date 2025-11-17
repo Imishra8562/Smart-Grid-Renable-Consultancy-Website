@@ -13,6 +13,7 @@ namespace Domain
         public int Index_Team_Id { get; set; }
         public int Fk_Index_Seo_Id { get; set; }
         public string Index_Team_Member_Name { get; set; }
+        public string Index_Team_Member_Code { get; set; }
         public string Index_Team_Member_Designation { get; set; }
         public string Index_Team_Member_Image { get; set; }
         public string Index_Team_Member_Facebook_Url { get; set; }
