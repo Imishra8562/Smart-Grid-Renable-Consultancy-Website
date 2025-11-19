@@ -95,29 +95,37 @@ namespace Web.Areas.Admin.Controllers
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
             Model.Index_Seo_Obj.Index_Seo_Code = "ISC-" + Code.ToString();
+
             int No = 0;
+
             if (Model.Index_Seo_Og_Image != null)
             {
-                string fullPath = Request.MapPath("/Upload/Index/IndexSeoImage/");
-                // Create folder if not exists
-                if (!Directory.Exists(fullPath))
-                {
-                    Directory.CreateDirectory(fullPath);
-                }
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Seo_Obj.Index_Seo_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
-                Model.Index_Seo_Og_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
-                Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
-            }
-            int Id = Manager.SaveIndexSeo(Model.Index_Seo_Obj);
+                string folderPath = Server.MapPath("~/Upload/Index/IndexSeoImage/");
 
+                // Ensure directory exists
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing files
+                string[] files = Directory.GetFiles(folderPath, Model.Index_Seo_Obj.Index_Seo_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
+
+                string fileName = Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Index_Seo_Og_Image.SaveAs(fullSavePath);
+
+                Model.Index_Seo_Obj.Index_Seo_Og_Image = "~/Upload/Index/IndexSeoImage/" + fileName;
+            }
+
+            int Id = Manager.SaveIndexSeo(Model.Index_Seo_Obj);
             return RedirectToAction("IndexSeo");
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult UpdateIndexSeo(MasterModel Model)
@@ -126,24 +134,37 @@ namespace Web.Areas.Admin.Controllers
             Model.Index_Seo_Obj.Modified_By = 1;
             Model.Index_Seo_Obj.Modified_On = DateTime.Now;
             Model.Index_Seo_Obj.Modified_IP = SystemIP();
+
             int No = 0;
+
             if (Model.Index_Seo_Og_Image != null)
             {
-                string fullPath = Request.MapPath("/Upload/Index/IndexSeoImage/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Seo_Obj.Index_Seo_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
-                Model.Index_Seo_Og_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
-                Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateIndexSeo(Model.Index_Seo_Obj);
+                string folderPath = Server.MapPath("~/Upload/Index/IndexSeoImage/");
 
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Index_Seo_Obj.Index_Seo_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
+
+                string fileName = Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Index_Seo_Og_Image.SaveAs(fullSavePath);
+
+                Model.Index_Seo_Obj.Index_Seo_Og_Image = "~/Upload/Index/IndexSeoImage/" + fileName;
+            }
+
+            int Id = Manager.UpdateIndexSeo(Model.Index_Seo_Obj);
             return RedirectToAction("IndexSeo");
         }
+
 
         [HttpGet]
         public ActionResult DeleteIndexSeo(int Index_Seo_Id)
@@ -177,28 +198,41 @@ namespace Web.Areas.Admin.Controllers
             Model.Index_Features_Obj.Created_By = 1;
             Model.Index_Features_Obj.Created_IP = SystemIP();
 
+            // generate code
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
             Model.Index_Features_Obj.Index_Features_Code = "IFC-" + Code.ToString();
-            int No = 0;
-            if (Model.Index_Features_Image != null)
+
+            // handle image upload
+            if (Model.Index_Features_Image != null && Model.Index_Features_Image.ContentLength > 0)
             {
-                string fullPath = Request.MapPath("/Upload/Index/IndexFeaturesImage/");
+                string folderPath = Server.MapPath("~/Upload/Index/IndexFeaturesImage/");
 
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Features_Obj.Index_Features_Code + "*"));
-                foreach (string f in files)
+                // ensure directory exists
+                if (!Directory.Exists(folderPath))
                 {
-                    No += 1;
+                    Directory.CreateDirectory(folderPath);
                 }
-                string extension = System.IO.Path.GetExtension(Model.Index_Features_Image.FileName);
-                Model.Index_Features_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension;
-                Model.Index_Features_Obj.Index_Features_Image = FilePathForPhoto;
-            }
-            int Id = Manager.SaveIndexFeatures(Model.Index_Features_Obj);
 
+                // count existing files for this code
+                string[] files = Directory.GetFiles(folderPath, Model.Index_Features_Obj.Index_Features_Code + "*");
+                int No = files.Length; // start with existing count
+
+                string extension = Path.GetExtension(Model.Index_Features_Image.FileName) ?? "";
+                string fileName = $"{Model.Index_Features_Obj.Index_Features_Code}_{No}{extension}";
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                // save file
+                Model.Index_Features_Image.SaveAs(fullSavePath);
+
+                // store virtual path in model
+                Model.Index_Features_Obj.Index_Features_Image = "~/Upload/Index/IndexFeaturesImage/" + fileName;
+            }
+
+            int Id = Manager.SaveIndexFeatures(Model.Index_Features_Obj);
             return RedirectToAction("IndexFeatures");
         }
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult UpdateIndexFeatures(MasterModel Model)
@@ -208,25 +242,95 @@ namespace Web.Areas.Admin.Controllers
             Model.Index_Features_Obj.Modified_On = DateTime.Now;
             Model.Index_Features_Obj.Modified_IP = SystemIP();
 
-            int No = 0;
-            if (Model.Index_Features_Image != null)
+            // handle image upload (only if new file provided)
+            if (Model.Index_Features_Image != null && Model.Index_Features_Image.ContentLength > 0)
             {
-                string fullPath = Request.MapPath("/Upload/Index/IndexFeaturesImage/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Features_Obj.Index_Features_Code + "*"));
-                foreach (string f in files)
+                string folderPath = Server.MapPath("~/Upload/Index/IndexFeaturesImage/");
+
+                // ensure directory exists
+                if (!Directory.Exists(folderPath))
                 {
-                    No += 1;
+                    Directory.CreateDirectory(folderPath);
                 }
-                string extension = System.IO.Path.GetExtension(Model.Index_Features_Image.FileName);
-                Model.Index_Features_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension;
-                Model.Index_Features_Obj.Index_Features_Image = FilePathForPhoto;
+
+                // count existing files for this code
+                string[] files = Directory.GetFiles(folderPath, Model.Index_Features_Obj.Index_Features_Code + "*");
+                int No = files.Length;
+
+                string extension = Path.GetExtension(Model.Index_Features_Image.FileName) ?? "";
+                string fileName = $"{Model.Index_Features_Obj.Index_Features_Code}_{No}{extension}";
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                // save file
+                Model.Index_Features_Image.SaveAs(fullSavePath);
+
+                // update virtual path in model
+                Model.Index_Features_Obj.Index_Features_Image = "~/Upload/Index/IndexFeaturesImage/" + fileName;
             }
 
             int Id = Manager.UpdateIndexFeatures(Model.Index_Features_Obj);
-
             return RedirectToAction("IndexFeatures");
         }
+
+        //[HttpPost]
+        //[ValidateInput(false)]
+        //public ActionResult SaveIndexFeatures(MasterModel Model)
+        //{
+        //    IMasterManager Manager = new MasterManager();
+        //    Model.Index_Features_Obj.Created_By = 1;
+        //    Model.Index_Features_Obj.Created_IP = SystemIP();
+
+        //    Random rnd = new Random();
+        //    int Code = rnd.Next(1000000, 9999999);
+        //    Model.Index_Features_Obj.Index_Features_Code = "IFC-" + Code.ToString();
+        //    int No = 0;
+        //    if (Model.Index_Features_Image != null)
+        //    {
+        //        string fullPath = Request.MapPath("/Upload/Index/IndexFeaturesImage/");
+
+        //        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Features_Obj.Index_Features_Code + "*"));
+        //        foreach (string f in files)
+        //        {
+        //            No += 1;
+        //        }
+        //        string extension = System.IO.Path.GetExtension(Model.Index_Features_Image.FileName);
+        //        Model.Index_Features_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension));
+        //        string FilePathForPhoto = "~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension;
+        //        Model.Index_Features_Obj.Index_Features_Image = FilePathForPhoto;
+        //    }
+        //    int Id = Manager.SaveIndexFeatures(Model.Index_Features_Obj);
+
+        //    return RedirectToAction("IndexFeatures");
+        //}
+
+        //[HttpPost]
+        //[ValidateInput(false)]
+        //public ActionResult UpdateIndexFeatures(MasterModel Model)
+        //{
+        //    IMasterManager Manager = new MasterManager();
+        //    Model.Index_Features_Obj.Modified_By = 1;
+        //    Model.Index_Features_Obj.Modified_On = DateTime.Now;
+        //    Model.Index_Features_Obj.Modified_IP = SystemIP();
+
+        //    int No = 0;
+        //    if (Model.Index_Features_Image != null)
+        //    {
+        //        string fullPath = Request.MapPath("/Upload/Index/IndexFeaturesImage/");
+        //        string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Features_Obj.Index_Features_Code + "*"));
+        //        foreach (string f in files)
+        //        {
+        //            No += 1;
+        //        }
+        //        string extension = System.IO.Path.GetExtension(Model.Index_Features_Image.FileName);
+        //        Model.Index_Features_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension));
+        //        string FilePathForPhoto = "~/Upload/Index/IndexFeaturesImage/" + Model.Index_Features_Obj.Index_Features_Code + "_" + No + extension;
+        //        Model.Index_Features_Obj.Index_Features_Image = FilePathForPhoto;
+        //    }
+
+        //    int Id = Manager.UpdateIndexFeatures(Model.Index_Features_Obj);
+
+        //    return RedirectToAction("IndexFeatures");
+        //}
 
         public ActionResult DeleteIndexFeatures(int Index_Features_Id)
         {

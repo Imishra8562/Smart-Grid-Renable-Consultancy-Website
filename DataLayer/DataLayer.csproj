@@ -59,6 +59,8 @@
     <Compile Include="Index\Index_Slider_Repository.cs" />
     <Compile Include="Index\Index_Team_Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\User_Repository.cs" />
+    <Compile Include="Security\User_Role_Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">
@@ -69,5 +71,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -61,6 +61,9 @@
     <Compile Include="Index\Index_Team_Business.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Index\Index_Team.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="Security\User_Business.cs" />
+    <Compile Include="Security\User_Role.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

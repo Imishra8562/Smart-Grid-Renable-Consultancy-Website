@@ -64,6 +64,8 @@
     <Folder Include="dbo\Types" />
     <Folder Include="dbo\Tables\Index" />
     <Folder Include="dbo\Stored Procedures\Index" />
+    <Folder Include="dbo\Tables\Security" />
+    <Folder Include="dbo\Stored Procedures\Security" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Index\tbl_Index_Features.sql" />
@@ -87,6 +89,14 @@
     <Build Include="dbo\Stored Procedures\Index\sp_Update_Index_Services.sql" />
     <Build Include="dbo\Stored Procedures\Index\sp_Update_Index_Slider.sql" />
     <Build Include="dbo\Stored Procedures\Index\sp_Update_Index_Team.sql" />
+    <Build Include="dbo\Tables\Security\tbl_User.sql" />
+    <Build Include="dbo\Tables\Security\tbl_User_Role.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_Add_User.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_Delete_User.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_List_User.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_List_User_Role.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_Update_User.sql" />
+    <Build Include="dbo\Stored Procedures\Security\sp_Authenticate_User.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Stored Procedures\Index\sp_Add_Index_Seo.sql" />
@@ -96,5 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
+    <None Include="DataBase_1.publish.xml" />
+    <None Include="DataBaseDtpl.publish.publish.xml" />
   </ItemGroup>
 </Project>

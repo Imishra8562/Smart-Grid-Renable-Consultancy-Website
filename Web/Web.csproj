@@ -125,7 +125,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SecurityController.cs" />
     <Compile Include="Areas\Admin\Model\MasterModel.cs" />
+    <Compile Include="Areas\Admin\Model\Security\SecurityModel.cs" />
     <Compile Include="Controllers\Core\HasPermissionAttribute.cs" />
     <Compile Include="Controllers\Core\SessionExpireFilterAttribute.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
@@ -1025,6 +1027,11 @@
     <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EmployeeDashboard.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexSeo.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\AdminUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\EditUser.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\Forgetpassword.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\Login.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />

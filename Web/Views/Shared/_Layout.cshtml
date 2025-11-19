@@ -3,68 +3,71 @@
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Consulting Finance Corporate Business - Consulting HTML Template">
-    <meta name="keywords" content="consulting, accountant, advisor, audit, beaver builder, broker, business, clean, company, consulting, corporate, finance, financial, insurance, trader">
+    <meta name="keywords" content="consulting, accountant, advisor, audit, business, corporate, finance">
     <meta name="author" content="Themexriver">
-    <title>Finano Consulting HTML Template | Homepage Five</title>
-    <!-- Stylesheets -->
-    <link href="~/Content/css/bootstrap.css" rel="stylesheet">
-    <link href="~/Content/css/style.css" rel="stylesheet">
-    <link href="~/Content/css/responsive.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="~/Content/images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="~/Content/images/favicon.png" type="image/x-icon">
+    <title>Finano Consulting | Homepage</title>
+
+    <!-- Stylesheets -->
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive.css" rel="stylesheet" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/images/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="~/Content/images/favicon.png" type="image/x-icon" />
 
     <!-- Responsive -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 
-    <!--[if lt IE 9]><script src="~/Content/https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
-    <!--[if lt IE 9]><script src="~/Content/js/respond.js"></script><![endif]-->
+    <!-- Font Awesome FIXED -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 <body>
 
     <div class="page-wrapper">
 
-        <!-- Preloader -->
-        @*<div class="preloader"></div>*@
-        <!--Header-->
+        <!-- Header -->
         @Html.Action("Header", "Home")
-        <!--Body-->
+
+        <!-- Body Content -->
         @RenderBody()
-        <!--Main Footer-->
+
         <!-- Call To Action Section -->
-        <section class="call-back-section" style="background-image: url(../../Content/images/background/6.jpg)">
+        <section class="call-back-section" style="background-image: url('@Url.Content("~/Content/images/background/6.jpg")')">
             <div class="auto-container">
                 <div class="row clearfix">
+
                     <!-- Form Column -->
                     <div class="form-column col-lg-8 col-md-12 col-sm-12">
                         <div class="inner-column">
 
-                            <!-- Request Form -->
                             <div class="request-form">
-                                <!--Request Form-->
-                                <form method="post" action="https://html.themexriver.com/finano/contact.html">
+                                <form method="post" action="/contact">
                                     <div class="row clearfix">
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label>Email Address</label>
-                                            <input type="text" name="text" placeholder="" required>
+                                            <input type="email" name="email" required />
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label>Business Type</label>
-                                            <select class="custom-select-box">
-                                                <option>- Select -</option>
+                                            <select class="custom-select-box" required>
+                                                <option value="">- Select -</option>
                                                 <option>Business One</option>
                                                 <option>Business Two</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
-                                            <label>Email Address</label>
-                                            <input type="text" name="text" placeholder="" required>
+                                            <label>Phone</label>
+                                            <input type="text" name="phone" required />
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-sm-12">
                                             <label>&nbsp;</label>
-                                            <button class="theme-btn btn-style-thirteen" type="submit" name="submit-form">Submit now <span class="icon fa fa-angle-right"></span></button>
+                                            <button class="theme-btn btn-style-thirteen" type="submit">
+                                                Submit now <span class="icon fa fa-angle-right"></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -72,38 +75,36 @@
 
                         </div>
                     </div>
+
                     <!-- Title Column -->
                     <div class="title-column col-lg-4 col-md-12 col-sm-12">
                         <div class="inner-column">
                             <h2>Request a call back</h2>
-                            <div class="text">If you want to discuss your business with our fine consultants, please schedule a meeting through this contact form</div>
+                            <div class="text">
+                                If you want to discuss your business with our fine consultants, please schedule a meeting through this contact form.
+                            </div>
                             <a href="/contact" class="btn btn-warning px-4 fw-semibold">Contact Us</a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
-        <!-- End Call To Action Section -->
-        <!-- Map Section -->
+
+        <!-- Google Map Section -->
         <section class="map-section">
-            <!--Map Outer-->
             <div class="map-outer">
-                <!-- Embedded Google Map -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.226487816004!2d85.10038574849222!3d25.627947088975233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed59d33323a043%3A0x1ea60707cc44762c!2sPatliputra%20Colony%2C%20Patna%2C%20Bihar!5e0!3m2!1sen!2sin!4v1760459671690!5m2!1sen!2sin"
-                        width="100%"
-                        height="450"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14389.226487816004!2d85.10038574849222!3d25.627947088975233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed59d33323a043%3A0x1ea60707cc44762c!2sPatliputra%20Colony%2C%20Patna%2C%20Bihar!5e0!3m2!1sen!2sin!4v1760459671690"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </section>
 
+        <!-- Footer -->
         @Html.Action("Footer", "Home")
-    </div>
-    <!--End pagewrapper-->
 
+    </div>
+
+    <!-- Scripts -->
     <script src="~/Content/js/jquery.js"></script>
     <script src="~/Content/js/popper.min.js"></script>
     <script src="~/Content/js/bootstrap.min.js"></script>
@@ -114,10 +115,12 @@
     <script src="~/Content/js/wow.js"></script>
     <script src="~/Content/js/jquery-ui.js"></script>
     <script src="~/Content/js/main.js"></script>
-    <!--Google Map APi Key-->
-    <script src="~/Content/http://maps.google.com/maps/api/js?key=AIzaSyDTPlX-43R1TpcQUyWjFgiSfL_BiGxslZU"></script>
+
+    <!-- Google Maps API FIXED -->
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDTPlX-43R1TpcQUyWjFgiSfL_BiGxslZU"></script>
     <script src="~/Content/js/map-script.js"></script>
-    <!--End Google Map APi-->
+
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

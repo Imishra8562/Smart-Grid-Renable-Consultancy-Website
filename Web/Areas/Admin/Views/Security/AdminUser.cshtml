@@ -1,0 +1,139 @@
+﻿@model Web.Models.SecurityModel
+@{
+    ViewBag.Title = "AdminUser";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+    int i = 0;
+}
+
+<div class="page-wrapper">
+    <div class="page-content">
+        <!--breadcrumb-->
+        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Security</div>
+            <div class="ps-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 p-0">
+                        <li class="breadcrumb-item">
+                            <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">User</li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+        <!--end breadcrumb-->
+        <div class="row">
+            <div class="col-xl-12 mx-auto">
+
+                <h6 class="mb-0 text-uppercase">User</h6>
+                <hr />
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-4 border rounded">
+                            @using (Html.BeginForm("SaveUser", "Security", FormMethod.Post, new { @Class = "row g-3 needs-validation", @novalidate = "true" }))
+                            {
+                                <div class="col-md-6 position-relative">
+                                    <label for="User_Obj_User_Name" class="form-label">User Name *</label>
+                                    @Html.TextBoxFor(m => m.User_Obj.User_Name, new { @class = "form-control", @type = "text", @placeholder = "User Name", @required = "required" })
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please enter User Name.</div>
+                                </div>
+                                <div class="col-md-6 position-relative">
+                                    <label for="User_Obj_Email_Id" class="form-label">Email Id *</label>
+                                    @Html.TextBoxFor(m => m.User_Obj.Email_Id, new { @class = "form-control", @type = "email", @placeholder = "Email Id", @required = "required" })
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please enter Email Id.</div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="User_Obj_Mobile_No" class="form-label">Mobile No *</label>
+                                    @Html.TextBoxFor(m => m.User_Obj.Mobile_No, new
+                                    {
+                                        @class = "form-control",
+                                        @type = "text",
+                                        @placeholder = "Mobile No",
+                                        @maxlength = "10",
+                                        @onkeypress = "return isNumber(event,this)",
+                                        @required = "required"
+                                    })
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please enter Mobile No.</div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="User_Obj_Password" class="form-label">Password *</label>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @type = "password", @placeholder = "********", @required = "required" })
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please enter Password.</div>
+                                </div>
+                                <div class="col-md-4 position-relative">
+                                    <label for="User_Obj_FK_User_Role_Id" class="form-label">User Role *</label>
+                                    @Html.DropDownListFor(m => m.User_Obj.FK_User_Role_Id, new SelectList(Model.List_User_Role_Obj, "User_Role_Id", "User_Role_Name"), "-- User Role --", new { @class = "form-control" })
+                                    <div class="valid-tooltip">Looks good!</div>
+                                    <div class="invalid-tooltip">Please enter User Role.</div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-light" type="submit">Submit form</button>
+                                </div>
+
+
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end row-->
+    </div>
+</div>
+
+
+<div class="page-wrapper">
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">User Table</h6>
+        <hr />
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="example2" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>User Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.List_User_Obj != null && Model.List_User_Obj.Count > 0)
+                            {
+                                foreach (var items in Model.List_User_Obj)
+                                {
+                                    <tr>
+                                        <td>@(++i)</td>
+                                        <td>@items.User_Name</td>
+                                        <td>@items.Email_Id</td>
+                                        <td>@items.Mobile_No</td>
+                                        <td>@items.User_Role_Name</td>
+                                        <td>
+                                            <a href="@Url.Action("EditUser","Security", new { User_Id= items.User_Id })" class="btn btn-warning"><i class='bx bxs-edit'></i> </a>
+
+                                            <a href="@Url.Action("DeleteUser","Security",  new { User_Id= items.User_Id })" class="btn btn-danger"><i class='bx bxs-trash'></i></a>
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

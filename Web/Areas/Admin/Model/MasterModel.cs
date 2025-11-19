@@ -19,6 +19,7 @@ namespace Web.Areas.Admin.Model
         public HttpPostedFileBase Index_Features_Image { get; set; }
         public Index_Features Index_Features_Obj { get; set; }
         public Index_Features_Business Index_Features_Business_Obj { get; set; }
+        public IList<Index_Features> List_Index_Features_Obj { get; set; }
         public IList<Index_Features_Business> List_Index_Features_Business_Obj { get; set; }
         #endregion
 
