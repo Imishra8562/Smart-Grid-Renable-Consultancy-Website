@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Index_Team]
-@Index_Team_Id               INT=NULL,
+@Index_Team_Id                   INT=NULL,
+@FK_Index_Seo_Id                 INT=NULL,
 @Index_Team_Member_Name          NVARCHAR(MAX)=NULL, 
 @Index_Team_Member_Code          NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Designation   NVARCHAR(MAX)=NULL,
@@ -21,6 +22,7 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Team SET 
+         FK_Index_Seo_Id                 =@FK_Index_Seo_Id ,
          Index_Team_Member_Name          =@Index_Team_Member_Name         , 
          Index_Team_Member_Designation   =@Index_Team_Member_Designation  ,
          Index_Team_Member_Image         =@Index_Team_Member_Image        ,

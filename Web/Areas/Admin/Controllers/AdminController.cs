@@ -223,7 +223,7 @@ namespace Web.Areas.Admin.Controllers
             IMasterManager Manager = new MasterManager();
             Model.Index_Features_Obj.Created_By = 1;
             Model.Index_Features_Obj.Created_IP = SystemIP();
-
+           
             // generate code
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);

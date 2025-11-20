@@ -4,7 +4,6 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     int i = 0;
 }
-
 <div class="page-body">
 
     <div class="container-fluid">
@@ -21,70 +20,81 @@
             </div>
         </div>
     </div>
+
     @if (Model.Index_Features_Obj == null)
     {
+        <!-- ===================== ADD NEW FORM ======================= -->
         <div class="card">
-            <div class="card-header pb-0"><h4>Index SEO Details (Add New)</h4></div>
+            <div class="card-header pb-0"><h4>Index Features Details (Add New)</h4></div>
 
             <div class="card-body">
-                @using (Html.BeginForm("SaveIndexFeatures", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                @using (Html.BeginForm("SaveIndexFeatures", "Admin", FormMethod.Post,
+                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
                     <div class="row g-3">
                         <div class="col-md-8">
-                            <label class="form-label">Features Name </label>
-                            @Html.DropDownListFor(m => m.Index_Features_Obj.Fk_Index_Seo_Id, new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"), "-- Select Feature --", new { @class = "form-control", required = "required" })
-
-                            <div class="invalid-feedback">Please select a feature.</div>
+                            <label class="form-label">Features Name</label>
+                            @Html.DropDownListFor(m => m.Index_Features_Obj.Fk_Index_Seo_Id,
+                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
+                                "-- Select Feature --", new { @class = "form-control", required = "required" })
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Feature Title</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Title, new { @class = "form-control", required = "required" })
-                            <div class="invalid-feedback">Please enter title.</div>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Title,
+                                new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
+                    <!-- Headline rows -->
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline1, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline1,
+                                new { @class = "form-control", required = "required" })
                         </div>
-
                         <div class="col-md-6">
                             <label class="form-label">Sub Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline1, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline1,
+                                new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline2, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline2,
+                                new { @class = "form-control", required = "required" })
                         </div>
-
                         <div class="col-md-6">
                             <label class="form-label">Sub Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline2, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline2,
+                                new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Headline 3</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline3, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline3,
+                                new { @class = "form-control", required = "required" })
                         </div>
-
                         <div class="col-md-6">
                             <label class="form-label">Sub Headline 3</label>
-                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline3, new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline3,
+                                new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
+                    <!-- Image -->
                     <div class="row g-3 mt-2">
                         <div class="col-md-12">
                             <label class="form-label">Feature Image</label>
-                            @{ var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png"); }
-                            @Html.TextBoxFor(m => m.Index_Features_Image, new { @class = "dropify", type = "file", data_default_file = imagePath })
+                            @{
+                                var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                            }
+                            @Html.TextBoxFor(m => m.Index_Features_Image,
+                                new { @class = "dropify", type = "file", data_default_file = imagePath })
                         </div>
                     </div>
 
@@ -96,13 +106,12 @@
             </div>
         </div>
 
+        <!-- ================= LIST TABLE ================ -->
         <div class="container-fluid mt-3">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
-                        <div class="card-header pb-0">
-                            <h4>Index Features List</h4>
-                        </div>
+                        <div class="card-header pb-0"><h4>Index Features List</h4></div>
                         <div class="card-body">
                             <div class="table-responsive theme-scrollbar">
                                 <table class="display datatable" id="basic-1">
@@ -116,37 +125,32 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (Model.List_Index_Features_Obj != null && Model.List_Index_Features_Obj.Count > 0)
+                                        @if (Model.List_Index_Features_Business_Obj != null &&
+                                             Model.List_Index_Features_Business_Obj.Count > 0)
                                         {
-                                            foreach (var items in Model.List_Index_Features_Obj)
+                                            foreach (var items in Model.List_Index_Features_Business_Obj)
                                             {
                                                 <tr>
                                                     <td>@(++i)</td>
-
-                                                    <!-- Feature Title -->
                                                     <td>@items.Index_Features_Title</td>
-
-                                                    <!-- Headline 1 -->
                                                     <td>@items.Index_Features_Headline1</td>
-
-                                                    <!-- Feature Image -->
                                                     <td>
                                                         @if (!string.IsNullOrEmpty(items.Index_Features_Image))
                                                         {
-                                                            <img src="@Url.Content(items.Index_Features_Image)" style="width:150px;height:100px;" />
+                                                            <img src="@Url.Content(items.Index_Features_Image)"
+                                                                 style="width:150px;height:100px;" />
                                                         }
                                                         else
-                                                        {
-                                                            <span class="text-danger">No Image</span>
-                                                        }
+                                                        { <span class="text-danger">No Image</span>}
                                                     </td>
-
                                                     <td>
                                                         <div class="btn-group">
-                                                            <a href="@Url.Action("IndexFeatures", "Admin", new { Index_Features_Id = items.Index_Features_Id })"
+                                                            <a href="@Url.Action("IndexFeatures", "Admin",
+                                                                 new { Index_Features_Id = items.Index_Features_Id })"
                                                                class="btn btn-warning">Edit</a>
 
-                                                            <a href="@Url.Action("DeleteIndexFeatures", "Admin", new { Index_Features_Id = items.Index_Features_Id })"
+                                                            <a href="@Url.Action("DeleteIndexFeatures", "Admin",
+                                                                 new { Index_Features_Id = items.Index_Features_Id })"
                                                                class="btn btn-danger">Delete</a>
                                                         </div>
                                                     </td>
@@ -161,107 +165,106 @@
                 </div>
             </div>
         </div>
-
     }
     else
     {
-        <div class="row g-3">
-            <div class="col-md-8">
-                <label class="form-label">Features Name</label>
-                @Html.DropDownListFor(
-                    m => m.Index_Features_Obj.Fk_Index_Seo_Id,
-                    new SelectList(Model.List_Index_Features_Business_Obj, "Index_Seo_Id", "Index_Seo_Page_Title", Model.Index_Features_Obj.Fk_Index_Seo_Id),
-                    "-- Select Feature --",
-                    new { @class = "form-control", required = "required" }
-                )
-            </div>
+        <!-- ===================== EDIT FORM ======================= -->
+        <div class="card">
+            <div class="card-header pb-0"><h4>Index Features Details (Edit)</h4></div>
 
-            <div class="col-md-4">
-                <label class="form-label">Feature Title</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Title,
-                    new { @class = "form-control", required = "required" })
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateIndexFeatures", "Admin", FormMethod.Post,
+                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                {
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label">Features Name</label>
+                            @Html.DropDownListFor(m => m.Index_Features_Obj.Fk_Index_Seo_Id,
+                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
+                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Feature Title</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Title,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Headline rows -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Headline 1</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline1,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sub Headline 1</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline1,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Headline 2</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline2,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sub Headline 2</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline2,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline3,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sub Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline3,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-12">
+                            <label class="form-label">Feature Image</label>
+                            @{
+                                var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                            }
+                            @Html.TextBoxFor(m => m.Index_Features_Image,
+                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Id)
+                    @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Code)
+                    @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Image)
+
+                    <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
+                }
             </div>
         </div>
 
-        <div class="row g-3 mt-2">
-            <div class="col-md-6">
-                <label class="form-label">Headline 1</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline1,
-                    new { @class = "form-control" })
-            </div>
+        @section Scripts {
+            <script>
+                $(document).ready(function () {
+                    $('.dropify').dropify();
 
-            <div class="col-md-6">
-                <label class="form-label">Sub Headline 1</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline1,
-                    new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="row g-3 mt-2">
-            <div class="col-md-6">
-                <label class="form-label">Headline 2</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline2,
-                    new { @class = "form-control" })
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Sub Headline 2</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline2,
-                    new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="row g-3 mt-2">
-            <div class="col-md-6">
-                <label class="form-label">Headline 3</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_Headline3,
-                    new { @class = "form-control" })
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label">Sub Headline 3</label>
-                @Html.TextBoxFor(m => m.Index_Features_Obj.Index_Features_SubHeadline3,
-                    new { @class = "form-control" })
-            </div>
-        </div>
-
-        <div class="row g-3 mt-2">
-            <div class="col-md-12">
-                <label class="form-label">Feature Image</label>
-
-                @{ var imagePath = !string.IsNullOrEmpty(Model.Index_Features_Obj.Index_Features_Image)
-                            ? Url.Content(Model.Index_Features_Obj.Index_Features_Image)
-                            : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png"); }
-
-                @Html.TextBoxFor(m => m.Index_Features_Image,
-                    new { @class = "dropify", type = "file", data_default_file = imagePath })
-            </div>
-        </div>
-
-        @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Id)
-        @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Code)
-        @Html.HiddenFor(x => x.Index_Features_Obj.Index_Features_Image)
-
-        <button class="btn btn-primary mt-3" type="submit">Update Feature</button>
-
-    }
-
-</div>
-
-              @section Scripts {
-
-                  <script>
-                      $(document).ready(function () {
-                          /* Dropify - Initialized for forms in both IF and ELSE blocks */
-                          $('.dropify').dropify();
-
-                          /* DataTables - Initialized safely, only runs if the table exists */
-                          var dataTable = $('#basic-1');
-                          if (dataTable.length && !$.fn.DataTable.isDataTable('#basic-1')) {
-                              dataTable.DataTable({
-                                  responsive: true
-                              });
-                          }
-                      });
-                  </script>
-              }
+                    var dataTable = $('#basic-1');
+                    if (dataTable.length && !$.fn.DataTable.isDataTable('#basic-1')) {
+                        dataTable.DataTable({
+                            responsive: true
+                        });
+                    }
+                });
+            </script>
+        }
+    }  <!-- END ELSE BLOCK -->
+</div> <!-- END PAGE-BODY -->

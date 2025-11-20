@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Index_Services]
+@FK_Index_Seo_Id INT=NULL,
 @Index_Services_Id               INT=NULL,
 @Index_Services_Code          NVARCHAR(MAX)=NULL, 
 @Index_Services_Icon          NVARCHAR(MAX)=NULL,
@@ -17,6 +18,7 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Services SET 
+         FK_Index_Seo_Id =@FK_Index_Seo_Id ,
          Index_Services_Icon         =@Index_Services_Icon        ,
          Index_Services_Title        =@Index_Services_Title       ,
          Index_Services_Description  =@Index_Services_Description ,

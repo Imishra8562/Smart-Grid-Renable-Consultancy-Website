@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Index_Team]
+@FK_Index_Seo_Id INT=NULL,
 @Index_Team_Member_Name          NVARCHAR(MAX)=NULL, 
 @Index_Team_Member_Designation   NVARCHAR(MAX)=NULL,
 @Index_Team_Member_Image         NVARCHAR(MAX)=NULL,
@@ -26,6 +27,7 @@ BEGIN TRY
    IF @Index_TeamId IS NULL
       BEGIN
          INSERT INTO tbl_Index_Team(
+		 FK_Index_Seo_Id ,
 		 Index_Team_Member_Name,         
 		 Index_Team_Member_Designation , 
 		 Index_Team_Member_Image  , 
@@ -37,6 +39,7 @@ BEGIN TRY
 		 Created_By,Created_IP)
 
 		 VALUES(
+		 @FK_Index_Seo_Id ,
 		 @Index_Team_Member_Name,         
 		 @Index_Team_Member_Designation , 
 		 @Index_Team_Member_Image  , 

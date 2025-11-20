@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Index_Features]
+@FK_Index_Seo_Id INT=NULL,
 @Index_Features_Id               INT=NULL,
 @Index_Features_Code         NVARCHAR(MAX)=NULL,
 @Index_Features_Image        NVARCHAR(MAX)=NULL,
@@ -22,6 +23,7 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Features SET 
+         FK_Index_Seo_Id             =@FK_Index_Seo_Id ,
          Index_Features_Image        =@Index_Features_Image        ,
          Index_Features_Title        =@Index_Features_Title        ,
          Index_Features_Headline1    =@Index_Features_Headline1    ,

@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Index_Services]
+@FK_Index_Seo_Id INT=NULL,
 @Index_Services_Code          NVARCHAR(MAX)=NULL, 
 @Index_Services_Icon          NVARCHAR(MAX)=NULL,
 @Index_Services_Title         NVARCHAR(MAX)=NULL,
@@ -22,6 +23,7 @@ BEGIN TRY
    IF @Index_ServicesId IS NULL
       BEGIN
          INSERT INTO tbl_Index_Services(
+		 FK_Index_Seo_Id ,
 		 Index_Services_Code,      
 		 Index_Services_Icon ,      
 		 Index_Services_Title ,     
@@ -29,6 +31,7 @@ BEGIN TRY
 		 Created_By,Created_IP)
 
 		 VALUES(
+		 @FK_Index_Seo_Id,
 		 @Index_Services_Code,      
 		 @Index_Services_Icon ,      
 		 @Index_Services_Title ,     

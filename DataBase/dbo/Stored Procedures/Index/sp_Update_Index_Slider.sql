@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Index_Slider]
+@FK_Index_Seo_Id INT=NULL,
 @Index_Slider_Id           INT=NULL,
 @Index_Slider_Code         NVARCHAR(MAX)=NULL,
 @Index_Slider_Image        NVARCHAR(MAX)=NULL,
@@ -18,6 +19,7 @@ AS
 BEGIN
 BEGIN TRY  
          UPDATE tbl_Index_Slider SET 
+         FK_Index_Seo_Id =@FK_Index_Seo_Id ,
          Index_Slider_Image       =@Index_Slider_Image       ,
          Index_Slider_Alt_Tag     =@Index_Slider_Alt_Tag     ,
          Index_Slider_Headline    =@Index_Slider_Headline    ,
