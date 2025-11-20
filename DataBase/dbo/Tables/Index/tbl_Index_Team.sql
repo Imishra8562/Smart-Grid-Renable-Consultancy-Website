@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[tbl_Index_Team]
 (
+    [FK_Index_Seo_Id] INT NULL,
 	[Index_Team_Id]                   INT IDENTITY(1,1) NOT NULL,    
     [Index_Team_Member_Name]          NVARCHAR(MAX) NULL, 
     [Index_Team_Member_Designation]   NVARCHAR(MAX) NULL,

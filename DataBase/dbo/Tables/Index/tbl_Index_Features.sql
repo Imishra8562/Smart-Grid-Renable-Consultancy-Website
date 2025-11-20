@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[tbl_Index_Features]
-(
+(   [FK_Index_Seo_Id] INT NULL,
 	[Index_Features_Id] INT IDENTITY(1,1) NOT NULL,    
     [Index_Features_Code] NVARCHAR(MAX) NULL, 
     [Index_Features_Image] NVARCHAR(MAX) NULL,
@@ -10,7 +10,7 @@
     [Index_Features_SubHeadline2] NVARCHAR(MAX) NULL,
     [Index_Features_Headline3] NVARCHAR(MAX) NULL,
     [Index_Features_SubHeadline3] NVARCHAR(MAX) NULL,
-
+    
     [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()), 
     [Created_By] INT NOT NULL, 
     [Created_IP] NVARCHAR(MAX) NULL, 

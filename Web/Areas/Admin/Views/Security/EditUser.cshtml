@@ -4,81 +4,63 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<div class="page-wrapper">
-    <div class="page-content">
-        <!--breadcrumb-->
-        <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Security</div>
-            <div class="ps-3">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item">
-                            <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">User</li>
+<div class="page-body">
+
+    <!-- Page Header -->
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6"><h3>Admin User</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">Security</li>
+                        <li class="breadcrumb-item active">Admin User</li>
                     </ol>
-                </nav>
-            </div>
-
-        </div>
-        <!--end breadcrumb-->
-        <div class="row">
-            <div class="col-xl-12 mx-auto">
-
-                <h6 class="mb-0 text-uppercase">User</h6>
-                <hr />
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="p-4 border rounded">
-                            @using (Html.BeginForm("UpdateUser", "Security", FormMethod.Post, new { @Class = "row g-3 needs-validation", @novalidate = "true" }))
-                            {
-                                <div class="col-md-6 position-relative">
-                                    <label for="User_Obj_User_Name" class="form-label">User Name *</label>
-                                    @Html.TextBoxFor(m => m.User_Obj.User_Name, new { @class = "form-control", @type = "text", @placeholder = "User Name", @required = "required" })
-                                    <div class="valid-tooltip">Looks good!</div>
-                                    <div class="invalid-tooltip">Please enter User Name.</div>
-                                </div>
-                                <div class="col-md-6 position-relative">
-                                    <label for="User_Obj_Email_Id" class="form-label">Email Id *</label>
-                                    @Html.TextBoxFor(m => m.User_Obj.Email_Id, new { @class = "form-control", @type = "email", @placeholder = "Email Id", @required = "required" })
-                                    <div class="valid-tooltip">Looks good!</div>
-                                    <div class="invalid-tooltip">Please enter Email Id.</div>
-                                </div>
-                                <div class="col-md-4 position-relative">
-                                    <label for="User_Obj_Mobile_No" class="form-label">Mobile No *</label>
-                                    @Html.TextBoxFor(m => m.User_Obj.Mobile_No, new
-                                    {
-                                        @class = "form-control",
-                                        @type = "text",
-                                        @placeholder = "Mobile No",
-                                        @maxlength = "10",
-                                        @onkeypress = "return isNumber(event,this)",
-                                        @required = "required"
-                                    })
-                                    <div class="valid-tooltip">Looks good!</div>
-                                    <div class="invalid-tooltip">Please enter Mobile No.</div>
-                                </div>
-
-                                <div class="col-md-4 position-relative">
-                                    <label for="User_Obj_FK_User_Role_Id" class="form-label">User Role *</label>
-                                    @Html.DropDownListFor(m => m.User_Obj.FK_User_Role_Id, new SelectList(Model.List_User_Role_Obj, "User_Role_Id", "User_Role_Name"), "-- User Role --", new { @class = "form-control" })
-                                    <div class="valid-tooltip">Looks good!</div>
-                                    <div class="invalid-tooltip">Please enter User Role.</div>
-                                </div>
-                                @Html.HiddenFor(x => x.User_Obj.User_Id)
-                                @Html.HiddenFor(x => x.User_Obj.Password)
-                                <div class="col-12">
-                                    <button class="btn btn-light" type="submit">Update</button>
-                                </div>
-                            }
-
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <!--end row-->
+    </div>
+
+    <!-- Add / Edit User -->
+    <div class="card">
+        <div class="card-header pb-0"><h4>Add / Edit User</h4></div>
+
+        <div class="p-4 border rounded">
+            @using (Html.BeginForm("UpdateUser", "Security", FormMethod.Post, new { @Class = "row g-3 needs-validation", @novalidate = "true" }))
+            {
+                <div class="col-md-6 position-relative">
+                    <label for="User_Obj_User_Name" class="form-label">User Name *</label>
+                    @Html.TextBoxFor(m => m.User_Obj.User_Name, new { @class = "form-control", @type = "text", @placeholder = "User Name", @required = "required" })
+                    <div class="valid-tooltip">Looks good!</div>
+                    <div class="invalid-tooltip">Please enter User Name.</div>
+                </div>
+                <div class="col-md-6 position-relative">
+                    <label for="User_Obj_Email_Id" class="form-label">Email Id *</label>
+                    @Html.TextBoxFor(m => m.User_Obj.Email_Id, new { @class = "form-control", @type = "email", @placeholder = "Email Id", @required = "required" })
+                    <div class="valid-tooltip">Looks good!</div>
+                    <div class="invalid-tooltip">Please enter Email Id.</div>
+                </div>
+                <div class="col-md-4 position-relative">
+                    <label for="User_Obj_Mobile_No" class="form-label">Mobile No *</label>
+                    @Html.TextBoxFor(m => m.User_Obj.Mobile_No, new { @class = "form-control",@type = "text",@placeholder = "Mobile No",@maxlength = "10", @onkeypress = "return isNumber(event,this)",@required = "required"})
+                    <div class="valid-tooltip">Looks good!</div>
+                    <div class="invalid-tooltip">Please enter Mobile No.</div>
+                </div>
+
+                <div class="col-md-4 position-relative">
+                    <label for="User_Obj_FK_User_Role_Id" class="form-label">User Role *</label>
+                    @Html.DropDownListFor(m => m.User_Obj.FK_User_Role_Id, new SelectList(Model.List_User_Role_Obj, "User_Role_Id", "User_Role_Name"), "-- User Role --", new { @class = "form-control" })
+                    <div class="valid-tooltip">Looks good!</div>
+                    <div class="invalid-tooltip">Please enter User Role.</div>
+                </div>
+                @Html.HiddenFor(x => x.User_Obj.User_Id)
+                @Html.HiddenFor(x => x.User_Obj.Password)
+                <div class="col-12">
+                    <button class="btn btn-light" type="submit">Update</button>
+                </div>
+            }
+
+        </div>
     </div>
 </div>
-

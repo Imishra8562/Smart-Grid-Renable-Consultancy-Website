@@ -86,46 +86,72 @@ namespace Web.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateInput(false)]
+        //public ActionResult SaveIndexSeo(MasterModel Model)
+        //{
+        //    IMasterManager Manager = new MasterManager();
+        //    Model.Index_Seo_Obj.Created_By = 1;
+        //    Model.Index_Seo_Obj.Created_IP = SystemIP();
+
+        //    Random rnd = new Random();
+        //    int Code = rnd.Next(1000000, 9999999);
+        //    Model.Index_Seo_Obj.Index_Seo_Code = "ISC-" + Code.ToString();
+
+        //    int No = 0;
+
+        //    if (Model.Index_Seo_Og_Image != null)
+        //    {
+        //        string folderPath = Server.MapPath("~/Upload/Index/IndexSeoImage/");
+
+        //        // Ensure directory exists
+        //        if (!Directory.Exists(folderPath))
+        //        {
+        //            Directory.CreateDirectory(folderPath);
+        //        }
+
+        //        // Count existing files
+        //        string[] files = Directory.GetFiles(folderPath, Model.Index_Seo_Obj.Index_Seo_Code + "*");
+        //        No = files.Length;
+
+        //        string extension = Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
+
+        //        string fileName = Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+        //        string fullSavePath = Path.Combine(folderPath, fileName);
+
+        //        Model.Index_Seo_Og_Image.SaveAs(fullSavePath);
+
+        //        Model.Index_Seo_Obj.Index_Seo_Og_Image = "~/Upload/Index/IndexSeoImage/" + fileName;
+        //    }
+
+        //    int Id = Manager.SaveIndexSeo(Model.Index_Seo_Obj);
+        //    return RedirectToAction("IndexSeo");
+        //}
         public ActionResult SaveIndexSeo(MasterModel Model)
         {
-            IMasterManager Manager = new MasterManager();
+            IMasterManager Manger = new MasterManager();
             Model.Index_Seo_Obj.Created_By = 1;
             Model.Index_Seo_Obj.Created_IP = SystemIP();
 
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
             Model.Index_Seo_Obj.Index_Seo_Code = "ISC-" + Code.ToString();
-
             int No = 0;
-
             if (Model.Index_Seo_Og_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/Index/IndexSeoImage/");
-
-                // Ensure directory exists
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/Index/IndexSeoImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Index_Seo_Obj.Index_Seo_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing files
-                string[] files = Directory.GetFiles(folderPath, Model.Index_Seo_Obj.Index_Seo_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
-
-                string fileName = Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Index_Seo_Og_Image.SaveAs(fullSavePath);
-
-                Model.Index_Seo_Obj.Index_Seo_Og_Image = "~/Upload/Index/IndexSeoImage/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Index_Seo_Og_Image.FileName);
+                Model.Index_Seo_Og_Image.SaveAs(Server.MapPath("~/Upload/Index/IndexSeoImage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/IndexSeo/ogimage/" + Model.Index_Seo_Obj.Index_Seo_Code + "_" + No + extension;
+                Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
             }
+            int Id = Manger.SaveIndexSeo(Model.Index_Seo_Obj);
 
-            int Id = Manager.SaveIndexSeo(Model.Index_Seo_Obj);
             return RedirectToAction("IndexSeo");
         }
-
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult UpdateIndexSeo(MasterModel Model)

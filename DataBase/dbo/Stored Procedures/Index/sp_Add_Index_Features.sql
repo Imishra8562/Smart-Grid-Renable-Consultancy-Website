@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Index_Features]
+@FK_Index_seo_Id INT=NULL,
 @Index_Features_Code         NVARCHAR(MAX)=NULL,
 @Index_Features_Image        NVARCHAR(MAX)=NULL,
 @Index_Features_Title        NVARCHAR(MAX)=NULL,

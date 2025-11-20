@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[tbl_Index_Services]
-(
+(   [FK_Index_Seo_Id] INT NULL,
 	[Index_Services_Id] INT IDENTITY(1,1) NOT NULL,    
     [Index_Services_Code] NVARCHAR(MAX) NULL, 
     [Index_Services_Icon] NVARCHAR(MAX) NULL,

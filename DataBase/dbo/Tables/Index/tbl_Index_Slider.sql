@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[tbl_Index_Slider]
-(
+(   [FK_Index_Seo_Id] INT NULL,
 	[Index_Slider_Id] INT IDENTITY(1,1) NOT NULL,    
     [Index_Slider_Code] NVARCHAR(MAX) NULL, 
     [Index_Slider_Image] NVARCHAR(MAX) NULL,
