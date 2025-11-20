@@ -15,7 +15,7 @@ BEGIN
         AND F.Is_Active=1 ORDER BY Index_Features_Id
     END TRY
     BEGIN CATCH
-        DECLARE @ErrorMessage VARCHAR(MAX); SELECT @ErrorMessage ='SP ERROR : LIST B2B Servicese Awards FAILED' + Char(13) + Char(10) + 'THE ERROR WAS : ' + Char(13) + Char(10) + ERROR_MESSAGE();   
+        DECLARE @ErrorMessage VARCHAR(MAX); SELECT @ErrorMessage ='SP ERROR : LIST Index Features FAILED' + Char(13) + Char(10) + 'THE ERROR WAS : ' + Char(13) + Char(10) + ERROR_MESSAGE();   
         RAISERROR (@ErrorMessage, 16, 1);   
     END CATCH    
 END

@@ -31,11 +31,20 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
 
-  .header-upper.scrolled {
-    background: rgba(15, 15, 15, 0.9);
-    backdrop-filter: blur(25px);
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
-  }
+    .header-upper {
+        transition: all 0.3s ease; /* ensures smooth animation */
+        padding: 20px 0; /* normal height */
+    }
+
+        .header-upper.scrolled {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(25px);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            padding: 8px 0; /* shrink effect */
+            border-radius: 20px; /* optional, softer */
+            margin: 12px;
+        }
+
 
   .logo-box img {
     width: 140px;

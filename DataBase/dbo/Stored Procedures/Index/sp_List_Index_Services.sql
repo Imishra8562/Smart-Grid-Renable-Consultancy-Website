@@ -1,21 +1,21 @@
 ﻿CREATE PROCEDURE [dbo].[sp_List_Index_Services]
-	@Index_Services_Id INT=NULL,
-@Index_Services_Code NVARCHAR(MAX)=NULL
+@Index_Services_Id INT = NULL,
+@Index_Seo_Id INT = NULL
+    
 AS
-BEGIN    
- BEGIN TRY   
+BEGIN
+    BEGIN TRY
+        IF @Index_Services_Id = 0 SET @Index_Services_Id = NULL
+        IF @Index_Seo_Id = 0 SET @Index_Seo_Id = NULL
 
-      IF @Index_Services_Id=0 SET @Index_Services_Id=NULL
-      
-      SELECT * FROM tbl_Index_Services 
-      WHERE Index_Services_Id=ISNULL(@Index_Services_Id,Index_Services_Id) 
-      AND Index_Services_Code=ISNULL(@Index_Services_Code,Index_Services_Code)
-      AND Is_Active=1 ORDER BY Index_Services_Id DESC
-
- END TRY   
- BEGIN CATCH    
-	DECLARE @ErrorMessage VARCHAR(MAX);    
-   SELECT @ErrorMessage ='SP ERROR : LIST Index Services FAILED' + Char(13) + Char(10) + 'THE ERROR WAS : ' + Char(13) + Char(10) + ERROR_MESSAGE()   
-	RAISERROR (@ErrorMessage, 16, 1)   
- END CATCH    
+        SELECT * FROM tbl_Index_Services F
+        INNER JOIN tbl_Index_Seo S ON F.FK_Index_Seo_Id = S.Index_Seo_Id
+        WHERE F.Index_Services_Id = ISNULL(@Index_Services_Id, F.Index_Services_Id) 
+        AND F.FK_Index_Seo_Id = ISNULL(@Index_Seo_Id, F.FK_Index_Seo_Id)             
+        AND F.Is_Active=1 ORDER BY Index_Services_Id
+    END TRY
+    BEGIN CATCH
+        DECLARE @ErrorMessage VARCHAR(MAX); SELECT @ErrorMessage ='SP ERROR : LIST Index Services FAILED' + Char(13) + Char(10) + 'THE ERROR WAS : ' + Char(13) + Char(10) + ERROR_MESSAGE();   
+        RAISERROR (@ErrorMessage, 16, 1);   
+    END CATCH    
 END
