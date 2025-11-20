@@ -1032,6 +1032,9 @@
     <Content Include="Areas\Admin\Views\Security\EditUser.cshtml" />
     <Content Include="Areas\Admin\Views\Security\Forgetpassword.cshtml" />
     <Content Include="Areas\Admin\Views\Security\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexServices.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexSlider.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexTeam.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />

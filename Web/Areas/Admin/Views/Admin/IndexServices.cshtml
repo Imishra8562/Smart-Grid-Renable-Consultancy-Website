@@ -1,0 +1,218 @@
+﻿@model Web.Areas.Admin.Model.MasterModel
+@{
+    ViewBag.Title = "IndexServices";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+<div class="page-body">
+
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6"><h3>Index Services</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">Index</li>
+                        <li class="breadcrumb-item active">Index Services</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Index_Services_Obj == null)
+    {
+        <!-- ===================== ADD NEW FORM ======================= -->
+        <div class="card">
+            <div class="card-header pb-0"><h4>Index Services Details (Add New)</h4></div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("SaveIndexServices", "Admin", FormMethod.Post,
+                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                {
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label">Services Name</label>
+                            @Html.DropDownListFor(m => m.Index_Services_Obj.Fk_Index_Seo_Id,
+                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
+                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Feature Title</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Title,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Headline rows -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Title,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sub Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Description,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-12">
+                            <label class="form-label">Feature Image</label>
+                            @{
+                                var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                            }
+                            @Html.TextBoxFor(m => m.Index_Services_Icon,
+                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(x => x.Index_Services_Obj.Index_Services_Id)
+                    @Html.HiddenFor(x => x.Index_Services_Obj.Index_Services_Code)
+
+                    <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
+                }
+            </div>
+        </div>
+
+        <!-- ================= LIST TABLE ================ -->
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header pb-0"><h4>Index Services List</h4></div>
+                        <div class="card-body">
+                            <div class="table-responsive theme-scrollbar">
+                                <table class="display datatable" id="basic-1">
+                                    <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Title</th>
+                                            <th>Headline 1</th>
+                                            <th>Feature Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.List_Index_Services_Business_Obj != null &&
+                                             Model.List_Index_Services_Business_Obj.Count > 0)
+                                        {
+                                            foreach (var items in Model.List_Index_Services_Business_Obj)
+                                            {
+                                                <tr>
+                                                    <td>@(++i)</td>
+                                                    <td>@items.Index_Services_Title</td>
+                                                    <td>@items.Index_Services_Description</td>
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(items.Index_Services_Icon))
+                                                        {
+                                                            <img src="@Url.Content(items.Index_Services_Icon)"
+                                                                 style="width:150px;height:100px;" />
+                                                        }
+                                                        else
+                                                        { <span class="text-danger">No Image</span>}
+                                                    </td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="@Url.Action("IndexServices", "Admin",
+                                                                 new { Index_Services_Id = items.Index_Services_Id })"
+                                                               class="btn btn-warning">Edit</a>
+
+                                                            <a href="@Url.Action("DeleteIndexServices", "Admin",
+                                                                 new { Index_Services_Id = items.Index_Services_Id })"
+                                                               class="btn btn-danger">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- ===================== EDIT FORM ======================= -->
+        <div class="card">
+            <div class="card-header pb-0"><h4>Index Services Details (Edit)</h4></div>
+
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateIndexServices", "Admin", FormMethod.Post,
+                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                {
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label">Services Name</label>
+                            @Html.DropDownListFor(m => m.Index_Services_Obj.Fk_Index_Seo_Id,
+                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
+                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Feature Title</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Title,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Headline rows -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Title,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Sub Headline 3</label>
+                            @Html.TextBoxFor(m => m.Index_Services_Obj.Index_Services_Description,
+                                new { @class = "form-control", required = "required" })
+                        </div>
+                    </div>
+
+                    <!-- Image -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-12">
+                            <label class="form-label">Feature Image</label>
+                            @{
+                                var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                            }
+                            @Html.TextBoxFor(m => m.Index_Services_Icon,
+                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                        </div>
+                    </div>
+
+                    @Html.HiddenFor(x => x.Index_Services_Obj.Index_Services_Id)
+                    @Html.HiddenFor(x => x.Index_Services_Obj.Index_Services_Code)
+                    @Html.HiddenFor(x => x.Index_Services_Obj.Index_Services_Icon)
+
+                    <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
+                }
+            </div>
+        </div>
+
+        @section Scripts {
+            <script>
+                $(document).ready(function () {
+                    $('.dropify').dropify();
+
+                    var dataTable = $('#basic-1');
+                    if (dataTable.length && !$.fn.DataTable.isDataTable('#basic-1')) {
+                        dataTable.DataTable({
+                            responsive: true
+                        });
+                    }
+                });
+            </script>
+        }
+    }  <!-- END ELSE BLOCK -->
+</div> <!-- END PAGE-BODY -->
