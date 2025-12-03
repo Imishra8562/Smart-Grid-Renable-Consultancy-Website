@@ -92,6 +92,12 @@ namespace Web.Controllers
         }
 
         #endregion
+        #region industry
+        public ActionResult Industry()
+        {
+            return View();
+        }
+        #endregion
 
         #region KnowledgeBase
         public ActionResult KnowledgeBase()

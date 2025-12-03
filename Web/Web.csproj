@@ -771,6 +771,7 @@
     <Content Include="Areas\Admin\Content\Dropify\css\dropify.css" />
     <Content Include="Areas\Admin\Content\Dropify\css\dropify.min.css" />
     <Content Include="Areas\Admin\Content\Dropify\file-upload.png" />
+    <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.svg" />
     <Content Include="Areas\Admin\Content\Dropify\js\dropify.js" />
     <Content Include="Areas\Admin\Content\Dropify\js\dropify.min.js" />
     <Content Include="Areas\Admin\Content\izitoast\iziToast.min.css" />
@@ -1035,6 +1036,9 @@
     <Content Include="Areas\Admin\Views\Admin\IndexServices.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexSlider.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexTeam.cshtml" />
+    <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.eot" />
+    <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.ttf" />
+    <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.woff" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -1062,7 +1066,7 @@
     <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Home\KnowledgeBase.cshtml" />
     <Content Include="Views\Home\EngineeringServices.cshtml" />
-    <Content Include="Views\Home\Industries.cshtml" />
+    <Content Include="Views\Home\Industry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">

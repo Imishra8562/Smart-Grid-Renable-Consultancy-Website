@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Industries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
+
+    <!-- Overlay -->
+    @*<div style="position:absolute; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index:1;"></div>*@
+
+    <div class="auto-container" style="position:relative; z-index:2;">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Industries  <span class="text-warning">We Serve</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Industries</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- CARD Industries We Services -->
+<section class="portal-types py-5" style="background-color: #f2f2f2;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark display-6">Industries & Services We Provide</h2>
+            <p class="text-muted mt-3 mx-auto lead" style="max-width: 720px;">
+                Each solution is designed to optimize operations, efficiency, and decision-making for your business or organization.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Commercial & Industrial</h5>
+                    <p class="text-muted small mb-0">
+                        Energy efficiency, power audits, and system optimization to enhance operational performance for commercial and industrial facilities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Government</h5>
+                    <p class="text-muted small mb-0">
+                        Utility planning, public infrastructure reliability solutions, and support for effective governance and service delivery.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Investment Stakeholders</h5>
+                    <p class="text-muted small mb-0">
+                        Technical due-diligence, feasibility analysis, and advisory services for investors and financial entities evaluating energy and infrastructure projects.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Data Centers & Large Loads</h5>
+                    <p class="text-muted small mb-0">
+                        Redundant, high-availability power architecture for data centers and industrial-scale loads to ensure continuous operations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Power Delivery</h5>
+                    <p class="text-muted small mb-0">
+                        Transmission and distribution grid analysis, optimization, and solutions for reliable power delivery.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Power Generation</h5>
+                    <p class="text-muted small mb-0">
+                        Performance studies and optimization for thermal, hydro, and renewable power generation facilities.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Renewable Energy Integration</h5>
+                    <p class="text-muted small mb-0">
+                        Advanced analysis and solutions for integrating solar, wind, and other renewable systems into existing energy networks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -139,7 +139,7 @@
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("Index","Home")">Home</a></li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" data-bs-toggle="dropdown" aria-expanded="false">About Us</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="aboutDropdown" data-toggle="dropdown" aria-expanded="false">About Us</a>
                             <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("About","Home")">About Us</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("OurTeam","Home")">Our Team</a></li>
@@ -147,12 +147,13 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Industries","Home")">Industries</a></li>
+                        @*<li class="nav-item"><a class="nav-link" href="@Url.Action("Industries","Home")">Industries</a></li>*@
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("EngineeringServices","Home")">Engineering Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("KnowledgeBase","Home")">Knowledge Base</a></li>
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("industry","Home")">Industries</a></li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Training & Events</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="trainingDropdown" data-toggle="dropdown" aria-expanded="false">Training & Events</a>
                             <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Training","Home")">Training</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Events","Home")">Events</a></li>
@@ -161,7 +162,7 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" data-bs-toggle="dropdown" aria-expanded="false">Investor & Sustainability</a>
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="trainingDropdown" data-toggle="dropdown" aria-expanded="false">Investor & Sustainability</a>
                             <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("InvestorRelations","Home")">Investor Relations</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Sustainability","Home")">Sustainability</a></li>
