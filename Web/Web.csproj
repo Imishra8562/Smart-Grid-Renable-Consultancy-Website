@@ -134,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1006,7 +1007,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Areas\Admin\Views\Master\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\MasterModel\" />
     <Folder Include="Upload\Index\IndexFeaturesImage\" />
     <Folder Include="Upload\Index\IndexSeoImage\" />
     <Folder Include="Upload\Index\IndexServicesIcon\" />
@@ -1083,6 +1084,14 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{46178ea4-77ad-4a64-88dd-13b8acfecae9}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBase\DataBase.sqlproj">
+      <Project>{594cc816-f936-45ff-9303-3d05d2e28a7c}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{0a219cd8-f7a2-4cc0-81f9-427a0f191349}</Project>
+      <Name>DataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{217877a1-06c4-4eab-92fa-129cf61ccd48}</Project>

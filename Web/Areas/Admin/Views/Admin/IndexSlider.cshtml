@@ -29,15 +29,12 @@
             <div class="card-header pb-0"><h4>Index Slider Details (Add New)</h4></div>
 
             <div class="card-body">
-                @using (Html.BeginForm("SaveIndexSlider", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                @using (Html.BeginForm("SaveIndexSlider", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
                     <div class="row g-3">
                         <div class="col-md-12">
                             <label class="form-label">Slider Name</label>
-                            @Html.DropDownListFor(m => m.Index_Slider_Obj.Fk_Index_Seo_Id,
-                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
-                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Index_Slider_Obj.Fk_Index_Seo_Id, new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"), "-- Select Feature --", new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
@@ -45,13 +42,11 @@
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Headline</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Headline,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Headline, new { @class = "form-control", required = "required" })
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Sub Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_SubHeadline,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_SubHeadline, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
                     <!-- Image -->
@@ -61,13 +56,11 @@
                             @{
                                 var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
                             }
-                            @Html.TextBoxFor(m => m.Index_Slider_Image,
-                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                            @Html.TextBoxFor(m => m.Index_Slider_Image, new { @class = "dropify", type = "file", data_default_file = imagePath })
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Alt Tag</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Alt_Tag,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Alt_Tag, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
@@ -98,8 +91,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if (Model.List_Index_Slider_Business_Obj != null &&
-                                             Model.List_Index_Slider_Business_Obj.Count > 0)
+                                        @if (Model.List_Index_Slider_Business_Obj != null && Model.List_Index_Slider_Business_Obj.Count > 0)
                                         {
                                             foreach (var items in Model.List_Index_Slider_Business_Obj)
                                             {
@@ -110,21 +102,16 @@
                                                     <td>
                                                         @if (!string.IsNullOrEmpty(items.Index_Slider_Image))
                                                         {
-                                                            <img src="@Url.Content(items.Index_Slider_Image)"
-                                                                 style="width:150px;height:100px;" />
+                                                            <img src="@Url.Content(items.Index_Slider_Image)" style="width:150px;height:100px;" />
                                                         }
                                                         else
                                                         { <span class="text-danger">No Image</span>}
                                                     </td>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <a href="@Url.Action("IndexSlider", "Admin",
-                                                                 new { Index_Slider_Id = items.Index_Slider_Id })"
-                                                               class="btn btn-warning">Edit</a>
+                                                            <a href="@Url.Action("IndexSlider", "Admin", new { Index_Slider_Id = items.Index_Slider_Id })"class="btn btn-warning">Edit</a>
 
-                                                            <a href="@Url.Action("DeleteIndexSlider", "Admin",
-                                                                 new { Index_Slider_Id = items.Index_Slider_Id })"
-                                                               class="btn btn-danger">Delete</a>
+                                                            <a href="@Url.Action("DeleteIndexSlider", "Admin", new { Index_Slider_Id = items.Index_Slider_Id })" class="btn btn-danger">Delete</a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -152,9 +139,7 @@
                     <div class="row g-3">
                         <div class="col-md-8">
                             <label class="form-label">Slider Name</label>
-                            @Html.DropDownListFor(m => m.Index_Slider_Obj.Fk_Index_Seo_Id,
-                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
-                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Index_Slider_Obj.Fk_Index_Seo_Id, new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"), "-- Select Feature --", new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
@@ -162,13 +147,11 @@
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Headline</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Headline,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Headline, new { @class = "form-control", required = "required" })
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Sub Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_SubHeadline,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_SubHeadline, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
                     <!-- Image -->
@@ -178,13 +161,11 @@
                             @{
                                 var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
                             }
-                            @Html.TextBoxFor(m => m.Index_Slider_Image,
-                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                            @Html.TextBoxFor(m => m.Index_Slider_Image, new { @class = "dropify", type = "file", data_default_file = imagePath })
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Alt Tag</label>
-                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Alt_Tag,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(m => m.Index_Slider_Obj.Index_Slider_Alt_Tag, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
                     @Html.HiddenFor(x => x.Index_Slider_Obj.Index_Slider_Id)

@@ -1,10 +1,13 @@
-﻿using System;
+﻿using BusinessLayer;
+using BusinessLayer.Interface;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -14,7 +17,14 @@ namespace Web.Controllers
         #region Layout & Home
         public ActionResult Index()
         {
-            return View();
+            MasterModel Model = new MasterModel();
+            IMasterManager MasterManager = new MasterManager();
+            Model.Index_Seo_Obj = MasterManager.GetIndexSeo(0, null).FirstOrDefault();
+            Model.List_Index_Features_Business_Obj = MasterManager.GetIndexFeatures(0, 0);
+            Model.List_Index_Services_Business_Obj = MasterManager.GetIndexServices(0, 0);
+            Model.List_Index_Slider_Business_Obj = MasterManager.GetIndexSlider(0, 0);
+            Model.List_Index_Team_Business_Obj = MasterManager.GetIndexTeam(0, 0);
+            return View(Model);
         }
         public ActionResult Header()
         {

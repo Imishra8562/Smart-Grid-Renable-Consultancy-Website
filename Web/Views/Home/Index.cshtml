@@ -1,695 +1,695 @@
-﻿@{
+﻿@model Web.Models.MasterModel
+@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Message = TempData["DisplayMessage"] ?? string.Empty;
 }
-<head>
-    <title>Welcome to SGRC | Smart Global Renewable & Consultancy</title>
+@if (Model.Index_Seo_Obj != null)
+{
+    <head>
+        <title>@Model.Index_Seo_Obj.Index_Seo_Page_Title</title>
 
-    <meta name="keyword" content="SGRC, Smart Global Renewable & Consultancy, s-g-r-c, research consultancy, s-g-r-c india, data analytics, business research, strategic consulting" />
-    <meta name="description" content="SGRC (Smart Global Research & Consultancy) is a leading consulting and research organization in India. We provide innovative business research, data analytics, and strategic consultancy services to help organizations grow and innovate." />
+        <meta name="keywords" content="@Model.Index_Seo_Obj.Index_Seo_Meta_Keyword" />
+        <meta name="description" content="@Model.Index_Seo_Obj.Index_Seo_Meta_Description" />
 
-    <meta name="news_keywords" content="SGRC, Smart Global Renewable & Consultancy, business research, data analytics, consulting firm, s-g-r-c india">
-    <meta name="standout" content="SGRC offers data-driven research and consulting solutions for organizations, startups, and institutions worldwide. Partner with us to achieve strategic growth and innovation.">
+        <!-- Open Graph -->
+        <meta property="og:url" content="https://sgrc.co.in/@Model.Index_Seo_Obj.Index_Seo_Slug" />
+        <meta property="og:site_name" content="Smart Global Research & Consultancy (SGRC)" />
+        <meta property="og:image" content="@Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)" />
+        <meta property="og:image:url" content="@Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)" />
+        <meta property="og:image:secure_url" content="@Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)" />
+        <meta property="og:title" content="@Model.Index_Seo_Obj.Index_Seo_Og_Title" />
+        <meta property="og:description" content="@Model.Index_Seo_Obj.Index_Seo_Og_Description" />
+        <meta property="og:image:alt" content="@Model.Index_Seo_Obj.Index_Seo_Image_Alt_Tag" />
+        <meta property="og:image:type" content="image/webp">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
 
-    <!-- Open Graph (Facebook / LinkedIn) -->
-    <meta property="og:url" content="https://sgrc.co.in" />
-    <meta property="og:site_name" content="Smart Global Research & Consultancy (SGRC)">
-    <meta property="og:see_also" content="https://sgrc.co.in" />
-    <meta property="og:image" content="https://sgrc.co.in/Content/assets/images/logo/SGRC_Logo_Black.webp" />
-    <meta property="og:image:url" content="https://sgrc.co.in/Content/assets/images/logo/SGRC_Logo_Black.webp" />
-    <meta property="og:image:secure_url" content="https://sgrc.co.in/Content/assets/images/logo/SGRC_Logo_Black.webp" />
-    <meta property="og:title" content="Welcome to SGRC | Smart Global Renewable & Consultancy" />
-    <meta property="og:description" content="SGRC is a professional consulting and research organization providing business research, market intelligence, and strategy development services in India and globally." />
-    <meta property="og:image:alt" content="SGRC Logo" />
-    <meta property="og:image:type" content="image/webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://sgrc.co.in/@Model.Index_Seo_Obj.Index_Seo_Slug" />
+        <meta property="twitter:title" content="@Model.Index_Seo_Obj.Index_Seo_Og_Title">
+        <meta property="twitter:description" content="@Model.Index_Seo_Obj.Index_Seo_Og_Description">
+        <meta property="twitter:image" content="@Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)">
+        <meta name="twitter:image:width" content="1200">
+        <meta name="twitter:image:height" content="630">
 
-    <!-- Twitter Card -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://sgrc.co.in" />
-    <meta property="twitter:title" content="Welcome to SGRC | Smart Global Renewable & Consultancy">
-    <meta property="twitter:description" content="Discover how SGRC empowers organizations with expert research, consulting, and strategic insights for sustainable business growth.">
-    <meta property="twitter:image" content="https://sgrc.co.in/Content/assets/images/logo/SGRC_Logo_Black.webp">
-    <meta name="twitter:image:width" content="1200">
-    <meta name="twitter:image:height" content="630">
+        <!-- Canonical URL -->
+        <link rel="canonical" href="https://sgrc.co.in/@Model.Index_Seo_Obj.Index_Seo_Slug" />
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://sgrc.co.in">
-</head>
+    </head>
+    <!--Main Slider-->
+    <section class="main-slider style-four">
+        <div class="main-slider-carousel owl-carousel owl-theme">
 
-<!--Main Slider-->
-<section class="main-slider style-four">
-    <div class="main-slider-carousel owl-carousel owl-theme">
+            @if (Model.List_Index_Slider_Business_Obj != null && Model.List_Index_Slider_Business_Obj.Count > 0)
+            {
+                foreach (var item in Model.List_Index_Slider_Business_Obj)
+                {
+                    <div class="slide d-flex align-items-center"
+                         style="background-image: url('@Url.Content(item.Index_Slider_Image)');
+                        background-size: cover;
+                        background-position: center;
+                        min-height: 70vh;"
+                         data-alt="@item.Index_Slider_Alt_Tag">
 
-        <div class="slide" style="background-image: url(../../Content/images/main-slider/6.jpg)">
-            <div class="auto-container">
-                <div class="content">
-                    <div class="title">We hope success</div>
-                    <h1>We build your <br> best business</h1>
-                    <div class="text">The argument in favor of using filler text goes something like this you use real content.</div>
-                    <div class="link-box">
-                        <a href="contact.html" class="theme-btn btn-style-twelve">Let’s start now <span class="fa fa-angle-right"></span></a>
-                        <a href="services.html" class="theme-btn btn-style-thirteen">Our services <span class="fa fa-angle-right"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 col-sm-12">
 
-        <div class="slide" style="background-image: url(../../Content/images/main-slider/7.jpg)">
-            <div class="auto-container">
-                <div class="content">
-                    <div class="title">We hope success</div>
-                    <h1>We build your <br> best business</h1>
-                    <div class="text">The argument in favor of using filler text goes something like this you use real content.</div>
-                    <div class="link-box">
-                        <a href="contact.html" class="theme-btn btn-style-twelve">Let’s start now <span class="fa fa-angle-right"></span></a>
-                        <a href="services.html" class="theme-btn btn-style-thirteen">Our services <span class="fa fa-angle-right"></span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                    <div class="content text-start text-sm-start text-md-start">
 
-    </div>
-    <!--End Slide Info Boxed-->
+                                        <!-- Headline -->
+                                        <div class="title mb-3">@item.Index_Slider_Headline</div>
 
-</section>
-<!--End Main Slider-->
-<!-- About Section Four -->
-<section class="about-section-four">
-    <div class="auto-container">
+                                        <!-- Main Title -->
+                                        <h1 class="mb-3 fw-bold">
+                                            We build your <br /> best business
+                                        </h1>
 
-        <!-- Sec Title Three -->
-        <div class="sec-title-three">
-            <div class="clearfix">
-                <div class="pull-left">
-                    <div class="title">Intro</div>
-                    <h2>About us</h2>
-                </div>
-                <div class="pull-right">
-                    <div class="text"></div>
-                </div>
-            </div>
-        </div>
+                                        <!-- Subheadline -->
+                                        <p class="mb-4">@item.Index_Slider_SubHeadline</p>
 
-        <div class="row clearfix">
+                                        <!-- Buttons -->
+                                        <div class="d-flex flex-wrap gap-3">
+                                            <a href="/contact" class="theme-btn btn-style-twelve">
+                                                Let’s start now <span class="fa fa-angle-right"></span>
+                                            </a>
 
-            <!-- Content Column -->
-            <div class="image-column col-lg-5 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <div class="image-1"><img src="images/resource/about-2.jpg" alt=""></div>
-                    <div class="image-2"><img src="images/resource/about-3.jpg" alt=""></div>
-                </div>
-            </div>
+                                            <a href="/services" class="theme-btn btn-style-thirteen">
+                                                Our services <span class="fa fa-angle-right"></span>
+                                            </a>
+                                        </div>
 
-            <!-- Skills Column -->
-            <div class="skills-column col-lg-7 col-md-12 col-sm-12">
-                <div class="inner-column">
-                    <div class="row clearfix">
+                                    </div>
 
-                        <!-- Services Block Thirteen -->
-                        <div class="services-block-thirteen col-lg-4 col-md-6 col-sm-12">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <span class="icon flaticon-headphones"></span>
-                                </div>
-                                <h5>24/7 full <br> online support</h5>
-                            </div>
-                        </div>
-
-                        <!-- Services Block Thirteen -->
-                        <div class="services-block-thirteen col-lg-4 col-md-6 col-sm-12">
-                            <div class="inner-box">
-                                <div class="icon-box alternate">
-                                    <span class="icon flaticon-loading"></span>
-                                </div>
-                                <h5>12 years of <br> experience</h5>
-                            </div>
-                        </div>
-
-                        <!-- Services Block Thirteen -->
-                        <div class="services-block-thirteen col-lg-4 col-md-12 col-sm-12">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <span class="icon flaticon-creativity"></span>
-                                </div>
-                                <h5>Creative <br> finance idea</h5>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!--Skills-->
-                    <div class="skills">
-
-                        <!--Skill Item-->
-                        <div class="skill-item">
-                            <div class="skill-header clearfix">
-                                <div class="skill-title">Finance</div>
-                                <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="95">0</span>%</div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="bar-inner"><div class="bar progress-line" data-width="95"></div></div>
-                            </div>
-                        </div>
-
-                        <!--Skill Item-->
-                        <div class="skill-item">
-                            <div class="skill-header clearfix">
-                                <div class="skill-title">Business</div>
-                                <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="90">0</span>%</div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="bar-inner"><div class="bar progress-line" data-width="90"></div></div>
-                            </div>
-                        </div>
-
-                        <!--Skill Item-->
-                        <div class="skill-item">
-                            <div class="skill-header clearfix">
-                                <div class="skill-title">Investment</div>
-                                <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="93">0</span>%</div></div>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="bar-inner"><div class="bar progress-line" data-width="93"></div></div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- End About Section Four -->
-<!-- Services Section Ten -->
-<section class="services-section-ten">
-    <div class="auto-container">
-        <!-- Sec Title -->
-        <div class="sec-title-three centered">
-            <div class="title">Our dedicated services</div>
-            <h2>Learn some new info from <br> our latest news</h2>
-        </div>
-        <div class="row clearfix">
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-earnings"></span>
-                    </div>
-                    <h6><a href="#">Finance <br> Management</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-budget-1"></span>
-                    </div>
-                    <h6><a href="#">Banking <br> Investigation</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-target"></span>
-                    </div>
-                    <h6><a href="#">Business <br> Insurance</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-car"></span>
-                    </div>
-                    <h6><a href="#">Car <br> Insurance</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-analysis-1"></span>
-                    </div>
-                    <h6><a href="#">Market <br> Research</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-house"></span>
-                    </div>
-                    <h6><a href="#">Home <br> Insurance</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-employee"></span>
-                    </div>
-                    <h6><a href="#">Life <br> Insurance</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-            <!-- Services Block Fourteen -->
-            <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="900ms" data-wow-duration="1500ms">
-                    <div class="box-one"></div>
-                    <div class="box-two"></div>
-                    <div class="icon-box">
-                        <span class="icon flaticon-heartbeat"></span>
-                    </div>
-                    <h6><a href="#">Health <br> Insurance</a></h6>
-                    <div class="text">The argument in favorite of using filler to text goes some thing like this top</div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<!-- End Services Section Ten -->
-<!-- Feature Section -->
-<section class="feature-section">
-    <div class="auto-container">
-
-        <!-- Sec Title Three -->
-        <div class="sec-title-three">
-            <div class="clearfix">
-                <div class="pull-left">
-                    <div class="title">Our best features</div>
-                    <h2>Why choose us</h2>
-                </div>
-                <div class="pull-right">
-                    <div class="text">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</div>
-                </div>
-            </div>
-        </div>
-
-        <!--Feature Tabs-->
-        <div class="feature-tabs tabs-box">
-            <div class="row clearfix">
-                <!--Column-->
-                <div class="col-lg-5 col-md-12 col-sm-12">
-                    <!--Tab Btns-->
-                    <ul class="tab-btns tab-buttons clearfix">
-                        <li data-tab="#feature-expert" class="tab-btn">Expert team <span>The argument in favorite of using filler to text goes some thing like this top</span></li>
-                        <li data-tab="#feature-brand" class="tab-btn active-btn">Best Finance Brand <span>The argument in favorite of using filler to text goes some thing like this top</span></li>
-                        <li data-tab="#feature-ideas" class="tab-btn">Best Leadership Ideas<span>The argument in favorite of using filler to text goes some thing like this top</span></li>
-                    </ul>
-                </div>
-                <!--Column-->
-                <div class="col-lg-7 col-md-12 col-sm-12">
-                    <!--Tabs Container-->
-                    <div class="tabs-content">
-
-                        <!-- Tab -->
-                        <div class="tab" id="feature-expert">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="~/Content/images/resource/feature.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab -->
-                        <div class="tab active-tab" id="feature-brand">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="~/Content/images/resource/feature-1.jpg" alt="">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tab -->
-                        <div class="tab" id="feature-ideas">
-                            <div class="content">
-                                <div class="image">
-                                    <img src="~/Content/images/resource/feature-2.jpg" alt="">
                                 </div>
                             </div>
                         </div>
 
                     </div>
+                }
+            }
+
+        </div>
+    </section>
+    <!--End Main Slider-->
+    <!-- About Section Four -->
+    <section class="about-section-four">
+        <div class="auto-container">
+
+            <!-- Sec Title Three -->
+            <div class="sec-title-three">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <div class="title">Intro</div>
+                        <h2>About us</h2>
+                    </div>
+                    <div class="pull-right">
+                        <div class="text"></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
-</section>
-<!-- End Feature Section -->
-<!-- Counter Section -->
-<section class="counter-section" style="background-image: url(../../Content/images/background/6.jpg)">
-    <div class="auto-container">
-        <!-- Fact Counter -->
-        <div class="fact-counter style-three">
             <div class="row clearfix">
 
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <div class="icon-box">
-                            <span class="icon flaticon-start"></span>
-                        </div>
-                        <div class="count-outer count-box">
-                            <span class="count-text" data-speed="3000ms" data-stop="1200">0</span>+
-                            <div class="counter-title">Finishing Projects</div>
-                        </div>
+                <!-- Content Column -->
+                <div class="image-column col-lg-5 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="image-1"><img src="images/resource/about-2.jpg" alt=""></div>
+                        <div class="image-2"><img src="images/resource/about-3.jpg" alt=""></div>
                     </div>
                 </div>
 
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
-                        <div class="icon-box">
-                            <span class="icon flaticon-collaboration"></span>
-                        </div>
-                        <div class="count-outer count-box">
-                            <span class="count-text" data-speed="2000" data-stop="195">0</span>
-                            <div class="counter-title">Team Member</div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Skills Column -->
+                <div class="skills-column col-lg-7 col-md-12 col-sm-12">
+                    <div class="inner-column">
+                        <div class="row clearfix">
 
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
-                        <div class="icon-box">
-                            <span class="icon flaticon-hand-shake-1"></span>
-                        </div>
-                        <div class="count-outer count-box">
-                            <span class="count-text" data-speed="2000" data-stop="850">0</span>+
-                            <div class="counter-title">Happy Clienta</div>
-                        </div>
-                    </div>
-                </div>
+                            <!-- Services Block Thirteen -->
+                            <div class="services-block-thirteen col-lg-4 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="icon-box">
+                                        <span class="icon flaticon-headphones"></span>
+                                    </div>
+                                    <h5>24/7 full <br> online support</h5>
+                                </div>
+                            </div>
 
-                <!--Column-->
-                <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
-                        <div class="icon-box">
-                            <span class="icon flaticon-stopwatch"></span>
+                            <!-- Services Block Thirteen -->
+                            <div class="services-block-thirteen col-lg-4 col-md-6 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="icon-box alternate">
+                                        <span class="icon flaticon-loading"></span>
+                                    </div>
+                                    <h5>12 years of <br> experience</h5>
+                                </div>
+                            </div>
+
+                            <!-- Services Block Thirteen -->
+                            <div class="services-block-thirteen col-lg-4 col-md-12 col-sm-12">
+                                <div class="inner-box">
+                                    <div class="icon-box">
+                                        <span class="icon flaticon-creativity"></span>
+                                    </div>
+                                    <h5>Creative <br> finance idea</h5>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="count-outer count-box">
-                            <span class="count-text" data-speed="1500" data-stop="26">0</span>+
-                            <div class="counter-title">Years Experience</div>
+
+                        <!--Skills-->
+                        <div class="skills">
+
+                            <!--Skill Item-->
+                            <div class="skill-item">
+                                <div class="skill-header clearfix">
+                                    <div class="skill-title">Finance</div>
+                                    <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="95">0</span>%</div></div>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="bar-inner"><div class="bar progress-line" data-width="95"></div></div>
+                                </div>
+                            </div>
+
+                            <!--Skill Item-->
+                            <div class="skill-item">
+                                <div class="skill-header clearfix">
+                                    <div class="skill-title">Business</div>
+                                    <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="90">0</span>%</div></div>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="bar-inner"><div class="bar progress-line" data-width="90"></div></div>
+                                </div>
+                            </div>
+
+                            <!--Skill Item-->
+                            <div class="skill-item">
+                                <div class="skill-header clearfix">
+                                    <div class="skill-title">Investment</div>
+                                    <div class="skill-percentage"><div class="count-box"><span class="count-text" data-speed="2000" data-stop="93">0</span>%</div></div>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="bar-inner"><div class="bar progress-line" data-width="93"></div></div>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
                 </div>
 
             </div>
         </div>
-
-    </div>
-</section>
-<!-- Counter Section -->
-<!-- Team Section Two -->
-<section class="team-section-two">
-    <div class="auto-container">
-        <!-- Sec Title -->
-        <div class="sec-title-three centered">
-            <div class="title">Our dedicated Team</div>
-            <h2>We have a large number of <br> expert team member</h2>
-        </div>
-
-        <div class="row clearfix">
-
-            <!--Team Block-->
-            <div class="team-block-two col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-4.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Frazer Diamond</a></h5>
-                        <div class="designation">Founder & CEO</div>
-                    </div>
-                </div>
+    </section>
+    <!-- End About Section Four -->
+    <!-- Services Section Ten -->
+    <section class="services-section-ten">
+        <div class="auto-container">
+            <!-- Sec Title -->
+            <div class="sec-title-three centered">
+                <div class="title">Our Dedicated Services</div>
+                <h2>Empowering businesses with <br> sustainable and strategic solutions</h2>
             </div>
 
-            <!--Team Block-->
-            <div class="team-block-two col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-5.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Chen Lee</a></h5>
-                        <div class="designation">Co-Founder</div>
-                    </div>
-                </div>
-            </div>
+            <div class="row clearfix">
+                @if (Model.List_Index_Services_Business_Obj != null && Model.List_Index_Services_Business_Obj.Count > 0)
+                {
+                    foreach (var item in Model.List_Index_Services_Business_Obj)
+                    {
+                        <!-- Services Block Fourteen -->
+                        <div class="services-block-fourteen col-lg-3 col-md-6 col-sm-12">
+                            <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                                <div class="box-one"></div>
+                                <div class="box-two"></div>
 
-            <!--Team Block-->
-            <div class="team-block-two col-lg-4 col-md-12 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-6.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Emma O’Brien</a></h5>
-                        <div class="designation">Sr. Product Engineer</div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Team Block-->
-            <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-7.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">David Ankrum</a></h5>
-                        <div class="designation">Co Founder</div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Team Block-->
-            <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-8.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Maria De Aragon</a></h5>
-                        <div class="designation">HRM</div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Team Block-->
-            <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-9.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Joe Hurt</a></h5>
-                        <div class="designation">CTO</div>
-                    </div>
-                </div>
-            </div>
-
-            <!--Team Block-->
-            <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <a href="team.html"><img src="~/Content/images/resource/team-10.jpg" alt="" title=""></a>
-                        <ul class="social-box">
-                            <li><a href="#" class="fa fa-facebook"></a></li>
-                            <li><a href="#" class="fa fa-twitter"></a></li>
-                            <li><a href="#" class="fa fa-linkedin"></a></li>
-                            <li><a href="#" class="fa fa-google-plus"></a></li>
-                        </ul>
-                    </div>
-                    <div class="lower-content">
-                        <h5><a href="team.html">Damien Wayne</a></h5>
-                        <div class="designation">COO</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-<!-- End Team Section Two -->
-<!-- News Section Two -->
-<section class="news-section-two style-two">
-    <div class="auto-container">
-        <!-- Sec Title -->
-        <div class="sec-title-three">
-            <div class="clearfix">
-                <div class="pull-left">
-                    <div class="title">Some of our blog</div>
-                    <h2>Learn about us</h2>
-                </div>
-                <div class="pull-right">
-                    <div class="text">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</div>
-                </div>
+                                <div class="icon-box">
+                                    @if (!string.IsNullOrEmpty(item.Index_Services_Icon))
+                                    {
+                                        <img src="@Url.Content(item.Index_Services_Icon)" alt="service-icon" style="width:70px; height:70px; object-fit:contain;" />
+                                    }
+                                </div>
+                                <h6><a href="#">@item.Index_Services_Title</a></h6>
+                                <div class="text">@item.Index_Services_Description</div>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
         </div>
+    </section>
+    <!-- End Services Section Ten -->
+    <!-- Feature Section -->
+    <section class="feature-section">
+        <div class="auto-container">
+            @if (Model.List_Index_Features_Business_Obj != null && Model.List_Index_Features_Business_Obj.Count > 0)
+            {
+                foreach (var item in Model.List_Index_Features_Business_Obj)
+                {
+                    <!-- Section Title -->
+                    <div class="sec-title-three text-center mb-5">
+                        <div class="title">@item.Index_Features_Title</div>
+                        <h2>@item.Index_Features_Headline1</h2>
+                        <p class="mt-3">@item.Index_Features_SubHeadline1</p>
+                    </div>
 
-        <div class="row clearfix">
+                    <div class="row align-items-center">
 
-            <!-- News Block Two -->
-            <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <img src="~/Content/images/resource/news-4.jpg" alt="" />
-                        <div class="overlay-box">
-                            <a href="~/Content/images/resource/news-4.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                        <!-- Left Column (Image) -->
+                        <div class="col-lg-6 col-md-12">
+                            <div class="image text-center">
+                                <img src="@Url.Content(@item.Index_Features_Image)"
+                                     alt="@item.Index_Features_Title"
+                                     style="width:100%; max-width:500px;">
+                            </div>
+                        </div>
+
+                        <!-- Right Column (Feature List) -->
+                        <div class="col-lg-6 col-md-12">
+                            <ul class="list-group list-group-flush">
+
+                                <li class="list-group-item">
+                                    <h5 class="fw-bold">@item.Index_Features_Headline1</h5>
+                                    <p>@item.Index_Features_SubHeadline1</p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <h5 class="fw-bold">@item.Index_Features_Headline2</h5>
+                                    <p>@item.Index_Features_SubHeadline2</p>
+                                </li>
+
+                                <li class="list-group-item">
+                                    <h5 class="fw-bold">@item.Index_Features_Headline3</h5>
+                                    <p>@item.Index_Features_SubHeadline3</p>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                }
+            }
+                </div>
+    </section>
+
+    <!-- End Feature Section -->
+    <!-- Counter Section -->
+    <section class="counter-section" style="background-image: url(../../Content/images/background/6.jpg)">
+        <div class="auto-container">
+            <!-- Fact Counter -->
+            <div class="fact-counter style-three">
+                <div class="row clearfix">
+
+                    <!--Column-->
+                    <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+                        <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="icon-box">
+                                <span class="icon flaticon-start"></span>
+                            </div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="3000ms" data-stop="1200">0</span>+
+                                <div class="counter-title">Finishing Projects</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="lower-content">
-                        <ul class="post-meta">
-                            <li><span class="fa fa-calendar"></span>September 12, 2019</li>
-                            <li><span class="fa fa-user"></span>Admin</li>
-                        </ul>
-                        <h5><a href="blog-single.html">Strategy for Norway's Peion Fund Global.</a></h5>
-                        <a href="#" class="theme-btn btn-style-fourteen">View more</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- News Block Two -->
-            <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <img src="~/Content/images/resource/news-5.jpg" alt="" />
-                        <div class="overlay-box">
-                            <a href="~/Content/images/resource/news-5.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                    <!--Column-->
+                    <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+                        <div class="inner wow fadeInLeft" data-wow-delay="0ms" data-wow-duration="1500ms">
+                            <div class="icon-box">
+                                <span class="icon flaticon-collaboration"></span>
+                            </div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="2000" data-stop="195">0</span>
+                                <div class="counter-title">Team Member</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="lower-content">
-                        <ul class="post-meta">
-                            <li><span class="fa fa-calendar"></span>September 12, 2019</li>
-                            <li><span class="fa fa-user"></span>Admin</li>
-                        </ul>
-                        <h5><a href="blog-single.html">What we are capable of usually gets discovered.</a></h5>
-                        <a href="#" class="theme-btn btn-style-fourteen">View more</a>
-                    </div>
-                </div>
-            </div>
 
-            <!-- News Block Two -->
-            <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
-                <div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
-                    <div class="image">
-                        <img src="~/Content/images/resource/news-6.jpg" alt="" />
-                        <div class="overlay-box">
-                            <a href="~/Content/images/resource/news-6.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                    <!--Column-->
+                    <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+                        <div class="inner wow fadeInLeft" data-wow-delay="600ms" data-wow-duration="1500ms">
+                            <div class="icon-box">
+                                <span class="icon flaticon-hand-shake-1"></span>
+                            </div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="2000" data-stop="850">0</span>+
+                                <div class="counter-title">Happy Clienta</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="lower-content">
-                        <ul class="post-meta">
-                            <li><span class="fa fa-calendar"></span>September 12, 2019</li>
-                            <li><span class="fa fa-user"></span>Admin</li>
-                        </ul>
-                        <h5><a href="blog-single.html">Food industry leaders often change their promoters.</a></h5>
-                        <a href="#" class="theme-btn btn-style-fourteen">View more</a>
+
+                    <!--Column-->
+                    <div class="column counter-column col-lg-3 col-md-6 col-sm-12">
+                        <div class="inner wow fadeInLeft" data-wow-delay="900ms" data-wow-duration="1500ms">
+                            <div class="icon-box">
+                                <span class="icon flaticon-stopwatch"></span>
+                            </div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="26">0</span>+
+                                <div class="counter-title">Years Experience</div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
 
         </div>
+    </section>
+    <!-- Counter Section -->
+    <!-- Team Section Two -->
+    <section class="team-section-two">
+        <div class="auto-container">
+            <!-- Sec Title -->
+            <div class="sec-title-three centered">
+                <div class="title">Our dedicated Team</div>
+                <h2>We have a large number of <br> expert team member</h2>
+            </div>
 
-    </div>
-</section>
+            <div class="row clearfix">
 
-<!--Sponsors Section-->
-<section class="sponsors-section">
-    <div class="auto-container">
+                <!--Team Block-->
+                <div class="team-block-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-4.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Frazer Diamond</a></h5>
+                            <div class="designation">Founder & CEO</div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="carousel-outer">
-            <!--Sponsors Slider-->
-            <ul class="sponsors-carousel owl-carousel owl-theme">
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/1.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/2.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/3.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/4.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/5.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/6.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/1.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/2.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/3.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/4.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/5.png" alt=""></a></div></li>
-                <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/6.png" alt=""></a></div></li>
-            </ul>
+                <!--Team Block-->
+                <div class="team-block-two col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-5.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Chen Lee</a></h5>
+                            <div class="designation">Co-Founder</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Team Block-->
+                <div class="team-block-two col-lg-4 col-md-12 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-6.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Emma O’Brien</a></h5>
+                            <div class="designation">Sr. Product Engineer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Team Block-->
+                <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-7.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">David Ankrum</a></h5>
+                            <div class="designation">Co Founder</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Team Block-->
+                <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-8.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Maria De Aragon</a></h5>
+                            <div class="designation">HRM</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Team Block-->
+                <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-9.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Joe Hurt</a></h5>
+                            <div class="designation">CTO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Team Block-->
+                <div class="team-block-two col-lg-3 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeIn" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <a href="team.html"><img src="~/Content/images/resource/team-10.jpg" alt="" title=""></a>
+                            <ul class="social-box">
+                                <li><a href="#" class="fa fa-facebook"></a></li>
+                                <li><a href="#" class="fa fa-twitter"></a></li>
+                                <li><a href="#" class="fa fa-linkedin"></a></li>
+                                <li><a href="#" class="fa fa-google-plus"></a></li>
+                            </ul>
+                        </div>
+                        <div class="lower-content">
+                            <h5><a href="team.html">Damien Wayne</a></h5>
+                            <div class="designation">COO</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+    </section>
+    <!-- End Team Section Two -->
+    <!-- News Section Two -->
+    <section class="news-section-two style-two">
+        <div class="auto-container">
+            <!-- Sec Title -->
+            <div class="sec-title-three">
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <div class="title">Some of our blog</div>
+                        <h2>Learn about us</h2>
+                    </div>
+                    <div class="pull-right">
+                        <div class="text">The argument in favor of using filler text goes something like this: If you use real content in the design process, anytime you reach a review point you’ll end up reviewing and negotiating the content itself and not the design.</div>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-</section>
-<!--End Sponsors Section-->
+            <div class="row clearfix">
+
+                <!-- News Block Two -->
+                <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeInUp" data-wow-delay="0ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <img src="~/Content/images/resource/news-4.jpg" alt="" />
+                            <div class="overlay-box">
+                                <a href="~/Content/images/resource/news-4.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                            </div>
+                        </div>
+                        <div class="lower-content">
+                            <ul class="post-meta">
+                                <li><span class="fa fa-calendar"></span>September 12, 2019</li>
+                                <li><span class="fa fa-user"></span>Admin</li>
+                            </ul>
+                            <h5><a href="blog-single.html">Strategy for Norway's Peion Fund Global.</a></h5>
+                            <a href="#" class="theme-btn btn-style-fourteen">View more</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Block Two -->
+                <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeInUp" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <img src="~/Content/images/resource/news-5.jpg" alt="" />
+                            <div class="overlay-box">
+                                <a href="~/Content/images/resource/news-5.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                            </div>
+                        </div>
+                        <div class="lower-content">
+                            <ul class="post-meta">
+                                <li><span class="fa fa-calendar"></span>September 12, 2019</li>
+                                <li><span class="fa fa-user"></span>Admin</li>
+                            </ul>
+                            <h5><a href="blog-single.html">What we are capable of usually gets discovered.</a></h5>
+                            <a href="#" class="theme-btn btn-style-fourteen">View more</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News Block Two -->
+                <div class="news-block-two red col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box wow fadeInUp" data-wow-delay="600ms" data-wow-duration="1500ms">
+                        <div class="image">
+                            <img src="~/Content/images/resource/news-6.jpg" alt="" />
+                            <div class="overlay-box">
+                                <a href="~/Content/images/resource/news-6.jpg" data-fancybox="news" data-caption="" class="plus flaticon-plus-symbol"></a>
+                            </div>
+                        </div>
+                        <div class="lower-content">
+                            <ul class="post-meta">
+                                <li><span class="fa fa-calendar"></span>September 12, 2019</li>
+                                <li><span class="fa fa-user"></span>Admin</li>
+                            </ul>
+                            <h5><a href="blog-single.html">Food industry leaders often change their promoters.</a></h5>
+                            <a href="#" class="theme-btn btn-style-fourteen">View more</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--Sponsors Section-->
+    <section class="sponsors-section">
+        <div class="auto-container">
+
+            <div class="carousel-outer">
+                <!--Sponsors Slider-->
+                <ul class="sponsors-carousel owl-carousel owl-theme">
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/1.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/2.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/3.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/4.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/5.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/6.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/1.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/2.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/3.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/4.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/5.png" alt=""></a></div></li>
+                    <li><div class="image-box"><a href="#"><img src="~/Content/images/clients/6.png" alt=""></a></div></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+    <!--End Sponsors Section-->
+    <script>
+      //For Alert
+      var Message = '@Message';
+      if (Message != '') {
+          debugger;
+          if (Message == "Sent") {
+              iziToast.success({
+                  title: 'SUCCESS',
+                  message: 'Message Sent Successfully !',
+              });
+          }
+
+          else if (Message == "Fail") {
+              iziToast.error({
+                  title: 'ERROR',
+                  message: 'Sorry, An Error Occurred !',
+              });
+          }
+      }
+
+       function WebsiteModal() {
+            $.ajax({
+                url: '@Url.Action("WebsiteServicesDemo", "Services")',
+                type: 'GET',
+                success: function (result) {
+                    $('#WebsiteDemo').html(result); // Load partial view
+                },
+                error: function () {
+                    $('#WebsiteDemo').html("<div class='modal-body'>Error loading content.</div>");
+                }
+            });
+       }
+
+      function submitUserForm1() {
+          var FullName = document.getElementById("FullName").value.trim();
+          var EmailAddress = document.getElementById("EmailAddress").value.trim();
+          var PhoneNumber = document.getElementById("PhoneNumber").value.trim();
+          var CityName = document.getElementById("CityName").value.trim();
+          var ProjectBrief = document.getElementById("ProjectBrief").value.trim();
+
+          console.log({ FullName, EmailAddress, PhoneNumber, CityName, ProjectBrief });
+
+          if (FullName === "" || EmailAddress === "" || PhoneNumber === "" || CityName === "" || ProjectBrief === "") {
+              iziToast.error({
+                  title: 'ERROR',
+                  message: 'Please fill in all required fields!',
+              });
+              return false;
+          }
+
+          DisableSubmitButton();
+          return true;
+      }
+
+    </script>
+    <script>
+        $(window).on('load', function () {
+            if ($('.main-slider-carousel').length) {
+                $('.main-slider-carousel').owlCarousel({
+                    items: 1,
+                    loop: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    autoplayHoverPause: false,
+                    margin: 0,
+                    nav: false,
+                    dots: true,
+                    smartSpeed: 600,
+                    responsive: {
+                        0: { items: 1 },
+                        576: { items: 1 },
+                        768: { items: 1 },
+                        992: { items: 1 }
+                    }
+                });
+            }
+        });
+    </script>
+}
