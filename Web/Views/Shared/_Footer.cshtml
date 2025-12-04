@@ -1,5 +1,4 @@
-﻿<!-- End Map Section -->
-<footer class="main-footer style-three">
+﻿<footer class="main-footer style-three">
     <div class="auto-container">
         <!--Widgets Section-->
         <div class="widgets-section">
@@ -13,9 +12,15 @@
                         <div class="footer-column col-lg-7 col-md-6 col-sm-12">
                             <div class="footer-widget logo-widget">
                                 <div class="logo">
-                                    <a href="index.html"><img src="~/Content/images/logo.png" alt="" style="width: 200px; height: 100px;" /></a>
+                                    <a href="@Url.Action("Index","Home")">
+                                        <img src="~/Content/images/logo.png" alt="" style="width: 200px; height: 120px;" />
+                                    </a>
                                 </div>
-                                <div class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</div>
+                                <div class="text">
+                                    SGRC offers data-driven research, data analytics, and strategic consulting solutions
+                                    to help organizations grow and innovate.
+                                </div>
+
                                 <ul class="list-style-two">
                                     <li><span class="icon fa fa-phone"></span> +123 (4567) 890</li>
                                     <li><span class="icon fa fa-envelope"></span> info@financ.com</li>
@@ -29,12 +34,18 @@
                             <div class="footer-widget links-widget">
                                 <h4>Links</h4>
                                 <ul class="list-link">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">About us</a></li>
-                                    <li><a href="#">Testimonials</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="@Url.Action("Index","Home")">Home</a></li>
+
+                                    <li><a href="@Url.Action("About","Home")">About Us</a></li>
+                                    <li><a href="@Url.Action("OurTeam","Home")">Our Team</a></li>
+                                    <li><a href="@Url.Action("Overview","Home")">Overview</a></li>
+
+                                    <li><a href="@Url.Action("EngineeringServices","Home")">Engineering Services</a></li>
+                                    <li><a href="@Url.Action("KnowledgeBase","Home")">Knowledge Base</a></li>
+                                    <li><a href="@Url.Action("industry","Home")">Industries</a></li>
+
+                                    <li><a href="@Url.Action("Careers","Home")">Careers</a></li>
+                                    <li><a href="@Url.Action("ContactUs","Home")">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -49,14 +60,15 @@
                         <!--Footer Column-->
                         <div class="footer-column col-lg-6 col-md-6 col-sm-12">
                             <div class="footer-widget links-widget">
-                                <h4>Support</h4>
+                                <h4>Training & Events</h4>
                                 <ul class="list-link">
-                                    <li><a href="#">Contact Us</a></li>
-                                    <li><a href="#">Submit a Ticket</a></li>
-                                    <li><a href="#">Visit Knowledge Base</a></li>
-                                    <li><a href="#">Support System</a></li>
-                                    <li><a href="#">Refund Policy</a></li>
-                                    <li><a href="#">Professional Services</a></li>
+                                    <li><a href="@Url.Action("Training","Home")">Training</a></li>
+                                    <li><a href="@Url.Action("Courses","Home")">Courses</a></li>
+                                    <li><a href="@Url.Action("Event","Home")">Events</a></li>
+                                    <li><a href="@Url.Action("PastWebinars","Home")">Past Webinars</a></li>
+
+                                    <li><a href="@Url.Action("InvestorRelations","Home")">Investor Relations</a></li>
+                                    <li><a href="@Url.Action("Sustainability","Home")">Sustainability</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,18 +79,12 @@
                                 <h4>Gallery</h4>
                                 <div class="widget-content">
                                     <div class="images-outer clearfix">
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/1.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-1.jpg" alt=""></a></figure>
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/2.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-2.jpg" alt=""></a></figure>
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/3.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-3.jpg" alt=""></a></figure>
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/4.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-4.jpg" alt=""></a></figure>
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/5.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-5.jpg" alt=""></a></figure>
-                                        <!--Image Box-->
-                                        <figure class="image-box"><a href="~/Content/images/gallery/6.jpg" class="lightbox-image" data-fancybox="footer-gallery" title="Image Title Here" data-fancybox-group="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-6.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/1.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-1.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/2.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-2.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/3.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-3.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/4.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-4.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/5.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-5.jpg" alt=""></a></figure>
+                                        <figure class="image-box"><a href="~/Content/images/gallery/6.jpg" class="lightbox-image" data-fancybox="footer-gallery"><img src="~/Content/images/gallery/footer-gallery-thumb-6.jpg" alt=""></a></figure>
                                     </div>
                                 </div>
                             </div>
@@ -90,17 +96,16 @@
             </div>
         </div>
     </div>
+
     <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="row clearfix">
 
-                <!-- Copyright Column -->
                 <div class="copyright-column col-lg-6 col-md-6 col-sm-12">
                     <div class="copyright">2019 &copy; All rights reserved by <a href="#">Themexriver</a></div>
                 </div>
 
-                <!-- Social Column -->
                 <div class="social-column col-lg-6 col-md-6 col-sm-12">
                     <ul>
                         <li class="follow">Follow us: </li>

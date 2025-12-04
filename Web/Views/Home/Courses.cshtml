@@ -4,10 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!-- ====== Page Title Section ====== -->
-<section class="page-title" style="background-image:url('~/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
     <div class="auto-container">
         <div class="content text-white py-5" data-aos="fade-down">
-            <h1 class="display-5 fw-bold">Our <span class="text-danger">Courses</span></h1>
+            <h1 class="display-5 fw-bold">Our <span class="text-warning">Courses</span></h1>
             <ul class="page-breadcrumb list-inline mt-3">
                 <li class="list-inline-item">
                     <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
@@ -21,7 +21,7 @@
 <!-- ====== Overview ====== -->
 <section class="py-5 bg-light text-center">
     <div class="container">
-        <h2 class="fw-bold text-danger mb-4">Empowering Engineers through Knowledge</h2>
+        <h2 class="fw-bold  mb-4">Empowering Engineers through Knowledge</h2>
         <p class="mx-auto text-muted" style="max-width:800px;">
             SGRC offers comprehensive courses designed to bridge the gap between theory and practice.
             Our programs help professionals master tools, technologies, and concepts driving the energy sector forward.
@@ -32,7 +32,7 @@
 <!-- ====== Course Categories ====== -->
 <section class="py-5">
     <div class="container">
-        <h2 class="text-center fw-bold text-danger mb-5">Popular Courses</h2>
+        <h2 class="text-center fw-bold  mb-5">Popular Courses</h2>
         <div class="row g-4">
 
             <!-- Course 1 -->
@@ -46,7 +46,7 @@
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-0 text-end">
-                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                        <a href="/Contact" class=" text-decoration-none fw-semibold">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-0 text-end">
-                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                        <a href="/Contact" class=" text-decoration-none fw-semibold">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                         </p>
                     </div>
                     <div class="card-footer bg-transparent border-0 text-end">
-                        <a href="/Contact" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
+                        <a href="/Contact" class=" text-decoration-none fw-semibold">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
 <!-- ====== Specializations ====== -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h2 class="text-center fw-bold text-danger mb-4">Specialized Learning Tracks</h2>
+        <h2 class="text-center fw-bold  mb-4">Specialized Learning Tracks</h2>
         <div class="row g-4 text-center">
             <div class="col-md-3 col-sm-6">
                 <div class="p-4 bg-white border rounded-4 shadow-sm h-100">

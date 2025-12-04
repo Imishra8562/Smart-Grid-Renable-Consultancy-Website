@@ -4,10 +4,10 @@
 }
 
 <!-- ====== Page Title Section ====== -->
-<section class="page-title" style="background-image:url('~/Content/images/background/8.jpg'); background-size:cover; background-position:center;">
+<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
     <div class="auto-container">
         <div class="content text-white py-5" data-aos="fade-down">
-            <h1 class="display-5 fw-bold">Contact <span class="text-danger">Us</span></h1>
+            <h1 class="display-5 fw-bold">Contact<span class="text-warning">-Us</span></h1>
             <ul class="page-breadcrumb list-inline mt-3">
                 <li class="list-inline-item">
                     <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
@@ -90,85 +90,71 @@
         </div>
     </div>
 </section>
-<!-- End Contact Page Section -->
-<!-- Contact Info Section -->
-<!--<section class="contact-info-section" style="background-image:url(/images/background/10.jpg)">
-    <div class="auto-container">
-        <div class="row clearfix">
-            <div class="column col-lg-4 col-md-6 col-sm-12">
-                <h4>United Kingdom</h4>
-                <ul class="list-style-six">
-                    <li><span class="icon flaticon-map-1"></span> 24 New Bond Street, London W1S 2RR</li>
-                    <li><span class="icon flaticon-phone-receiver"></span> +44 203 987 4567</li>
-                    <li><span class="icon flaticon-e-mail-envelope"></span> uk@sgrc.co.in</li>
-                </ul>
-            </div>
-            <div class="column col-lg-4 col-md-6 col-sm-12">
-                <h4>Australia</h4>
-                <ul class="list-style-six">
-                    <li><span class="icon flaticon-map-1"></span> 13 Dixon Street, Sydney NSW 2000</li>
-                    <li><span class="icon flaticon-phone-receiver"></span> +61 290 123 456</li>
-                    <li><span class="icon flaticon-e-mail-envelope"></span> au@sgrc.co.in</li>
-                </ul>
-            </div>
-            <div class="column col-lg-4 col-md-6 col-sm-12">
-                <h4>Netherlands</h4>
-                <ul class="list-style-six">
-                    <li><span class="icon flaticon-map-1"></span> Nieuwe Leliestraat 27-HS, 101J Amsterdam</li>
-                    <li><span class="icon flaticon-phone-receiver"></span> +31 203 456 789</li>
-                    <li><span class="icon flaticon-e-mail-envelope"></span> nl@sgrc.co.in</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>-->
-<!-- End Contact Info Section -->
+
 <!-- Worldwide Agents Section -->
-<section class="contact-info-section" style="background-image:url(/images/background/world-agents-bg.jpg)">
-    <div class="auto-container text-center">
+<section class="contact-info-section"
+         style="background-image:url('/images/background/world-agents-bg.jpg'); background-size:cover; background-position:center;">
+    <div class="container text-center py-5">
+
         <h2 class="mb-5 text-white">Worldwide <span style="color:#ffc400;">Agents</span></h2>
         <p class="text-white mb-4">
-            SGRC’s network of trusted agents across the globe provides localized expertise, ensuring efficient communication,
-            regulatory alignment, and project success in every region.
+            SGRC’s network of trusted agents across the globe provides localized expertise,
+            ensuring efficient communication, regulatory alignment, and project success in every region.
         </p>
 
-        <div class="row justify-content-center">
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="agent-card bg-white p-4 rounded shadow-sm">
-                    <h5>Asia-Pacific</h5>
-                    <p class="mb-1">Regional Partner: PowerTech Solutions</p>
-                    <p><i class="fa fa-envelope"></i> apac@sgrc.co.in</p>
+        <div class="row justify-content-center g-4">
+
+            <!-- Card -->
+            <div class="col-md-3 col-sm-6 d-flex">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Asia-Pacific</h5>
+                        <p class="card-text mb-1">Regional Partner: PowerTech Solutions</p>
+                        <p><i class="fa fa-envelope"></i> apac@sgrc.co.in</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="agent-card bg-white p-4 rounded shadow-sm">
-                    <h5>Europe</h5>
-                    <p class="mb-1">Regional Partner: GridVision BV</p>
-                    <p><i class="fa fa-envelope"></i> europe@sgrc.co.in</p>
+            <!-- Card -->
+            <div class="col-md-3 col-sm-6 d-flex">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Europe</h5>
+                        <p class="card-text mb-1">Regional Partner: GridVision BV</p>
+                        <p><i class="fa fa-envelope"></i> europe@sgrc.co.in</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="agent-card bg-white p-4 rounded shadow-sm">
-                    <h5>Middle East & Africa</h5>
-                    <p class="mb-1">Regional Partner: EnerSys Global</p>
-                    <p><i class="fa fa-envelope"></i> mea@sgrc.co.in</p>
+            <!-- Card -->
+            <div class="col-md-3 col-sm-6 d-flex">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Middle East & Africa</h5>
+                        <p class="card-text mb-1">Regional Partner: EnerSys Global</p>
+                        <p><i class="fa fa-envelope"></i> mea@sgrc.co.in</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-6 mb-4">
-                <div class="agent-card bg-white p-4 rounded shadow-sm">
-                    <h5>North America</h5>
-                    <p class="mb-1">Regional Partner: GridEdge Consultants</p>
-                    <p><i class="fa fa-envelope"></i> na@sgrc.co.in</p>
+            <!-- Card -->
+            <div class="col-md-3 col-sm-6 d-flex">
+                <div class="card w-100">
+                    <div class="card-body">
+                        <h5 class="card-title">North America</h5>
+                        <p class="card-text mb-1">Regional Partner: GridEdge Consultants</p>
+                        <p><i class="fa fa-envelope"></i> na@sgrc.co.in</p>
+                    </div>
                 </div>
             </div>
+
         </div>
 
-        <div class="mt-5">
-            <a href="@Url.Action("BecomeAgent", "Home")" class="theme-btn btn-style-two">Become an SGRC Agent</a>
-        </div>
+        @*<div class="mt-5">
+            <a href="@Url.Action("BecomeAgent", "Home")" class="btn btn-warning">Become an SGRC Agent</a>
+        </div>*@
+
     </div>
 </section>
+
 <!-- End Worldwide Agents Section -->

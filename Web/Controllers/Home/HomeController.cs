@@ -73,7 +73,7 @@ namespace Web.Controllers
         {
             return View();
         }
-        public ActionResult Events()
+        public ActionResult Event()
         {
             return View();
         }

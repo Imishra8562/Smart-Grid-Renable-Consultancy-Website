@@ -795,6 +795,9 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\flaticon.svg" />
     <Content Include="Content\fonts\fontawesome-webfont914c.svg" />
+    <Content Include="Content\images\About\InvestorRelationsOverview.png" />
+    <Content Include="Content\images\About\Social.png" />
+    <Content Include="Content\images\About\Who_We_Are.jpg" />
     <Content Include="Content\images\background\1.png" />
     <Content Include="Content\images\background\10.jpg" />
     <Content Include="Content\images\background\3.jpg" />
@@ -1059,7 +1062,6 @@
     <Content Include="Views\Home\InvestorRelations.cshtml" />
     <Content Include="Views\Home\Sustainability.cshtml" />
     <Content Include="Views\Home\Training.cshtml" />
-    <Content Include="Views\Home\Events.cshtml" />
     <Content Include="Views\Home\Courses.cshtml" />
     <Content Include="Views\Home\PastWebinars.cshtml" />
     <Content Include="Views\Home\PulseJournal.cshtml" />
@@ -1067,6 +1069,7 @@
     <Content Include="Views\Home\KnowledgeBase.cshtml" />
     <Content Include="Views\Home\EngineeringServices.cshtml" />
     <Content Include="Views\Home\Industry.cshtml" />
+    <Content Include="Views\Home\Event.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">
