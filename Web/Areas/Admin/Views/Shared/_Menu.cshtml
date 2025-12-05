@@ -1,7 +1,9 @@
 ﻿<div class="sidebar-wrapper">
     <div>
         <div class="logo-wrapper">
-            <a href="index.html"><img class="img-fluid for-light" src="~/Areas/Admin/Content/assets/images/logo/logo.png" alt=""></a>
+            <a href="index.html">
+                <img class="img-fluid for-light" src="~/Areas/Admin/Content/assets/images/logo/logo.png" style="max-width:46% !important;" alt="Logo">
+            </a>
             <div class="back-btn"><i data-feather="grid"></i></div>
             <div class="toggle-sidebar icon-box-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>
         </div>
@@ -28,6 +30,21 @@
                             <li><a class="lan-5" href="dashboard-02.html">Ecommerce</a></li>
                         </ul>
                     </li>
+                    <li class="sidebar-list">
+                        <i class="fa fa-thumb-tack"></i>
+                        <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                            <i data-feather="grid"></i><span class="lan-3">Index</span>
+                        </a>
+
+                        <ul class="sidebar-submenu">
+                            <li><a class="lan-4" href="@Url.Action("IndexSeo", "Admin")">SEO</a></li>
+                            <li><a class="lan-5" href="@Url.Action("IndexServices", "Admin")">Services</a></li>
+                            <li><a class="lan-5" href="@Url.Action("IndexFeatures", "Admin")">Features</a></li>
+                            <li><a class="lan-5" href="@Url.Action("IndexSlider", "Admin")">Slides</a></li>
+                            <li><a class="lan-5" href="@Url.Action("IndexTeam", "Admin")">Team</a></li>
+                        </ul>
+                    </li>
+
                     <li class="sidebar-list">
                         <i class="fa fa-thumb-tack"></i><a class="sidebar-link sidebar-title" href="javascript:void(0)"><i data-feather="airplay"></i><span class="lan-6">Widgets</span></a>
                         <ul class="sidebar-submenu">

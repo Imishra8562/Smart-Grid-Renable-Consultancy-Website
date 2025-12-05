@@ -2,6 +2,31 @@
     ViewBag.Title = "OurTeam";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<Head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Our Team | Smart Global Renewable & Consultancy</title>
+
+    <meta name="description"
+          content="Meet the expert and dedicated team behind Smart Global Renewable & Consultancy. A highly skilled group of innovators, engineers, and leaders delivering excellence." />
+
+    <meta name="keywords"
+          content="Our Team, Company Team, Experts, Leadership, SGRC Team, Engineers, Consultants" />
+
+    <meta name="author" content="Smart Global Renewable & Consultancy" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
+
+    <!-- Open Graph (Social Media Preview) -->
+    <meta property="og:title" content="Our Team | Smart Global Renewable & Consultancy" />
+    <meta property="og:description" content="Meet our highly experienced and innovative team delivering excellence across multiple industries." />
+    <meta property="og:image" content="@Url.Content("~/Content/images/resource/team-4.jpg")" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="@Url.Action("OurTeam", "Home", null, Request.Url.Scheme)" />
+</head>
+
 <!-- ====== Page Title Section (Updated Style) ====== -->
 <section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
 

@@ -106,7 +106,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
-    <None Include="DataBase_1.publish.xml" />
-    <None Include="DataBaseDtpl.publish.publish.xml" />
   </ItemGroup>
 </Project>

@@ -28,73 +28,69 @@
             <div class="card-header pb-0"><h4>Index Team Details (Add New)</h4></div>
 
             <div class="card-body">
-                @using (Html.BeginForm("SaveIndexTeam", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                @using (Html.BeginForm("SaveIndexTeam", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
                     <div class="row g-3">
                         <div class="col-md-8">
                             <label class="form-label">Team Name</label>
-                            @Html.DropDownListFor(m => m.Index_Team_Obj.Fk_Index_Seo_Id,
-                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
-                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Index_Team_Obj.Fk_Index_Seo_Id, new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"), "-- Select Team --", new { @class = "form-control", required = "required" })
                         </div>
 
                         <div class="col-md-4">
-                            <label class="form-label">Feature Title</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Name,
-                                new { @class = "form-control", required = "required" })
+                            <label class="form-label">Member Name</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Name, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
-                    <!-- Headline rows -->
+
+                    <!-- Designation -->
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
-                            <label class="form-label">Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Designation,
-                                new { @class = "form-control", required = "required" })
+                            <label class="form-label">Designation</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Designation, new { @class = "form-control", required = "required" })
                         </div>
+
                         <div class="col-md-6">
-                            <label class="form-label">Sub Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Facebook_Url,
-                                new { @class = "form-control", required = "required" })
+                            <label class="form-label">Facebook URL</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Facebook_Url, new { @class = "form-control" })
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Instagram_Url,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Sub Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Twitter_Url,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
 
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
-                            <label class="form-label">Headline 3</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Linkedin_Url,
-                                new { @class = "form-control", required = "required" })
+                            <label class="form-label">Instagram URL</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Instagram_Url, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Twitter URL</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Twitter_Url, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-6">
+                            <label class="form-label">LinkedIn URL</label>
+                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Linkedin_Url, new { @class = "form-control" })
                         </div>
                     </div>
 
                     <!-- Image -->
                     <div class="row g-3 mt-2">
                         <div class="col-md-12">
-                            <label class="form-label">Feature Image</label>
+                            <label class="form-label">Member Image</label>
                             @{
                                 var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
                             }
-                            @Html.TextBoxFor(m => m.Index_Team_Member_Image,
-                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                            @Html.TextBoxFor(m => m.Index_Team_Member_Image, new { @class = "dropify", type = "file", data_default_file = imagePath })
                         </div>
                     </div>
 
                     @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Id)
                     @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Member_Code)
+                    @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Member_Image)
 
                     <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
                 }
@@ -113,40 +109,76 @@
                                     <thead>
                                         <tr>
                                             <th>S.No</th>
-                                            <th>Title</th>
-                                            <th>Headline 1</th>
-                                            <th>Feature Image</th>
+                                            <th>Member Name</th>
+                                            <th>Designation</th>
+                                            <th>Facebook</th>
+                                            <th>Instagram</th>
+                                            <th>Twitter</th>
+                                            <th>LinkedIn</th>
+                                            <th>Member Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
+
                                     <tbody>
-                                        @if (Model.List_Index_Team_Business_Obj != null &&
-                                             Model.List_Index_Team_Business_Obj.Count > 0)
+                                        @if (Model.List_Index_Team_Business_Obj != null
+                                            && Model.List_Index_Team_Business_Obj.Count > 0)
                                         {
                                             foreach (var items in Model.List_Index_Team_Business_Obj)
                                             {
                                                 <tr>
                                                     <td>@(++i)</td>
-                                                    <td>@items.Index_Team_Title</td>
-                                                    <td>@items.Index_Team_Headline1</td>
+
+                                                    <td>@items.Index_Team_Member_Name</td> <!-- Member Name -->
+
+                                                    <td>@items.Index_Team_Member_Designation</td> <!-- Designation -->
+
                                                     <td>
-                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Image))
+                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Member_Facebook_Url))
                                                         {
-                                                            <img src="@Url.Content(items.Index_Team_Image)"
-                                                                 style="width:150px;height:100px;" />
+                                                            <a href="@items.Index_Team_Member_Facebook_Url" target="_blank">Facebook</a>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Member_Instagram_Url))
+                                                        {
+                                                            <a href="@items.Index_Team_Member_Instagram_Url" target="_blank">Instagram</a>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Member_Twitter_Url))
+                                                        {
+                                                            <a href="@items.Index_Team_Member_Twitter_Url" target="_blank">Twitter</a>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Member_Linkedin_Url))
+                                                        {
+                                                            <a href="@items.Index_Team_Member_Linkedin_Url" target="_blank">LinkedIn</a>
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @if (!string.IsNullOrEmpty(items.Index_Team_Member_Image))
+                                                        {
+                                                            <img src="@Url.Content(items.Index_Team_Member_Image)" style="width:120px;height:90px;" />
                                                         }
                                                         else
-                                                        { <span class="text-danger">No Image</span>}
+                                                        {
+                                                            <span class="text-danger">No Image</span>
+                                                        }
                                                     </td>
+
                                                     <td>
                                                         <div class="btn-group">
-                                                            <a href="@Url.Action("IndexTeam", "Admin",
-                                                                 new { Index_Team_Id = items.Index_Team_Id })"
-                                                               class="btn btn-warning">Edit</a>
 
-                                                            <a href="@Url.Action("DeleteIndexTeam", "Admin",
-                                                                 new { Index_Team_Id = items.Index_Team_Id })"
-                                                               class="btn btn-danger">Delete</a>
+                                                            <a href="@Url.Action("IndexTeam", "Admin", new { Index_Team_Id = items.Index_Team_Id })" class="btn btn-warning btn-sm">Edit</a>
+
+                                                            <a href="@Url.Action("DeleteIndexTeam", "Admin", new { Index_Team_Id = items.Index_Team_Id })" class="btn btn-danger btn-sm">Delete</a>
+
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -160,92 +192,84 @@
                 </div>
             </div>
         </div>
+
     }
     else
     {
         <!-- ===================== EDIT FORM ======================= -->
         <div class="card">
-            <div class="card-header pb-0"><h4>Index Team Details (Edit)</h4></div>
+                <div class="card-header pb-0"><h4>Index Team Details (Edit)</h4></div>
 
-            <div class="card-body">
-                @using (Html.BeginForm("UpdateIndexTeam", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
-                {
-                    <div class="row g-3">
-                        <div class="col-md-8">
-                            <label class="form-label">Team Name</label>
-                            @Html.DropDownListFor(m => m.Index_Team_Obj.Fk_Index_Seo_Id,
-                                new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"),
-                                "-- Select Feature --", new { @class = "form-control", required = "required" })
+                <div class="card-body">
+                    @using (Html.BeginForm("UpdateIndexTeam", "Admin", FormMethod.Post,
+                        new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                    {
+                        <div class="row g-3">
+                            <div class="col-md-8">
+                                <label class="form-label">Team Name</label>
+                                @Html.DropDownListFor(m => m.Index_Team_Obj.Fk_Index_Seo_Id, new SelectList(Model.List_Index_Seo_Obj, "Index_Seo_Id", "Index_Seo_Page_Title"), "-- Select Team --", new { @class = "form-control", required = "required" })
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Member Name</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Name, new { @class = "form-control", required = "required" })
+                            </div>
                         </div>
 
-                        <div class="col-md-4">
-                            <label class="form-label">Feature Title</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Title,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
 
-                    <!-- Headline rows -->
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Headline1,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Sub Headline 1</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_SubHeadline1,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
+                        <!-- Designation -->
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Designation</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Designation, new { @class = "form-control", required = "required" })
+                            </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Headline2,
-                                new { @class = "form-control", required = "required" })
+                            <div class="col-md-6">
+                                <label class="form-label">Facebook URL</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Facebook_Url, new { @class = "form-control" })
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Sub Headline 2</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_SubHeadline2,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Headline 3</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Headline3,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Sub Headline 3</label>
-                            @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_SubHeadline3,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
 
-                    <!-- Image -->
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-12">
-                            <label class="form-label">Feature Image</label>
-                            @{
-                                var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
-                            }
-                            @Html.TextBoxFor(m => m.Index_Team_Image,
-                                new { @class = "dropify", type = "file", data_default_file = imagePath })
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Instagram URL</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Instagram_Url, new { @class = "form-control" })
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Twitter URL</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Twitter_Url, new { @class = "form-control" })
+                            </div>
                         </div>
-                    </div>
 
-                    @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Id)
-                    @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Code)
-                    @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Image)
 
-                    <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
-                }
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">LinkedIn URL</label>
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Linkedin_Url, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <!-- Image -->
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-12">
+                                <label class="form-label">Member Image</label>
+                                @{
+                                    var imagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                }
+                                @Html.TextBoxFor(m => m.Index_Team_Obj.Index_Team_Member_Image, new { @class = "dropify", type = "file", data_default_file = imagePath })
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Id)
+                        @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Member_Code)
+                        @Html.HiddenFor(x => x.Index_Team_Obj.Index_Team_Member_Image)
+
+                        <button class="btn btn-primary mt-3" type="submit">Save Feature</button>
+                    }
+                </div>
             </div>
-        </div>
 
         @section Scripts {
             <script>

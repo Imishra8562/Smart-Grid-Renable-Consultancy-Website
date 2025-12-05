@@ -12,7 +12,6 @@ namespace Domain
         [Identifier("Index_Slider_Id")]
         public int Index_Slider_Id { get; set; }
         public int Fk_Index_Seo_Id { get; set; }
-
         public string Index_Slider_Code { get; set; }
         public string Index_Slider_Image { get; set; }
         public string Index_Slider_Alt_Tag { get; set; }

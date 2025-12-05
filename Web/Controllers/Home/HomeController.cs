@@ -121,6 +121,11 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult PowerSystemStudies()
+        {
+            return View();
+        }
+        
         #endregion
 
         #region InvestorRelations & Sustainability
@@ -151,6 +156,7 @@ namespace Web.Controllers
             return View();
         }
         #endregion
+
 
     }
 }
