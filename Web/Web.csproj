@@ -992,6 +992,33 @@
     <Content Include="Content\js\wow.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-1269178_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-2831031_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-3285733_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-4149725_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-6434088_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-6434088_1.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-7120844_0.png" />
+    <Content Include="Upload\Index\IndexFeaturesImage\IFC-7120844_1.png" />
+    <Content Include="Upload\Index\IndexSeoImage\ISC-4794259_0.png" />
+    <Content Include="Upload\Index\IndexSeoImage\ISC-5760668_0.png" />
+    <Content Include="Upload\Index\IndexSeoImage\ISC-9429814_0.png" />
+    <Content Include="Upload\Index\IndexSeoImage\ISC-9429814_1.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-2724108_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-4108783_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-5587084_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-6064555_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-6104182_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-6658783_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9583382_0.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9583382_1.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9583382_2.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9583382_3.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9583382_4.png" />
+    <Content Include="Upload\Index\IndexServicesIcon\ISIC-9601338_0.png" />
+    <Content Include="Upload\Index\IndexSliderImage\ISIMC-6460348_0.png" />
+    <Content Include="Upload\Index\IndexSliderImage\ISIMC-7414533_0.png" />
+    <Content Include="Upload\Index\IndexSliderImage\ISIMC-8078539_0.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1006,12 +1033,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
-    <Folder Include="Areas\Admin\Views\Master\" />
-    <Folder Include="Models\MasterModel\" />
-    <Folder Include="Upload\Index\IndexFeaturesImage\" />
-    <Folder Include="Upload\Index\IndexSeoImage\" />
-    <Folder Include="Upload\Index\IndexServicesIcon\" />
-    <Folder Include="Upload\Index\IndexSliderImage\" />
     <Folder Include="Upload\Index\IndexTeamMemberImage\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
@@ -1026,51 +1047,53 @@
     <Content Include="Content\fonts\fontawesome-webfont914c.woff2" />
     <Content Include="Content\fonts\fontawesome-webfontd41d.eot" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\EmployeeDashboard.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\IndexSeo.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\IndexFeatures.cshtml" />
     <Content Include="Areas\Admin\Views\Security\AdminUser.cshtml" />
     <Content Include="Areas\Admin\Views\Security\EditUser.cshtml" />
     <Content Include="Areas\Admin\Views\Security\Forgetpassword.cshtml" />
     <Content Include="Areas\Admin\Views\Security\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EmployeeDashboard.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\IndexSeo.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexServices.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexSlider.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\IndexTeam.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Menu.cshtml" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.eot" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.ttf" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.woff" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Service.cshtml" />
-    <Content Include="Views\Home\TermAndCondition.cshtml" />
-    <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Header.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\OurTeam.cshtml" />
-    <Content Include="Views\Home\Overview.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
-    <Content Include="Views\Home\Newsroom.cshtml" />
-    <Content Include="Views\Home\PressReleases.cshtml" />
+    <Content Include="Views\Home\Courses.cshtml" />
+    <Content Include="Views\Home\EngineeringServices.cshtml" />
+    <Content Include="Views\Home\Event.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Industry.cshtml" />
     <Content Include="Views\Home\Insights.cshtml" />
     <Content Include="Views\Home\InvestorRelations.cshtml" />
-    <Content Include="Views\Home\Sustainability.cshtml" />
-    <Content Include="Views\Home\Training.cshtml" />
-    <Content Include="Views\Home\Courses.cshtml" />
-    <Content Include="Views\Home\PastWebinars.cshtml" />
-    <Content Include="Views\Home\PulseJournal.cshtml" />
-    <Content Include="Views\Home\Careers.cshtml" />
     <Content Include="Views\Home\KnowledgeBase.cshtml" />
-    <Content Include="Views\Home\EngineeringServices.cshtml" />
-    <Content Include="Views\Home\Industry.cshtml" />
-    <Content Include="Views\Home\Event.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Newsroom.cshtml" />
+    <Content Include="Views\Home\OurTeam.cshtml" />
+    <Content Include="Views\Home\Overview.cshtml" />
+    <Content Include="Views\Home\PastWebinars.cshtml" />
+    <Content Include="Views\Home\PowerSystemStudies.cshtml" />
+    <Content Include="Views\Home\PressReleases.cshtml" />
+    <Content Include="Views\Home\PulseJournal.cshtml" />
+    <Content Include="Views\Home\Service.cshtml" />
+    <Content Include="Views\Home\Sustainability.cshtml" />
+    <Content Include="Views\Home\TermAndCondition.cshtml" />
+    <Content Include="Views\Home\Training.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Power.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">
@@ -1084,14 +1107,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{46178ea4-77ad-4a64-88dd-13b8acfecae9}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataBase\DataBase.sqlproj">
-      <Project>{594cc816-f936-45ff-9303-3d05d2e28a7c}</Project>
-      <Name>DataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
-      <Project>{0a219cd8-f7a2-4cc0-81f9-427a0f191349}</Project>
-      <Name>DataLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{217877a1-06c4-4eab-92fa-129cf61ccd48}</Project>

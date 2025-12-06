@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
-using Web.Models;
+using Web.Areas.Admin.Model;
 
 namespace Web.Controllers
 {
@@ -95,7 +95,7 @@ namespace Web.Controllers
         {
             return View();
         }
-       
+
         public ActionResult Careers()
         {
             return View();
@@ -125,7 +125,10 @@ namespace Web.Controllers
         {
             return View();
         }
-        
+        public ActionResult Power()
+        {
+            return View();
+        }
         #endregion
 
         #region InvestorRelations & Sustainability
@@ -156,7 +159,6 @@ namespace Web.Controllers
             return View();
         }
         #endregion
-
 
     }
 }
