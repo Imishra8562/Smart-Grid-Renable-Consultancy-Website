@@ -126,7 +126,8 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SecurityController.cs" />
-    <Compile Include="Areas\Admin\Model\MasterModel.cs" />
+    <Compile Include="Areas\Admin\Model\Admin\AdminModel.cs" />
+    <Compile Include="Areas\Admin\Model\Master\MasterModel.cs" />
     <Compile Include="Areas\Admin\Model\Security\SecurityModel.cs" />
     <Compile Include="Controllers\Core\HasPermissionAttribute.cs" />
     <Compile Include="Controllers\Core\SessionExpireFilterAttribute.cs" />
@@ -1068,6 +1069,7 @@
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.eot" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.ttf" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.woff" />
+    <Content Include="Areas\Admin\Views\Admin\Industries.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />

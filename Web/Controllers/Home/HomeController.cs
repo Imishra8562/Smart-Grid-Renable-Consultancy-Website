@@ -57,6 +57,25 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult Industry()
+        {
+             AdminModel Model = new  AdminModel();
+            IAdminManager AdminMangerobj = new AdminManager();
+            Model.List_Industries_Obj = AdminMangerobj.GetIndustries(0, null);
+            return View(Model);
+        }
+        [Route("industries/{industries}")]
+        public ActionResult IndustriesDetail(string industries)
+        {
+             AdminModel Model = new  AdminModel();
+            IAdminManager AdminMangerobj = new AdminManager();
+            Model.Industries_Obj = AdminMangerobj.GetIndustries(0, industries).FirstOrDefault();
+            Model.List_Product_Business_Obj = AdminMangerobj.GetProduct(0, 0, null).Where(x => x.Industries_Url_Link == industries).ToList();
+
+            return View(Model);
+        }
+
+
         #endregion
 
         #region news & insight
@@ -102,11 +121,12 @@ namespace Web.Controllers
         }
 
         #endregion
+
         #region industry
-        public ActionResult Industry()
-        {
-            return View();
-        }
+        //public ActionResult Industry()
+        //{
+        //    return View();
+        //}
         #endregion
 
         #region KnowledgeBase

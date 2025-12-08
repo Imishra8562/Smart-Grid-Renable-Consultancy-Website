@@ -207,4 +207,7 @@
     <Build Include="dbo\Stored Procedures\Product\sp_Update_Product_Module.sql" />
     <Build Include="dbo\Stored Procedures\Product\sp_Update_Product_Portfolio.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="DataBase.publish.xml" />
+  </ItemGroup>
 </Project>

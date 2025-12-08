@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Web.Areas.Admin.Model;
+using Common;
+using Web.Controllers;
 
 namespace Web.Areas.Admin.Controllers
 {
@@ -509,6 +511,156 @@ namespace Web.Areas.Admin.Controllers
             return RedirectToAction("IndexTeam");
         }
 
+        #endregion
+
+        #region Industries
+        //[CookiesExpireFilter]
+        public ActionResult Industries(int? Industries_Id)
+        {
+            AdminModel Model = new AdminModel();
+            IAdminManager Manger = new AdminManager();
+            Model.List_Industries_Obj = Manger.GetIndustries(0, null);
+
+            if (Industries_Id.HasValue)
+            {
+                Model.Industries_Obj = Manger.GetIndustries(Industries_Id, null).FirstOrDefault();
+            }
+
+            return View(Model);
+        }
+        [HttpPost]
+        //[CookiesExpireFilter]
+        public ActionResult SaveIndustries(AdminModel Model)
+        {
+            IAdminManager Manger = new AdminManager();
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Industries_Obj.Industries_Code = "CL-" + Code.ToString();
+
+            int No = 0;
+            if (Model.Industries_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Industries/og_image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Industries_Obj.Industries_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+
+                string extension = System.IO.Path.GetExtension(Model.Industries_Og_Image.FileName);
+                Model.Industries_Og_Image.SaveAs(Server.MapPath("~/Upload/Industries/og_image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Industries/og_image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension;
+                Model.Industries_Obj.Industries_Og_Image = FilePathForPhoto;
+            }
+
+            No = 0;
+            if (Model.Industries_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Industries/image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Industries_Obj.Industries_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+
+                string extension = System.IO.Path.GetExtension(Model.Industries_Image.FileName);
+                Model.Industries_Image.SaveAs(Server.MapPath("~/Upload/Industries/image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Industries/image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension;
+                Model.Industries_Obj.Industries_Image = FilePathForPhoto;
+            }
+
+            Model.Industries_Obj.Created_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
+            Model.Industries_Obj.Created_IP = SystemIP();
+            int Id = Manger.SaveIndustries(Model.Industries_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Industries Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Industries!";
+            }
+            return RedirectToAction("Industries");
+        }
+        [HttpPost]
+        //[CookiesExpireFilter]
+        public ActionResult UpdateIndustries(AdminModel Model)
+        {
+            IAdminManager Manger = new AdminManager();
+            int No = 0;
+            if (Model.Industries_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Industries/og_image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Industries_Obj.Industries_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+
+                string extension = System.IO.Path.GetExtension(Model.Industries_Og_Image.FileName);
+                Model.Industries_Og_Image.SaveAs(Server.MapPath("~/Upload/Industries/og_image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Industries/og_image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension;
+                Model.Industries_Obj.Industries_Og_Image = FilePathForPhoto;
+            }
+
+            No = 0;
+            if (Model.Industries_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Industries/image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Industries_Obj.Industries_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+
+                string extension = System.IO.Path.GetExtension(Model.Industries_Image.FileName);
+                Model.Industries_Image.SaveAs(Server.MapPath("~/Upload/Industries/image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Industries/image/" + Model.Industries_Obj.Industries_Code + "_" + No + extension;
+                Model.Industries_Obj.Industries_Image = FilePathForPhoto;
+            }
+
+            Model.Industries_Obj.Modified_On = DateTime.Now;
+            Model.Industries_Obj.Modified_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
+            Model.Industries_Obj.Modified_IP = SystemIP();
+
+            int Id = Manger.UpdateIndustries(Model.Industries_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Industries Updated Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Industries!";
+            }
+            return RedirectToAction("Industries");
+        }
+        //[CookiesExpireFilter]
+        public ActionResult DeleteIndustries(int Industries_Id)
+        {
+            IAdminManager Manger = new AdminManager();
+            int Id = Manger.DeleteIndustries(Industries_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Industries Deleted Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Industries!";
+            }
+            return RedirectToAction("Industries");
+        }
         #endregion
     }
 }

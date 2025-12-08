@@ -95,3 +95,103 @@
         </div>
     </div>
 </section>
+@model Web.Models.HomeModel
+@{
+    ViewBag.Title = "Industries";
+}
+
+<head>
+    <title>Industry-Specific Software Solutions For Government, Education, Banking, Ecommerce, Crm, Erp | SB Creation</title>
+    <meta name="keyword" content="government, MLM, education, banking, finance, retail ecommerce, CRM, ERP, customized solutions, industry-specific software, software solutions for industries, tailored software, business solutions, industry software applications, SB Creation industry expertise" />
+    <meta name="description" content="Explore the diverse industries we serve, including government, education, banking, finance, retail ecommerce, MLM, and more. Discover tailored ERP, CRM, and customized software solutions designed to meet your unique business needs." />
+    <meta name=news_keywords content="industry news, SB Creation updates, software industry news, business technology, government software, CRM news, ERP solutions, business software trends, technology news">
+    <meta name=standout content="Stay updated with the latest news, updates, and trends in the software industry, including solutions for government, education, banking, finance, MLM, CRM, ERP, and more from SB Creation.">
+    <meta property="og:url" content="https://sbcreationgroup.com/industries" />
+    <meta property=og:site_name content="Renu SB Creation Software Pvt Ltd (SB Craetion)">
+    <meta property=og:see_also content=https://sbcreationgroup.com/industries />
+    <meta property="og:image" content="https://sbcreationgroup.com/Content/assets/images/logo/SB_Creation_Logo_Black.webp" />
+    <meta property=og:image:url content="https://sbcreationgroup.com/Content/assets/images/logo/SB_Creation_Logo_Black.webp" />
+    <meta property="og:image:secure_url" content="https://sbcreationgroup.com/Content/assets/images/logo/SB_Creation_Logo_Black.webp" />
+    <meta property="og:title" content="Industry-Specific Software Solutions | SB Creation" />
+    <meta property="og:description" content="At SB Creation, we offer customized ERP, CRM, and software solutions for a wide range of industries including government, education, banking, finance, MLM, and retail ecommerce. Learn more about our industry expertise." />
+    <meta property="og:image:alt" content="SB Creation Logo" />
+    <meta property=og:image:type content=image/jpeg>
+    <meta property=og:image:width content=1200>
+    <meta property=og:image:height content=630>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sbcreationgroup.com/industries" />
+    <meta property="twitter:title" content="Industry-Specific Software Solutions | SB Creation">
+    <meta property="twitter:description" content="explore our tailored software solutions for industries like government, education, banking, finance, retail ecommerce, crm, erp, and more. discover customized solutions at sb creation.">
+    <meta property="twitter:image" content="https://sbcreationgroup.com/Content/assets/images/logo/SB_Creation_Logo_Black.webp">
+    <meta name=twitter:image:width content=1200>
+    <meta name=twitter:image:height content=630>
+    <link rel="canonical" href="https://sbcreationgroup.com/industries">
+
+</head>
+
+<div class="inner-banner">
+    <a class="down-arrow-icon" href="#product">
+        <i class="fa fa-arrow-down" style="color:#114288"></i>
+    </a>
+    <div class="container">
+        <div class="row pt-80 d-flex justify-content-center align-items-center text-center">
+            <div class="col-md-12">
+                <h1 class="inner-banner-title wow fadeInLeft">Industries We Specialize In</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb gap-3">
+                        <li class="breadcrumb-item"><a href="@Url.Action("Home","Home")">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Product</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="banner-section4 pt-5 pb-5" id="product">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="section-title2 primary4">
+                    <div>
+                        <h3>Industries We Serve</h3>
+                        <p>At SB Creation, we specialize in providing customized software solutions across a wide range of industries. whether you’re in government, education, banking, finance, retail ecommerce, crm, or erp, we offer innovative and tailored solutions to meet the unique needs of your business. explore how our industry-specific expertise can drive success and efficiency for your organization.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row position-relative justify-content-center">
+            @if (Model.List_Industries_Obj != null && Model.List_Industries_Obj.Count > 0)
+            {
+                foreach (var items in Model.List_Industries_Obj)
+                {
+
+                    <div class="col-lg-4 col-md-6 col-sm-10">
+                        <div class="sigle-blog-1">
+                            <div class="blog-image">
+                                @if (!string.IsNullOrEmpty(items.Industries_Image))
+                                {
+                                    <img src="@Url.Content(items.Industries_Image)" class="img-fluid" alt="@items.Industries_Image_Alt_Tag">
+                                }
+                                else
+                                {
+                                }
+                            </div>
+
+                            <div class="blog-content hover-border1 blog-details-single">
+                                <h4 class="limithead">
+                                    <a href="@Url.Action("IndustriesDetail", "Home", new { industries = items.Industries_Url_Link })">@items.Industries_Name</a>
+                                </h4>
+                                <a href="@Url.Action("IndustriesDetail", "Home", new { industries = items.Industries_Url_Link })" class="text-btn"> View details <i class="fa fa-long-arrow-alt-right"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+        </div>
+    </div>
+</div>
