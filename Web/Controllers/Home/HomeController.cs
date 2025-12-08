@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.IO;
 using System.Web.Mvc;
 using System.Web.UI;
 using Web.Areas.Admin.Model;
@@ -70,6 +71,7 @@ namespace Web.Controllers
             AdminModel Model = new  AdminModel();
             IAdminManager AdminMangerobj = new AdminManager();
             Model.Industries_Obj = AdminMangerobj.GetIndustries(0, industries).FirstOrDefault();
+            Model.List_Industries_Obj = AdminMangerobj.GetIndustries(0, null);
             Model.List_Product_Business_Obj = AdminMangerobj.GetProduct(0, 0, null).Where(x => x.Industries_Url_Link == industries).ToList();
 
             return View(Model);
@@ -174,6 +176,67 @@ namespace Web.Controllers
         {
             return View();
         }
+        #endregion
+
+        #region Upload Image By Ck Editer
+        public ActionResult UploadImage(HttpPostedFileBase upload)
+        {
+            try
+            {
+                if (upload != null && upload.ContentLength > 0)
+                {
+                    // Generate a random blog code
+                    Random rnd = new Random();
+                    int code = rnd.Next(1000000, 9999999);
+                    string CkEditerCode = "CKEC-" + code.ToString();
+
+                    // Define the upload directory
+                    string uploadPath = Server.MapPath("~/Upload/editor-image/");
+                    if (!Directory.Exists(uploadPath))
+                    {
+                        Directory.CreateDirectory(uploadPath);
+                    }
+
+                    // Count existing files with the same blog code
+                    int no = 0;
+                    string[] files = Directory.GetFiles(uploadPath, CkEditerCode + "*");
+                    no = files.Length;
+
+                    // Get file extension and save the file with a unique name
+                    string extension = Path.GetExtension(upload.FileName);
+                    string fileName = CkEditerCode + "_" + no + extension;
+                    string filePath = Path.Combine(uploadPath, fileName);
+
+                    upload.SaveAs(filePath);
+
+                    // Generate image URL
+                    string imageUrl = Url.Content("~/Upload/editor-image/" + fileName);
+
+                    return Json(new
+                    {
+                        uploaded = true,
+                        url = imageUrl
+                    });
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        uploaded = false,
+                        error = new { message = "Upload failed: No file received." }
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new
+                {
+                    uploaded = false,
+                    error = new { message = "Upload failed: " + ex.Message }
+                });
+            }
+        }
+
         #endregion
 
     }

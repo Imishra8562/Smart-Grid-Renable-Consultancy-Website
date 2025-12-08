@@ -3,6 +3,7 @@
     ViewBag.Title = "IndustriesDetail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <Head>
     <meta name="description" content="@Model.Industries_Obj.Industries_Meta_Description" />
     <meta name="keywords" content="@Model.Industries_Obj.Industries_Meta_Keyword" />
@@ -16,49 +17,98 @@
 </Head>
 
 <!-- ====== Page Header / Banner ====== -->
-<section class="page-title"
-         style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")');
-                background-size:cover; background-position:center;">
-
+<section class="page-title" style="position: relative;  background-image: url('../../Content/images/background/8.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="auto-container py-5">
         <div class="content text-white" data-aos="fade-down">
             <h1 class="display-5 fw-bold">@Model.Industries_Obj.Industries_Name</h1>
-
-            <p class="lead mt-3">
-                @Model.Industries_Obj.Industries_Page_Title
-            </p>
+            <p class="lead mt-3">@Model.Industries_Obj.Industries_Page_Title</p>
         </div>
     </div>
 </section>
-
 
 <!-- ====== Industry Details Section ====== -->
-<section class="py-5" style="background:#f9f9f9;">
+<section class="py-5 bg-light">
     <div class="container">
-
-        <div class="row align-items-center g-4">
-
-            <!-- LEFT IMAGE -->
-            <div class="col-lg-5">
-                <img src="@Url.Content(Model.Industries_Obj.Industries_Image)"
-                     alt="@Model.Industries_Obj.Industries_Image_Alt_Tag"
-                     class="img-fluid rounded shadow" />
+        <div class="row g-5">
+            <!-- Left Content -->
+            <div class="col-lg-8">
+                <h2 class="fw-bold mb-3">@Model.Industries_Obj.Industries_Name</h2>
+                <p class="text-muted fs-6">@Html.Raw(Model.Industries_Obj.Industries_Description)</p>
             </div>
 
-            <!-- RIGHT CONTENT -->
-            <div class="col-lg-7">
-                <h2 class="fw-bold mb-3">
-                    @Model.Industries_Obj.Industries_Name
-                </h2>
+            <!-- Sidebar -->
+            <div class="col-lg-4">
+                <div class="p-4 bg-white rounded shadow-sm">
+                    <!-- Search -->
+                    <div class="mb-4">
+                        <h5 class="mb-3">Search Industries</h5>
+                        <input type="text" id="IndustriesearchInput" class="form-control mb-2" placeholder="Search here..." onkeyup="filterIndustries()">
+                        <div id="searchResults" class="search-results-box border rounded p-2 d-none"></div>
+                    </div>
 
-                <p class="text-muted fs-6">
-                    @Html.Raw(Model.Industries_Obj.Industries_Description)
-                </p>
+                    <!-- Recent Posts -->
+                    <div class="mb-4">
+                        <h5 class="mb-3">Industrie where we are working </h5>
+                        <ul class="list-unstyled">
 
+                            @if (Model.List_Industries_Obj != null && Model.List_Industries_Obj.Count > 0)
+                            {
+                               foreach (var item in Model.List_Industries_Obj.Take(5))
+                                  {
+                                   <li class="mb-2">
+                                       <a href="@item.Industries_Url_Link" class="d-block text-decoration-none">
+                                           <div class="d-flex gap-2">
+                                               <div>
+                                                   <a href="@Url.Action("IndustriesDetail", "Home" , new { industries=item.Industries_Url_Link })"
+                                                      class="text-decoration-none">
+                                                       <h6 class="mb-1">@item.Industries_Name</h6>
+                                                   </a>
+                                               </div>
+                                           </div>
+                                       </a>
+                                   </li>
+                                   }
+                             }
+                             else
+                                {
+                                 <li><small class="text-muted">No recent posts available.</small></li>
+                                }
+
+                        </ul>
+                    </div>
+
+
+                    <!-- Categories -->
+                    <div class="mb-4">
+                        <h5 class="mb-3">Post Categories</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="/category/health-and-medical" class="d-flex justify-content-between text-decoration-none mb-1">Health & Medical <i class="bi bi-chevron-right"></i></a></li>
+                            <li><a href="/category/government" class="d-flex justify-content-between text-decoration-none mb-1">Government <i class="bi bi-chevron-right"></i></a></li>
+                            <li><a href="/category/it-technology" class="d-flex justify-content-between text-decoration-none mb-1">IT Technology <i class="bi bi-chevron-right"></i></a></li>
+                            <!-- Add more categories -->
+                        </ul>
+                    </div>
+
+                    <!-- Social Follow -->
+                    <div class="mb-4">
+                        <h5 class="mb-2">Follow Us</h5>
+                        <p class="text-muted small">Follow us on social networks</p>
+                        <div class="d-flex gap-3">
+                            <a href="https://www.facebook.com/sgrc" target="_blank" class="text-dark"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://x.com/sgrc" target="_blank" class="text-dark"><i class="bx bxl-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/sgrc-pvt-ltd/?viewAsMember=true" target="_blank" class="text-dark"><i class="bx bxl-linkedin-square"></i></a>
+                            <a href="https://www.youtube.com/channel/UCVZFfMNjik60TgOYwC7KOig" target="_blank" class="text-dark"><i class="bx bxl-youtube"></i></a>
+                            <a href="https://www.instagram.com/sgrc/" target="_blank" class="text-dark"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://in.pinterest.com/sgrcsoftwarepvtltd/" target="_blank" class="text-dark"><i class="bx bxl-pinterest"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Industry Image -->
+                    <div class="text-center mt-4">
+                        <img src="@Url.Content(Model.Industries_Obj.Industries_Image)" alt="@Model.Industries_Obj.Industries_Image_Alt_Tag" class="img-fluid rounded shadow">
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </section>
-
-
