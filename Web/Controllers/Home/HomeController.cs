@@ -67,7 +67,7 @@ namespace Web.Controllers
         [Route("industries/{industries}")]
         public ActionResult IndustriesDetail(string industries)
         {
-             AdminModel Model = new  AdminModel();
+            AdminModel Model = new  AdminModel();
             IAdminManager AdminMangerobj = new AdminManager();
             Model.Industries_Obj = AdminMangerobj.GetIndustries(0, industries).FirstOrDefault();
             Model.List_Product_Business_Obj = AdminMangerobj.GetProduct(0, 0, null).Where(x => x.Industries_Url_Link == industries).ToList();

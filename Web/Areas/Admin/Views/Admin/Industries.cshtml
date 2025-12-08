@@ -7,7 +7,6 @@
     var Message = TempData["AlertMessage"] ?? string.Empty;
     int i = 0;
 }
-
 <div class="page-body">
     <div class="container-fluid">
         <div class="page-title">
@@ -157,7 +156,7 @@
                             </div>
 
                             <div class="row g-3 mt-2">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label class="form-label">OG Description</label>
                                     @Html.TextAreaFor(m => m.Industries_Obj.Industries_Og_Description,
                                         new { @class = "form-control", @rows = "3", @placeholder = "Enter OG description", @required = "required" })
@@ -165,6 +164,14 @@
                                         Please enter OG description.
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Industries Description</label>
+                                    @Html.TextAreaFor(m => m.Industries_Obj.Industries_Description, new { @class = "form-control", @rows = "5", @id = "Industries_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Industries description.
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="row g-3 mt-2">
@@ -399,12 +406,20 @@
                             </div>
 
                             <div class="row g-3 mt-2">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <label class="form-label">OG Description</label>
                                     @Html.TextAreaFor(m => m.Industries_Obj.Industries_Og_Description,
                                         new { @class = "form-control", @rows = "3", @placeholder = "Enter OG description", @required = "required" })
                                     <div class="invalid-feedback">
                                         Please enter OG description.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Industries Description</label>
+                                    @Html.TextAreaFor(m => m.Industries_Obj.Industries_Description,
+                                        new { @class = "form-control", @rows = "5", @id = "Industries_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Industries description.
                                     </div>
                                 </div>
                             </div>
@@ -437,6 +452,14 @@
 </div>
 
 @section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Industries_Description'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script>
         $(document).ready(function () {
             // Initialize dropify for file uploads

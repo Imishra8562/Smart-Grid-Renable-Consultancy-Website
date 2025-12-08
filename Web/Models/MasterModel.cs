@@ -44,6 +44,12 @@ namespace Web.Models
         public IList<Index_Team_Business> List_Index_Team_Business_Obj { get; set; }
         #endregion
 
+        #region Industries
 
+        public HttpPostedFileBase Industries_Image { get; set; }
+        public HttpPostedFileBase Industries_Og_Image { get; set; }
+        public Industries Industries_Obj { get; set; }
+        public IList<Industries> List_Industries_Obj { get; set; }
+        #endregion
     }
 }

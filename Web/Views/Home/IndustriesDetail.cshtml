@@ -1,0 +1,64 @@
+﻿@model Web.Areas.Admin.Model.AdminModel
+@{
+    ViewBag.Title = "IndustriesDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<Head>
+    <meta name="description" content="@Model.Industries_Obj.Industries_Meta_Description" />
+    <meta name="keywords" content="@Model.Industries_Obj.Industries_Meta_Keyword" />
+    <meta name="author" content="SGRC" />
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="@Model.Industries_Obj.Industries_Name" />
+    <meta property="og:description" content="@Model.Industries_Obj.Industries_Page_Title" />
+    <meta property="og:image" content="@Url.Content(Model.Industries_Obj.Industries_Image)" />
+    <meta property="og:type" content="website" />
+</Head>
+
+<!-- ====== Page Header / Banner ====== -->
+<section class="page-title"
+         style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")');
+                background-size:cover; background-position:center;">
+
+    <div class="auto-container py-5">
+        <div class="content text-white" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">@Model.Industries_Obj.Industries_Name</h1>
+
+            <p class="lead mt-3">
+                @Model.Industries_Obj.Industries_Page_Title
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- ====== Industry Details Section ====== -->
+<section class="py-5" style="background:#f9f9f9;">
+    <div class="container">
+
+        <div class="row align-items-center g-4">
+
+            <!-- LEFT IMAGE -->
+            <div class="col-lg-5">
+                <img src="@Url.Content(Model.Industries_Obj.Industries_Image)"
+                     alt="@Model.Industries_Obj.Industries_Image_Alt_Tag"
+                     class="img-fluid rounded shadow" />
+            </div>
+
+            <!-- RIGHT CONTENT -->
+            <div class="col-lg-7">
+                <h2 class="fw-bold mb-3">
+                    @Model.Industries_Obj.Industries_Name
+                </h2>
+
+                <p class="text-muted fs-6">
+                    @Html.Raw(Model.Industries_Obj.Industries_Description)
+                </p>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+

@@ -530,6 +530,7 @@ namespace Web.Areas.Admin.Controllers
         }
         [HttpPost]
         //[CookiesExpireFilter]
+        [ValidateInput(false)]
         public ActionResult SaveIndustries(AdminModel Model)
         {
             IAdminManager Manger = new AdminManager();
@@ -588,6 +589,7 @@ namespace Web.Areas.Admin.Controllers
         }
         [HttpPost]
         //[CookiesExpireFilter]
+        [ValidateInput(false)]
         public ActionResult UpdateIndustries(AdminModel Model)
         {
             IAdminManager Manger = new AdminManager();

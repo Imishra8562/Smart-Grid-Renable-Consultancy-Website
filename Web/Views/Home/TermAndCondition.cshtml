@@ -1,426 +1,94 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="tivo admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Tivo admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="pixelstrap">
-    <link rel="icon" href="~/Areas/Admin/Content/assets/images/favicon/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="~/Areas/Admin/Content/assets/images/favicon/favicon.png" type="image/x-icon">
-    <title>Tivo - Premium Admin Template</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-    @*<link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/font-awesome.css">*@
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Areas/Admin/Content/assets/css/vendors/font-awesome.css")">
+﻿
+<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Overlay -->
+    @*<div style="position:absolute; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index:1;"></div>*@
 
-    <!-- ico-font-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/icofont.css">
-    <!-- Themify icon-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/themify.css">
-    <!-- Flag icon-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/flag-icon.css">
-    <!-- Feather icon-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/feather-icon.css">
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/animate.css">
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/chartist.css">
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/prism.css">
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/vector-map.css">
-    <!-- Bootstrap css-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/vendors/bootstrap.css">
-    <!-- App css-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/style.css">
-    <link id="color" rel="stylesheet" href="~/Areas/Admin/Content/assets/css/color-1.css" media="screen">
-    <!-- Responsive css-->
-    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/Content/assets/css/responsive.css">
-</head>
-<body onload="startTime()">
-    <!-- tap on top starts-->
-    <div class="tap-top"><i data-feather="chevrons-up"></i></div>
-    <!-- tap on tap ends-->
-    <!-- Loader starts-->
-    <div class="loader-wrapper">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"> </div>
-        <div class="dot"></div>
-    </div>
-    <!-- Loader ends-->
-    <!-- page-wrapper Start-->
-    <div class="page-wrapper compact-wrapper" id="pageWrapper">
-        <!-- Page Header Start-->
-        @Html.Action("Header", "Admin")
-        <!-- Page Header Ends-->
-        <!-- Page Body Start-->
-        <div class="page-body-wrapper">
-            <!-- Page Sidebar Start-->
-            @Html.Action("Menu", "Admin")
-            <!-- Page Sidebar Ends-->
-            @RenderBody()
-            <!-- footer start-->
-            @Html.Action("Footer", "Admin")
+    <div class="auto-container" style="position:relative; z-index:2;">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">Industries  <span class="text-warning">We Serve</span></h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Industries</li>
+            </ul>
         </div>
     </div>
-    <!-- latest jquery-->
-    <script src="~/Areas/Admin/Content/assets/js/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap js-->
-    <script src="~/Areas/Admin/Content/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- feather icon js-->
-    <script src="~/Areas/Admin/Content/assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/icons/feather-icon/feather-icon.js"></script>
-    <!-- scrollbar js-->
-    <script src="~/Areas/Admin/Content/assets/js/scrollbar/simplebar.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/scrollbar/custom.js"></script>
-    <!-- Sidebar jquery-->
-    <script src="~/Areas/Admin/Content/assets/js/config.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/sidebar-menu.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/chart/chartist/chartist.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/chart/apex-chart/apex-chart.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/chart/apex-chart/stock-prices.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/prism/prism.min.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/clipboard/clipboard.min.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/custom-card/custom-card.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/notify/bootstrap-notify.min.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-world-mill-en.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-us-aea-en.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-uk-mill-en.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-au-mill.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-chicago-mill-en.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-in-mill.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/vector-map/map/jquery-jvectormap-asia-mill.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/dashboard/default.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/notify/index.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/typeahead/handlebars.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/typeahead-search/handlebars.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/typeahead-search/typeahead-custom.js"></script>
-    <!-- Template js-->
-    <script src="~/Areas/Admin/Content/assets/js/script.js"></script>
-    <script src="~/Areas/Admin/Content/assets/js/theme-customizer/customizer.js"></script>
-    <!-- Form Validation-->
-    <script>
-        (function () {
-            'use strict';
+</section>
+<!-- CARD Industries We Services -->
+<section class="portal-types py-5" style="background-color: #f2f2f2;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-dark display-6">Industries & Services We Provide</h2>
+            <p class="text-muted mt-3 mx-auto lead" style="max-width: 720px;">
+                Each solution is designed to optimize operations, efficiency, and decision-making for your business or organization.
+            </p>
+        </div>
 
-            var forms = document.querySelectorAll('.needs-validation');
-
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-
-        })();
-    </script>
-</body>
-</html>
-<!-- DataTable Section -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-
-            <div class="card">
-                <div class="card-header pb-0">
-                    <h4>Zero Configuration</h4>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Commercial & Industrial</h5>
+                    <p class="text-muted small mb-0">
+                        Energy efficiency, power audits, and system optimization to enhance operational performance for commercial and industrial facilities.
+                    </p>
                 </div>
-
-                <div class="card-body">
-                    <div class="table-responsive theme-scrollbar">
-
-                        <table class="display" id="basic-1">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <!-- Dummy rows (same as your original sample) -->
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                    <td>
-                                        <ul class="action">
-                                            <li class="edit"><a href="#"><i class="icon-pencil-alt"></i></a></li>
-                                            <li class="delete"><a href="#"><i class="icon-trash"></i></a></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
-                    </div>
-                </div>
-
             </div>
 
-        </div>
-    </div>
-</div>
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Government</h5>
+                    <p class="text-muted small mb-0">
+                        Utility planning, public infrastructure reliability solutions, and support for effective governance and service delivery.
+                    </p>
+                </div>
+            </div>
 
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Investment Stakeholders</h5>
+                    <p class="text-muted small mb-0">
+                        Technical due-diligence, feasibility analysis, and advisory services for investors and financial entities evaluating energy and infrastructure projects.
+                    </p>
+                </div>
+            </div>
 
-hgfjk
-@model Web.Areas.Admin.Model.MasterModel
-@{
-    ViewBag.Title = "IndexSeo";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Data Centers & Large Loads</h5>
+                    <p class="text-muted small mb-0">
+                        Redundant, high-availability power architecture for data centers and industrial-scale loads to ensure continuous operations.
+                    </p>
+                </div>
+            </div>
 
-    var Type = TempData["AlertType"] ?? string.Empty;
-    var Title = TempData["AlertTitle"] ?? string.Empty;
-    var Message = TempData["AlertMessage"] ?? string.Empty;
-}
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Power Delivery</h5>
+                    <p class="text-muted small mb-0">
+                        Transmission and distribution grid analysis, optimization, and solutions for reliable power delivery.
+                    </p>
+                </div>
+            </div>
 
-<!-- DataTables CSS -->
-<link href="~/Areas/Admin/Content/datatable/datatables.css" rel="stylesheet" />
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Power Generation</h5>
+                    <p class="text-muted small mb-0">
+                        Performance studies and optimization for thermal, hydro, and renewable power generation facilities.
+                    </p>
+                </div>
+            </div>
 
-<div class="page-body">
-    <div class="container-fluid">
-
-        <!-- Page Header -->
-        <div class="page-title">
-            <div class="row">
-                <div class="col-sm-6"><h3>Index SEO</h3></div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
-                        <li class="breadcrumb-item">Index</li>
-                        <li class="breadcrumb-item active">Index SEO</li>
-                    </ol>
+            <div class="col-md-6 col-lg-4">
+                <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+                    <h5 class="fw-bold text-dark mb-3">Renewable Energy Integration</h5>
+                    <p class="text-muted small mb-0">
+                        Advanced analysis and solutions for integrating solar, wind, and other renewable systems into existing energy networks.
+                    </p>
                 </div>
             </div>
         </div>
-
-        <!-- Form Section -->
-        <div class="card">
-            <div class="card-header pb-0"><h4>Index SEO Details</h4></div>
-
-            <div class="card-body">
-                @using (Html.BeginForm("SaveIndexSeo", "Admin", FormMethod.Post,
-                       new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
-                {
-
-                    <!-- Page Title + Slug -->
-                    <div class="row g-3">
-                        <div class="col-md-8">
-                            <label class="form-label">Page Title</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Page_Title,
-                            new { @class = "form-control", required = "required", rows = "2" })
-                            <div class="invalid-feedback">Please enter page title.</div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label class="form-label">SEO Slug (URL)</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Slug,
-                            new { @class = "form-control", required = "required", rows = "2" })
-                            <div class="invalid-feedback">Please enter slug.</div>
-                        </div>
-                    </div>
-
-                    <!-- Keywords + Description -->
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Meta Keywords</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Keyword,
-                            new { @class = "form-control", rows = "3", required = "required" })
-                            <div class="invalid-feedback">Please enter meta keywords.</div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Meta Description</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Meta_Description,
-                            new { @class = "form-control", rows = "3", required = "required" })
-                            <div class="invalid-feedback">Please enter meta description.</div>
-                        </div>
-                    </div>
-
-                    <!-- OG Image + Alt Tag -->
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-
-                            <label class="form-label">OG Image</label>
-
-                            @{
-                                var imagePath = Model.Index_Seo_Obj != null &&
-                                                !string.IsNullOrEmpty(Model.Index_Seo_Obj.Index_Seo_Og_Image)
-                                                ? Url.Content(Model.Index_Seo_Obj.Index_Seo_Og_Image)
-                                                : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
-                            }
-
-                            @Html.TextBoxFor(m => m.Index_Seo_Og_Image, new
-                            {
-                                @class = "dropify",
-                                type = "file",
-                                data_default_file = imagePath,
-                                data_max_file_size = "5M",
-                                data_allowed_file_extensions = "jpg png jpeg webp"
-                            })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Image Alt Tag</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Image_Alt_Tag,
-                            new { @class = "form-control", required = "required", rows = "2" })
-                            <div class="invalid-feedback">Please enter alt tag.</div>
-                        </div>
-                    </div>
-
-                    <!-- OG Title + OG Description -->
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">OG Title</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Title,
-                            new { @class = "form-control", required = "required", rows = "2" })
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">OG Description</label>
-                            @Html.TextAreaFor(m => m.Index_Seo_Obj.Index_Seo_Og_Description,
-                            new { @class = "form-control", required = "required", rows = "2" })
-                        </div>
-                    </div>
-
-                    <!-- Hidden -->
-                    @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Id)
-                    @Html.HiddenFor(x => x.Index_Seo_Obj.Index_Seo_Code)
-
-                    <button class="btn btn-primary mt-3" type="submit">Save SEO</button>
-                }
-            </div>
-        </div>
-
-        <!-- TABLE SECTION -->
-        <div class="card mt-4">
-            <div class="card-header"><h4>B2B Services List</h4></div>
-            <div class="card-body">
-
-                <table id="SeoTable" class="table table-striped table-bordered w-100">
-                    <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Headline</th>
-                            <th>Hero Image</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @{
-                            int i = 0;
-                        }
-
-                        @if (Model.List_Index_Seo_Obj != null)
-                        {
-                            foreach (var item in Model.List_Index_Seo_Obj)
-                            {
-                                <tr>
-                                    <td>@(++i)</td>
-                                    <td>@item.Index_Seo_Slug</td>
-                                    <td>
-                                        @if (!string.IsNullOrEmpty(item.Index_Seo_Og_Image))
-                                        {
-                                            <img src="@Url.Content(item.Index_Seo_Og_Image)" style="width:150px;height:100px;" />
-                                        }
-                                    </td>
-
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            @using (Html.BeginForm("Index_Seo", "Index_Seo", FormMethod.Post, new { id = "Edit_" + i }))
-                                            {
-                                                @Html.Hidden("Index_Seo_Id", item.Index_Seo_Id)
-                                                <a href="javascript:document.getElementById('Edit_@i').submit()" class="btn btn-warning btn-sm">
-                                                    <i class="fa fa-edit"></i> Edit
-                                                </a>
-                                            }
-
-                                            @using (Html.BeginForm("DeleteIndex_Seo", "Index_Seo", FormMethod.Post, new { id = "Delete_" + i }))
-                                            {
-                                                @Html.Hidden("Index_Seo_Id", item.Index_Seo_Id)
-                                                <a href="#" onclick="ConfirmDelete('Delete_@i')" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-trash"></i> Delete
-                                                </a>
-                                            }
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-
     </div>
-</div>
-
-@section Scripts {
-
-    <!-- DataTables Scripts -->
-    <script src="~/Areas/Admin/Content/datatable/datatables.js"></script>
-    <script src="~/Areas/Admin/Content/datatable/button-ext/dataTables.buttons.min.js"></script>
-    <script src="~/Areas/Admin/Content/datatable/button-ext/jszip.min.js"></script>
-    <script src="~/Areas/Admin/Content/datatable/button-ext/buttons.html5.min.js"></script>
-    <script src="~/Areas/Admin/Content/datatable/button-ext/buttons.print.min.js"></script>
-
-    <!-- Page Scripts -->
-    <script>
-
-        $(document).ready(function () {
-
-            /* Toast Alert */
-            var msg = '@Message';
-            if (msg !== '') {
-                iziToast['@Type']({ title: '@Title', message: '@Message' });
-            }
-
-            /* Dropify */
-            $('.dropify').dropify();
-
-            /* DataTable Init */
-            $('#SeoTable').DataTable({
-                responsive: true,
-                dom: 'Bfrtip',
-                buttons: ['excelHtml5', 'csvHtml5', 'print'],
-                pageLength: 10,
-                ordering: true,
-                autoWidth: false
-            });
-
-        });
-
-        function ConfirmDelete(formId) {
-            if (confirm("Are you sure you want to delete this?")) {
-                document.getElementById(formId).submit();
-            }
-        }
-
-        /* CKEditor */
-        ClassicEditor.create(document.querySelector('#textarea')).catch(e => console.error(e));
-
-    </script>
-}
+</section>
