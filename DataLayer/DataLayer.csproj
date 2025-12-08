@@ -58,6 +58,24 @@
     <Compile Include="Index\Index_Services_Repository.cs" />
     <Compile Include="Index\Index_Slider_Repository.cs" />
     <Compile Include="Index\Index_Team_Repository.cs" />
+    <Compile Include="Admin\Blog_Category_Repository.cs" />
+    <Compile Include="Admin\Blog_FAQ_Repository.cs" />
+    <Compile Include="Admin\Blog_Repository.cs" />
+    <Compile Include="Admin\Client_Repository.cs" />
+    <Compile Include="Admin\Demo_Follow_Up_Repository.cs" />
+    <Compile Include="Admin\Event_Detail_Repository.cs" />
+    <Compile Include="Admin\Event_Repository.cs" />
+    <Compile Include="Admin\Industries_Repository.cs" />
+    <Compile Include="Admin\News_Repository.cs" />
+    <Compile Include="Admin\Status_Repository.cs" />
+    <Compile Include="Product\Product_Benefits_Repository.cs" />
+    <Compile Include="Product\Product_Brochure_Repository.cs" />
+    <Compile Include="Product\Product_FAQ_Repository.cs" />
+    <Compile Include="Product\Product_Features_Repository.cs" />
+    <Compile Include="Product\Product_Image_Repository.cs" />
+    <Compile Include="Product\Product_Module_Repository.cs" />
+    <Compile Include="Product\Product_Portfolio_Repository.cs" />
+    <Compile Include="Product\Product_Repository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\User_Repository.cs" />
     <Compile Include="Security\User_Role_Repository.cs" />
@@ -71,6 +89,8 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Master\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

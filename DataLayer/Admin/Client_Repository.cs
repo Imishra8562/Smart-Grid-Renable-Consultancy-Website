@@ -1,0 +1,50 @@
+﻿using Domain;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
+
+namespace DataLayer
+{
+
+    public class Client_Repository : BaseRepository<Client>
+    {
+        public IList<Client_Business> ListClient(int? Client_Id, int? Product_Id)
+        {
+            IList<Client_Business> List_Obj = null;
+
+            try
+            {
+                DatabaseProviderFactory factory = new DatabaseProviderFactory();
+                Database _db = factory.Create("DefConn");
+                DbCommand sqlCommand = _db.GetStoredProcCommand("sp_List_Client");
+                DataSet dataSet = new DataSet();
+
+                var P1 = sqlCommand.CreateParameter();
+                P1.ParameterName = "Client_Id";
+                P1.Value = Client_Id;
+                sqlCommand.Parameters.Add(P1);
+
+                var P2 = sqlCommand.CreateParameter();
+                P2.ParameterName = "Product_Id";
+                P2.Value = Product_Id;
+                sqlCommand.Parameters.Add(P2);
+
+                _db.LoadDataSet(sqlCommand, dataSet, TableName);
+
+                DataSet ds = dataSet;
+                if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows != null)
+                {
+                    List_Obj = DataBaseUtil.DataTableToList<Client_Business>(ds.Tables[0]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return List_Obj;
+
+        }
+    }
+}

@@ -796,7 +796,11 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\flaticon.svg" />
     <Content Include="Content\fonts\fontawesome-webfont914c.svg" />
+    <Content Include="Content\images\About\Analysis.png" />
+    <Content Include="Content\images\About\Analysis2.png" />
     <Content Include="Content\images\About\InvestorRelationsOverview.png" />
+    <Content Include="Content\images\About\logo-bg.jpg" />
+    <Content Include="Content\images\About\PowerSystem.png" />
     <Content Include="Content\images\About\Social.png" />
     <Content Include="Content\images\About\Who_We_Are.jpg" />
     <Content Include="Content\images\background\1.png" />

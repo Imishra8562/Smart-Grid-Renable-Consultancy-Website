@@ -1,0 +1,43 @@
+﻿CREATE TABLE [dbo].[tbl_Software_Demo]
+(
+	[Software_Demo_Id] INT IDENTITY(1,1) NOT NULL, 
+    [Software_Demo_Code] NVARCHAR(MAX) NULL,  
+    [Name] NVARCHAR(MAX) NULL,  
+    [Email] NVARCHAR(MAX) NULL, 
+    [Phone_No] NVARCHAR(MAX) NULL,  
+    [Software] NVARCHAR(MAX) NULL, 
+    [Message] NVARCHAR(MAX) NULL, 
+    [Team_Size] NVARCHAR(MAX) NULL, 
+    [Software_Requirement_Time] NVARCHAR(MAX) NULL, 
+    [Organization_Name] NVARCHAR(MAX) NULL, 
+    [Monthly_Loan] NVARCHAR(MAX) NULL, 
+    [MLM_Plan] NVARCHAR(MAX) NULL, 
+    [Loan_Type] NVARCHAR(MAX) NULL, 
+    [City_Name] NVARCHAR(MAX) NULL, 
+    [Currently_Using] NVARCHAR(MAX) NULL, 
+    [Manage_your_leads] NVARCHAR(MAX) NULL, 
+    [Is_Quick_Apply] BIT NULL, 
+    [Is_Landing_Page] BIT NULL, 
+    [Is_Follow_Up_Closed] BIT NULL, 
+
+    [Has_Website] BIT NULL,
+    [Website_URL] NVARCHAR(MAX) NULL,
+    [Website_Service_Type]NVARCHAR(MAX) NULL,
+    [Has_EWebsite_Site] BIT NULL,
+    [EWebsite_Site_URL]NVARCHAR(MAX) NULL,
+    [EWebsite_Service_Type]NVARCHAR(MAX) NULL,
+    [B2B_Name]NVARCHAR(MAX) NULL,
+    [B2B_Describe]NVARCHAR(MAX) NULL,
+    [B2C_Name]NVARCHAR(MAX) NULL,
+    [B2C_Describe]NVARCHAR(MAX) NULL,
+    [Required_Portal_Type]NVARCHAR(MAX) NULL,
+    
+    [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()), 
+    [Created_By] INT NOT NULL, 
+    [Created_IP] NVARCHAR(MAX) NULL, 
+    [Modified_On] DATETIME NULL, 
+    [Modified_By] INT NULL,    
+    [Modified_IP] NVARCHAR(MAX) NULL, 
+    [Is_Active] BIT NOT NULL DEFAULT (1)
+CONSTRAINT [PK_tbl_Software_Demo] PRIMARY KEY CLUSTERED ([Software_Demo_Id] ASC)
+ WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]

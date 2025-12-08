@@ -125,10 +125,6 @@ namespace Web.Controllers
         {
             return View();
         }
-        public ActionResult Power()
-        {
-            return View();
-        }
         #endregion
 
         #region InvestorRelations & Sustainability
