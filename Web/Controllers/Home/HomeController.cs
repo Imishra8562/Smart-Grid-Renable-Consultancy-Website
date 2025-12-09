@@ -136,6 +136,10 @@ namespace Web.Controllers
         {
             return View();
         }
+        public ActionResult KnowledgeBaseDetails()
+        {
+            return View();
+        }
         #endregion
 
         #region EngineeringServices
