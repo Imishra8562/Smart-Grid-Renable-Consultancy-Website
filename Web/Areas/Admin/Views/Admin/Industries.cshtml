@@ -454,10 +454,57 @@
 @section Scripts {
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#Industries_Description'))
+        //ClassicEditor
+        //    .create(document.querySelector('#Industries_Description'))
+        //    .catch(error => {
+        //        console.error(error);
+        //    });
+            ClassicEditor
+                .create(document.querySelector('#Industries_Description'), {
+                ckfinder: {
+                uploadUrl: '/Home/UploadImage'
+                },
+            toolbar: [
+            'heading', '|',
+            'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+            'imageUpload', 'imageResize', '|',
+            'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+            '|', 'blockQuote', 'undo', 'redo'
+            ],
+            image: {
+                toolbar: [
+            'imageTextAlternative', '|',
+            'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+            'resizeImage'
+            ],
+            styles: ['alignLeft', 'alignCenter', 'alignRight'],
+            resizeOptions: [
+            {
+                name: 'resizeImage:original',
+            label: 'Original',
+            value: null
+                        },
+            {
+                name: 'resizeImage:25',
+            label: '25%',
+            value: '25'
+                        },
+            {
+                name: 'resizeImage:50',
+            label: '50%',
+            value: '50'
+                        },
+            {
+                name: 'resizeImage:75',
+            label: '75%',
+            value: '75'
+                        }
+            ],
+            resizeUnit: '%'
+                }
+            })
             .catch(error => {
-                console.error(error);
+                console.error('CKEditor Error:', error);
             });
     </script>
     <script>

@@ -53,26 +53,25 @@
 
                             @if (Model.List_Industries_Obj != null && Model.List_Industries_Obj.Count > 0)
                             {
-                               foreach (var item in Model.List_Industries_Obj.Take(5))
-                                  {
-                                   <li class="mb-2">
-                                       <a href="@item.Industries_Url_Link" class="d-block text-decoration-none">
-                                           <div class="d-flex gap-2">
-                                               <div>
-                                                   <a href="@Url.Action("IndustriesDetail", "Home" , new { industries=item.Industries_Url_Link })"
-                                                      class="text-decoration-none">
-                                                       <h6 class="mb-1">@item.Industries_Name</h6>
-                                                   </a>
-                                               </div>
-                                           </div>
-                                       </a>
-                                   </li>
-                                   }
-                             }
-                             else
+                                foreach (var item in Model.List_Industries_Obj.Take(5))
                                 {
-                                 <li><small class="text-muted">No recent posts available.</small></li>
+                                    <li class="mb-2">
+                                        <a href="@Url.Action("IndustriesDetail", "Home" , new { industries=item.Industries_Url_Link })"
+                                           class="d-block text-decoration-none">
+                                            <div class="d-flex gap-2">
+                                                <div>
+                                                    <h6 class="mb-1">@item.Industries_Name</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
                                 }
+                            }
+                            else
+                            {
+                                <li><small class="text-muted">No recent posts available.</small></li>
+                            }
 
                         </ul>
                     </div>
