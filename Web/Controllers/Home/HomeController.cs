@@ -72,7 +72,7 @@ namespace Web.Controllers
             IAdminManager AdminMangerobj = new AdminManager();
             Model.Industries_Obj = AdminMangerobj.GetIndustries(0, industries).FirstOrDefault();
             Model.List_Industries_Obj = AdminMangerobj.GetIndustries(0, null);
-            Model.List_Product_Business_Obj = AdminMangerobj.GetProduct(0, 0, null).Where(x => x.Industries_Url_Link == industries).ToList();
+            //Model.List_Product_Business_Obj = AdminMangerobj.GetProduct(0, 0, null).Where(x => x.Industries_Url_Link == industries).ToList();
 
             return View(Model);
         }

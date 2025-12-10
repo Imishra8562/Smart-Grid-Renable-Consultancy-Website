@@ -74,6 +74,8 @@
     <Folder Include="dbo\Tables\Customer" />
     <Folder Include="dbo\Stored Procedures\Customer" />
     <Folder Include="dbo\Stored Procedures\Product" />
+    <Folder Include="dbo\Tables\Knowledge" />
+    <Folder Include="dbo\Stored Procedures\Knowledge" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Index\tbl_Index_Features.sql" />
@@ -206,6 +208,30 @@
     <Build Include="dbo\Stored Procedures\Product\sp_Update_Product_Image.sql" />
     <Build Include="dbo\Stored Procedures\Product\sp_Update_Product_Module.sql" />
     <Build Include="dbo\Stored Procedures\Product\sp_Update_Product_Portfolio.sql" />
+    <Build Include="dbo\Tables\Knowledge\tbl_Knowledge_Base.sql" />
+    <Build Include="dbo\Tables\Knowledge\tbl_Knowledge_Card.sql" />
+    <Build Include="dbo\Tables\Knowledge\tbl_Knowledge_FailureMode.sql" />
+    <Build Include="dbo\Tables\Knowledge\tbl_Knowledge_RelatedSolution.sql" />
+    <Build Include="dbo\Tables\Knowledge\tbl_Knowledge_WorkflowStep.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Add_Knowledge_Base.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_List_Knowledge_Base.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Delete_Knowledge_Base.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_Base.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Add_Knowledge_Card.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Add_Knowledge_FailureMode.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Add_Knowledge_RelatedSolution.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Add_Knowledge_WorkflowStep.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Delete_Knowledge_Card.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Delete_Knowledge_FailureMode.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Delete_Knowledge_WorkflowStep.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Delete_Knowledge_RelatedSolution.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_List_Knowledge_Card.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_List_Knowledge_FailureMode.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_List_Knowledge_RelatedSolution.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_List_Knowledge_WorkflowStep.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_Card.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_FailureMode.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_RelatedSolution.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
