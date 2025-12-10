@@ -7,43 +7,19 @@ namespace Domain.Admin
     {
         [Identifier("Knowledge_Base_Id")]
         public int Knowledge_Base_Id { get; set; }
-
-        // -----------------------
-        // BASIC INFO
-        // -----------------------
         public string Knowledge_Base_Code { get; set; }
         public string Knowledge_Base_Name { get; set; }
         public string Knowledge_Base_Page_Title { get; set; }
-
-        // -----------------------
-        // SEO META
-        // -----------------------
         public string Knowledge_Base_Meta_Keyword { get; set; }
         public string Knowledge_Base_Meta_Description { get; set; }
         public string Knowledge_Base_News_Keyword { get; set; }
         public string Knowledge_Base_News_Description { get; set; }
-
-        // -----------------------
-        // OPEN GRAPH
-        // -----------------------
         public string Knowledge_Base_Og_Image { get; set; }
         public string Knowledge_Base_Og_Title { get; set; }
         public string Knowledge_Base_Og_Description { get; set; }
-
-        // -----------------------
-        // MAIN IMAGE
-        // -----------------------
         public string Knowledge_Base_Image { get; set; }
         public string Knowledge_Base_Image_Alt_Tag { get; set; }
-
-        // -----------------------
-        // OVERVIEW / DESCRIPTION
-        // -----------------------
         public string Knowledge_Base_Description { get; set; }
-
-        // -----------------------
-        // URL
-        // -----------------------
         public string Knowledge_Base_Url_Link { get; set; }
 
         // =======================
