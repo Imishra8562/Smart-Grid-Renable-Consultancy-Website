@@ -68,6 +68,11 @@
     <Compile Include="Admin\Industries_Repository.cs" />
     <Compile Include="Admin\News_Repository.cs" />
     <Compile Include="Admin\Status_Repository.cs" />
+    <Compile Include="Knowledge\Knowledge_Base_Repository.cs" />
+    <Compile Include="Knowledge\Knowledge_Card_Repository.cs" />
+    <Compile Include="Knowledge\Knowledge_FailureMode_Repository.cs" />
+    <Compile Include="Knowledge\Knowledge_RelatedSolution_Repository.cs" />
+    <Compile Include="Knowledge\Knowledge_WorkflowStep_Repository.cs" />
     <Compile Include="Product\Product_Benefits_Repository.cs" />
     <Compile Include="Product\Product_Brochure_Repository.cs" />
     <Compile Include="Product\Product_FAQ_Repository.cs" />

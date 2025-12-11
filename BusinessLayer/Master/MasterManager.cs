@@ -307,5 +307,303 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region  Knowledge Base
+        public int SaveKnowledgeBase(Knowledge_Base Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Base_Repository db = new Knowledge_Base_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link)
+        {
+            IList<Knowledge_Base> ListObj = new List<Knowledge_Base>();
+            try
+            {
+                Knowledge_Base_Repository db = new Knowledge_Base_Repository();
+                ListObj = db.ListKnowledgeBase(Knowledge_Base_Id, Knowledge_Base_Url_Link);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeBase(Knowledge_Base Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Base_Repository db = new Knowledge_Base_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteKnowledgeBase(int Knowledge_Base_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Base_Repository db = new Knowledge_Base_Repository();
+                Id = db.Delete(Knowledge_Base_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region  Knowledge Card
+        public int SaveKnowledgeCard(Knowledge_Card Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Card_Repository db = new Knowledge_Card_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Knowledge_Card_Business> GetKnowledgeCard(int? Knowledge_Card_Id, int? Knowledge_Base_Id)
+        {
+            IList<Knowledge_Card_Business> ListObj = new List<Knowledge_Card_Business>();
+            try
+            {
+                Knowledge_Card_Repository db = new Knowledge_Card_Repository();
+                ListObj = db.ListKnowledgeCard(Knowledge_Card_Id, Knowledge_Base_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeCard(Knowledge_Card Object)
+
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Card_Repository db = new Knowledge_Card_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteKnowledgeCard(int Knowledge_Card_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_Card_Repository db = new Knowledge_Card_Repository();
+                Id = db.Delete(Knowledge_Card_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region  Knowledge FailureMode
+        public int SaveKnowledgeFailureMode(Knowledge_FailureMode Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Knowledge_FailureMode_Business> GetKnowledgeFailureMode(int? Knowledge_FailureMode_Id, int? Knowledge_Base_Id)
+        {
+            IList<Knowledge_FailureMode_Business> ListObj = new List<Knowledge_FailureMode_Business>();
+            try
+            {
+                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                ListObj = db.ListknowledgeFailureMode(Knowledge_FailureMode_Id, Knowledge_Base_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeFailureMode(Knowledge_FailureMode Object)
+
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteKnowledgeFailureMode(int Knowledge_FailureMode_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                Id = db.Delete(Knowledge_FailureMode_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region  Knowledge RelatedSolution
+        public int SaveKnowledgeRelatedSolution(Knowledge_RelatedSolution Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_RelatedSolution_Repository db = new Knowledge_RelatedSolution_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Knowledge_RelatedSolution_Business> GetKnowledgeRelatedSolution(int? Knowledge_RelatedSolution_Id, int? Knowledge_Base_Id)
+        {
+            IList<Knowledge_RelatedSolution_Business> ListObj = new List<Knowledge_RelatedSolution_Business>();
+            try
+            {
+                Knowledge_RelatedSolution_Repository db = new Knowledge_RelatedSolution_Repository();
+                ListObj = db.listknowledgeRelatedSolution(Knowledge_RelatedSolution_Id, Knowledge_Base_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeRelatedSolution(Knowledge_RelatedSolution Object)
+
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_RelatedSolution_Repository db = new Knowledge_RelatedSolution_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                Id = db.Delete(Knowledge_RelatedSolution_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region  Knowledge WorkflowStep
+        public int SaveKnowledgeWorkflowStep(Knowledge_WorkflowStep Object)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_WorkflowStep_Repository db = new Knowledge_WorkflowStep_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Knowledge_WorkflowStep_Business> GetKnowledgeWorkflowStep(int? Knowledge_WorkflowStep_Id, int? Knowledge_Base_Id)
+        {
+            IList<Knowledge_WorkflowStep_Business> ListObj = new List<Knowledge_WorkflowStep_Business>();
+            try
+            {
+                Knowledge_WorkflowStep_Repository db = new Knowledge_WorkflowStep_Repository();
+                ListObj = db.ListKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id, Knowledge_Base_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeWorkflowStep(Knowledge_WorkflowStep Object)
+
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_WorkflowStep_Repository db = new Knowledge_WorkflowStep_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Knowledge_WorkflowStep_Repository db = new Knowledge_WorkflowStep_Repository();
+                Id = db.Delete(Knowledge_WorkflowStep_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
     }
 }

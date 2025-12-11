@@ -232,6 +232,7 @@
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_Card.sql" />
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_FailureMode.sql" />
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_RelatedSolution.sql" />
+    <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_WorkflowStep.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

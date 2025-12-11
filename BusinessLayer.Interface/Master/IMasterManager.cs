@@ -45,6 +45,43 @@ namespace BusinessLayer.Interface
         int UpdateIndexTeam(Index_Team Object);
         int DeleteIndexTeam(int Index_Team_Id);
         #endregion
+
+        #region  Knowledge Base
+        int SaveKnowledgeBase(Knowledge_Base Object);
+        IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link);
+        int UpdateKnowledgeBase(Knowledge_Base Object);
+        int DeleteKnowledgeBase(int Knowledge_Base_Id);
+        #endregion
+
+        #region  Knowledge Card
+        int SaveKnowledgeCard(Knowledge_Card Object);
+        IList<Knowledge_Card_Business> GetKnowledgeCard(int? Knowledge_Card_Id, int? Knowledge_Base_Id);
+        int UpdateKnowledgeCard(Knowledge_Card Object);
+        int DeleteKnowledgeCard(int Knowledge_Card_Id);
+        #endregion
+
+        #region  Knowledge FailureMode
+        int SaveKnowledgeFailureMode(Knowledge_FailureMode Object);
+        IList<Knowledge_FailureMode_Business> GetKnowledgeFailureMode(int? Knowledge_FailureMode_Id, int? Knowledge_Base_Id);
+        int UpdateKnowledgeFailureMode(Knowledge_FailureMode Object);
+        int DeleteKnowledgeFailureMode(int Knowledge_FailureMode_Id);
+        #endregion
+
+        #region  Knowledge RelatedSolution
+        int SaveKnowledgeRelatedSolution(Knowledge_RelatedSolution Object);
+        IList<Knowledge_RelatedSolution_Business> GetKnowledgeRelatedSolution(int? Knowledge_RelatedSolution_Id, int? Knowledge_Base_Id);
+        int UpdateKnowledgeRelatedSolution(Knowledge_RelatedSolution Object);
+        int DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id);
+        #endregion
+
+        #region  Knowledge WorkflowStep
+        int SaveKnowledgeWorkflowStep(Knowledge_WorkflowStep Object);
+        IList<Knowledge_WorkflowStep_Business> GetKnowledgeWorkflowStep(int? Knowledge_WorkflowStep_Id, int? Knowledge_Base_Id);
+        int UpdateKnowledgeWorkflowStep(Knowledge_WorkflowStep Object);
+        int DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id);
+        #endregion
+
+
     }
 
 }
