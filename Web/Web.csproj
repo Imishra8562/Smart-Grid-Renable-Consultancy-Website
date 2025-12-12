@@ -997,6 +997,14 @@
     <Content Include="Content\js\wow.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Upload\editor-image\CKEC-2048131_0.png" />
+    <Content Include="Upload\editor-image\CKEC-3071768_0.png" />
+    <Content Include="Upload\editor-image\CKEC-5446383_0.png" />
+    <Content Include="Upload\editor-image\CKEC-5655468_0.jpeg" />
+    <Content Include="Upload\editor-image\CKEC-6972813_0.png" />
+    <Content Include="Upload\editor-image\CKEC-7052818_0.png" />
+    <Content Include="Upload\editor-image\CKEC-7192769_0.png" />
+    <Content Include="Upload\editor-image\CKEC-9639174_0.png" />
     <Content Include="Upload\Index\IndexFeaturesImage\IFC-1269178_0.png" />
     <Content Include="Upload\Index\IndexFeaturesImage\IFC-2831031_0.png" />
     <Content Include="Upload\Index\IndexFeaturesImage\IFC-3285733_0.png" />
@@ -1024,6 +1032,12 @@
     <Content Include="Upload\Index\IndexSliderImage\ISIMC-6460348_0.png" />
     <Content Include="Upload\Index\IndexSliderImage\ISIMC-7414533_0.png" />
     <Content Include="Upload\Index\IndexSliderImage\ISIMC-8078539_0.png" />
+    <Content Include="Upload\Industries\image\CL-2072461_0.png" />
+    <Content Include="Upload\Industries\image\CL-3167511_0.jpeg" />
+    <Content Include="Upload\Industries\image\CL-8565953_0.jpeg" />
+    <Content Include="Upload\Industries\og_image\CL-2072461_0.png" />
+    <Content Include="Upload\Industries\og_image\CL-3167511_0.jpeg" />
+    <Content Include="Upload\Industries\og_image\CL-8565953_0.jpeg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

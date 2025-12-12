@@ -664,5 +664,250 @@ namespace Web.Areas.Admin.Controllers
             return RedirectToAction("Industries");
         }
         #endregion
+
+        #region Knowledge Base
+        public ActionResult KnowledgeBase(int? Knowledge_Base_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            if (Knowledge_Base_Id.HasValue)
+            {
+                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, null).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        public ActionResult SaveKnowledgeBase(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Knowledge_Base_Obj.Created_By = 1;
+            Model.Knowledge_Base_Obj.Created_IP = SystemIP();
+
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Knowledge_Base_Obj.Knowledge_Base_Code = "KBC-" + Code.ToString();
+            int No = 0;
+            if (Model.Knowledge_Base_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
+            }
+             No = 0;
+            if (Model.Knowledge_Base_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
+                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
+            }
+
+            int Id = Manger.SaveKnowledgeBase(Model.Knowledge_Base_Obj);
+
+            return RedirectToAction("KnowledgeBase");
+        }
+        public ActionResult UpdateKnowledgeBase(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Knowledge_Base_Obj.Modified_By = 1;
+            Model.Knowledge_Base_Obj.Modified_On = DateTime.Now;
+            Model.Knowledge_Base_Obj.Modified_IP = SystemIP();
+
+            int No = 0;
+
+            if (Model.Knowledge_Base_Og_Image != null)
+            {
+                string folderPath = Server.MapPath("~/Upload/Knowledge/OGImage/");
+
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+
+                string fileName = Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Knowledge_Base_Og_Image.SaveAs(fullSavePath);
+
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = "~/Upload/Knowledge/OGImage/" + fileName;
+            }
+             No = 0;
+
+            if (Model.Knowledge_Base_Image != null)
+            {
+                string folderPath = Server.MapPath("~/Upload/Knowledge/Image/");
+
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+
+                string fileName = Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Knowledge_Base_Og_Image.SaveAs(fullSavePath);
+
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = "~/Upload/Knowledge/Image/" + fileName;
+            }
+            int Id = Manager.UpdateKnowledgeBase(Model.Knowledge_Base_Obj);
+            return RedirectToAction("KnowledgeBase");
+        }
+        public ActionResult DeleteKnowledgeBase(int Knowledge_Base_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteKnowledgeBase(Knowledge_Base_Id);
+            return RedirectToAction("KnowledgeBase");
+        }
+        #endregion
+
+        #region Knowledge Card
+        public ActionResult KnowledgeCard(int? Knowledge_Card_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Card_Business_Obj = Manager.GetKnowledgeCard(0, 0);
+            if (Knowledge_Card_Id.HasValue)
+            {
+                Model.Knowledge_Card_Obj = Manager.GetKnowledgeCard(Knowledge_Card_Id, null).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        public ActionResult SaveKnowledgeCard(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Knowledge_Card_Obj.Created_By = 1;
+            Model.Knowledge_Card_Obj.Created_IP = SystemIP();
+
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Knowledge_Card_Obj.Knowledge_Card_Code = "KBC-" + Code.ToString();
+            int No = 0;
+            if (Model.Knowledge_Card_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Card_Og_Image.FileName);
+                Model.Knowledge_Card_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
+                Model.Knowledge_Card_Obj.Knowledge_Card_Og_Image = FilePathForPhoto;
+            }
+            No = 0;
+            if (Model.Knowledge_Card_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Card_Image.FileName);
+                Model.Knowledge_Card_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
+                Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
+            }
+
+            int Id = Manger.SaveKnowledgeCard(Model.Knowledge_Card_Obj);
+
+            return RedirectToAction("KnowledgeCard");
+        }
+        public ActionResult UpdateKnowledgeCard(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Knowledge_Card_Obj.Modified_By = 1;
+            Model.Knowledge_Card_Obj.Modified_On = DateTime.Now;
+            Model.Knowledge_Card_Obj.Modified_IP = SystemIP();
+
+            int No = 0;
+
+            if (Model.Knowledge_Card_Og_Image != null)
+            {
+                string folderPath = Server.MapPath("~/Upload/Knowledge/OGImage/");
+
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Knowledge_Card_Og_Image.FileName);
+
+                string fileName = Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Knowledge_Card_Og_Image.SaveAs(fullSavePath);
+
+                Model.Knowledge_Card_Obj.Knowledge_Card_Og_Image = "~/Upload/Knowledge/OGImage/" + fileName;
+            }
+            No = 0;
+
+            if (Model.Knowledge_Card_Image != null)
+            {
+                string folderPath = Server.MapPath("~/Upload/Knowledge/Image/");
+
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Knowledge_Card_Og_Image.FileName);
+
+                string fileName = Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Knowledge_Card_Og_Image.SaveAs(fullSavePath);
+
+                Model.Knowledge_Card_Obj.Knowledge_Card_Og_Image = "~/Upload/Knowledge/Image/" + fileName;
+            }
+            int Id = Manager.UpdateKnowledgeCard(Model.Knowledge_Card_Obj);
+            return RedirectToAction("KnowledgeCard");
+        }
+        public ActionResult DeleteKnowledgeCard(int Knowledge_Card_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteKnowledgeCard(Knowledge_Card_Id);
+            return RedirectToAction("KnowledgeCard");
+        }
+        #endregion
     }
 }
