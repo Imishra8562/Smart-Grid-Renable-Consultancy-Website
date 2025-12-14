@@ -12,9 +12,9 @@ namespace DataLayer
 {
     public class Knowledge_Base_Repository : BaseRepository<Knowledge_Base>
     {
-        public IList<Knowledge_Base> ListKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link)
+        public IList<Knowledge_Base_Business> ListKnowledgeBase(int? Knowledge_Base_Id,int? Knowledge_Base_Category_Id, string Knowledge_Base_Url_Link)
         {
-            IList<Knowledge_Base> List_Obj = null;
+            IList<Knowledge_Base_Business> List_Obj = null;
             try
             {
                 DatabaseProviderFactory factory = new DatabaseProviderFactory();
@@ -32,12 +32,17 @@ namespace DataLayer
                 P2.Value = Knowledge_Base_Url_Link;
                 sqlCommand.Parameters.Add(P2);
 
+                var p3 = sqlCommand.CreateParameter();
+                p3.ParameterName = "Knowledge_Base_Category_Id";
+                p3.Value = Knowledge_Base_Category_Id;
+                sqlCommand.Parameters.Add(p3);
+
                 database.LoadDataSet(sqlCommand, dataset, TableName);
 
                 DataSet ds = dataset;
                 if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows != null)
                 {
-                    List_Obj = DataBaseUtil.DataTableToList<Knowledge_Base>(ds.Tables[0]);
+                    List_Obj = DataBaseUtil.DataTableToList<Knowledge_Base_Business>(ds.Tables[0]);
                 }
             }
             catch(Exception ex)

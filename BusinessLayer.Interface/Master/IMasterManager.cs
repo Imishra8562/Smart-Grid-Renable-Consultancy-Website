@@ -46,9 +46,18 @@ namespace BusinessLayer.Interface
         int DeleteIndexTeam(int Index_Team_Id);
         #endregion
 
+        #region Knowledge Base Category
+
+        int SaveKnowledgeBaseCategory(Knowledge_Base_Category Object);
+        IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Description);
+        int UpdateKnowledgeBaseCategory(Knowledge_Base_Category Object);
+        int DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id);
+
+        #endregion
+
         #region  Knowledge Base
         int SaveKnowledgeBase(Knowledge_Base Object);
-        IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link);
+        IList<Knowledge_Base_Business> GetKnowledgeBase(int? Knowledge_Base_Id,int? Knowledge_Base_Category_Id, string Knowledge_Base_Url_Link);
         int UpdateKnowledgeBase(Knowledge_Base Object);
         int DeleteKnowledgeBase(int Knowledge_Base_Id);
         #endregion

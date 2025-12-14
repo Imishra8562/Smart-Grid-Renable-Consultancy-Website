@@ -1053,6 +1053,8 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Upload\Index\IndexTeamMemberImage\" />
+    <Folder Include="Upload\Knowledge\Image\" />
+    <Folder Include="Upload\Knowledge\OGImage\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
@@ -1084,6 +1086,12 @@
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.ttf" />
     <Content Include="Areas\Admin\Content\Dropify\fonts\dropify.woff" />
     <Content Include="Areas\Admin\Views\Admin\Industries.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeBase.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeCard.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeFailureMode.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeRelatedSolution.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeWorkflowStep.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\KnowledgeBaseCategory.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />

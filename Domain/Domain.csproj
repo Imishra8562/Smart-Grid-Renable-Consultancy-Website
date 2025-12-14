@@ -81,6 +81,7 @@
     <Compile Include="Index\Index_Features_Business.cs" />
     <Compile Include="Index\Index_Slider_Business.cs" />
     <Compile Include="Index\Index_Team_Business.cs" />
+    <Compile Include="Knowledge\Knowledge_Base_Business.cs" />
     <Compile Include="Knowledge\Knowledge_Card.cs" />
     <Compile Include="Knowledge\Knowledge_Card_Business.cs" />
     <Compile Include="Knowledge\Knowledge_FailureMode.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Knowledge\Knowledge_RelatedSolution_Business.cs" />
     <Compile Include="Knowledge\Knowledge_WorkflowStep.cs" />
     <Compile Include="Knowledge\Knowledge_WorkflowStep_Business.cs" />
+    <Compile Include="Knowledge_Base_Category.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Product\Product_Benefits.cs" />
     <Compile Include="Product\Product_Benefits_Business.cs" />

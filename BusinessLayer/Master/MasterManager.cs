@@ -307,6 +307,73 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region Knowledge Base Category
+
+        public int SaveKnowledgeBaseCategory(Knowledge_Base_Category Object)
+        {
+            int Id = 0;
+
+            try
+            {
+                Knowledge_Base_Category_Repository db = new Knowledge_Base_Category_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Id;
+        }
+        public IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Description)
+        {
+            IList<Knowledge_Base_Category> ListObj = new List<Knowledge_Base_Category>();
+            try
+            {
+                Knowledge_Base_Category_Repository db = new Knowledge_Base_Category_Repository();
+                ListObj = db.ListKnowledgeBaseCategory(Knowledge_Base_Category_Id, Category_Description);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateKnowledgeBaseCategory(Knowledge_Base_Category Object)
+        {
+            int Id = 0;
+
+            try
+            {
+                Knowledge_Base_Category_Repository db = new Knowledge_Base_Category_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Id;
+        }
+        public int DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id)
+        {
+            int Id = 0;
+
+            try
+            {
+                Knowledge_Base_Category_Repository db = new Knowledge_Base_Category_Repository();
+                Id = db.Delete(Knowledge_Base_Category_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Id;
+        }
+
+        #endregion
+
         #region  Knowledge Base
         public int SaveKnowledgeBase(Knowledge_Base Object)
         {
@@ -322,13 +389,13 @@ namespace BusinessLayer
             }
             return Id;
         }
-        public IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link)
+        public IList<Knowledge_Base_Business> GetKnowledgeBase(int? Knowledge_Base_Id,int? Knowledge_Base_Category_Id ,string Knowledge_Base_Url_Link)
         {
-            IList<Knowledge_Base> ListObj = new List<Knowledge_Base>();
+            IList<Knowledge_Base_Business> ListObj = new List<Knowledge_Base_Business>();
             try
             {
                 Knowledge_Base_Repository db = new Knowledge_Base_Repository();
-                ListObj = db.ListKnowledgeBase(Knowledge_Base_Id, Knowledge_Base_Url_Link);
+                ListObj = db.ListKnowledgeBase(Knowledge_Base_Id, Knowledge_Base_Category_Id, Knowledge_Base_Url_Link);
             }
             catch (Exception ex)
             {

@@ -1,0 +1,587 @@
+﻿@model Web.Areas.Admin.Model.MasterModel
+@{
+        ViewBag.Title = "KnowledgeBase";
+        Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+        var Type = TempData["AlertType"] ?? string.Empty;
+        var Title = TempData["AlertTitle"] ?? string.Empty;
+        var Message = TempData["AlertMessage"] ?? string.Empty;
+        int i = 0;
+}
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6"><h3>Knowledge Base</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">Master</li>
+                        <li class="breadcrumb-item active">Knowledge Base</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Knowledge_Base_Obj == null)
+    {
+        <!-- ===================== ADD NEW FORM ======================= -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Add Knowledge Base Details</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("SaveKnowledgeBase", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                        {
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Knowledge Base Category</label>
+                                    @Html.DropDownListFor(m => m.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id, new SelectList(Model.List_Knowledge_Base_Category_Obj, "Knowledge_Base_Category_Id", "Category_Name"), "-- Knowledge Base Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
+                                    @*@Html.DropDownListFor(m => m.Blog_Obj.FK_Blog_Category_Id, new SelectList(Model.List_Blog_Category_Obj, "Blog_Category_Id", "Category_Name"), "-- Blog Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })*@
+                                    <div class="invalid-feedback">
+                                        Please enter Knowledge Base name.
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">Knowledge Base Name</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name, new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter Knowledge Base name.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label class="form-label">Knowledge Base Title</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Page_Title, new { @class = "form-control", @placeholder = "Enter page title", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter page title.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta Keyword</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Meta_Keyword, new { @class = "form-control", @rows = "5", @placeholder = "Enter meta keywords", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter meta keywords.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Meta_Description,new { @class = "form-control", @rows = "5", @placeholder = "Enter meta description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter meta description.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">News Keyword</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_News_Keyword, new { @class = "form-control", @rows = "5", @placeholder = "Enter news keywords", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter news keywords.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">News Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_News_Description,new { @class = "form-control", @rows = "5", @placeholder = "Enter news description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter news description.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Knowledge Base Image</label>
+                                    @{
+                                        var defaultImagePath = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                    }
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Image,new{@class = "dropify",type = "file",data_default_file = defaultImagePath,data_max_file_size = "5M",data_allowed_file_extensions = "jpg png jpeg webp", @required = "required"})
+                                    <div class="invalid-feedback">
+                                        Please upload Knowledge Base image.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta OG Image</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Og_Image,new{@class = "dropify",type = "file",data_default_file = defaultImagePath,data_max_file_size = "5M",data_allowed_file_extensions = "jpg png jpeg webp",@required = "required"})
+                                    <div class="invalid-feedback">
+                                        Please upload OG image.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Image Alt Tag</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Image_Alt_Tag, new { @class = "form-control", @placeholder = "Enter image alt text", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter image alt tag.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">OG Title</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Og_Title, new { @class = "form-control", @placeholder = "Enter OG title", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter OG title.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">OG Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Og_Description,new { @class = "form-control", @rows = "3", @placeholder = "Enter OG description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter OG description.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Knowledge Base Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Description, new { @class = "form-control", @rows = "5", @id = "Knowledge_Base_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Knowledge Base description.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-12">
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Url_Link,new { @class = "form-control", @placeholder = "Enter URL link" })
+                                </div>
+                            </div>
+
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Id)
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Code)
+
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit">Save Knowledge Base</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0 text-nowrap">Knowledge Base</h4>
+                <div class="d-flex align-items-center gap-2">
+
+                    <!-- Visible Buttons (First 3) -->
+                    <a href="@Url.Action("KnowledgeBase", "Admin")"
+                       class="btn btn-primary btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Add Base
+                    </a>
+
+                    <a href="@Url.Action("KnowledgeCard", "Admin")"
+                       class="btn btn-info btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Add Card
+                    </a>
+
+                    <a href="@Url.Action("KnowledgeFailureMode", "Admin")"
+                       class="btn btn-info btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Failure Mode
+                    </a>
+
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            More
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item"
+                                   href="@Url.Action("KnowledgeRelatedSolution", "Admin")">
+                                    <i class="fa fa-link me-2"></i> Related Solution
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="@Url.Action("KnowledgeWorkflowStep", "Admin")">
+                                    <i class="fa fa-random me-2"></i> Workflow Step
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive theme-scrollbar">
+                    <table class="display datatable" id="basic-1">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Knowledge Base Name</th>
+                                <th>Knowledge Base Title</th>
+                                <th>Knowledge Base Image</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.List_Knowledge_Base_Business_Obj != null && Model.List_Knowledge_Base_Business_Obj.Count > 0)
+                            {
+                                foreach (var items in Model.List_Knowledge_Base_Business_Obj)
+                                {
+                                    <tr>
+                                        <td>@(++i)</td>
+                                        <td>@items.Knowledge_Base_Name</td>
+                                        <td>@items.Knowledge_Base_Page_Title</td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(items.Knowledge_Base_Image))
+                                            {
+                                                <img src="@Url.Content(items.Knowledge_Base_Image)"
+                                                     style="width:100px; height:70px; object-fit:cover;"
+                                                     class="img-thumbnail"
+                                                     alt="@items.Knowledge_Base_Image_Alt_Tag" />
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-light">No Image</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="@Url.Action("KnowledgeBase", "Admin",new { Knowledge_Base_Id = items.Knowledge_Base_Id })"
+                                                   class="btn btn-warning btn-sm">
+                                                    <i class="fa fa-edit"></i> Edit
+                                                </a>
+
+                                                <a href="@Url.Action("DeleteKnowledgeBase", "Admin",new { Knowledge_Base_Id = items.Knowledge_Base_Id })"
+                                                   class="btn btn-danger btn-sm"
+                                                   onclick="return confirm('Are you sure you want to delete this Knowledge Base?')">
+                                                    <i class="fa fa-trash"></i> Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="alert alert-light" role="alert">
+                                            No Knowledge Base found. Add your first Knowledge Base!
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- ===================== EDIT FORM ======================= -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Edit Knowledge Base Details</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("UpdateKnowledgeBase", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                        {
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Knowledge Base Name</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name,new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter Knowledge Base name.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <label class="form-label">Knowledge Base Title</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Page_Title,new { @class = "form-control", @placeholder = "Enter page title", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter page title.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta Keyword</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Meta_Keyword,new { @class = "form-control", @rows = "5", @placeholder = "Enter meta keywords", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter meta keywords.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Meta_Description,new { @class = "form-control", @rows = "5", @placeholder = "Enter meta description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter meta description.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">News Keyword</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_News_Keyword,new { @class = "form-control", @rows = "5", @placeholder = "Enter news keywords", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter news keywords.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">News Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_News_Description,new { @class = "form-control", @rows = "5", @placeholder = "Enter news description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter news description.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Knowledge Base Image</label>
+                                    @{
+                                        var currentImage = !string.IsNullOrEmpty(Model.Knowledge_Base_Obj.Knowledge_Base_Image)? Url.Content(Model.Knowledge_Base_Obj.Knowledge_Base_Image): Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                    }
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Image,new{@class = "dropify",type = "file",data_default_file = currentImage,data_max_file_size = "5M",data_allowed_file_extensions = "jpg png jpeg webp"})
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">Meta OG Image</label>
+                                    @{
+                                        var currentOgImage = !string.IsNullOrEmpty(Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image)? Url.Content(Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image): Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                    }
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Og_Image,new{ @class = "dropify",type = "file",data_default_file = currentOgImage,data_max_file_size = "5M",data_allowed_file_extensions = "jpg png jpeg webp" })
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">Image Alt Tag</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Image_Alt_Tag,new { @class = "form-control", @placeholder = "Enter image alt text", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter image alt tag.
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label class="form-label">OG Title</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Og_Title, new { @class = "form-control", @placeholder = "Enter OG title", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter OG title.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-6">
+                                    <label class="form-label">OG Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Og_Description,new { @class = "form-control", @rows = "3", @placeholder = "Enter OG description", @required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please enter OG description.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Knowledge Base Description</label>
+                                    @Html.TextAreaFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Description, new { @class = "form-control", @rows = "5", @id = "Knowledge_Base_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Knowledge Base description.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-12">
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Url_Link,new { @class = "form-control", @placeholder = "Enter URL link" })
+                                </div>
+                            </div>
+
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Id)
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Code)
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Image)
+                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Og_Image)
+
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary" type="submit">Update Knowledge Base</button>
+                                    <a href="@Url.Action("KnowledgeBase", "Admin")" class="btn btn-secondary">Cancel</a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script>
+        //ClassicEditor
+        //    .create(document.querySelector('#Knowledge Base_Description'))
+        //    .catch(error => {
+        //        console.error(error);
+        //    });
+        ClassicEditor
+            .create(document.querySelector('#Knowledge_Base_Description'), {
+                ckfinder: {
+                    uploadUrl: '/Home/UploadImage'
+                },
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'imageUpload', 'imageResize', '|',
+                    'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                    '|', 'blockQuote', 'undo', 'redo'
+                ],
+                image: {
+                    toolbar: [
+                        'imageTextAlternative', '|',
+                        'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+                        'resizeImage'
+                    ],
+                    styles: ['alignLeft', 'alignCenter', 'alignRight'],
+                    resizeOptions: [
+                        {
+                            name: 'resizeImage:original',
+                            label: 'Original',
+                            value: null
+                        },
+                        {
+                            name: 'resizeImage:25',
+                            label: '25%',
+                            value: '25'
+                        },
+                        {
+                            name: 'resizeImage:50',
+                            label: '50%',
+                            value: '50'
+                        },
+                        {
+                            name: 'resizeImage:75',
+                            label: '75%',
+                            value: '75'
+                        }
+                    ],
+                    resizeUnit: '%'
+                }
+            })
+            .catch(error => {
+                console.error('CKEditor Error:', error);
+            });
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Initialize dropify for file uploads
+            $('.dropify').dropify({
+                messages: {
+                    'default': 'Drag and drop a file here or click',
+                    'replace': 'Drag and drop or click to replace',
+                    'remove': 'Remove',
+                    'error': 'Ooops, something wrong appended.'
+                },
+                error: {
+                    'fileSize': 'The file size is too big (5M max).',
+                    'fileExtension': 'Only jpg, png, jpeg, webp files are allowed.'
+                }
+            });
+
+            // Initialize DataTable
+            var dataTable = $('#basic-1');
+            if (dataTable.length && !$.fn.DataTable.isDataTable('#basic-1')) {
+                dataTable.DataTable({
+                    responsive: true,
+                    pageLength: 10,
+                    language: {
+                        search: "_INPUT_",
+                        searchPlaceholder: "Search Knowledge Base..."
+                    }
+                });
+            }
+
+            // Toast notifications
+            var Message = '@Message';
+            if (Message != '') {
+                if ('@Type' == 'success') {
+                    iziToast.success({
+                        title: '@Title',
+                        message: '@Message',
+                        position: 'topRight'
+                    });
+                }
+                else if ('@Type' == 'warning') {
+                    iziToast.warning({
+                        title: '@Title',
+                        message: '@Message',
+                        position: 'topRight'
+                    });
+                }
+                else if ('@Type' == 'error') {
+                    iziToast.error({
+                        title: '@Title',
+                        message: '@Message',
+                        position: 'topRight'
+                    });
+                }
+            }
+
+            // Form validation
+            var forms = document.querySelectorAll('.needs-validation');
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        });
+
+        // Delete confirmation
+        function confirmDelete(url) {
+            event.preventDefault();
+            iziToast.question({
+                timeout: false,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: 'Confirm Delete',
+                message: 'Are you sure you want to delete this Knowledge Base?',
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        window.location.href = url;
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }]
+                ]
+            });
+        }
+    </script>
+}

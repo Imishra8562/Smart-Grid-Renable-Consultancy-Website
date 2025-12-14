@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[tbl_Knowledge_Base]
 (	
-    [Knowledge_Base_Id] INT IDENTITY(1,1) NOT NULL, 
+    [Knowledge_Base_Id] INT IDENTITY(1,1) NOT NULL,
+    [FK_Knowledge_Base_Category_Id] INT NULL,
     [Knowledge_Base_Code] NVARCHAR(MAX) NULL,  
     [Knowledge_Base_Name] NVARCHAR(MAX) NULL,  
     [Knowledge_Base_Page_Title] NVARCHAR(MAX) NULL,

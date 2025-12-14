@@ -665,18 +665,106 @@ namespace Web.Areas.Admin.Controllers
         }
         #endregion
 
+        #region Knowledge_Base Category
+
+       // [CookiesExpireFilter]
+        public ActionResult KnowledgeBaseCategory(int? Knowledge_Base_Category_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manger = new MasterManager();
+
+            Model.List_Knowledge_Base_Category_Obj = Manger.GetKnowledgeBaseCategory(0, null);
+
+            if (Knowledge_Base_Category_Id.HasValue)
+            {
+                Model.Knowledge_Base_Category_Obj = Manger.GetKnowledgeBaseCategory(Knowledge_Base_Category_Id, null).FirstOrDefault();
+            }
+
+            return View(Model);
+        }
+       // [CookiesExpireFilter]
+        public ActionResult SaveKnowledgeBaseCategory(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+
+            Model.Knowledge_Base_Category_Obj.Created_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
+            Model.Knowledge_Base_Category_Obj.Created_IP = SystemIP();
+            int Id = Manger.SaveKnowledgeBaseCategory(Model.Knowledge_Base_Category_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge_Base Category Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge_Base Category!";
+            }
+            return RedirectToAction("KnowledgeBaseCategory");
+        }
+       // [CookiesExpireFilter]
+        public ActionResult UpdateKnowledgeBaseCategory(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+
+            Model.Knowledge_Base_Category_Obj.Modified_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
+            Model.Knowledge_Base_Category_Obj.Modified_On = DateTime.Now;
+            Model.Knowledge_Base_Category_Obj.Modified_IP = SystemIP();
+            int Id = Manger.UpdateKnowledgeBaseCategory(Model.Knowledge_Base_Category_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge_Base Category Updated Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge_Base Category!";
+            }
+            return RedirectToAction("KnowledgeBaseCategory");
+        }
+       // [CookiesExpireFilter]
+        public ActionResult DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id)
+        {
+            IMasterManager Manger = new MasterManager();
+
+            int Id = Manger.DeleteKnowledgeBaseCategory(Knowledge_Base_Category_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge_Base Category Deleted Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge_Base Category !";
+            }
+            return RedirectToAction("KnowledgeBaseCategory");
+        }
+
+        #endregion
+        
         #region Knowledge Base
         public ActionResult KnowledgeBase(int? Knowledge_Base_Id)
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
+            Model.List_Knowledge_Base_Category_Obj = Manager.GetKnowledgeBaseCategory(0, null);
             if (Knowledge_Base_Id.HasValue)
             {
-                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, null).FirstOrDefault();
+                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, 0, null).FirstOrDefault();
             }
             return View(Model);
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveKnowledgeBase(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -719,6 +807,8 @@ namespace Web.Areas.Admin.Controllers
 
             return RedirectToAction("KnowledgeBase");
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateKnowledgeBase(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();
@@ -792,7 +882,8 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+           // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_Card_Business_Obj = Manager.GetKnowledgeCard(0, 0);
             if (Knowledge_Card_Id.HasValue)
             {
@@ -875,7 +966,8 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_FailureMode_Business_Obj = Manager.GetKnowledgeFailureMode(0, 0);
             if (Knowledge_FailureMode_Id.HasValue)
             {
@@ -958,11 +1050,12 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(0, 0);
             if (Knowledge_RelatedSolution_Id.HasValue)
             {
-                Model.Knowledge_RelatedSolution_Obj = Manager.GetKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id, null).FirstOrDefault();
+                Model.Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
@@ -974,22 +1067,22 @@ namespace Web.Areas.Admin.Controllers
 
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code = "KRSC-" + Code.ToString();
+            Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code = "KRSC-" + Code.ToString();
             int No = 0;
             if (Model.Knowledge_RelatedSolution_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*"));
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
                 string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
+                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
+                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
             }
-            int Id = Manger.SaveKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
+            int Id = Manger.SaveKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Business_Obj);
 
             return RedirectToAction("KnowledgeRelatedSolution");
         }
@@ -1013,19 +1106,19 @@ namespace Web.Areas.Admin.Controllers
                 }
 
                 // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*");
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*");
                 No = files.Length;
 
                 string extension = Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
 
-                string fileName = Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
+                string fileName = Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
                 string fullSavePath = Path.Combine(folderPath, fileName);
 
                 Model.Knowledge_RelatedSolution_Image.SaveAs(fullSavePath);
 
-                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = "~/Upload/KnowledgeRelatedSolution/Image/" + fileName;
+                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = "~/Upload/KnowledgeRelatedSolution/Image/" + fileName;
             }
-            int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
+            int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Business_Obj);
             return RedirectToAction("KnowledgeRelatedSolution");
         }
         public ActionResult DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id)
@@ -1034,5 +1127,90 @@ namespace Web.Areas.Admin.Controllers
             int Id = Manager.DeleteKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id);
             return RedirectToAction("KnowledgeRelatedSolution");
         }
+        #endregion
+
+        #region Knowledge WorkflowStep
+        public ActionResult KnowledgeWorkflowStep(int? Knowledge_WorkflowStep_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            //Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
+            Model.List_Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(0, 0);
+            if (Knowledge_WorkflowStep_Id.HasValue)
+            {
+                Model.Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id, null).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        public ActionResult SaveKnowledgeWorkflowStep(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Knowledge_WorkflowStep_Obj.Created_By = 1;
+            Model.Knowledge_WorkflowStep_Obj.Created_IP = SystemIP();
+
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code = "KCC-" + Code.ToString();
+            int No = 0;
+            if (Model.Knowledge_WorkflowStep_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/KnowledgeWorkflowStep/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
+                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
+                Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
+            }
+            int Id = Manger.SaveKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Business_Obj);
+
+            return RedirectToAction("KnowledgeWorkflowStep");
+        }
+        public ActionResult UpdateKnowledgeWorkflowStep(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Knowledge_WorkflowStep_Obj.Modified_By = 1;
+            Model.Knowledge_WorkflowStep_Obj.Modified_On = DateTime.Now;
+            Model.Knowledge_WorkflowStep_Obj.Modified_IP = SystemIP();
+
+            int No = 0;
+
+            if (Model.Knowledge_WorkflowStep_Image != null)
+            {
+                string folderPath = Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/");
+
+                // ensure folder exists (THIS FIXES THE ERROR)
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // Count existing images for same code
+                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "*");
+                No = files.Length;
+
+                string extension = Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
+
+                string fileName = Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                Model.Knowledge_WorkflowStep_Image.SaveAs(fullSavePath);
+
+                Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Image = "~/Upload/KnowledgeWorkflowStep/Image/" + fileName;
+            }
+            int Id = Manager.UpdateKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Business_Obj);
+            return RedirectToAction("KnowledgeWorkflowStep");
+        }
+        public ActionResult DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id);
+            return RedirectToAction("KnowledgeWorkflowStep");
+        }
+        #endregion
     }
 }

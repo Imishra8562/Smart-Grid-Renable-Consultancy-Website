@@ -44,11 +44,19 @@ namespace Web.Areas.Admin.Model
         public IList<Index_Team_Business> List_Index_Team_Business_Obj { get; set; }
         #endregion
 
+        #region Knowledge Base Category
+        public Knowledge_Base_Category Knowledge_Base_Category_Obj { get; set; }
+        public IList<Knowledge_Base_Category> List_Knowledge_Base_Category_Obj { get; set; }
+
+        #endregion
+
         #region Knowledge Base
         public HttpPostedFileBase Knowledge_Base_Og_Image { get; set; }
         public HttpPostedFileBase Knowledge_Base_Image { get; set; }
         public Knowledge_Base Knowledge_Base_Obj { get; set; }
         public IList<Knowledge_Base> List_Knowledge_Base_Obj { get; set; }
+        public Knowledge_Base_Business Knowledge_Base_Business_Obj { get; set; }
+        public IList<Knowledge_Base_Business> List_Knowledge_Base_Business_Obj { get; set; }
         #endregion
 
         #region Knowledge Card

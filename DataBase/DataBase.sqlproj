@@ -233,6 +233,11 @@
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_FailureMode.sql" />
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_RelatedSolution.sql" />
     <Build Include="dbo\Stored Procedures\Knowledge\sp_Update_Knowledge_WorkflowStep.sql" />
+    <Build Include="dbo\Tables\Master\tbl_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Master\sp_Add_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Master\sp_List_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Master\sp_Delete_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Master\sp_Update_Knowledge_Base_Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
