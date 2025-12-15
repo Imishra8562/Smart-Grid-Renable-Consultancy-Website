@@ -49,7 +49,7 @@ namespace BusinessLayer.Interface
         #region Knowledge Base Category
 
         int SaveKnowledgeBaseCategory(Knowledge_Base_Category Object);
-        IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Description);
+        IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Url_Link);
         int UpdateKnowledgeBaseCategory(Knowledge_Base_Category Object);
         int DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id);
 

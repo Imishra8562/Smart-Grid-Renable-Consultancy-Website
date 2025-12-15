@@ -76,6 +76,7 @@
     <Folder Include="dbo\Stored Procedures\Product" />
     <Folder Include="dbo\Tables\Knowledge" />
     <Folder Include="dbo\Stored Procedures\Knowledge" />
+    <Folder Include="dbo\script" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Index\tbl_Index_Features.sql" />
@@ -238,6 +239,7 @@
     <Build Include="dbo\Stored Procedures\Master\sp_List_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Delete_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Update_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\script\newscript.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

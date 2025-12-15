@@ -325,13 +325,13 @@ namespace BusinessLayer
 
             return Id;
         }
-        public IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Description)
+        public IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Url_Link)
         {
             IList<Knowledge_Base_Category> ListObj = new List<Knowledge_Base_Category>();
             try
             {
                 Knowledge_Base_Category_Repository db = new Knowledge_Base_Category_Repository();
-                ListObj = db.ListKnowledgeBaseCategory(Knowledge_Base_Category_Id, Category_Description);
+                ListObj = db.ListKnowledgeBaseCategory(Knowledge_Base_Category_Id, Category_Url_Link);
             }
             catch (Exception ex)
             {

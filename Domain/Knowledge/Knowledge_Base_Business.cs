@@ -10,5 +10,6 @@ namespace Domain
     {
         public string Category_Name { get; set; }
         public string Category_Description { get; set; }
+        public string Category_Url_Link { get; set; }
     }
 }

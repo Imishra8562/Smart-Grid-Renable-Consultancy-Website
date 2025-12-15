@@ -90,7 +90,7 @@
     <Compile Include="Knowledge\Knowledge_RelatedSolution_Business.cs" />
     <Compile Include="Knowledge\Knowledge_WorkflowStep.cs" />
     <Compile Include="Knowledge\Knowledge_WorkflowStep_Business.cs" />
-    <Compile Include="Knowledge_Base_Category.cs" />
+    <Compile Include="Knowledge\Knowledge_Base_Category.cs" />
     <Compile Include="Product\Product.cs" />
     <Compile Include="Product\Product_Benefits.cs" />
     <Compile Include="Product\Product_Benefits_Business.cs" />

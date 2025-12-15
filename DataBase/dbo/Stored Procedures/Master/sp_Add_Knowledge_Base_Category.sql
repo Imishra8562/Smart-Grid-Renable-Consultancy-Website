@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Knowledge_Base_Category]
 @Category_Name NVARCHAR(MAX)=NULL,
 @Category_Description NVARCHAR(MAX)=NULL,
+@Category_Url_Link NVARCHAR(MAX)=NULL,
 
 @Created_On DATETIME=NULL,
 @Created_By INT=NULL,
@@ -19,8 +20,8 @@ BEGIN TRY
 		 
    IF @Knowledge_Base_Category_Id IS NULL
       BEGIN
-         INSERT INTO tbl_Knowledge_Base_Category(Category_Name,Category_Description,Created_By,Created_IP)
-		 VALUES(@Category_Name,@Category_Description,@Created_By,@Created_IP)
+         INSERT INTO tbl_Knowledge_Base_Category(Category_Name,Category_Description,Category_Url_Link,Created_By,Created_IP)
+		 VALUES(@Category_Name,@Category_Description,@Category_Url_Link,@Created_By,@Created_IP)
 		 SELECT SCOPE_IDENTITY()
       END
 

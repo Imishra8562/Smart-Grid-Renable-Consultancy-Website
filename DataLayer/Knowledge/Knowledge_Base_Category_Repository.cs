@@ -12,7 +12,7 @@ namespace DataLayer
 {
     public class Knowledge_Base_Category_Repository :BaseRepository<Knowledge_Base_Category>
     {
-        public IList<Knowledge_Base_Category> ListKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Description)
+        public IList<Knowledge_Base_Category> ListKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Url_Link)
         {
             IList<Knowledge_Base_Category> List_Obj = null;
 
@@ -29,8 +29,8 @@ namespace DataLayer
                 sqlCommand.Parameters.Add(KBC_ID);
 
                 var P2 = sqlCommand.CreateParameter();
-                P2.ParameterName = "Category_Description";
-                P2.Value = Category_Description;
+                P2.ParameterName = "Category_Url_Link";
+                P2.Value = Category_Url_Link;
                 sqlCommand.Parameters.Add(P2);
 
                 _db.LoadDataSet(sqlCommand, dataSet, TableName);

@@ -665,7 +665,7 @@ namespace Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Knowledge_Base Category
+        #region Knowledge Base Category
 
        // [CookiesExpireFilter]
         public ActionResult KnowledgeBaseCategory(int? Knowledge_Base_Category_Id)
@@ -817,54 +817,32 @@ namespace Web.Areas.Admin.Controllers
             Model.Knowledge_Base_Obj.Modified_IP = SystemIP();
 
             int No = 0;
-
             if (Model.Knowledge_Base_Og_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/Knowledge/OGImage/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
-
-                string fileName = Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_Base_Og_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = "~/Upload/Knowledge/OGImage/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
             }
-             No = 0;
-
+            No = 0;
             if (Model.Knowledge_Base_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/Knowledge/Image/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
-
-                string fileName = Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_Base_Og_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = "~/Upload/Knowledge/Image/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
+                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeBase(Model.Knowledge_Base_Obj);
             return RedirectToAction("KnowledgeBase");

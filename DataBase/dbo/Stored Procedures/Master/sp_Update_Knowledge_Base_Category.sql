@@ -2,6 +2,7 @@
 @Knowledge_Base_Category_Id INT=NULL,
 @Category_Name NVARCHAR(MAX)=NULL,
 @Category_Description NVARCHAR(Max)=NULL,
+@Category_Url_Link  NVARCHAR(Max)=NULL,
 
 @Created_On DATETIME=NULL,
 @Created_By INT=NULL,
@@ -18,6 +19,7 @@ BEGIN TRY
    UPDATE tbl_Knowledge_Base_Category SET 
                                 Category_Name=@Category_Name,
                                 Category_Description=@Category_Description,
+                                Category_Url_Link=@Category_Url_Link,
                                 Modified_On=@Modified_On,
                                 Modified_IP=@Modified_IP,
                                 Modified_By=@Modified_By

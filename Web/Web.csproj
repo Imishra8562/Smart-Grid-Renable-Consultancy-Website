@@ -781,6 +781,7 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\custom-animate.css" />
+    <Content Include="Content\css\custom.css" />
     <Content Include="Content\css\flaticon.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\images\ui-icons_444444_256x240.png" />

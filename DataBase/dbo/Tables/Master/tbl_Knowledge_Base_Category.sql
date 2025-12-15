@@ -3,6 +3,7 @@
 	[Knowledge_Base_Category_Id] INT IDENTITY(1,1) NOT NULL, 
     [Category_Name] NVARCHAR(MAX) NULL,  
     [Category_Description] NVARCHAR(MAX) NULL, 
+    [Category_Url_Link] NVARCHAR(MAX) NULL, 
 
     [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()), 
     [Created_By] INT NOT NULL, 

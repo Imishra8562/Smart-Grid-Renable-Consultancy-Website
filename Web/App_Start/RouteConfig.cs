@@ -18,6 +18,11 @@ namespace Web
                 url: "industries/{industries}",
                 defaults: new { controller = "Home", action = "IndustriesDetail" }
             );
+            routes.MapRoute(
+                name: "IndustriesDetail",
+                url: "knowledge-base/{url}",
+                defaults: new { controller = "Home", action = "IndustriesDetail" }
+            );
 
 
             routes.MapRoute(

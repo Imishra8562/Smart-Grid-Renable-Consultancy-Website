@@ -14,6 +14,7 @@ namespace Domain
         public int Knowledge_Base_Category_Id { get; set; }
         public string Category_Name { get; set; }
         public string Category_Description { get; set; }
+        public string Category_Url_Link { get; set; }
 
     }
 }

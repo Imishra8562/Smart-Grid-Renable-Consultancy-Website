@@ -124,22 +124,31 @@ namespace Web.Controllers
 
         #endregion
 
-        #region industry
-        //public ActionResult Industry()
-        //{
-        //    return View();
-        //}
-        #endregion
 
         #region KnowledgeBase
         public ActionResult KnowledgeBase()
         {
-            return View();
+            MasterModel Model = new MasterModel();
+            IMasterManager MasterManager = new MasterManager();
+            Model.List_Knowledge_Base_Business_Obj = MasterManager.GetKnowledgeBase(0, 0, null);
+            Model.List_Knowledge_Base_Category_Obj = MasterManager.GetKnowledgeBaseCategory(0, null);
+            return View(Model);
         }
-        public ActionResult KnowledgeBaseDetails()
+        [Route("knowledge-base/{url}")]
+        public ActionResult KnowledgeBaseDetails(string url)
         {
-            return View();
+            MasterModel model = new MasterModel();
+            IMasterManager manager = new MasterManager();
+            // Get Knowledge Base by URL
+            model.Knowledge_Base_Obj = manager .GetKnowledgeBase(0, 0, url).FirstOrDefault();
+            int knowledgeBaseId = model.Knowledge_Base_Obj.Knowledge_Base_Id;
+            model.List_Knowledge_Card_Business_Obj = manager.GetKnowledgeCard(0, knowledgeBaseId);
+            model.List_Knowledge_FailureMode_Business_Obj = manager.GetKnowledgeFailureMode(0, knowledgeBaseId);
+            model.List_Knowledge_RelatedSolution_Business_Obj = manager.GetKnowledgeRelatedSolution(0, knowledgeBaseId);
+            model.List_Knowledge_WorkflowStep_Business_Obj = manager.GetKnowledgeWorkflowStep(0, knowledgeBaseId);
+            return View(model);
         }
+
         #endregion
 
         #region EngineeringServices

@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[sp_List_Knowledge_Base_Category]
 @Knowledge_Base_Category_Id INT=NULL,
-@Category_Description NVARCHAR(MAX)=NULL
-
+@Category_Description NVARCHAR(MAX)=NULL,
+@Category_Url_Link NVARCHAR(MAX)=NULL
 AS
 BEGIN    
  BEGIN TRY   
@@ -11,6 +11,7 @@ BEGIN
       SELECT * FROM tbl_Knowledge_Base_Category B
       WHERE B.Knowledge_Base_Category_Id=ISNULL(@Knowledge_Base_Category_Id,B.Knowledge_Base_Category_Id) 
       AND B.Category_Description=ISNULL(@Category_Description,B.Category_Description)
+      AND B.Category_Url_Link=ISNULL(@Category_Url_Link,B.Category_Url_Link)
       AND Is_Active=1 ORDER BY Knowledge_Base_Category_Id DESC
 
  END TRY   
