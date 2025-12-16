@@ -34,12 +34,16 @@
 
                 @using (Html.BeginForm("SaveKnowledgeFailureMode", "Admin", new { area = "Admin" }, FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
-                    <div class="row g-3">
-                        <div class="col-md-12">
-                            <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
+                     <div class="row g-3">
+                         <div class="col-md-6">
+                             <label class="form-label">Knowledge Base</label>
+                             @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
+                         </div>
+                         <div class="col-md-6">
+                             <label class="form-label">Knowledge FailureMode Title</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title, new { @class = "form-control", required = "required" })
+                         </div>
+                     </div>
 
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
@@ -58,13 +62,6 @@
                                 new { @class = "form-control", required = "required" })
                         </div>
                     </div>
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Knowledge_FailureMode_Title</label>
-                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                     </div>
                         <div class="row g-3 mt-2">
                             <div class="col-md-6">
                                 <label class="form-label">Card Name</label>
@@ -190,12 +187,17 @@
 
                 @using (Html.BeginForm("UpdateKnowledgeFailureMode","Admin",new { area = "Admin" }, FormMethod.Post,new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 { 
-                    <div class="row g-3">
-                        <div class="col-md-8">
-                            <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
+                     <div class="row g-3">
+                         <div class="col-md-6">
+                             <label class="form-label">Knowledge Base</label>
+                             @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
+                         </div>
+                         <div class="col-md-6">
+                             <label class="form-label">Knowledge FailureMode Title</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title,
+                                 new { @class = "form-control", required = "required" })
+                         </div>
+                     </div>
 
                      <div class="row g-3 mt-2">
                          <div class="col-md-6">
@@ -205,13 +207,6 @@
                          <div class="col-md-6">
                              <label class="form-label">Image Alt Tag</label>
                              @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image_Alt_Tag,
-                                 new { @class = "form-control", required = "required" })
-                         </div>
-                     </div>
-                     <div class="row g-3 mt-2">
-                         <div class="col-md-6">
-                             <label class="form-label">Knowledge_FailureMode_Title</label>
-                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title,
                                  new { @class = "form-control", required = "required" })
                          </div>
                      </div>
