@@ -19,9 +19,9 @@ namespace Web
                 defaults: new { controller = "Home", action = "IndustriesDetail" }
             );
             routes.MapRoute(
-                name: "IndustriesDetail",
+                name: "knowledgeBaseDetail",
                 url: "knowledge-base/{url}",
-                defaults: new { controller = "Home", action = "IndustriesDetail" }
+                defaults: new { controller = "Home", action = "knowledgeBaseDetail" }
             );
 
 

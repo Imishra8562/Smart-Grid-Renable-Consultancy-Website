@@ -8,11 +8,11 @@ BEGIN
         IF @Knowledge_Base_Id = 0 SET @Knowledge_Base_Id = NULL
         IF @Knowledge_Card_Id = 0 SET @Knowledge_Card_Id = NULL
 
-        SELECT * FROM tbl_Knowledge_Card KB
-          INNER JOIN tbl_Knowledge_Base KC  ON KB.FK_Knowledge_Base_Id = KC.Knowledge_Base_Id
-          WHERE KC.Knowledge_Base_Id = ISNULL(@Knowledge_Base_Id, KC.Knowledge_Base_Id) 
-            AND KB.Knowledge_Card_Id = ISNULL(@Knowledge_Card_Id, KB.Knowledge_Card_Id)
-            AND KB.Is_Active = 1
+        SELECT * FROM tbl_Knowledge_Card KC
+          INNER JOIN tbl_Knowledge_Base KB  ON KC.FK_Knowledge_Base_Id = KB.Knowledge_Base_Id
+          WHERE KB.Knowledge_Base_Id = ISNULL(@Knowledge_Base_Id, KB.Knowledge_Base_Id) 
+            AND KC.Knowledge_Card_Id = ISNULL(@Knowledge_Card_Id, KC.Knowledge_Card_Id)
+            AND KC.Is_Active = 1
           ORDER BY Knowledge_Base_Id
     END TRY
     BEGIN CATCH

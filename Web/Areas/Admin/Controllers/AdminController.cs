@@ -856,6 +856,7 @@ namespace Web.Areas.Admin.Controllers
         #endregion
 
         #region Knowledge Card
+
         public ActionResult KnowledgeCard(int? Knowledge_Card_Id)
         {
             MasterModel Model = new MasterModel();
@@ -869,6 +870,8 @@ namespace Web.Areas.Admin.Controllers
             }
             return View(Model);
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveKnowledgeCard(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -896,6 +899,8 @@ namespace Web.Areas.Admin.Controllers
 
             return RedirectToAction("KnowledgeCard");
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateKnowledgeCard(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();
@@ -904,29 +909,18 @@ namespace Web.Areas.Admin.Controllers
             Model.Knowledge_Card_Obj.Modified_IP = SystemIP();
 
             int No = 0;
-
             if (Model.Knowledge_Card_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/KnowledgeCard/Image/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/KnowledgeCard/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_Card_Image.FileName);
-
-                string fileName = Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_Card_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_Card_Obj.Knowledge_Card_Image = "~/Upload/KnowledgeCard/Image/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Card_Image.FileName);
+                Model.Knowledge_Card_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
+                Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeCard(Model.Knowledge_Card_Obj);
             return RedirectToAction("KnowledgeCard");
@@ -953,6 +947,8 @@ namespace Web.Areas.Admin.Controllers
             }
             return View(Model);
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveKnowledgeFailureMode(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -980,6 +976,8 @@ namespace Web.Areas.Admin.Controllers
 
             return RedirectToAction("KnowledgeFailureMode");
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateKnowledgeFailureMode(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();
@@ -991,26 +989,16 @@ namespace Web.Areas.Admin.Controllers
 
             if (Model.Knowledge_FailureMode_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/KnowledgeFailureMode/Image/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/KnowledgeFailureMode/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_FailureMode_Image.FileName);
-
-                string fileName = Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_FailureMode_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = "~/Upload/KnowledgeFailureMode/Image/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_FailureMode_Image.FileName);
+                Model.Knowledge_FailureMode_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension;
+                Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeFailureMode(Model.Knowledge_FailureMode_Obj);
             return RedirectToAction("KnowledgeFailureMode");
@@ -1037,6 +1025,8 @@ namespace Web.Areas.Admin.Controllers
             }
             return View(Model);
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveKnowledgeRelatedSolution(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -1064,6 +1054,8 @@ namespace Web.Areas.Admin.Controllers
 
             return RedirectToAction("KnowledgeRelatedSolution");
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateKnowledgeRelatedSolution(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();
@@ -1075,26 +1067,16 @@ namespace Web.Areas.Admin.Controllers
 
             if (Model.Knowledge_RelatedSolution_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-
-                string fileName = Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_RelatedSolution_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = "~/Upload/KnowledgeRelatedSolution/Image/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
+                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
+                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Business_Obj);
             return RedirectToAction("KnowledgeRelatedSolution");
@@ -1121,6 +1103,8 @@ namespace Web.Areas.Admin.Controllers
             }
             return View(Model);
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveKnowledgeWorkflowStep(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -1148,6 +1132,8 @@ namespace Web.Areas.Admin.Controllers
 
             return RedirectToAction("KnowledgeWorkflowStep");
         }
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult UpdateKnowledgeWorkflowStep(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();

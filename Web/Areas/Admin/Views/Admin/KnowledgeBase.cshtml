@@ -39,7 +39,6 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Knowledge Base Category</label>
                                     @Html.DropDownListFor(m => m.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id, new SelectList(Model.List_Knowledge_Base_Category_Obj, "Knowledge_Base_Category_Id", "Category_Name"), "-- Knowledge Base Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
-                                    @*@Html.DropDownListFor(m => m.Blog_Obj.FK_Blog_Category_Id, new SelectList(Model.List_Blog_Category_Obj, "Blog_Category_Id", "Category_Name"), "-- Blog Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })*@
                                     <div class="invalid-feedback">
                                         Please enter Knowledge Base name.
                                     </div>
@@ -302,23 +301,30 @@
                     <div class="card-body">
                         @using (Html.BeginForm("UpdateKnowledgeBase", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                         {
-                            <div class="row g-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">Knowledge Base Name</label>
-                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name,new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
-                                    <div class="invalid-feedback">
-                                        Please enter Knowledge Base name.
-                                    </div>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <label class="form-label">Knowledge Base Title</label>
-                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Page_Title,new { @class = "form-control", @placeholder = "Enter page title", @required = "required" })
-                                    <div class="invalid-feedback">
-                                        Please enter page title.
-                                    </div>
-                                </div>
-                            </div>
+                           <div class="row g-3">
+                               <div class="col-md-4">
+                                   <label class="form-label">Knowledge Base Category</label>
+                                   @Html.DropDownListFor(m => m.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id, new SelectList(Model.List_Knowledge_Base_Category_Obj, "Knowledge_Base_Category_Id", "Category_Name"), "-- Knowledge Base Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
+                                   <div class="invalid-feedback">
+                                       Please enter Knowledge Base name.
+                                   </div>
+                               </div>
+                               <div class="col-md-4">
+                                   <label class="form-label">Knowledge Base Name</label>
+                                   @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name, new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
+                                   <div class="invalid-feedback">
+                                       Please enter Knowledge Base name.
+                                   </div>
+                               </div>
+                          
+                               <div class="col-md-4">
+                                   <label class="form-label">Knowledge Base Title</label>
+                                   @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Page_Title, new { @class = "form-control", @placeholder = "Enter page title", @required = "required" })
+                                   <div class="invalid-feedback">
+                                       Please enter page title.
+                                   </div>
+                               </div>
+                           </div>
 
                             <div class="row g-3 mt-2">
                                 <div class="col-md-6">

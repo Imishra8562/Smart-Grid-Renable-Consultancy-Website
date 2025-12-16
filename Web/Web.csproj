@@ -1054,6 +1054,10 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Upload\Index\IndexTeamMemberImage\" />
+    <Folder Include="Upload\KnowledgeCard\Image\" />
+    <Folder Include="Upload\KnowledgeFailureMode\Image\" />
+    <Folder Include="Upload\KnowledgeRelatedSolution\Image\" />
+    <Folder Include="Upload\KnowledgeWorkflowStep\Image\" />
     <Folder Include="Upload\Knowledge\Image\" />
     <Folder Include="Upload\Knowledge\OGImage\" />
     <Folder Include="Views\Admin\" />

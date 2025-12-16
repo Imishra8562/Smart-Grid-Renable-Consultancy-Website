@@ -32,16 +32,16 @@
             <div class="card-header pb-0"><h4>Add Knowledge Card</h4></div>
             <div class="card-body">
 
-                @using (Html.BeginForm("SaveKnowledgeCard", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                @using (Html.BeginForm("SaveKnowledgeCard", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
                     <div class="row g-3">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_Card_Obj.FK_Knowledge_Base_Id,
-                                new SelectList(Model.List_Knowledge_Base_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"),
-                                "-- Select Knowledge Base --",
-                                new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Knowledge_Card_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Knowledge Card Title</label>
+                            @Html.TextBoxFor(m => m.Knowledge_Card_Obj.Knowledge_Card_Title, new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
@@ -75,6 +75,8 @@
                                 new { @class = "form-control", id = "Knowledge_Card_Description", rows = "4", required = "required" })
                         </div>
                     </div>
+                    @Html.HiddenFor(x => x.Knowledge_Card_Obj.Knowledge_Card_Id)
+                    @Html.HiddenFor(x => x.Knowledge_Card_Obj.Knowledge_Card_Code)
 
                     <button class="btn btn-primary mt-3">Save</button>
                 }
@@ -147,30 +149,34 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.List_Knowledge_Card_Business_Obj)
+                                @if (Model.List_Knowledge_Card_Business_Obj != null && Model.List_Knowledge_Card_Business_Obj.Count > 0)
                                 {
-                                    <tr>
-                                        <td>@(++i)</td>
-                                        <td>@item.Knowledge_Card_Name</td>
-                                        <td>@item.Knowledge_Card_Description</td>
-                                        <td>
-                                            @if (!string.IsNullOrEmpty(item.Knowledge_Card_Image))
-                                            {
-                                                <img src="@Url.Content(item.Knowledge_Card_Image)" style="width:120px;height:80px;" />
-                                            }
-                                            else
-                                            {
-                                                <span class="text-danger">No Image</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-warning btn-sm"
-                                               href="@Url.Action("KnowledgeCard", "Admin", new { Knowledge_Card_Id = item.Knowledge_Card_Id })">
-                                                Edit
-                                            </a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete('@Url.Action("DeleteKnowledgeCard","Admin",new { Knowledge_Card_Id = item.Knowledge_Card_Id })')"> Delete </a>
-                                        </td>
-                                    </tr>
+                                    foreach (var item in Model.List_Knowledge_Card_Business_Obj)
+                                    {
+                                        <tr>
+                                            <td>@(++i)</td>
+                                            <td>@item.Knowledge_Card_Name</td>
+                                            <td>@item.Knowledge_Card_Description</td>
+                                            <td>
+                                                @if (!string.IsNullOrEmpty(item.Knowledge_Card_Image))
+                                                {
+                                                    <img src="@Url.Content(item.Knowledge_Card_Image)" style="width:120px;height:80px;" />
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-danger">No Image</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning btn-sm"
+                                                   href="@Url.Action("KnowledgeCard", "Admin", new { Knowledge_Card_Id = item.Knowledge_Card_Id })">
+                                                    Edit
+                                                </a>
+                                                <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete('@Url.Action("DeleteKnowledgeCard","Admin",new { Knowledge_Card_Id = item.Knowledge_Card_Id })')"> Delete </a>
+                                            </td>
+                                        </tr>
+                                    }
+
                                 }
                             </tbody>
                         </table>
@@ -183,60 +189,108 @@
     {
         <!-- ================= EDIT FORM ================= -->
         <div class="card">
-            <div class="card-header pb-0"><h4>Edit Knowledge Card</h4></div>
-            <div class="card-body">
+            <div class="card-header pb-0">
+                <h4>Edit Knowledge Card</h4>
+            </div>
 
-                @using (Html.BeginForm("UpdateKnowledgeCard", "Admin", FormMethod.Post,
+            <div class="card-body">
+                @using (Html.BeginForm(
+                    "UpdateKnowledgeCard",
+                    "Admin",
+                    FormMethod.Post,
                     new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
+                    <!-- ================= ROW 1 ================= -->
                     <div class="row g-3">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_Card_Obj.FK_Knowledge_Base_Id,
-                                new SelectList(Model.List_Knowledge_Base_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"),
+                            @Html.DropDownListFor(
+                                m => m.Knowledge_Card_Obj.FK_Knowledge_Base_Id,
+                                new SelectList(
+                                    Model.List_Knowledge_Base_Business_Obj,
+                                    "Knowledge_Base_Id",
+                                    "Knowledge_Base_Page_Title",
+                                    Model.Knowledge_Card_Obj.FK_Knowledge_Base_Id
+                                ),
                                 "-- Select Knowledge Base --",
-                                new { @class = "form-control", required = "required" })
+                                new { @class = "form-control", required = "required" }
+                            )
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Knowledge Card Title</label>
+                            @Html.TextBoxFor(
+                                m => m.Knowledge_Card_Obj.Knowledge_Card_Title,
+                                new { @class = "form-control", required = "required" }
+                            )
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Image</label>
-                            @Html.TextBoxFor(m => m.Knowledge_Card_Image,
-                                new
-                                {
-                                    @class = "dropify",
-                                    type = "file",
-                                    data_default_file = Url.Content(Model.Knowledge_Card_Obj.Knowledge_Card_Image)
-                                })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Image Alt Tag</label>
-                            @Html.TextBoxFor(m => m.Knowledge_Card_Obj.Knowledge_Card_Image_Alt_Tag,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
+                    <!-- ================= ROW 2 ================= -->
+            <div class="row g-3 mt-2">
+                <div class="col-md-6">
+                    <label class="form-label">Image</label>
+                    @Html.TextBoxFor(
+                        m => m.Knowledge_Card_Image,
+                        new
+                        {
+                            @class = "dropify",
+                            type = "file",
+                            data_default_file = !string.IsNullOrEmpty(Model.Knowledge_Card_Obj.Knowledge_Card_Image)
+                                ? Url.Content(Model.Knowledge_Card_Obj.Knowledge_Card_Image)
+                                : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png")
+                        }
+                    )
+                </div>
 
+
+                <div class="col-md-6">
+                    <label class="form-label">Image Alt Tag</label>
+                    @Html.TextBoxFor(
+                        m => m.Knowledge_Card_Obj.Knowledge_Card_Image_Alt_Tag,
+                        new { @class = "form-control", required = "required" }
+                    )
+                </div>
+            </div>
+
+                    <!-- ================= ROW 3 ================= -->
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
                             <label class="form-label">Card Name</label>
-                            @Html.TextBoxFor(m => m.Knowledge_Card_Obj.Knowledge_Card_Name,
-                                new { @class = "form-control", required = "required" })
+                            @Html.TextBoxFor(
+                                m => m.Knowledge_Card_Obj.Knowledge_Card_Name,
+                                new { @class = "form-control", required = "required" }
+                            )
                         </div>
+
                         <div class="col-md-6">
                             <label class="form-label">Description</label>
-                            @Html.TextAreaFor(m => m.Knowledge_Card_Obj.Knowledge_Card_Description,
-                                new { @class = "form-control", id = "Knowledge_Card_Description", rows = "4", required = "required" })
+                            @Html.TextAreaFor(
+                                m => m.Knowledge_Card_Obj.Knowledge_Card_Description,
+                                new
+                                {
+                                    @class = "form-control",
+                                    id = "Knowledge_Card_Description",
+                                    rows = "4",
+                                    required = "required"
+                                }
+                            )
                         </div>
                     </div>
 
+                    <!-- ================= HIDDEN FIELDS ================= -->
                     @Html.HiddenFor(x => x.Knowledge_Card_Obj.Knowledge_Card_Id)
+                    @Html.HiddenFor(x => x.Knowledge_Card_Obj.Knowledge_Card_Code)
+
+                    <!-- 🔑 REQUIRED: keep old image if new not uploaded -->
                     @Html.HiddenFor(x => x.Knowledge_Card_Obj.Knowledge_Card_Image)
 
+                    <!-- ================= SUBMIT ================= -->
                     <button class="btn btn-primary mt-3">Update</button>
                 }
             </div>
         </div>
+
     }
 </div>
 

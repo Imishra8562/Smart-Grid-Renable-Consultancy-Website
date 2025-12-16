@@ -32,16 +32,12 @@
             <div class="card-header pb-0"><h4>Add Knowledge Failure Mode</h4></div>
             <div class="card-body">
 
-                @using (Html.BeginForm("SaveKnowledgeCard", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                @using (Html.BeginForm("SaveKnowledgeFailureMode", "Admin", new { area = "Admin" }, FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                 {
                     <div class="row g-3">
                         <div class="col-md-12">
                             <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id,
-                                new SelectList(Model.List_Knowledge_Base_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"),
-                                "-- Select Knowledge Base --",
-                                new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
@@ -62,24 +58,31 @@
                                 new { @class = "form-control", required = "required" })
                         </div>
                     </div>
-
                     <div class="row g-3 mt-2">
                         <div class="col-md-6">
-                            <label class="form-label">Card Name</label>
-                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Name,
+                            <label class="form-label">Knowledge_FailureMode_Title</label>
+                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title,
                                 new { @class = "form-control", required = "required" })
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Description</label>
-                            @Html.TextAreaFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Description,
-                                new { @class = "form-control", id = "Knowledge_FailureMode_Description", rows = "4", required = "required" })
+                     </div>
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Card Name</label>
+                                @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Name,
+                                    new { @class = "form-control", required = "required" })
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Description</label>
+                                @Html.TextAreaFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Description,
+                                    new { @class = "form-control", id = "Knowledge_FailureMode_Description", rows = "4", required = "required" })
+                            </div>
                         </div>
+                        @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Id)
+                        @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code)
+                        <button class="btn btn-primary mt-3">Save</button>
+                        }
                     </div>
-
-                    <button class="btn btn-primary mt-3">Save</button>
-                }
-            </div>
-        </div>
+                </div>
 
         <!-- ================= LIST ================= -->
         <div class="container-fluid mt-3">
@@ -95,7 +98,7 @@
                             <i class="fa fa-plus me-1"></i> Add Base
                         </a>
 
-                        <a href="@Url.Action("KnowledgeCard", "Admin")"
+                        <a href="@Url.Action("FailureMode", "Admin")"
                            class="btn btn-info btn-sm text-nowrap">
                             <i class="fa fa-plus me-1"></i> Add Card
                         </a>
@@ -164,10 +167,10 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-warning btn-sm"
-                                               href="@Url.Action("KnowledgeCard", "Admin", new { Knowledge_FailureMode_Id = item.Knowledge_FailureMode_Id })">
+                                               href="@Url.Action("KnowledgeFailureMode", "Admin", new { Knowledge_FailureMode_Id = item.Knowledge_FailureMode_Id })">
                                                 Edit
                                             </a>
-                                            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete('@Url.Action("DeleteKnowledgeCard","Admin",new { Knowledge_FailureMode_Id = item.Knowledge_FailureMode_Id })')"> Delete </a>
+                                            <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="confirmDelete('@Url.Action("DeleteKnowledgeFailureMode","Admin",new { Knowledge_FailureMode_Id = item.Knowledge_FailureMode_Id })')"> Delete </a>
                                         </td>
                                     </tr>
                                 }
@@ -185,54 +188,50 @@
             <div class="card-header pb-0"><h4>Edit Knowledge Failure Mode</h4></div>
             <div class="card-body">
 
-                @using (Html.BeginForm("UpdateKnowledgeCard", "Admin", FormMethod.Post,
-                    new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
-                {
+                @using (Html.BeginForm("UpdateKnowledgeFailureMode","Admin",new { area = "Admin" }, FormMethod.Post,new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                { 
                     <div class="row g-3">
                         <div class="col-md-8">
                             <label class="form-label">Knowledge Base</label>
-                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id,
-                                new SelectList(Model.List_Knowledge_Base_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"),
-                                "-- Select Knowledge Base --",
-                                new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(m => m.Knowledge_FailureMode_Obj.FK_Knowledge_Base_Id, new SelectList(Model.List_Knowledge_Base_Business_Obj, "Knowledge_Base_Id", "Knowledge_Base_Page_Title"), "-- Select Knowledge Base --", new { @class = "form-control", required = "required" })
                         </div>
                     </div>
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Image</label>
-                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Image,
-                                new
-                                {
-                                    @class = "dropify",
-                                    type = "file",
-                                    data_default_file = Url.Content(Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image)
-                                })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Image Alt Tag</label>
-                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image_Alt_Tag,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                    </div>
+                     <div class="row g-3 mt-2">
+                         <div class="col-md-6">
+                             <label class="form-label">Image</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Image, new{ @class = "dropify", type = "file", data_default_file = Url.Content(Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image)})
+                         </div>
+                         <div class="col-md-6">
+                             <label class="form-label">Image Alt Tag</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image_Alt_Tag,
+                                 new { @class = "form-control", required = "required" })
+                         </div>
+                     </div>
+                     <div class="row g-3 mt-2">
+                         <div class="col-md-6">
+                             <label class="form-label">Knowledge_FailureMode_Title</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Title,
+                                 new { @class = "form-control", required = "required" })
+                         </div>
+                     </div>
+                     <div class="row g-3 mt-2">
+                         <div class="col-md-6">
+                             <label class="form-label">Card Name</label>
+                             @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Name,
+                                 new { @class = "form-control", required = "required" })
+                         </div>
+                         <div class="col-md-6">
+                             <label class="form-label">Description</label>
+                             @Html.TextAreaFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Description,
+                                 new { @class = "form-control", id = "Knowledge_FailureMode_Description", rows = "4", required = "required" })
+                         </div>
+                     </div>
+                   
+                     @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Id)
+                     @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image)
 
-                    <div class="row g-3 mt-2">
-                        <div class="col-md-6">
-                            <label class="form-label">Card Name</label>
-                            @Html.TextBoxFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Name,
-                                new { @class = "form-control", required = "required" })
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label">Description</label>
-                            @Html.TextAreaFor(m => m.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Description,
-                                new { @class = "form-control", id = "Knowledge_FailureMode_Description", rows = "4", required = "required" })
-                        </div>
-                    </div>
-
-                    @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Id)
-                    @Html.HiddenFor(x => x.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image)
-
-                    <button class="btn btn-primary mt-3">Update</button>
+                <button class="btn btn-primary mt-3">Update</button>
                 }
             </div>
         </div>
