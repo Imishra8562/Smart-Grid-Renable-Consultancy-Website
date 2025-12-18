@@ -602,7 +602,7 @@ namespace BusinessLayer
             int Id = 0;
             try
             {
-                Knowledge_FailureMode_Repository db = new Knowledge_FailureMode_Repository();
+                Knowledge_RelatedSolution_Repository db = new Knowledge_RelatedSolution_Repository();
                 Id = db.Delete(Knowledge_RelatedSolution_Id);
             }
             catch (Exception ex)

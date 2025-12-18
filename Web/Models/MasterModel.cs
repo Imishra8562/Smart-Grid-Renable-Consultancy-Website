@@ -90,7 +90,7 @@ namespace Web.Models
         #region Knowledge RelatedSolution
         public HttpPostedFileBase Knowledge_RelatedSolution_Og_Image { get; set; }
         public HttpPostedFileBase Knowledge_RelatedSolution_Image { get; set; }
-        public Knowledge_FailureMode Knowledge_RelatedSolution_Obj { get; set; }
+        public Knowledge_RelatedSolution Knowledge_RelatedSolution_Obj { get; set; }
         public Knowledge_RelatedSolution_Business Knowledge_RelatedSolution_Business_Obj { get; set; }
         public IList<Knowledge_RelatedSolution> List_Knowledge_RelatedSolution_Obj { get; set; }
         public IList<Knowledge_RelatedSolution_Business> List_Knowledge_RelatedSolution_Business_Obj { get; set; }

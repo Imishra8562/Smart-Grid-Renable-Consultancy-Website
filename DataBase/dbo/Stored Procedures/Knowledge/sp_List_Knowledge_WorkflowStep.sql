@@ -9,10 +9,11 @@ BEGIN
         IF @Knowledge_WorkflowStep_Id = 0 SET @Knowledge_WorkflowStep_Id = NULL
 
         SELECT * FROM tbl_Knowledge_Base KB
-          INNER JOIN tbl_Knowledge_WorkflowStep KC  ON KC.FK_Knowledge_Base_Id = KB.Knowledge_Base_Id
+          INNER JOIN tbl_Knowledge_WorkflowStep KW  ON KW.FK_Knowledge_Base_Id = KB.Knowledge_Base_Id
           WHERE KB.Knowledge_Base_Id = ISNULL(@Knowledge_Base_Id, KB.Knowledge_Base_Id) 
-            AND KC.Knowledge_WorkflowStep_Id = ISNULL(@Knowledge_WorkflowStep_Id, KC.Knowledge_WorkflowStep_Id)
+            AND KW.Knowledge_WorkflowStep_Id = ISNULL(@Knowledge_WorkflowStep_Id, KW.Knowledge_WorkflowStep_Id)
             AND KB.Is_Active = 1
+            AND KW.Is_Active =1
           ORDER BY Knowledge_Base_Id
     END TRY
     BEGIN CATCH

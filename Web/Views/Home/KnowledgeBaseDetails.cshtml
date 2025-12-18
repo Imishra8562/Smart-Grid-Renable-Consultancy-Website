@@ -1,9 +1,10 @@
 ﻿@model Web.Areas.Admin.Model.MasterModel
+@using Newtonsoft.Json;
 @{
     ViewBag.Title = "KnowledgeBaseDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
+@section HeadContent {
     <!-- ================= BASIC SEO ================= -->
     <title>@Model.Knowledge_Base_Obj.Knowledge_Base_Page_Title</title>
 
@@ -48,7 +49,7 @@
 
     <meta name="twitter:image:width" content="1200" />
     <meta name="twitter:image:height" content="630" />
-</head>
+}
 
 
 <style>
@@ -176,6 +177,7 @@
     position: absolute;
     top: 8px;
     right: 15px;
+    color:black;
 }
 
 /* -----------------------------------------------------
@@ -228,248 +230,201 @@
         </div>
     </div>
 </section>
-
-<section class="py-5">
+<section class="py-5 bg-light">
     <div class="container">
         <div class="row align-items-center g-5">
+
+            <!-- ===== LEFT CONTENT ===== -->
             <div class="col-lg-7">
-                <span class="text-uppercase text-warning fw-bold small">Core Competency</span>
-                <h2 class="display-6 fw-bold text-dark mb-4">Motor Solutions (LV & MV)</h2>
+                <span class="badge bg-warning text-dark text-uppercase mb-3 px-3 py-2">
+                    Core Competency
+                </span>
 
-                <p class="text-muted fs-5 mb-4">
-                    Reliable operation starts with precision engineering. We provide expert
-                    testing, commissioning support, troubleshooting, and lifecycle engineering
-                    for motors ranging from 1 HP to 20 MW.
-                </p>
+                <h2 class="fw-bold text-dark mb-4" style="font-size: 2.3rem;">
+                    @Model.Knowledge_Base_Obj.Knowledge_Base_Page_Title
+                </h2>
 
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> Health Analysis & Performance</li>
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> Vibration Diagnostics</li>
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> Root Cause Analysis</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> MV/LV Commissioning</li>
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> Thermal Imaging</li>
-                            <li class="mb-2"><i class="fa fa-check-circle text-success me-2"></i> Lifecycle Engineering</li>
-                        </ul>
-                    </div>
+                <div class="text-muted fs-6 lh-lg">
+                    @Html.Raw(Model.Knowledge_Base_Obj.Knowledge_Base_Description)
                 </div>
             </div>
 
+            <!-- ===== RIGHT IMAGE ===== -->
             <div class="col-lg-5">
-                <div class="position-relative">
-                    <div style="position:absolute; top:-20px; right:-20px; width:100px; height:100px; background:var(--accent-color); opacity:0.2; border-radius:50%; z-index:-1;"></div>
-                    <img src="/images/motor.png"
-                         alt="Industrial Motor"
-                         class="img-fluid shadow-lg rounded-3 border border-white"
-                         style="border-width: 10px !important;">
+                <div class="position-relative text-center">
+
+                    <!-- Decorative Shape -->
+                    <div class="position-absolute top-0 end-0 translate-middle
+                    bg-warning opacity-25 rounded-circle"
+                         style="width:100px; height:100px; z-index:0;">
+                    </div>
+
+                    <div class="p-3 bg-white rounded-4 shadow position-relative" style="z-index:1;">
+                        <img src="@Url.Content(Model.Knowledge_Base_Obj.Knowledge_Base_Image)"
+                             alt="@Model.Knowledge_Base_Obj.Knowledge_Base_Image_Alt_Tag"
+                             class="img-fluid rounded-4"
+                             style="max-height:420px; object-fit:cover;">
+                    </div>
+
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>
 
+
 <section class="py-5 bg-light">
-    <div class="container">
-        <h3 class="section-title">Technical Specifications</h3>
 
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card feature-card h-100 p-4 border-0 shadow-sm">
-                    <div class="icon-wrapper">
-                        <i class="fa fa-bolt"></i>
-                    </div>
-                    <h5 class="fw-bold">Voltage Levels</h5>
-                    <p class="text-muted mb-0">
-                        <strong>LV:</strong> 415V<br>
-                        <strong>MV:</strong> 3.3kV, 6.6kV, 11kV
-                    </p>
-                </div>
-            </div>
+    @if (Model.List_Knowledge_Card_Business_Obj != null && Model.List_Knowledge_Card_Business_Obj.Count > 0)
+    {
+        <div class="container">
+            <h3 class="section-title">Motor Technical Specifications</h3>
 
-            <div class="col-md-4">
-                <div class="card feature-card h-100 p-4 border-0 shadow-sm">
-                    <div class="icon-wrapper">
-                        <i class="fa fa-cogs"></i>
-                    </div>
-                    <h5 class="fw-bold">Applications</h5>
-                    <p class="text-muted mb-0">
-                        Pumps, Compressors, Fans, Blowers, Conveyors, Crushers & Industrial Drives.
-                    </p>
-                </div>
-            </div>
+            <div class="row g-4">
+                @foreach (var item in Model.List_Knowledge_Card_Business_Obj)
+                {
+                    <div class="col-md-4">
+                        <div class="card feature-card h-100 p-4 border-0 shadow-sm">
+                            <div class="icon-wrapper">
+                                <i class="fa fa-bolt"></i>
+                            </div>
 
-            <div class="col-md-4">
-                <div class="card feature-card h-100 p-4 border-0 shadow-sm">
-                    <div class="icon-wrapper">
-                        <i class="fa fa-book"></i>
+                            <h5 class="fw-bold">
+                                @item.Knowledge_Card_Title
+                            </h5>
+
+                            <p class="text-muted mb-0">
+                                @Html.Raw(item.Knowledge_Card_Description)
+                            </p>
+                        </div>
                     </div>
-                    <h5 class="fw-bold">Standards</h5>
-                    <ul class="ps-3 mb-0 text-muted">
-                        <li>IEC 60034</li>
-                        <li>IEEE 112</li>
-                        <li>IS 325</li>
-                    </ul>
-                </div>
+                }
             </div>
         </div>
-    </div>
+    }
+
 </section>
 
 <section class="py-5">
-    <div class="container">
-        <h3 class="section-title">Testing & Commissioning Workflow</h3>
-        <p class="text-muted mb-5">Our systematic approach ensures asset integrity from installation to operation.</p>
+    @if (Model.List_Knowledge_WorkflowStep_Business_Obj != null && Model.List_Knowledge_WorkflowStep_Business_Obj.Count > 0)
+    {
+        <div class="container">
+            <h3 class="section-title">Testing & Commissioning Workflow</h3>
+            <p class="text-muted mb-5">Our systematic approach ensures asset integrity from installation to operation.</p>
 
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6">
-                <div class="card h-100 border-0 shadow-sm bg-white position-relative overflow-hidden">
-                    <div class="card-body p-4">
-                        <span class="step-number">01</span>
-                        <h6 class="text-uppercase text-warning fw-bold mb-3">Pre-Comm</h6>
-                        <h5 class="fw-bold mb-3">Static Testing</h5>
-                        <ul class="small text-muted ps-3 mb-0">
-                            <li>Insulation Resistance (IR)</li>
-                            <li>Polarization Index (PI)</li>
-                            <li>Winding Resistance</li>
-                            <li>Shaft Alignment</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <div class="row g-4">
+                @{
+                    int steNo = 1;
+                }
+                @foreach (var item in Model.List_Knowledge_WorkflowStep_Business_Obj)
+                {
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card h-100 border-0 shadow-sm bg-white position-relative overflow-hidden">
+                            <div class="card-body p-4">
+                                <span class="step-number">@steNo.ToString("D2")</span>
+                                <h6 class="text-uppercase text-warning fw-bold mb-3">@item.Knowledge_WorkflowStep_Title</h6>
+                                <h5 class="fw-bold mb-3">@item.Knowledge_WorkflowStep_Name</h5>
+                                <ul class="small text-muted ps-3 mb-0">
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card h-100 border-0 shadow-sm bg-white position-relative overflow-hidden">
-                    <div class="card-body p-4">
-                        <span class="step-number">02</span>
-                        <h6 class="text-uppercase text-info fw-bold mb-3">Start-Up</h6>
-                        <h5 class="fw-bold mb-3">Commissioning</h5>
-                        <ul class="small text-muted ps-3 mb-0">
-                            <li>No-Load Vibration</li>
-                            <li>Phase Sequence</li>
-                            <li>Starting Current/Voltage</li>
-                            <li>Behavior Verification</li>
-                        </ul>
+                                    @Html.Raw(item.Knowledge_WorkflowStep_Description)
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card h-100 border-0 shadow-sm bg-white position-relative overflow-hidden">
-                    <div class="card-body p-4">
-                        <span class="step-number">03</span>
-                        <h6 class="text-uppercase text-success fw-bold mb-3">Routine</h6>
-                        <h5 class="fw-bold mb-3">Maintenance</h5>
-                        <ul class="small text-muted ps-3 mb-0">
-                            <li>Bearing Inspection</li>
-                            <li>Thermal Scanning</li>
-                            <li>Lubrication Analysis</li>
-                            <li>Online Monitoring</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card h-100 border-0 shadow-sm bg-primary text-white position-relative overflow-hidden">
-                    <div class="card-body p-4">
-                        <span class="step-number text-white-50">04</span>
-                        <h6 class="text-uppercase text-warning fw-bold mb-3">Advanced</h6>
-                        <h5 class="fw-bold mb-3">Diagnostics</h5>
-                        <ul class="small text-white-50 ps-3 mb-0">
-                            <li>Partial Discharge</li>
-                            <li>Tan-Delta Test</li>
-                            <li>Motor Circuit Analysis</li>
-                            <li>Spectrum Analysis</li>
-                        </ul>
-                    </div>
-                </div>
+                    steNo++;
+                }
             </div>
         </div>
-    </div>
+    }
 </section>
 
 <section class="py-5 bg-light">
-    <div class="container">
-        <h3 class="section-title">Common Failure Modes</h3>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="card failure-card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="fw-bold text-danger">Insulation Breakdown</h5>
-                        <p class="small text-muted mb-0">Aging, moisture, dust, or thermal stress causing phase-to-phase faults.</p>
+    @if (Model.List_Knowledge_FailureMode_Business_Obj != null && Model.List_Knowledge_FailureMode_Business_Obj.Count > 0)
+    {
+        <div class="container">
+            <h3 class="section-title">Common Failure Modes</h3>
+            <div class="row g-4">
+                @foreach (var item in Model.List_Knowledge_FailureMode_Business_Obj)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card failure-card h-100 shadow-sm border-0">
+                            <div class="card-body">
+                                <h5 class="fw-bold text-danger">@item.Knowledge_FailureMode_Title</h5>
+                                <p class="small text-muted mb-0">@Html.Raw(item.Knowledge_FailureMode_Description)</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card failure-card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="fw-bold text-danger">Thermal Overload</h5>
-                        <p class="small text-muted mb-0">Resulting from poor ventilation, unbalanced voltage, or excessive loads.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card failure-card h-100 shadow-sm border-0">
-                    <div class="card-body">
-                        <h5 class="fw-bold text-danger">Mechanical Issues</h5>
-                        <p class="small text-muted mb-0">Bearing failures, rotor imbalance, and misalignment causing vibration.</p>
-                    </div>
-                </div>
+                }
+
             </div>
         </div>
-    </div>
+    }
 </section>
 
 <section class="py-5 bg-white">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Related Industrial Solutions</h2>
-            <p class="text-muted">Explore our other specialized engineering services.</p>
+    @if (Model.List_Knowledge_RelatedSolution_Business_Obj != null && Model.List_Knowledge_RelatedSolution_Business_Obj.Count > 0)
+    {
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Related Industrial Solutions</h2>
+                <p class="text-muted">Explore our other specialized engineering services.</p>
+            </div>
+
+            <div class="row g-4">
+                @foreach (var item in Model.List_Knowledge_RelatedSolution_Business_Obj)
+                {
+                    <div class="col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm feature-card">
+                            <img src="@Url.Content(item.Knowledge_RelatedSolution_Image)" class="card-img-top related-img-top" alt="@item.Knowledge_RelatedSolution_Image_Alt_Tag">
+                            <div class="card-body">
+                                <h4 class="fw-bold">@item.Knowledge_RelatedSolution_Name</h4>
+                                <p class="text-muted small">
+                                    @Html.Raw(item.Knowledge_RelatedSolution_Description)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </div>
-
-        <div class="row g-4">
-
-            <div class="col-lg-4">
-                <div class="card h-100 border-0 shadow-sm feature-card">
-                    <img src="/images/harmonics.png" class="card-img-top related-img-top" alt="Harmonics">
-                    <div class="card-body">
-                        <h4 class="fw-bold">Harmonic Analysis</h4>
-                        <p class="text-muted small">
-                            IEEE 519 compliance, THD measurement, and filter design to protect sensitive equipment and ensure power quality.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="card h-100 border-0 shadow-sm feature-card">
-                    <img src="/images/solar.png" class="card-img-top related-img-top" alt="Solar">
-                    <div class="card-body">
-                        <h4 class="fw-bold">Solar Plant Analysis</h4>
-                        <p class="text-muted small">
-                            Performance Ratio (PR) analysis, degradation tracking, and inverter efficiency studies for maximum generation.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="card h-100 border-0 shadow-sm feature-card">
-                    <img src="/images/substation.png" class="card-img-top related-img-top" alt="Substation">
-                    <div class="card-body">
-                        <h4 class="fw-bold">Substation Testing</h4>
-                        <p class="text-muted small">
-                            Comprehensive testing for transformers, switchgear, and relays to ensure grid stability and safety.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+    }
 </section>
+
+<script type="application/ld+json">
+@{
+    var kbItem = Model.Knowledge_Base_Obj;
+    if (kbItem != null)
+    {
+        // Remove HTML tags from description
+        string descriptionText = string.IsNullOrEmpty(kbItem.Knowledge_Base_Description)? "": System.Text.RegularExpressions.Regex.Replace(kbItem.Knowledge_Base_Description, "<.*?>", "").Trim();
+
+        // Absolute image URL
+        string imageUrl = !string.IsNullOrEmpty(kbItem.Knowledge_Base_Image)? Url.Content(kbItem.Knowledge_Base_Image): Url.Content("/Content/images/default-og.png");
+
+        // Absolute URL for the KnowledgeBaseDetails page
+        string kbUrl = Url.Action("KnowledgeBaseDetails", "Home", new { url = kbItem.Knowledge_Base_Url_Link }, Request.Url.Scheme);
+
+        var schema = new Dictionary<string, object>
+        {
+            { "@context", "https://schema.org" },
+            { "@type", "Article" },
+            { "headline", kbItem.Knowledge_Base_Name ?? "Knowledge Base Article" },
+            { "url", kbUrl },
+            { "description", descriptionText },
+            { "image", imageUrl },
+            { "datePublished", kbItem.Created_On },
+            { "dateModified", kbItem.Modified_On },
+            { "author", new Dictionary<string, object>
+                {
+                    { "@type", "Organization" },
+                    { "name", "Smart Grid Renewable Consultancy" }
+                }
+            }
+        };
+
+        @Html.Raw(JsonConvert.SerializeObject(schema, Formatting.Indented))
+    }
+}
+</script>

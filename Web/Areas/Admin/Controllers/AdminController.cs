@@ -109,7 +109,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Index_Seo_Obj.Index_Seo_Og_Image = FilePathForPhoto;
             }
             int Id = Manger.SaveIndexSeo(Model.Index_Seo_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Seo Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Index Seo!";
+            }
             return RedirectToAction("IndexSeo");
         }
         [HttpPost]
@@ -148,6 +159,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.UpdateIndexSeo(Model.Index_Seo_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Seo Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Index Seo!";
+            }
             return RedirectToAction("IndexSeo");
         }
 
@@ -157,7 +180,18 @@ namespace Web.Areas.Admin.Controllers
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteIndexSeo(Index_Seo_Id);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Seo Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Index Seo!";
+            }
             return RedirectToAction("IndexSeo");
         }
         #endregion
@@ -216,6 +250,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.SaveIndexFeatures(Model.Index_Features_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Features Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Index Features!";
+            }
             return RedirectToAction("IndexFeatures");
         }
 
@@ -255,13 +301,37 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.UpdateIndexFeatures(Model.Index_Features_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Features Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Index Features!";
+            }
             return RedirectToAction("IndexFeatures");
         }
         public ActionResult DeleteIndexFeatures(int Index_Features_Id)
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            int id = Manager.DeleteIndexFeatures(Index_Features_Id);
+            int Id = Manager.DeleteIndexFeatures(Index_Features_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Features Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Index Features!";
+            }
             return RedirectToAction("IndexFeatures");
         }
 
@@ -307,7 +377,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Index_Services_Obj.Index_Services_Icon = FilePathForPhoto;
             }
             int Id = Manager.SaveIndexServices(Model.Index_Services_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Services Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Index Services!";
+            }
             return RedirectToAction("IndexServices");
         }
         [HttpPost]
@@ -335,7 +416,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.UpdateIndexServices(Model.Index_Services_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Services Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Index Services!";
+            }
             return RedirectToAction("IndexServices");
         }
 
@@ -343,7 +435,19 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            int id = Manager.DeleteIndexServices(Index_Services_Id);
+            int Id = Manager.DeleteIndexServices(Index_Services_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Services Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Index Services!";
+            }
             return RedirectToAction("IndexServices");
         }
 
@@ -389,7 +493,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Index_Slider_Obj.Index_Slider_Image = FilePathForPhoto;
             }
             int Id = Manager.SaveIndexSlider(Model.Index_Slider_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Slider Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Index Slider!";
+            }
             return RedirectToAction("IndexSlider");
         }
         [HttpPost]
@@ -417,7 +532,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.UpdateIndexSlider(Model.Index_Slider_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Slider Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Index Slider!";
+            }
             return RedirectToAction("IndexSlider");
         }
 
@@ -425,7 +551,19 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            int id = Manager.DeleteIndexSlider(Index_Slider_Id);
+            int Id = Manager.DeleteIndexSlider(Index_Slider_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Slider Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Index Slider!";
+            }
             return RedirectToAction("IndexSlider");
         }
 
@@ -471,7 +609,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Index_Team_Obj.Index_Team_Member_Image = FilePathForPhoto;
             }
             int Id = Manager.SaveIndexTeam(Model.Index_Team_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Team Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Index Team!";
+            }
             return RedirectToAction("IndexTeam");
         }
         [HttpPost]
@@ -499,7 +648,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manager.UpdateIndexTeam(Model.Index_Team_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Team Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Index Team!";
+            }
             return RedirectToAction("IndexTeam");
         }
 
@@ -507,7 +667,19 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            int id = Manager.DeleteIndexTeam(Index_Team_Id);
+            int Id = Manager.DeleteIndexTeam(Index_Team_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Index Team Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Index Team !";
+            }
             return RedirectToAction("IndexTeam");
         }
 
@@ -694,13 +866,13 @@ namespace Web.Areas.Admin.Controllers
             {
                 TempData["AlertType"] = "success";
                 TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge_Base Category Added Successfully !";
+                TempData["AlertMessage"] = "Knowledge Base Category Added Successfully !";
             }
             else
             {
                 TempData["AlertType"] = "error";
                 TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge_Base Category!";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Base Category!";
             }
             return RedirectToAction("KnowledgeBaseCategory");
         }
@@ -717,13 +889,13 @@ namespace Web.Areas.Admin.Controllers
             {
                 TempData["AlertType"] = "success";
                 TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge_Base Category Updated Successfully !";
+                TempData["AlertMessage"] = "Knowledge Base Category Updated Successfully !";
             }
             else
             {
                 TempData["AlertType"] = "error";
                 TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge_Base Category!";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Base Category!";
             }
             return RedirectToAction("KnowledgeBaseCategory");
         }
@@ -737,13 +909,13 @@ namespace Web.Areas.Admin.Controllers
             {
                 TempData["AlertType"] = "success";
                 TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge_Base Category Deleted Successfully !";
+                TempData["AlertMessage"] = "Knowledge Base Category Deleted Successfully !";
             }
             else
             {
                 TempData["AlertType"] = "error";
                 TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge_Base Category !";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Base Category !";
             }
             return RedirectToAction("KnowledgeBaseCategory");
         }
@@ -804,7 +976,18 @@ namespace Web.Areas.Admin.Controllers
             }
 
             int Id = Manger.SaveKnowledgeBase(Model.Knowledge_Base_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Base Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Base!";
+            }
             return RedirectToAction("KnowledgeBase");
         }
         [HttpPost]
@@ -845,12 +1028,36 @@ namespace Web.Areas.Admin.Controllers
                 Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeBase(Model.Knowledge_Base_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Base Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Base!";
+            }
             return RedirectToAction("KnowledgeBase");
         }
         public ActionResult DeleteKnowledgeBase(int Knowledge_Base_Id)
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteKnowledgeBase(Knowledge_Base_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Base Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Base!";
+            }
             return RedirectToAction("KnowledgeBase");
         }
         #endregion
@@ -896,7 +1103,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
             }
             int Id = Manger.SaveKnowledgeCard(Model.Knowledge_Card_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Card Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Card!";
+            }
             return RedirectToAction("KnowledgeCard");
         }
         [HttpPost]
@@ -923,12 +1141,36 @@ namespace Web.Areas.Admin.Controllers
                 Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeCard(Model.Knowledge_Card_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Card Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Card!";
+            }
             return RedirectToAction("KnowledgeCard");
         }
         public ActionResult DeleteKnowledgeCard(int Knowledge_Card_Id)
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteKnowledgeCard(Knowledge_Card_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Card Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Card!";
+            }
             return RedirectToAction("KnowledgeCard");
         }
         #endregion
@@ -973,7 +1215,18 @@ namespace Web.Areas.Admin.Controllers
                 Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = FilePathForPhoto;
             }
             int Id = Manger.SaveKnowledgeFailureMode(Model.Knowledge_FailureMode_Obj);
-
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Failure Mode Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Failure Mode!";
+            }
             return RedirectToAction("KnowledgeFailureMode");
         }
         [HttpPost]
@@ -1001,12 +1254,36 @@ namespace Web.Areas.Admin.Controllers
                 Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = FilePathForPhoto;
             }
             int Id = Manager.UpdateKnowledgeFailureMode(Model.Knowledge_FailureMode_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Failure Mode Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update KnowledgeFailureMode!";
+            }
             return RedirectToAction("KnowledgeFailureMode");
         }
         public ActionResult DeleteKnowledgeFailureMode(int Knowledge_FailureMode_Id)
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteKnowledgeFailureMode(Knowledge_FailureMode_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Failure Mode Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Failure Mode!";
+            }
             return RedirectToAction("KnowledgeFailureMode");
         }
         #endregion
@@ -1021,7 +1298,7 @@ namespace Web.Areas.Admin.Controllers
             Model.List_Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(0, 0);
             if (Knowledge_RelatedSolution_Id.HasValue)
             {
-                Model.Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id, null).FirstOrDefault();
+                Model.Knowledge_RelatedSolution_Obj = Manager.GetKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
@@ -1035,23 +1312,34 @@ namespace Web.Areas.Admin.Controllers
 
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code = "KRSC-" + Code.ToString();
+            Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code = "KRSC-" + Code.ToString();
             int No = 0;
             if (Model.Knowledge_RelatedSolution_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*"));
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
                 string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
+                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
+                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
             }
-            int Id = Manger.SaveKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Business_Obj);
-
+            int Id = Manger.SaveKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Related Solution Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Related Solution!";
+            }
             return RedirectToAction("KnowledgeRelatedSolution");
         }
         [HttpPost]
@@ -1068,23 +1356,47 @@ namespace Web.Areas.Admin.Controllers
             if (Model.Knowledge_RelatedSolution_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "*"));
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
                 string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                Model.Knowledge_RelatedSolution_Business_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
+                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
+                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
             }
-            int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Business_Obj);
+            int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Related Solution Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Related Solution!";
+            }
             return RedirectToAction("KnowledgeRelatedSolution");
         }
         public ActionResult DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id)
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Related Solution Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Related olution!";
+            }
             return RedirectToAction("KnowledgeRelatedSolution");
         }
         #endregion
@@ -1094,12 +1406,12 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            //Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
             Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(0, 0);
             if (Knowledge_WorkflowStep_Id.HasValue)
             {
-                Model.Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id, null).FirstOrDefault();
+                Model.Knowledge_WorkflowStep_Obj = Manager.GetKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
@@ -1113,23 +1425,34 @@ namespace Web.Areas.Admin.Controllers
 
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code = "KCC-" + Code.ToString();
+            Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code = "KWFC-" + Code.ToString();
             int No = 0;
             if (Model.Knowledge_WorkflowStep_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/KnowledgeWorkflowStep/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "*"));
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
                 string extension = System.IO.Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
-                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
-                Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
+                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
+                Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
             }
-            int Id = Manger.SaveKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Business_Obj);
-
+            int Id = Manger.SaveKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Workflow Step Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Workflow Step!";
+            }
             return RedirectToAction("KnowledgeWorkflowStep");
         }
         [HttpPost]
@@ -1145,34 +1468,48 @@ namespace Web.Areas.Admin.Controllers
 
             if (Model.Knowledge_WorkflowStep_Image != null)
             {
-                string folderPath = Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/");
-
-                // ensure folder exists (THIS FIXES THE ERROR)
-                if (!Directory.Exists(folderPath))
+                string fullPath = Request.MapPath("/Upload/KnowledgeWorkflowStep/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "*"));
+                foreach (string f in files)
                 {
-                    Directory.CreateDirectory(folderPath);
+                    No += 1;
                 }
-
-                // Count existing images for same code
-                string[] files = Directory.GetFiles(folderPath, Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "*");
-                No = files.Length;
-
-                string extension = Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
-
-                string fileName = Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                Model.Knowledge_WorkflowStep_Image.SaveAs(fullSavePath);
-
-                Model.Knowledge_WorkflowStep_Business_Obj.Knowledge_WorkflowStep_Image = "~/Upload/KnowledgeWorkflowStep/Image/" + fileName;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
+                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
+                Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
             }
-            int Id = Manager.UpdateKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Business_Obj);
+            int Id = Manager.UpdateKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Work flow Step Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Work flow Step!";
+            }
             return RedirectToAction("KnowledgeWorkflowStep");
         }
         public ActionResult DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id)
         {
             IMasterManager Manager = new MasterManager();
             int Id = Manager.DeleteKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Work flow Step Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Work flow Step!";
+            }
             return RedirectToAction("KnowledgeWorkflowStep");
         }
         #endregion

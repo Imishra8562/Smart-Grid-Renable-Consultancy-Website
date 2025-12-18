@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Knowledge_WorkflowStep]
-	@FK_Knowledge_Base_Id INT=NULL,
+@FK_Knowledge_Base_Id INT=NULL,
 @Knowledge_WorkflowStep_Id INT=NULL,
 @Knowledge_WorkflowStep_Code          NVARCHAR(MAX)=NULL,
 @Knowledge_WorkflowStep_Name          NVARCHAR(MAX)=NULL,
@@ -8,8 +8,11 @@
 @Knowledge_WorkflowStep_Image_Alt_Tag NVARCHAR(MAX)=NULL,
 @Knowledge_WorkflowStep_Description   NVARCHAR(MAX)=NULL,
 
+@Created_On DATETIME=NULL,
+@Created_By INT=NULL,
 @Modified_On DATETIME=NULL,
 @Modified_By INT=NULL,
+@Created_IP NVARCHAR(MAX)=NULL,
 @Modified_IP NVARCHAR(MAX)=NULL,
 @Is_Active BIT=NULL
 

@@ -2,11 +2,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="description" content="SGRC - Smart Global Renewable & Consultancy provides expert services in Power System Studies, Renewable Energy Integration, Cybersecurity, Engineering Consulting, and Smart Infrastructure.">
-    <meta name="keywords" content="SGRC, Smart Global Renewable, Power System Studies, Renewable Energy, Engineering Consulting, Cybersecurity, FACTS, HVDC, PSS®E, PowerFactory, ETAP, Smart Grid, Energy Transition">
-    <meta name="author" content="SGRC Services">
-    <title>@ViewBag.Title - SGRC Services</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
 
+    @RenderSection("HeadContent", required: false)
 
     <!-- Stylesheets -->
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
@@ -18,9 +17,6 @@
     <link rel="icon" href="~/Content/images/favicon.png" type="image/x-icon" />
 
     <!-- Responsive -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
-
     <!-- Font Awesome FIXED -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <!-- Font icons FIXED -->
@@ -120,7 +116,10 @@
     <script src="~/Areas/Admin/Content/izitoast/iziToast.min.js"></script>
 
     <!-- Google Maps API FIXED -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyDTPlX-43R1TpcQUyWjFgiSfL_BiGxslZU"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_NEW_KEY&callback=initMap"
+            async
+            defer>
+    </script>
     <script src="~/Content/js/map-script.js"></script>
 
     @RenderSection("Scripts", required: false)

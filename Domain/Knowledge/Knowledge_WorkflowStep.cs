@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Domain
 {
     [Table("tbl_Knowledge_WorkflowStep")]
-    public class Knowledge_WorkflowStep
+    public class Knowledge_WorkflowStep: Base
     {
         [Identifier("Knowledge_WorkflowStep_Id")]
         public int Knowledge_WorkflowStep_Id { get; set; }

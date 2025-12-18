@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Knowledge_RelatedSolution]
-	@FK_Knowledge_Base_Id  INT=NULL,
+@FK_Knowledge_Base_Id  INT=NULL,
 @Knowledge_RelatedSolution_Code          NVARCHAR(MAX)=NULL,
 @Knowledge_RelatedSolution_Name          NVARCHAR(MAX)=NULL,
 @Knowledge_RelatedSolution_Title         NVARCHAR(MAX)=NULL,

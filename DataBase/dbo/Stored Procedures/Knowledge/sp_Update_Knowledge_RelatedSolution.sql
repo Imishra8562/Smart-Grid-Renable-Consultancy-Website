@@ -8,8 +8,11 @@
 @Knowledge_RelatedSolution_Image_Alt_Tag NVARCHAR(MAX)=NULL,
 @Knowledge_RelatedSolution_Description   NVARCHAR(MAX)=NULL,
 
+@Created_On DATETIME=NULL,
+@Created_By INT=NULL,
 @Modified_On DATETIME=NULL,
 @Modified_By INT=NULL,
+@Created_IP NVARCHAR(MAX)=NULL,
 @Modified_IP NVARCHAR(MAX)=NULL,
 @Is_Active BIT=NULL
 
