@@ -238,6 +238,12 @@
     <Build Include="dbo\Stored Procedures\Master\sp_List_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Delete_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Update_Knowledge_Base_Category.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services_SubTopic.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services_Feature.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services_Application.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services_GalleryImage.sql" />
+    <Build Include="dbo\Tables\tbl_Engineering_Services_Tab.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

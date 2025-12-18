@@ -59,6 +59,7 @@
     <Compile Include="Admin\Event_Detail.cs" />
     <Compile Include="Admin\Event_Detail_Business.cs" />
     <Compile Include="Admin\Industries.cs" />
+    <Compile Include="Engineering\Engineering_Services.cs" />
     <Compile Include="Knowledge\Knowledge_Base.cs" />
     <Compile Include="Admin\News.cs" />
     <Compile Include="Admin\Status.cs" />

@@ -68,6 +68,7 @@
     <Compile Include="Admin\Industries_Repository.cs" />
     <Compile Include="Admin\News_Repository.cs" />
     <Compile Include="Admin\Status_Repository.cs" />
+    <Compile Include="Knowledge\Engineering_Services_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Base_Category_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Base_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Card_Repository.cs" />
