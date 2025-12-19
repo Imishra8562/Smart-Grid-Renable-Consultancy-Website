@@ -90,7 +90,12 @@ namespace BusinessLayer.Interface
         int DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id);
         #endregion
 
-
+        #region  Engineering Services
+        int SaveEngineeringServices(Engineering_Services Object);
+        IList<Engineering_Services> GetEngineeringServices(int? Engineering_Services_Id, string Engineering_Services_Url_Link);
+        int UpdateEngineeringServices(Engineering_Services Object);
+        int DeleteEngineeringServices(int Engineering_Services_Id);
+        #endregion
     }
 
 }

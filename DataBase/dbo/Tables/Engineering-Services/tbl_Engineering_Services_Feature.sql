@@ -14,10 +14,5 @@
     [Modified_IP] NVARCHAR(MAX) NULL,
     [Is_Active] BIT NOT NULL DEFAULT (1),
 
-CONSTRAINT [Pk_Engineering_Services_Feature]
-PRIMARY KEY CLUSTERED ([Engineering_Services_Feature_Id] ASC),
-
-CONSTRAINT [FK_EngServices_Feature]
-FOREIGN KEY ([FK_Engineering_Services_Id])
-REFERENCES [dbo].[tbl_Engineering_Services]([Engineering_Services_Id])
-) ON [PRIMARY];
+CONSTRAINT [PK_Engineering_Services_Feature] PRIMARY KEY CLUSTERED ([Engineering_Services_Feature_Id] ASC)
+WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]

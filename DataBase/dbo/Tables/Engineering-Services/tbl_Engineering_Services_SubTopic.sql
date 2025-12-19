@@ -15,6 +15,6 @@
     [Modified_IP] NVARCHAR(MAX) NULL,
     [Is_Active] BIT NOT NULL DEFAULT (1),
 
-CONSTRAINT [Pk_Engineering_Services] PRIMARY KEY CLUSTERED ([Engineering_Services_Id] ASC)
+CONSTRAINT [Pk_Engineering_Services_SubTopic] PRIMARY KEY CLUSTERED ([Engineering_Services_SubTopic_Id] ASC)
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]
 

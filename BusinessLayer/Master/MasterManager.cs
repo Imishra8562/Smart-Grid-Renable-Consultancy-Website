@@ -672,5 +672,66 @@ namespace BusinessLayer
             return Id;
         }
         #endregion
+
+        #region  Engineering Services
+        public int SaveEngineeringServices(Engineering_Services Object)
+        {
+            int Id = 0;
+            try
+            {
+
+                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services> GetEngineeringServices(int? Engineering_Services_Id , string Engineering_Services_Url_Link)
+        {
+            IList<Engineering_Services> ListObj = new List<Engineering_Services> ();
+            try
+            {
+                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                ListObj = db.ListEngineeringServices(Engineering_Services_Id, Engineering_Services_Url_Link);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServices(Engineering_Services Object)
+        {
+            int Id = 0;
+            try
+            {
+                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServices(int Engineering_Services_Id)
+        {
+            int Id = 0;
+            try
+            {
+                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Id = db.Delete(Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
     }
 }

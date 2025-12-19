@@ -76,6 +76,8 @@
     <Folder Include="dbo\Stored Procedures\Product" />
     <Folder Include="dbo\Tables\Knowledge" />
     <Folder Include="dbo\Stored Procedures\Knowledge" />
+    <Folder Include="dbo\Tables\Engineering-Services" />
+    <Folder Include="dbo\Stored Procedures\Engineering-Services" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Index\tbl_Index_Features.sql" />
@@ -238,12 +240,13 @@
     <Build Include="dbo\Stored Procedures\Master\sp_List_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Delete_Knowledge_Base_Category.sql" />
     <Build Include="dbo\Stored Procedures\Master\sp_Update_Knowledge_Base_Category.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services_SubTopic.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services_Feature.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services_Application.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services_GalleryImage.sql" />
-    <Build Include="dbo\Tables\tbl_Engineering_Services_Tab.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Application.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Feature.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_GalleryImage.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_SubTopic.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Tab.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
