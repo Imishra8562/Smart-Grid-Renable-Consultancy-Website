@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Engineering_Services_Tab]
-@FK_Engineering_Services_Id INT NOT NULL,
-@Engineering_Services_Tab_Code NVARCHAR(100)=NULL,
+@FK_Engineering_Services_Id INT=NULL,
 @Engineering_Services_Tab_Title NVARCHAR(200)=NULL,
 @Engineering_Services_Tab_Content NVARCHAR(MAX)=NULL,
 
@@ -22,13 +21,11 @@ BEGIN TRY
 	  BEGIN
 		 INSERT INTO tbl_Engineering_Services_Tab(
 		 FK_Engineering_Services_Id,
-		 Engineering_Services_Tab_Code,
 		 Engineering_Services_Tab_Title,
 		 Engineering_Services_Tab_Content,
 		 Created_By,Created_IP)
 		 VALUES(
 		 @FK_Engineering_Services_Id,
-		 @Engineering_Services_Tab_Code,
 		 @Engineering_Services_Tab_Title,
 		 @Engineering_Services_Tab_Content,
 		 @Created_By,@Created_IP)

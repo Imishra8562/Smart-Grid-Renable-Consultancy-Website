@@ -680,7 +680,7 @@ namespace BusinessLayer
             try
             {
 
-                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Engineering_Services_Repository db = new Engineering_Services_Repository();
                 Id = db.Add(Object);
             }
             catch (Exception ex)
@@ -694,7 +694,7 @@ namespace BusinessLayer
             IList<Engineering_Services> ListObj = new List<Engineering_Services> ();
             try
             {
-                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Engineering_Services_Repository db = new Engineering_Services_Repository();
                 ListObj = db.ListEngineeringServices(Engineering_Services_Id, Engineering_Services_Url_Link);
             }
             catch (Exception ex)
@@ -708,7 +708,7 @@ namespace BusinessLayer
             int Id = 0;
             try
             {
-                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Engineering_Services_Repository db = new Engineering_Services_Repository();
                 Id = db.Update(Object);
             }
             catch (Exception ex)
@@ -722,7 +722,7 @@ namespace BusinessLayer
             int Id = 0;
             try
             {
-                EngineeringServicesRepository db = new EngineeringServicesRepository();
+                Engineering_Services_Repository db = new Engineering_Services_Repository();
                 Id = db.Delete(Engineering_Services_Id);
             }
             catch (Exception ex)

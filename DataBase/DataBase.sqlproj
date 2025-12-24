@@ -255,5 +255,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />
+    <None Include="DataBase_1.publish.xml" />
   </ItemGroup>
 </Project>

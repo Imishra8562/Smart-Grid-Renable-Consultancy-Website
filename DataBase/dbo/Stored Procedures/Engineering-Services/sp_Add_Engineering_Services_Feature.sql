@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Engineering_Services_Feature]
 @Engineering_Services_Applications_Code NVARCHAR(100) NULL,
-@FK_Engineering_Services_Id INT NOT NULL,
+@FK_Engineering_Services_Id INT=NULL,
 @Engineering_Services_Applications_Name NVARCHAR(300)=NULL,
 @Engineering_Services_Applications_Description NVARCHAR(MAX)=NULL,
 @Engineering_Services_Applications_IconClass NVARCHAR(200)=NULL,	

@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Engineering_Services_Gallery]
-@FK_Engineering_Services_Id INT NOT NULL,
+@FK_Engineering_Services_Id INT=NULL,
 @Engineering_Services_Gallery_Image NVARCHAR(500)=NULL,
 @Engineering_Services_Gallery_Image_Code NVARCHAR(100)=NULL,
 @Engineering_Services_Gallery_AltText NVARCHAR(500)=NULL,	
