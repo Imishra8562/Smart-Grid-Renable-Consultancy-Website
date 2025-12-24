@@ -53,6 +53,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\BaseRepository.cs" />
+    <Compile Include="Engineering-Services\Engineering_Services_Applications_Repository.cs" />
+    <Compile Include="Engineering-Services\Engineering_Services_Features_Repository.cs" />
     <Compile Include="Index\Index_Features_Repository.cs" />
     <Compile Include="Index\Index_Seo_Repository.cs" />
     <Compile Include="Index\Index_Services_Repository.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Admin\Industries_Repository.cs" />
     <Compile Include="Admin\News_Repository.cs" />
     <Compile Include="Admin\Status_Repository.cs" />
-    <Compile Include="Knowledge\Engineering_Services_Repository.cs" />
+    <Compile Include="Engineering-Services\Engineering_Services_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Base_Category_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Base_Repository.cs" />
     <Compile Include="Knowledge\Knowledge_Card_Repository.cs" />

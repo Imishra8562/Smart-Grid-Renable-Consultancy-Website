@@ -1,10 +1,11 @@
 ﻿CREATE TABLE [dbo].[tbl_Engineering_Services_Feature]
 (
     [Engineering_Services_Feature_Id] INT IDENTITY(1,1) NOT NULL,
+    [Engineering_Services_Feature_Code] NVARCHAR(100) NULL,
     [FK_Engineering_Services_Id] INT NOT NULL,
-    [Feature_Name] NVARCHAR(MAX) NULL,
-    [Feature_Description] NVARCHAR(MAX) NULL,
-    [Display_Order] INT NULL,
+    [Engineering_Services_Feature_Name] NVARCHAR(300) NULL,
+    [Engineering_Services_Feature_Description] NVARCHAR(MAX) NULL,
+    [Engineering_Services_Feature_IconClass] NVARCHAR(200) NULL,
 
     [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()),
     [Created_By] INT NOT NULL,

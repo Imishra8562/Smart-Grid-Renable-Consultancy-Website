@@ -60,6 +60,16 @@
     <Compile Include="Admin\Event_Detail_Business.cs" />
     <Compile Include="Admin\Industries.cs" />
     <Compile Include="Engineering\Engineering_Services.cs" />
+    <Compile Include="Engineering\Engineering_Services_Applications_Business.cs" />
+    <Compile Include="Engineering\Engineering_Services_Features_Business.cs" />
+    <Compile Include="Engineering\Engineering_Services_Gallery_Business.cs" />
+    <Compile Include="Engineering\Engineering_Services_SubTopic.cs" />
+    <Compile Include="Engineering\Engineering_Services_Applications.cs" />
+    <Compile Include="Engineering\Engineering_Services_Features.cs" />
+    <Compile Include="Engineering\Engineering_Services_Gallery.cs" />
+    <Compile Include="Engineering\Engineering_Services_SubTopic_Business.cs" />
+    <Compile Include="Engineering\Engineering_Services_Tabs.cs" />
+    <Compile Include="Engineering\Engineering_Services_Tabs_Business.cs" />
     <Compile Include="Knowledge\Knowledge_Base.cs" />
     <Compile Include="Admin\News.cs" />
     <Compile Include="Admin\Status.cs" />

@@ -2,10 +2,9 @@
 (
     [Engineering_Services_SubTopic_Id] INT IDENTITY(1,1) NOT NULL,
     [FK_Engineering_Services_Id] INT NOT NULL,
-    [SubTopic_Code] NVARCHAR(MAX) NULL,
-    [SubTopic_Name] NVARCHAR(MAX) NULL,
-    [SubTopic_Description] NVARCHAR(MAX) NULL,
-    [Display_Order] INT NULL,
+    [Engineering_Services_SubTopic_Code] NVARCHAR(100) NULL,
+    [Engineering_Services_SubTopic_Name] NVARCHAR(200) NULL,
+    [Engineering_Services_SubTopic_Description] NVARCHAR(MAX) NULL,
 
     [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()),
     [Created_By] INT NOT NULL,

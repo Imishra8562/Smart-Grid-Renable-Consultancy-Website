@@ -2,10 +2,8 @@
 (
     [Engineering_Services_Tab_Id] INT IDENTITY(1,1) NOT NULL,
     [FK_Engineering_Services_Id] INT NOT NULL,
-    [Tab_Code] NVARCHAR(MAX) NULL,
-    [Tab_Title] NVARCHAR(MAX) NULL,
-    [Tab_Content] NVARCHAR(MAX) NULL,
-    [Display_Order] INT NULL,
+    [Engineering_Services_Tab_Title] NVARCHAR(500) NULL,
+    [Engineering_Services_Tab_Content] NVARCHAR(MAX) NULL,
 
     [Created_On] DATETIME NOT NULL DEFAULT (GETDATE()),
     [Created_By] INT NOT NULL,
