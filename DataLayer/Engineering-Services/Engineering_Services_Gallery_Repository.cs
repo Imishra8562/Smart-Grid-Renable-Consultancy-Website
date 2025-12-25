@@ -10,22 +10,21 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class Engineering_Services_Features_Repository : BaseRepository<Engineering_Services_Features>
+    public class Engineering_Services_Gallery_Repository : BaseRepository<Engineering_Services_Gallery>
     {
-        public IList<Engineering_Services_Features> ListEngineeringServicesFeatures(int? Engineering_Services_Features_Id, int? Engineering_Services_Id)
+        public IList<Engineering_Services_Gallery> GetListEngineeringServicesGallery(int? Engineering_Services_Gallery_Id, int? Engineering_Services_Id)
         {
-            IList<Engineering_Services_Features> List_Obj = null;
+            IList<Engineering_Services_Gallery> List_Obj = null;
             try
             {
-
                 DatabaseProviderFactory factory = new DatabaseProviderFactory();
                 Database _db = factory.Create("DefConn");
-                DbCommand sqlCommand = _db.GetStoredProcCommand("sp_List_Engineering_Services_Features");
+                DbCommand sqlCommand = _db.GetStoredProcCommand("sp_List_Engineering_Services_Gallery");
                 DataSet dataSet = new DataSet();
 
                 var P1 = sqlCommand.CreateParameter();
-                P1.ParameterName = "Engineering_Services_Features_Id";
-                P1.Value = Engineering_Services_Features_Id;
+                P1.ParameterName = "Engineering_Services_Gallery_Id";
+                P1.Value = Engineering_Services_Gallery_Id;
                 sqlCommand.Parameters.Add(P1);
 
                 var P2 = sqlCommand.CreateParameter();
@@ -38,16 +37,14 @@ namespace DataLayer
                 DataSet ds = dataSet;
                 if (ds != null && ds.Tables != null && ds.Tables.Count > 0 && ds.Tables[0].Rows != null)
                 {
-                    List_Obj = DataBaseUtil.DataTableToList<Engineering_Services_Features>(ds.Tables[0]);
+                    List_Obj = DataBaseUtil.DataTableToList<Engineering_Services_Gallery>(ds.Tables[0]);
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
             return List_Obj;
         }
-
     }
 }

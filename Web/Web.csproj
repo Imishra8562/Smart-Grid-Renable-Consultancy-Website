@@ -1053,6 +1053,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
+    <Folder Include="Upload\EngineeringServicesFeatures\IconClass\" />
+    <Folder Include="Upload\EngineeringServices\Image\" />
+    <Folder Include="Upload\EngineeringServices\OGImage\" />
     <Folder Include="Upload\Index\IndexTeamMemberImage\" />
     <Folder Include="Upload\KnowledgeCard\Image\" />
     <Folder Include="Upload\KnowledgeFailureMode\Image\" />
@@ -1097,6 +1100,8 @@
     <Content Include="Areas\Admin\Views\Admin\KnowledgeRelatedSolution.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\KnowledgeWorkflowStep.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\KnowledgeBaseCategory.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServices.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServicesFeatures.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />

@@ -105,5 +105,21 @@ namespace Web.Models
         public IList<Knowledge_WorkflowStep_Business> List_Knowledge_WorkflowStep_Business_Obj { get; set; }
         #endregion
 
+        #region Engineering Services 
+        public HttpPostedFileBase Engineering_Services_Image { get; set; }
+        public HttpPostedFileBase Engineering_Services_Og_Image { get; set; }
+        public Engineering_Services Engineering_Services_Obj { get; set; }
+        public IList<Engineering_Services> List_Engineering_Services_Obj { get; set; }
+
+        #endregion
+
+        #region Engineering Services Features
+
+        public HttpPostedFileBase Engineering_Services_Features_IconClass { get; set; }
+        public Engineering_Services_Features Engineering_Services_Features_Obj { get; set; }
+        public IList<Engineering_Services_Features> List_Engineering_Services_Features_Obj { get; set; }
+       // public Engineering_Services_Features_Business Engineering_Services_Features_Business_Obj { get; set; }
+        //public IList<Engineering_Services_Features_Business> List_Engineering_Services_Features_Business_Obj { get; set; }
+        #endregion
     }
 }

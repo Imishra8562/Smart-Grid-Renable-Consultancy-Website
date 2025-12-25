@@ -1513,5 +1513,220 @@ namespace Web.Areas.Admin.Controllers
             return RedirectToAction("KnowledgeWorkflowStep");
         }
         #endregion
+
+        #region Engineering Services
+        public ActionResult EngineeringServices(int? Engineering_Services_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            if (Engineering_Services_Id.HasValue)
+            {
+                Model.Engineering_Services_Obj = Manager.GetEngineeringServices(Engineering_Services_Id,null).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServices(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_Obj.Created_By = 1;
+            Model.Engineering_Services_Obj.Created_IP = SystemIP();
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Engineering_Services_Obj.Engineering_Services_Code = "ESC-" + Code.ToString();
+            int No = 0;
+            if (Model.Engineering_Services_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServices/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Og_Image.FileName);
+                Model.Engineering_Services_Og_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
+                Model.Engineering_Services_Obj.Engineering_Services_Og_Image = FilePathForPhoto;
+            }
+            No = 0;
+            if (Model.Engineering_Services_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServices/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Image.FileName);
+                Model.Engineering_Services_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/Image/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServices/Image/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
+                Model.Engineering_Services_Obj.Engineering_Services_Image = FilePathForPhoto;
+            }
+            int Id = Manger.SaveEngineeringServices(Model.Engineering_Services_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services!";
+            }
+            return RedirectToAction("EngineeringServices");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServices(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_Obj.Modified_By = 1;
+            Model.Engineering_Services_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_Obj.Modified_IP = SystemIP();
+            int No = 0;
+            if (Model.Engineering_Services_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServices/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Og_Image.FileName);
+                Model.Engineering_Services_Og_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
+                Model.Engineering_Services_Obj.Engineering_Services_Og_Image = FilePathForPhoto;
+            }
+            No = 0;
+            if (Model.Engineering_Services_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServices/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Image.FileName);
+                Model.Engineering_Services_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/Image/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServices/Image/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
+                Model.Engineering_Services_Obj.Engineering_Services_Image = FilePathForPhoto;
+            }
+            int Id = Manager.UpdateEngineeringServices(Model.Engineering_Services_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services!";
+            }
+            return RedirectToAction("EngineeringServices");
+        }
+        public ActionResult DeleteEngineeringServices(int Engineering_Services_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServices(Engineering_Services_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services!";
+            }
+            return RedirectToAction("EngineeringServices");
+        }
+        #endregion
+
+        #region Engineering Services Features
+
+        public ActionResult EngineeringServicesFeatures(int? Engineering_Services_Features_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            Model.List_Engineering_Services_Features_Obj = Manager.GetEngineeringServicesFeatures(0, 0);
+            if (Engineering_Services_Features_Id.HasValue)
+            {
+                Model.Engineering_Services_Features_Obj = Manager.GetEngineeringServicesFeatures(Engineering_Services_Features_Id, 0).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServicesFeatures(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_Features_Obj.Created_By = 1;
+            Model.Engineering_Services_Features_Obj.Created_IP = SystemIP();
+            int Id = Manger.SaveEngineeringServicesFeatures(Model.Engineering_Services_Features_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Features Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Features!";
+            }
+            return RedirectToAction("EngineeringServicesFeatures");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServicesFeatures(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_Features_Obj.Modified_By = 1;
+            Model.Engineering_Services_Features_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_Features_Obj.Modified_IP = SystemIP();
+            int Id = Manager.UpdateEngineeringServicesFeatures(Model.Engineering_Services_Features_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Features Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Features!";
+            }
+            return RedirectToAction("EngineeringServicesFeatures");
+        }
+        public ActionResult DeleteEngineeringServicesFeatures(int Engineering_Services_Features_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServicesFeatures(Engineering_Services_Features_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Features Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Features!";
+            }
+            return RedirectToAction("EngineeringServicesFeatures");
+        }
+        #endregion
     }
 }

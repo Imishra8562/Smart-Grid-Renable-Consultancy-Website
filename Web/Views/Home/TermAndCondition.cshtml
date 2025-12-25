@@ -1,218 +1,45 @@
-﻿    public class Engineering_Services_Repository : BaseRepository<Engineering_Services>
-    {
+﻿@using (Html.BeginForm("SaveEngineeringServicesFeatures", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+{
+    <div class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">Engineering Services Features </label>
+            @Html.DropDownListFor(m => m.Engineering_Services_Features_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Engineering Services Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
+            <div class="invalid-feedback">
+                Please enter Engineering Services Features name.
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Engineering Services Features Name</label>
+            @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Feature_Name, new { @class = "form-control", @placeholder = "Enter Engineering Services Features name", @required = "required" })
+            <div class="invalid-feedback">
+                Please enter Engineering Services Features name.
+            </div>
+        </div>
 
-    public IList<Engineering_Services>
-        ListEngineeringServices(int? Engineering_Services_Id = null, string Url_Link = null)
-        {
-        IList<Engineering_Services>
-            list = null;
+        <div class="col-md-4">
+            <label class="form-label">EEngineering Services Feature Icon Class</label>
+            @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Feature_IconClass, new { @class = "form-control", @placeholder = "Engineering Services Feature Icon Class", @required = "required" })
+            <div class="invalid-feedback">
+                Please enter page title.
+            </div>
+        </div>
+    </div>
 
-            try
-            {
-            DatabaseProviderFactory factory = new DatabaseProviderFactory();
-            Database db = factory.Create("DefConn");
-            DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services");
+    <div class="row g-3 mt-2">
+        <div class="col-md-6">
+            <label class="form-label">Engineering Services Feature Description</label>
+            @Html.TextAreaFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Feature_Description, new { @class = "form-control", @rows = "5", @placeholder = "Engineering Services Feature Description", @required = "required" })
+            <div class="invalid-feedback">
+                Please enter Engineering Services Feature Description.
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(x => x.Engineering_Services_Features_Obj.Engineering_Services_Feature_Id)
+    @Html.HiddenFor(x => x.Engineering_Services_Features_Obj.Engineering_Services_Feature_Code)
 
-            var paramId = cmd.CreateParameter();
-            paramId.ParameterName = "@Engineering_Services_Id";
-            paramId.Value = Engineering_Services_Id.HasValue ? (object)Engineering_Services_Id.Value : DBNull.Value;
-            cmd.Parameters.Add(paramId);
-
-            var paramUrl = cmd.CreateParameter();
-            paramUrl.ParameterName = "@Engineering_Services_Url_Link";
-            paramUrl.Value = string.IsNullOrEmpty(Url_Link) ? DBNull.Value : (object)Url_Link;
-            cmd.Parameters.Add(paramUrl);
-
-            DataSet ds = new DataSet();
-            db.LoadDataSet(cmd, ds, TableName);
-
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-            list = DataBaseUtil.DataTableToList<Engineering_Services>
-                (ds.Tables[0]);
-                }
-                }
-                catch (Exception ex)
-                {
-                throw ex;
-                }
-
-                return list;
-                }
-
-                /// <summary>
-                    /// Get a single service by URL
-                    ///
-                </summary>
-                public Engineering_Services GetByUrl(string url)
-                {
-                if (string.IsNullOrEmpty(url))
-                return null;
-
-                var list = ListEngineeringServices(null, url);
-                if (list != null && list.Count > 0)
-                {
-                var service = list[0];
-
-                // Optionally, fetch subtopics, features, gallery, tabs
-                service.SubTopics = ListSubTopics(service.Engineering_Services_Id);
-                service.Features = ListFeatures(service.Engineering_Services_Id);
-                service.Applications = ListApplications(service.Engineering_Services_Id);
-                service.GalleryImages = ListGalleryImages(service.Engineering_Services_Id);
-                service.Tabs = ListTabs(service.Engineering_Services_Id);
-
-                return service;
-                }
-                return null;
-                }
-
-                // ----------------------------
-                // Optional methods to load related data
-                // ----------------------------
-                private IList<tbl_Engineering_Services_SubTopic>
-                    ListSubTopics(int serviceId)
-                    {
-                    IList<tbl_Engineering_Services_SubTopic>
-                        list = null;
-                        try
-                        {
-                        DatabaseProviderFactory factory = new DatabaseProviderFactory();
-                        Database db = factory.Create("DefConn");
-                        DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services_SubTopic");
-
-                        var param = cmd.CreateParameter();
-                        param.ParameterName = "@Engineering_Services_Id";
-                        param.Value = serviceId;
-                        cmd.Parameters.Add(param);
-
-                        DataSet ds = new DataSet();
-                        db.LoadDataSet(cmd, ds, "SubTopics");
-
-                        if (ds != null && ds.Tables.Count > 0)
-                        {
-                        list = DataBaseUtil.DataTableToList<tbl_Engineering_Services_SubTopic>
-                            (ds.Tables[0]);
-                            }
-                            }
-                            catch { }
-
-                            return list;
-                            }
-
-                            private IList<Engineering_Services_Feature>
-                                ListFeatures(int serviceId)
-                                {
-                                IList<Engineering_Services_Feature>
-                                    list = null;
-                                    try
-                                    {
-                                    DatabaseProviderFactory factory = new DatabaseProviderFactory();
-                                    Database db = factory.Create("DefConn");
-                                    DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services_Feature");
-
-                                    var param = cmd.CreateParameter();
-                                    param.ParameterName = "@Engineering_Services_Id";
-                                    param.Value = serviceId;
-                                    cmd.Parameters.Add(param);
-
-                                    DataSet ds = new DataSet();
-                                    db.LoadDataSet(cmd, ds, "Features");
-
-                                    if (ds != null && ds.Tables.Count > 0)
-                                    {
-                                    list = DataBaseUtil.DataTableToList<Engineering_Services_Feature>
-                                        (ds.Tables[0]);
-                                        }
-                                        }
-                                        catch { }
-
-                                        return list;
-                                        }
-
-                                        private IList<Engineering_Services_Application>
-                                            ListApplications(int serviceId)
-                                            {
-                                            IList<Engineering_Services_Application>
-                                                list = null;
-                                                try
-                                                {
-                                                DatabaseProviderFactory factory = new DatabaseProviderFactory();
-                                                Database db = factory.Create("DefConn");
-                                                DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services_Application");
-
-                                                var param = cmd.CreateParameter();
-                                                param.ParameterName = "@Engineering_Services_Id";
-                                                param.Value = serviceId;
-                                                cmd.Parameters.Add(param);
-
-                                                DataSet ds = new DataSet();
-                                                db.LoadDataSet(cmd, ds, "Applications");
-
-                                                if (ds != null && ds.Tables.Count > 0)
-                                                {
-                                                list = DataBaseUtil.DataTableToList<Engineering_Services_Application>
-                                                    (ds.Tables[0]);
-                                                    }
-                                                    }
-                                                    catch { }
-
-                                                    return list;
-                                                    }
-
-                                                    private IList<Engineering_Services_GalleryImage>
-                                                        ListGalleryImages(int serviceId)
-                                                        {
-                                                        IList<Engineering_Services_GalleryImage>
-                                                            list = null;
-                                                            try
-                                                            {
-                                                            DatabaseProviderFactory factory = new DatabaseProviderFactory();
-                                                            Database db = factory.Create("DefConn");
-                                                            DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services_GalleryImage");
-
-                                                            var param = cmd.CreateParameter();
-                                                            param.ParameterName = "@Engineering_Services_Id";
-                                                            param.Value = serviceId;
-                                                            cmd.Parameters.Add(param);
-
-                                                            DataSet ds = new DataSet();
-                                                            db.LoadDataSet(cmd, ds, "GalleryImages");
-
-                                                            if (ds != null && ds.Tables.Count > 0)
-                                                            {
-                                                            list = DataBaseUtil.DataTableToList<Engineering_Services_GalleryImage>
-                                                                (ds.Tables[0]);
-                                                                }
-                                                                }
-                                                                catch { }
-
-                                                                return list;
-                                                                }
-
-                                                                private IList<Engineering_Services_Tab>
-                                                                    ListTabs(int serviceId)
-                                                                    {
-                                                                    IList<Engineering_Services_Tab>
-                                                                        list = null;
-
-                                                                        DatabaseProviderFactory factory = new DatabaseProviderFactory();
-                                                                        Database db = factory.Create("DefConn");
-                                                                        DbCommand cmd = db.GetStoredProcCommand("sp_List_Engineering_Services_Tab");
-
-                                                                        var param = cmd.CreateParameter();
-                                                                        param.ParameterName = "@Engineering_Services_Id";
-                                                                        param.Value = serviceId;
-                                                                        cmd.Parameters.Add(param);
-
-                                                                        DataSet ds = new DataSet();
-                                                                        db.LoadDataSet(cmd, ds, "Tabs");
-
-                                                                        if (ds != null && ds.Tables.Count > 0)
-                                                                        {
-                                                                        list = DataBaseUtil.DataTableToList<Engineering_Services_Tab>
-                                                                            (ds.Tables[0]);
-                                                                            }
-
-                                                                            return list;
-                                                                            }
-                                                                            }
+    <div class="row g-3 mt-3">
+        <div class="col-md-12">
+            <button class="btn btn-primary" type="submit">Save Engineering Services Features</button>
+        </div>
+    </div>
+}

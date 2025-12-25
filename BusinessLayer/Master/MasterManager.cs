@@ -733,5 +733,64 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region Engineering Services Features
+        public int SaveEngineeringServicesFeatures(Engineering_Services_Features Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Features_Repository db = new Engineering_Services_Features_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services_Features> GetEngineeringServicesFeatures(int? Engineering_Services_Features_Id, int? Engineering_Services_Id)
+        {
+            IList<Engineering_Services_Features> ListObj = new List<Engineering_Services_Features>();
+            try
+            {
+                Engineering_Services_Features_Repository db = new Engineering_Services_Features_Repository();
+                ListObj = db.ListEngineeringServicesFeatures(Engineering_Services_Features_Id, Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServicesFeatures(Engineering_Services_Features Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Features_Repository db = new Engineering_Services_Features_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServicesFeatures(int Engineering_Services_Features_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Features_Repository db = new Engineering_Services_Features_Repository();
+                Id = db.Delete(Engineering_Services_Features_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
     }
 }
