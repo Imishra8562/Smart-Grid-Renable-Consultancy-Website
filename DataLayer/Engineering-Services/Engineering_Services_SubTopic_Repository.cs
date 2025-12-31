@@ -12,7 +12,7 @@ namespace DataLayer
 {
     public class Engineering_Services_SubTopic_Repository : BaseRepository<Engineering_Services_SubTopic>
     {
-        public IList<Engineering_Services_SubTopic> GetListEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int? Engineering_Services_Id)
+        public IList<Engineering_Services_SubTopic> ListEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int? Engineering_Services_Id)
         {
             IList<Engineering_Services_SubTopic> List_Obj = null;
             try

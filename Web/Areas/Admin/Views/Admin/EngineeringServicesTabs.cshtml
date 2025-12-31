@@ -1,0 +1,360 @@
+﻿@model Web.Areas.Admin.Model.MasterModel
+@{
+    ViewBag.Title = "EngineeringServicesTabs";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Title = TempData["AlertTitle"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+    int i = 0;
+}
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-title">
+            <div class="row">
+                <div class="col-sm-6"><h3>Engineering Services Tabs</h3></div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
+                        <li class="breadcrumb-item">Master</li>
+                        <li class="breadcrumb-item active">Engineering Services Tabs</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Engineering_Services_Tabs_Obj == null)
+    {
+        <!-- ===================== ADD NEW FORM ======================= -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Add Engineering Services Tabs Details</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("SaveEngineeringServicesTabs", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                        {
+                            <div class="row g-3">
+
+                                <!-- Engineering Service Selection -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Engineering Service</label>
+                                    @Html.DropDownListFor(m => m.Engineering_Services_Tabs_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
+                                    <div class="invalid-feedback">
+                                        Please select an Engineering Service.
+                                    </div>
+                                </div>
+
+                                <!-- Tabs Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Tabs Title</label>
+                                    @Html.TextBoxFor(m => m.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Title, new { @class = "form-control", placeholder = "Enter Tabs Title", required = "required", maxlength = "150" })
+                                    <div class="invalid-feedback">
+                                        Please enter Tabs Name.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tabs Description -->
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-12">
+                                    <label class="form-label">Tabs Description</label>
+                                    @Html.TextAreaFor(m => m.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Content, new { @class = "form-control", rows = "5", placeholder = "Enter Tabs Description", required = "required", maxlength = "1000" })
+                                    <div class="invalid-feedback">
+                                        Please enter Tabs Description.
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+
+                            <!-- Hidden Fields for Update -->
+                            @Html.HiddenFor(x => x.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Id)
+                            <!-- Submit Button -->
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Save Engineering Services Tabs
+                                    </button>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0 text-nowrap">Engineering Services Tabs</h4>
+                <div class="d-flex align-items-center gap-2">
+
+                    <!-- Visible Buttons (First 3) -->
+                    <a href="@Url.Action("EngineeringServicesTabs", "Admin")"
+                       class="btn btn-primary btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Add Base
+                    </a>
+
+                    <a href="@Url.Action("KnowledgeCard", "Admin")"
+                       class="btn btn-info btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Add Card
+                    </a>
+
+                    <a href="@Url.Action("KnowledgeFailureMode", "Admin")"
+                       class="btn btn-info btn-sm text-nowrap">
+                        <i class="fa fa-plus me-1"></i> Failure Mode
+                    </a>
+
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-sm dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            More
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a class="dropdown-item"
+                                   href="@Url.Action("KnowledgeRelatedSolution", "Admin")">
+                                    <i class="fa fa-link me-2"></i> Related Solution
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                   href="@Url.Action("KnowledgeWorkflowStep", "Admin")">
+                                    <i class="fa fa-random me-2"></i> Workflow Step
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive theme-scrollbar">
+                    <table class="display datatable" id="basic-1">
+                        <thead>
+                            <tr>
+                                <th style="width:5%">S.No</th>
+                                <th>Engineering Service</th>
+                                <th>Tabs title</th>
+                                <th>Description</th>
+                                <th style="width:15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.List_Engineering_Services_Tabs_Obj != null && Model.List_Engineering_Services_Tabs_Obj.Count > 0)
+                            {
+                                foreach (var item in Model.List_Engineering_Services_Tabs_Obj)
+                                {
+                                    <tr>
+                                        <td>@(++i)</td>
+                                        <td>
+                                            @{
+                                                var serviceName = Model.List_Engineering_Services_Obj.FirstOrDefault(x => x.Engineering_Services_Id == item.FK_Engineering_Services_Id).Engineering_Services_Name;
+                                            }
+
+                                            @serviceName
+                                        </td>
+
+                                        <!-- Tabs Name -->
+                                        <td>
+                                            <strong>@item.Engineering_Services_Tabs_Title</strong>
+                                        </td>
+                                        <!-- Description (Trimmed) -->
+                                        <td>
+                                            @{
+                                                var desc = item.Engineering_Services_Tabs_Content;
+                                                if (!string.IsNullOrEmpty(desc) && desc.Length > 80)
+                                                {
+                                                    @desc.Substring(0, 80)<text>...</text>
+                                                }
+                                                else
+                                                {
+                                                    @desc
+                                                }
+                                            }
+                                        </td>
+
+                                        <!-- Actions -->
+                                        <td class="text-center">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="@Url.Action("EngineeringServicesTabs", "Admin", new { Engineering_Services_Tabs_Id = item.Engineering_Services_Tabs_Id })" class="btn btn-warning" title="Edit Tabs">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+
+                                                <a href="@Url.Action( "DeleteEngineeringServicesTabs", "Admin", new { Engineering_Services_Tabs_Id = item.Engineering_Services_Tabs_Id })" class="btn btn-danger" title="Delete Tabs" onclick="return confirm('Are you sure you want to delete this Engineering Service Tabs?');">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div class="alert alert-light" role="alert">
+                                            No Engineering Services found. Add your first Engineering Tabs Services!
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <!-- ===================== EDIT FORM ======================= -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h4>Edit Engineering Services Tabs Details</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-body">
+                            @using (Html.BeginForm("UpdateEngineeringServicesTabs", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                            {
+                                <div class="row g-3">
+
+                                    <!-- Engineering Service Selection -->
+                                    <div class="col-md-6">
+                                        <label class="form-label">Engineering Service</label>
+                                        @Html.DropDownListFor(m => m.Engineering_Services_Tabs_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
+                                        <div class="invalid-feedback">
+                                            Please select an Engineering Service.
+                                        </div>
+                                    </div>
+
+                                    <!-- Tabs Name -->
+                                    <div class="col-md-6">
+                                        <label class="form-label">Tabs Title</label>
+                                        @Html.TextBoxFor(m => m.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Title, new { @class = "form-control", placeholder = "Enter Tabs Title", required = "required", maxlength = "150" })
+                                        <div class="invalid-feedback">
+                                            Please enter Tabs Name.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Tabs Description -->
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-12">
+                                        <label class="form-label">Tabs Description</label>
+                                        @Html.TextAreaFor(m => m.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Content, new { @class = "form-control", rows = "5", placeholder = "Enter Tabs Description", required = "required", maxlength = "1000" })
+                                        <div class="invalid-feedback">
+                                            Please enter Tabs Description.
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- Hidden Id -->
+                                @Html.HiddenFor(x => x.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Id)
+
+                                <!-- Submit -->
+                                <div class="row g-3 mt-3">
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary">
+                                            Update Engineering Service Tabs
+                                        </button>
+                                        <a href="@Url.Action("EngineeringServicesTabs", "Admin")"
+                                           class="btn btn-secondary ms-2">
+                                            Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Engineering_Services_Tabs_Description'), {
+                ckfinder: {
+                    uploadUrl: '/Home/UploadImage'
+                },
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
+                    'imageUpload', 'imageResize', '|',
+                    'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight',
+                    '|', 'blockQuote', 'undo', 'redo'
+                ],
+                image: {
+                    toolbar: [
+                        'imageTextAlternative', '|',
+                        'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight', '|',
+                        'resizeImage'
+                    ],
+                    styles: ['alignLeft', 'alignCenter', 'alignRight'],
+                    resizeOptions: [
+                        {
+                            name: 'resizeImage:original',
+                            label: 'Original',
+                            value: null
+                        },
+                        {
+                            name: 'resizeImage:25',
+                            label: '25%',
+                            value: '25'
+                        },
+                        {
+                            name: 'resizeImage:50',
+                            label: '50%',
+                            value: '50'
+                        },
+                        {
+                            name: 'resizeImage:75',
+                            label: '75%',
+                            value: '75'
+                        }
+                    ],
+                    resizeUnit: '%'
+                }
+            })
+            .catch(error => {
+                console.error('CKEditor Error:', error);
+            });
+        // Delete confirmation
+        function confirmDelete(url) {
+            event.preventDefault();
+            iziToast.question({
+                timeout: false,
+                close: false,
+                overlay: true,
+                displayMode: 'once',
+                id: 'question',
+                zindex: 999,
+                title: 'Confirm Delete',
+                message: 'Are you sure you want to delete this Engineering Services Tabs?',
+                position: 'center',
+                buttons: [
+                    ['<button><b>YES</b></button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                        window.location.href = url;
+                    }, true],
+                    ['<button>NO</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }]
+                ]
+            });
+        }
+    </script>
+}

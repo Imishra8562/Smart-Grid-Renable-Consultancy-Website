@@ -245,15 +245,31 @@
     <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Features.sql" />
     <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Gallery.sql" />
     <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_SubTopic.sql" />
-    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Tab.sql" />
+    <Build Include="dbo\Tables\Engineering-Services\tbl_Engineering_Services_Tabs.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_Applications.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_Features.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_Gallery.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_SubTopic.sql" />
-    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_Tab.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_Engineering_Services_Tabs.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services_Features.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services_Features.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services_Applications.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services_Features.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services_Gallery.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services_SubTopic.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_Engineering_Services_Tabs.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services_Applications.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services_Gallery.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services_SubTopic.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_Engineering_Services_Tabs.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services_Tabs.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services_SubTopic.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services_Gallery.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_Engineering_Services_Applications.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

@@ -1,9 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Engineering_Services_SubTopic]
 @FK_Engineering_Services_Id INT=NULL,
-@Engineering_Services_SubTopic_Code NVARCHAR(100)=NULL,
 @Engineering_Services_SubTopic_Name NVARCHAR(200)=NULL,
 @Engineering_Services_SubTopic_Description NVARCHAR(MAX)=NULL,
-
+@Engineering_Services_SubTopic_IconClass NVARCHAR(200)=NULL,
 @Created_On DATETIME=NULL,
 @Created_By INT=NULL,
 @Modified_On DATETIME=NULL,
@@ -22,15 +21,15 @@ BEGIN TRY
 	  BEGIN
 		 INSERT INTO tbl_Engineering_Services_SubTopic(
 		 FK_Engineering_Services_Id,
-		 Engineering_Services_SubTopic_Code,
 		 Engineering_Services_SubTopic_Name,
 		 Engineering_Services_SubTopic_Description,
+		 Engineering_Services_SubTopic_IconClass,
 		 Created_By,Created_IP)
 		 VALUES(
 		 @FK_Engineering_Services_Id,
-		 @Engineering_Services_SubTopic_Code,
 		 @Engineering_Services_SubTopic_Name,
 		 @Engineering_Services_SubTopic_Description,
+		 @Engineering_Services_SubTopic_IconClass,
 		 @Created_By,@Created_IP)
 		 SELECT SCOPE_IDENTITY()
 	  END

@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Engineering_Services_Applications]
-@Engineering_Services_Applications_Code NVARCHAR(100) NULL,
 @FK_Engineering_Services_Id INT=NULL,
 @Engineering_Services_Applications_Name NVARCHAR(300)=NULL,
 @Engineering_Services_Applications_Description NVARCHAR(MAX)=NULL,
@@ -22,13 +21,13 @@ DECLARE @Engineering_Services_ApplicationsId INT
 	 IF @Engineering_Services_ApplicationsId IS NULL
       BEGIN
 	  INSERT INTO tbl_Engineering_Services_Applications(
-	  Engineering_Services_Applications_Code,
+	  FK_Engineering_Services_Id,
 	  Engineering_Services_Applications_Name,
 	  Engineering_Services_Applications_Description,
 	  Engineering_Services_Applications_IconClass,
 	  Created_By,Created_IP)
 	  VALUES(
-	  @Engineering_Services_Applications_Code,
+	  @FK_Engineering_Services_Id,
 	  @Engineering_Services_Applications_Name,
 	  @Engineering_Services_Applications_Description,
 	  @Engineering_Services_Applications_IconClass,

@@ -11,7 +11,6 @@ namespace Domain
     {
         [Identifier("Engineering_Services_Applications_Id")]
         public int Engineering_Services_Applications_Id { get; set; }
-        public string Engineering_Services_Applications_Code { get; set; }    
         public int FK_Engineering_Services_Id { get; set; }
         public string Engineering_Services_Applications_Name { get; set; }
         public string Engineering_Services_Applications_Description { get; set; }

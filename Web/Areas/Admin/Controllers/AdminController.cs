@@ -1656,6 +1656,7 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
             Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
             Model.List_Engineering_Services_Features_Obj = Manager.GetEngineeringServicesFeatures(0, 0);
             if (Engineering_Services_Features_Id.HasValue)
@@ -1671,6 +1672,7 @@ namespace Web.Areas.Admin.Controllers
             IMasterManager Manger = new MasterManager();
             Model.Engineering_Services_Features_Obj.Created_By = 1;
             Model.Engineering_Services_Features_Obj.Created_IP = SystemIP();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
             int Id = Manger.SaveEngineeringServicesFeatures(Model.Engineering_Services_Features_Obj);
             if (Id != 0 && Id > 0)
             {
@@ -1726,6 +1728,358 @@ namespace Web.Areas.Admin.Controllers
                 TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Features!";
             }
             return RedirectToAction("EngineeringServicesFeatures");
+        }
+        #endregion
+
+        #region Engineering Services Applications
+
+        public ActionResult EngineeringServicesApplications(int? Engineering_Services_Applications_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            Model.List_Engineering_Services_Applications_Obj = Manager.GetEngineeringServicesApplications(0, 0);
+            if (Engineering_Services_Applications_Id.HasValue)
+            {
+                Model.Engineering_Services_Applications_Obj = Manager.GetEngineeringServicesApplications(Engineering_Services_Applications_Id, 0).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServicesApplications(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_Applications_Obj.Created_By = 1;
+            Model.Engineering_Services_Applications_Obj.Created_IP = SystemIP();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
+            int Id = Manger.SaveEngineeringServicesApplications(Model.Engineering_Services_Applications_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Applications Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Applications!";
+            }
+            return RedirectToAction("EngineeringServicesApplications");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServicesApplications(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_Applications_Obj.Modified_By = 1;
+            Model.Engineering_Services_Applications_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_Applications_Obj.Modified_IP = SystemIP();
+            int Id = Manager.UpdateEngineeringServicesApplications(Model.Engineering_Services_Applications_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Applications Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Applications!";
+            }
+            return RedirectToAction("EngineeringServicesApplications");
+        }
+        public ActionResult DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServicesApplications(Engineering_Services_Applications_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Applications Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Applications!";
+            }
+            return RedirectToAction("EngineeringServicesApplications");
+        }
+        #endregion
+
+        #region Engineering Services Tabs
+
+        public ActionResult EngineeringServicesTabs(int? Engineering_Services_Tabs_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            Model.List_Engineering_Services_Tabs_Obj = Manager.GetEngineeringServicesTabs(0, 0);
+            if (Engineering_Services_Tabs_Id.HasValue)
+            {
+                Model.Engineering_Services_Tabs_Obj = Manager.GetEngineeringServicesTabs(Engineering_Services_Tabs_Id, 0).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServicesTabs(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_Tabs_Obj.Created_By = 1;
+            Model.Engineering_Services_Tabs_Obj.Created_IP = SystemIP();
+            int Id = Manger.SaveEngineeringServicesTabs(Model.Engineering_Services_Tabs_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Tabs Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Tabs!";
+            }
+            return RedirectToAction("EngineeringServicesTabs");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServicesTabs(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_Tabs_Obj.Modified_By = 1;
+            Model.Engineering_Services_Tabs_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_Tabs_Obj.Modified_IP = SystemIP();
+            int Id = Manager.UpdateEngineeringServicesTabs(Model.Engineering_Services_Tabs_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Tabs Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Tabs!";
+            }
+            return RedirectToAction("EngineeringServicesTabs");
+        }
+        public ActionResult DeleteEngineeringServicesTabs(int Engineering_Services_Tabs_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServicesTabs(Engineering_Services_Tabs_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Tabs Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Tabs!";
+            }
+            return RedirectToAction("EngineeringServicesTabs");
+        }
+        #endregion
+
+        #region Engineering Services SubTopic
+
+        public ActionResult EngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            Model.List_Engineering_Services_SubTopic_Obj = Manager.GetEngineeringServicesSubTopic(0, 0);
+            if (Engineering_Services_SubTopic_Id.HasValue)
+            {
+                Model.Engineering_Services_SubTopic_Obj = Manager.GetEngineeringServicesSubTopic(Engineering_Services_SubTopic_Id, 0).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServicesSubTopic(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_SubTopic_Obj.Created_By = 1;
+            Model.Engineering_Services_SubTopic_Obj.Created_IP = SystemIP();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
+            int Id = Manger.SaveEngineeringServicesSubTopic(Model.Engineering_Services_SubTopic_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services SubTopic Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services SubTopic!";
+            }
+            return RedirectToAction("EngineeringServicesSubTopic");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServicesSubTopic(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_SubTopic_Obj.Modified_By = 1;
+            Model.Engineering_Services_SubTopic_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_SubTopic_Obj.Modified_IP = SystemIP();
+            int Id = Manager.UpdateEngineeringServicesSubTopic(Model.Engineering_Services_SubTopic_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services SubTopic Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services SubTopic!";
+            }
+            return RedirectToAction("EngineeringServicesSubTopic");
+        }
+        public ActionResult DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServicesSubTopic(Engineering_Services_SubTopic_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services SubTopic Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services SubTopic!";
+            }
+            return RedirectToAction("EngineeringServicesSubTopic");
+        }
+        #endregion
+
+        #region Engineering Services Gallery
+
+        public ActionResult EngineeringServicesGallery(int? Engineering_Services_Gallery_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manager = new MasterManager();
+            ViewBag.IconList = IconCatalog.FeatureIcons;
+            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
+            Model.List_Engineering_Services_Gallery_Obj = Manager.GetEngineeringServicesGallery(0, 0);
+            if (Engineering_Services_Gallery_Id.HasValue)
+            {
+                Model.Engineering_Services_Gallery_Obj = Manager.GetEngineeringServicesGallery(Engineering_Services_Gallery_Id, 0).FirstOrDefault();
+            }
+            return View(Model);
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult SaveEngineeringServicesGallery(MasterModel Model)
+        {
+            IMasterManager Manger = new MasterManager();
+            Model.Engineering_Services_Gallery_Obj.Created_By = 1;
+            Model.Engineering_Services_Gallery_Obj.Created_IP = SystemIP();
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code = "ESG-" + Code.ToString();
+            int No = 0;
+            if (Model.Engineering_Services_Gallery_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServicesGallery/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Gallery_Image.FileName);
+                Model.Engineering_Services_Gallery_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServicesGallery/Image/" + Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServicesGallery/Image/" + Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "_" + No + extension;
+                Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image = FilePathForPhoto;
+            }
+            int Id = Manger.SaveEngineeringServicesGallery(Model.Engineering_Services_Gallery_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Gallery!";
+            }
+            return RedirectToAction("EngineeringServicesGallery");
+        }
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateEngineeringServicesGallery(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.Engineering_Services_Gallery_Obj.Modified_By = 1;
+            Model.Engineering_Services_Gallery_Obj.Modified_On = DateTime.Now;
+            Model.Engineering_Services_Gallery_Obj.Modified_IP = SystemIP();
+            int No = 0;
+            if (Model.Engineering_Services_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/EngineeringServices/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Og_Image.FileName);
+                Model.Engineering_Services_Og_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
+                Model.Engineering_Services_Obj.Engineering_Services_Og_Image = FilePathForPhoto;
+            }
+            int Id = Manager.UpdateEngineeringServicesGallery(Model.Engineering_Services_Gallery_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Gallery!";
+            }
+            return RedirectToAction("EngineeringServicesGallery");
+        }
+        public ActionResult DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngineeringServicesGallery(Engineering_Services_Gallery_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Gallery!";
+            }
+            return RedirectToAction("EngineeringServicesGallery");
         }
         #endregion
     }

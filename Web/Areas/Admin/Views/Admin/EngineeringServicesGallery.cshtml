@@ -1,110 +1,83 @@
 ﻿@model Web.Areas.Admin.Model.MasterModel
 @{
-    ViewBag.Title = "EngineeringServicesFeatures";
+    ViewBag.Title = "EngineeringServicesGallery";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     var Type = TempData["AlertType"] ?? string.Empty;
     var Title = TempData["AlertTitle"] ?? string.Empty;
     var Message = TempData["AlertMessage"] ?? string.Empty;
     int i = 0;
 }
-
 <div class="page-body">
     <div class="container-fluid">
         <div class="page-title">
             <div class="row">
-                <div class="col-sm-6"><h3>Engineering Services Features</h3></div>
+                <div class="col-sm-6"><h3>Engineering Services Gallery</h3></div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#"><i data-feather="home"></i></a></li>
                         <li class="breadcrumb-item">Master</li>
-                        <li class="breadcrumb-item active">Engineering Services Features</li>
+                        <li class="breadcrumb-item active">Engineering Services Gallery</li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
 
-    @if (Model.Engineering_Services_Features_Obj == null)
+    @if (Model.Engineering_Services_Gallery_Obj == null)
     {
         <!-- ===================== ADD NEW FORM ======================= -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h4>Add Engineering Services Features Details</h4>
+                        <h4>Add Engineering Services Gallery Details</h4>
                     </div>
                     <div class="card-body">
-                        @using (Html.BeginForm("SaveEngineeringServicesFeatures", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                        @using (Html.BeginForm("SaveEngineeringServicesGallery", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                         {
                             <div class="row g-3">
 
                                 <!-- Engineering Service Selection -->
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <label class="form-label">Engineering Service</label>
-                                    @Html.DropDownListFor(m => m.Engineering_Services_Features_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
+                                    @Html.DropDownListFor(m => m.Engineering_Services_Gallery_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
                                     <div class="invalid-feedback">
                                         Please select an Engineering Service.
                                     </div>
                                 </div>
-
-                                <!-- Feature Name -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Feature Name</label>
-                                    @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_Name, new { @class = "form-control", placeholder = "Enter Feature Name", required = "required", maxlength = "150" })
-                                    <div class="invalid-feedback">
-                                        Please enter Feature Name.
-                                    </div>
-                                </div>
-
-                                <!--Icon Class -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Select Feature Icon</label>
-
-                                    <select class="form-select"
-                                            onchange="setIconClass(this.value)">
-                                        <option value="">-- Select Icon --</option>
-
-                                        @foreach (var icon in ViewBag.IconList as List<string>)
-                                        {
-                                            <option value="@icon">@icon</option>
-                                        }
-                                    </select>
-
-                                    <div class="mt-2">
-                                        <span class="fa-icon">
-                                            <i id="iconPreview" class="fs-3 text-primary"></i>
-                                        </span>
-                                    </div>
-                                </div>
-
                             </div>
 
-                            <!-- Feature Description -->
+                            <!-- Gallery Image + alt text -->
                             <div class="row g-3 mt-2">
-                                <div class="col-md-8">
-                                    <label class="form-label">Feature Description</label>
-                                    @Html.TextAreaFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_Description, new { @class = "form-control", rows = "5", placeholder = "Enter Feature Description", required = "required", maxlength = "1000" })
+                                <!-- Gallery Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Gallery Image </label>
+                                    @{
+                                        var currentImage = !string.IsNullOrEmpty(Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image) ? Url.Content(Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image) : Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                    }
+                                    @Html.TextBoxFor(m => m.Engineering_Services_Gallery_Image, new { @class = "dropify", type = "file", data_default_file = currentImage, data_max_file_size = "5M", data_allowed_file_extensions = "jpg png jpeg webp" })
                                     <div class="invalid-feedback">
-                                        Please enter Feature Description.
+                                        Please enter Gallery Name.
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Feature Icon Class</label>
-                                    @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_IconClass, new { @class = "form-control", id = "IconClassInput", placeholder = "e.g. fa-solid fa-network-wired", required = "required", maxlength = "100" })
+                                <div class="col-md-6">
+                                    <label class="form-label">Alt Text</label>
+                                    @Html.TextBoxFor(m => m.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_AltText, new { @class = "form-control", placeholder = "e.g. fa-solid fa-network-wired", required = "required", maxlength = "100" })
                                     <div class="invalid-feedback">
-                                        Please enter Feature Icon Class.
+                                        Please enter Gallery Alt Text.
                                     </div>
                                 </div>
 
                             </div>
 
                             <!-- Hidden Fields for Update -->
-                            @Html.HiddenFor(x => x.Engineering_Services_Features_Obj.Engineering_Services_Features_Id)
+                            @Html.HiddenFor(x => x.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Id)
+                            @Html.HiddenFor(x => x.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code)
                             <!-- Submit Button -->
                             <div class="row g-3 mt-3">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary">
-                                        Save Engineering Services Feature
+                                        Save Engineering Services Gallery
                                     </button>
                                 </div>
                             </div>
@@ -116,11 +89,11 @@
         </div>
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h4 class="mb-0 text-nowrap">Engineering Services Features</h4>
+                <h4 class="mb-0 text-nowrap">Engineering Services Gallery</h4>
                 <div class="d-flex align-items-center gap-2">
 
                     <!-- Visible Buttons (First 3) -->
-                    <a href="@Url.Action("EngineeringServicesFeatures", "Admin")"
+                    <a href="@Url.Action("EngineeringServicesGallery", "Admin")"
                        class="btn btn-primary btn-sm text-nowrap">
                         <i class="fa fa-plus me-1"></i> Add Base
                     </a>
@@ -169,16 +142,15 @@
                             <tr>
                                 <th style="width:5%">S.No</th>
                                 <th>Engineering Service</th>
-                                <th>Feature Name</th>
-                                <th>Icon (Class)</th>
-                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Alt Text</th>
                                 <th style="width:15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model.List_Engineering_Services_Features_Obj != null && Model.List_Engineering_Services_Features_Obj.Count > 0)
+                            @if (Model.List_Engineering_Services_Gallery_Obj != null && Model.List_Engineering_Services_Gallery_Obj.Count > 0)
                             {
-                                foreach (var item in Model.List_Engineering_Services_Features_Obj)
+                                foreach (var item in Model.List_Engineering_Services_Gallery_Obj)
                                 {
                                     <tr>
                                         <td>@(++i)</td>
@@ -190,58 +162,29 @@
                                             @serviceName
                                         </td>
 
-                                        <!-- Feature Name -->
+                                        <!-- Gallery Name -->
                                         <td>
-                                            <strong>@item.Engineering_Services_Features_Name</strong>
+                                            <strong>@item.Engineering_Services_Gallery_Image</strong>
                                         </td>
-
+                                        <!-- Alt Text -->
                                         <td>
-                                            <span class="fa-icon">
-                                                <i class="@item.Engineering_Services_Features_IconClass me-2 fs-5"></i>
-                                            </span>
-                                            <span class="text-muted">@item.Engineering_Services_Features_IconClass</span>
-                                        </td>
-
-
-                                        <!-- Description (Trimmed) -->
-                                        <td>
-                                            @{
-                                                var desc = item.Engineering_Services_Features_Description;
-                                                if (!string.IsNullOrEmpty(desc) && desc.Length > 80)
-                                                {
-                                                    @desc.Substring(0, 80)<text>...</text>
-                                                }
-                                                else
-                                                {
-                                                    @desc
-                                                }
-                                            }
+                                                @item.Engineering_Services_Gallery_AltText
                                         </td>
 
                                         <!-- Actions -->
                                         <td class="text-center">
                                             <div class="btn-group btn-group-sm" role="group">
-                                                <a href="@Url.Action("EngineeringServicesFeatures", "Admin", new { Engineering_Services_Features_Id = item.Engineering_Services_Features_Id })" class="btn btn-warning" title="Edit Feature">
+                                                <a href="@Url.Action("EngineeringServicesGallery", "Admin", new { Engineering_Services_Gallery_Image_Id = item.Engineering_Services_Gallery_Image_Id })" class="btn btn-warning" title="Edit Gallery">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
 
-                                                <a href="@Url.Action( "DeleteEngineeringServicesFeatures", "Admin", new { Engineering_Services_Features_Id = item.Engineering_Services_Features_Id })" class="btn btn-danger" title="Delete Feature" onclick="return confirm('Are you sure you want to delete this Engineering Service Feature?');">
+                                                <a href="@Url.Action( "DeleteEngineeringServicesGallery", "Admin", new { Engineering_Services_Gallery_Id = item.Engineering_Services_Gallery_Image_Id })" class="btn btn-danger" title="Delete Gallery" onclick="return confirm('Are you sure you want to delete this Engineering Service Gallery?');">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
                                 }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td colspan="5" class="text-center">
-                                        <div class="alert alert-light" role="alert">
-                                            No Engineering Services found. Add your first Engineering Features Services!
-                                        </div>
-                                    </td>
-                                </tr>
                             }
                         </tbody>
                     </table>
@@ -256,60 +199,59 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header pb-0">
-                        <h4>Edit Engineering Services Features Details</h4>
+                        <h4>Edit Engineering Services Gallery Details</h4>
                     </div>
                     <div class="card-body">
                         <div class="card-body">
-                            @using (Html.BeginForm("UpdateEngineeringServicesFeatures", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                            @using (Html.BeginForm("UpdateEngineeringServicesGallery", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                             {
                                 <div class="row g-3">
 
                                     <!-- Engineering Service Selection -->
-                                    <div class="col-md-4">
+                                    <div class="col-md-12">
                                         <label class="form-label">Engineering Service</label>
-                                        @Html.DropDownListFor(m => m.Engineering_Services_Features_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name", Model.Engineering_Services_Features_Obj.FK_Engineering_Services_Id), "-- Select Engineering Service --", new { @class = "form-select", required = "required" })
+                                        @Html.DropDownListFor(m => m.Engineering_Services_Gallery_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
                                         <div class="invalid-feedback">
                                             Please select an Engineering Service.
                                         </div>
                                     </div>
-
-                                    <!-- Feature Name -->
-                                    <div class="col-md-4">
-                                        <label class="form-label">Feature Name</label>
-                                        @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_Name, new { @class = "form-control", placeholder = "Enter Feature Name", required = "required", maxlength = "150" })
-                                        <div class="invalid-feedback">
-                                            Please enter Feature Name.
-                                        </div>
-                                    </div>
-
-                                    <!-- Feature Icon Class -->
-                                    <div class="col-md-4">
-                                        <label class="form-label">Feature Icon Class</label>
-                                        @Html.TextBoxFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_IconClass, new { @class = "form-control", placeholder = "e.g. fa-solid fa-network-wired", required = "required", maxlength = "100" })
-                                        <div class="invalid-feedback">
-                                            Please enter Feature Icon Class.
-                                        </div>
-                                    </div>
                                 </div>
 
-                                <!-- Feature Description -->
+                                <!-- Gallery Image + alt text -->
                                 <div class="row g-3 mt-2">
-                                    <div class="col-md-8">
-                                        <label class="form-label">Feature Description</label>
-                                        @Html.TextAreaFor(m => m.Engineering_Services_Features_Obj.Engineering_Services_Features_Description, new { @class = "form-control", rows = "5", placeholder = "Enter Feature Description", required = "required", maxlength = "1000" })
+                                    <!-- Gallery Name -->
+                                    <div class="col-md-6">
+                                        <label class="form-label">Gallery Name</label>
+                                        @Html.TextBoxFor(m => m.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image, new { @class = "form-control", placeholder = "Enter Gallery Name", required = "required", maxlength = "150" })
                                         <div class="invalid-feedback">
-                                            Please enter Feature Description.
+                                            Please enter Gallery Name.
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Alt Text</label>
+                                        @Html.TextBoxFor(m => m.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_AltText, new { @class = "form-control", placeholder = "e.g. fa-solid fa-network-wired", required = "required", maxlength = "100" })
+                                        <div class="invalid-feedback">
+                                            Please enter Gallery Alt Text.
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <!-- Hidden Fields -->
-                                @Html.HiddenFor(x => x.Engineering_Services_Features_Obj.Engineering_Services_Features_Id)
-                                <!-- Submit Button -->
+                                <!-- Hidden Id -->
+                                @Html.HiddenFor(x => x.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Id)
+                                @Html.HiddenFor(x => x.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code)
+                                @Html.HiddenFor(x => x.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image)
+
+                                <!-- Submit -->
                                 <div class="row g-3 mt-3">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary"> Update Engineering Service Feature </button>
-                                        <a href="@Url.Action("EngineeringServicesFeatures", "Admin")" class="btn btn-secondary ms-2">  Cancel </a>
+                                        <button type="submit" class="btn btn-primary">
+                                            Update Engineering Service Gallery
+                                        </button>
+                                        <a href="@Url.Action("EngineeringServicesGallery", "Admin")"
+                                           class="btn btn-secondary ms-2">
+                                            Cancel
+                                        </a>
                                     </div>
                                 </div>
                             }
@@ -325,12 +267,12 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
     <script>
         //ClassicEditor
-        //    .create(document.querySelector('#Engineering Services Features_Description'))
+        //    .create(document.querySelector('#Engineering Services Gallery_Description'))
         //    .catch(error => {
         //        console.error(error);
         //    });
         ClassicEditor
-            .create(document.querySelector('#Engineering_Services_Features_Description'), {
+            .create(document.querySelector('#Engineering_Services_Gallery_Description'), {
                 ckfinder: {
                     uploadUrl: '/Home/UploadImage'
                 },
@@ -401,7 +343,7 @@
                     pageLength: 10,
                     language: {
                         search: "_INPUT_",
-                        searchPlaceholder: "Search Engineering Services Features..."
+                        searchPlaceholder: "Search Engineering Services Gallery..."
                     }
                 });
             }
@@ -456,7 +398,7 @@
                 id: 'question',
                 zindex: 999,
                 title: 'Confirm Delete',
-                message: 'Are you sure you want to delete this Engineering Services Features?',
+                message: 'Are you sure you want to delete this Engineering Services Gallery?',
                 position: 'center',
                 buttons: [
                     ['<button><b>YES</b></button>', function (instance, toast) {
@@ -470,34 +412,5 @@
             });
         }
     </script>
-    <script>
-        function setIconClass(iconClass) {
-
-            // 1. Copy value into textbox
-            document.getElementById("IconClassInput").value = iconClass;
-
-            // 2. Update preview
-            previewIcon(iconClass);
-        }
-
-        function previewIcon(iconClass) {
-            const icon = document.getElementById("iconPreview");
-
-            if (!iconClass) {
-                icon.className = "";
-                return;
-            }
-
-            icon.className = iconClass + " fs-3 text-primary";
-        }
-
-        // Edit mode: show preview if value already exists
-        window.onload = function () {
-            var existingIcon = document.getElementById("IconClassInput").value;
-            previewIcon(existingIcon);
-        };
-    </script>
-
-
 }
 

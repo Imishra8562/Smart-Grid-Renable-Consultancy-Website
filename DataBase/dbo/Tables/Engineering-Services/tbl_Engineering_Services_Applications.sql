@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [dbo].[tbl_Engineering_Services_Applications]
 (
     [Engineering_Services_Applications_Id] INT IDENTITY(1,1) NOT NULL,
-    [Engineering_Services_Applications_Code] NVARCHAR(100) NULL,
     [FK_Engineering_Services_Id] INT NOT NULL,
     [Engineering_Services_Applications_Name] NVARCHAR(300) NULL,
     [Engineering_Services_Applications_Description] NVARCHAR(MAX) NULL,

@@ -105,32 +105,33 @@ namespace BusinessLayer.Interface
         int DeleteEngineeringServicesFeatures(int Engineering_Services_Features_Id);
         #endregion
 
-        //#region Engineering Services SubTopic
-        //int SaveEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
-        //IList<Engineering_Services_SubTopic_Business> GetEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int Engineering_Services_Id);
-        //int UpdateEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
-        //int DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id);
-        //#endregion
+        #region Engineering Services SubTopic
+        int SaveEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
+        IList<Engineering_Services_SubTopic> GetEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int? Engineering_Services_Id);
+        int UpdateEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
+        int DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id);
+        #endregion
 
-        //#region Engineering Services Gallery
-        //int SaveEngineeringServicesGallery(Engineering_Services_Gallery Object);
-        //IList<Engineering_Services_Gallery_Business> GetEngineeringServicesGallery(int? Engineering_Services_Gallery_Id, int Engineering_Services_Id);
-        //int UpdateEngineeringServicesGallery(Engineering_Services_Gallery Object);
-        //int DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id);
-        //#endregion
-        //#region Engineering Services Applications
-        //int SaveEngineeringServicesApplication(Engineering_Services_Applications Object);
-        //IList<Engineering_Services_Applications_Business> GetEngineeringServicesApplications(int? Engineering_Services_Applications_Id, int Engineering_Services_Id);
-        //int UpdateEngineeringServicesApplications(Engineering_Services_Applications Object);
-        //int DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id);
-        //#endregion
+        #region Engineering Services Gallery
+        int SaveEngineeringServicesGallery(Engineering_Services_Gallery Object);
+        IList<Engineering_Services_Gallery> GetEngineeringServicesGallery(int? Engineering_Services_Gallery_Id, int? Engineering_Services_Id);
+        int UpdateEngineeringServicesGallery(Engineering_Services_Gallery Object);
+        int DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id);
+        #endregion
 
-        //#region Engineering Services Tabs
-        //int SaveEngineeringServicesTab(Engineering_Services_Tabs Object);
-        //IList<Engineering_Services_Tabs_Business> GetEngineeringServicesTabs(int? Engineering_Services_Tabs_Id, int Engineering_Services_Id);
-        //int UpdateEngineeringServicesTabs(Engineering_Services_Tabs Object);
-        //int DeleteEngineeringServicesTab(int Engineering_Services_Tabs_Id);
-        //#endregion
+        #region Engineering Services Applications
+        int SaveEngineeringServicesApplications(Engineering_Services_Applications Object);
+        IList<Engineering_Services_Applications> GetEngineeringServicesApplications(int? Engineering_Services_Applications_Id, int? Engineering_Services_Id);
+        int UpdateEngineeringServicesApplications(Engineering_Services_Applications Object);
+        int DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id);
+        #endregion
+
+        #region Engineering Services Tabs
+        int SaveEngineeringServicesTabs(Engineering_Services_Tabs Object);
+        IList<Engineering_Services_Tabs> GetEngineeringServicesTabs(int? Engineering_Services_Tabs_Id, int? Engineering_Services_Id);
+        int UpdateEngineeringServicesTabs(Engineering_Services_Tabs Object);
+        int DeleteEngineeringServicesTabs(int Engineering_Services_Tabs_Id);
+        #endregion
 
     }
 

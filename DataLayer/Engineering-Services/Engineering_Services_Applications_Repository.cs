@@ -12,7 +12,7 @@ namespace DataLayer
 {
     public class Engineering_Services_Applications_Repository :BaseRepository<Engineering_Services_Applications>
     {
-        public IList<Engineering_Services_Applications> GetListEngineeringServicesApplications(int? Engineering_Services_Applications_Id, string Engineering_Services_Id)
+        public IList<Engineering_Services_Applications> ListEngineeringServicesApplications(int? Engineering_Services_Applications_Id, int? Engineering_Services_Id)
         {
             IList<Engineering_Services_Applications> List_Obj = null;
             try

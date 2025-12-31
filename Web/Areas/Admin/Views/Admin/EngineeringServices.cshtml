@@ -44,8 +44,6 @@
                                         Please enter Engineering Services name.
                                     </div>
                                 </div>
-
-                                +++++++++
                                 <div class="col-md-6">
                                     <label class="form-label">Engineering Services Title</label>
                                     @Html.TextBoxFor(m => m.Engineering_Services_Obj.Engineering_Services_Page_Title, new { @class = "form-control", @placeholder = "Enter page title", @required = "required" })
@@ -241,10 +239,7 @@
                                         <td>
                                             @if (!string.IsNullOrEmpty(items.Engineering_Services_Image))
                                             {
-                                                <img src="@Url.Content(items.Engineering_Services_Image)"
-                                                     style="width:100px; height:70px; object-fit:cover;"
-                                                     class="img-thumbnail"
-                                                     alt="@items.Engineering_Services_Image_Alt_Tag" />
+                                                <img src="@Url.Content(items.Engineering_Services_Image)"style="width:100px; height:70px; object-fit:cover;" class="img-thumbnail" alt="@items.Engineering_Services_Image_Alt_Tag" />
                                             }
                                             else
                                             {
@@ -432,11 +427,6 @@
 @section Scripts {
     <script src="https://cdn.ckeditor.com/ckeditor5/12.0.0/classic/ckeditor.js"></script>
     <script>
-        //ClassicEditor
-        //    .create(document.querySelector('#Engineering Services_Description'))
-        //    .catch(error => {
-        //        console.error(error);
-        //    });
         ClassicEditor
             .create(document.querySelector('#Engineering_Services_Description'), {
                 ckfinder: {

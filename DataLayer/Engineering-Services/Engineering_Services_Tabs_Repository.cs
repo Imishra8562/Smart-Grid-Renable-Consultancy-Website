@@ -12,7 +12,7 @@ namespace DataLayer
 {
     public class Engineering_Services_Tabs_Repository : BaseRepository<Engineering_Services_Tabs>
     {
-        public IList<Engineering_Services_Tabs> GetListEngineeringServicesTabs(int? Engineering_Services_Tab_Id, int? Engineering_Services_Id)
+        public IList<Engineering_Services_Tabs> ListEngineeringServicesTabs(int? Engineering_Services_Tabs_Id, int? Engineering_Services_Id)
         {
             IList<Engineering_Services_Tabs> List_Obj = null;
             try
@@ -23,8 +23,8 @@ namespace DataLayer
                 DataSet dataSet = new DataSet();
 
                 var P1 = sqlCommand.CreateParameter();
-                P1.ParameterName = "Engineering_Services_Tab_Id";
-                P1.Value = Engineering_Services_Tab_Id;
+                P1.ParameterName = "Engineering_Services_Tabs_Id";
+                P1.Value = Engineering_Services_Tabs_Id;
                 sqlCommand.Parameters.Add(P1);
 
                 var P2 = sqlCommand.CreateParameter();

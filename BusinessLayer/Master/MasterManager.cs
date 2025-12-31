@@ -792,5 +792,241 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region Engineering Services Applications
+        public int SaveEngineeringServicesApplications(Engineering_Services_Applications Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Applications_Repository db = new Engineering_Services_Applications_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services_Applications> GetEngineeringServicesApplications(int? Engineering_Services_Applications_Id, int? Engineering_Services_Id)
+        {
+            IList<Engineering_Services_Applications> ListObj = new List<Engineering_Services_Applications>();
+            try
+            {
+                Engineering_Services_Applications_Repository db = new Engineering_Services_Applications_Repository();
+                ListObj = db.ListEngineeringServicesApplications(Engineering_Services_Applications_Id, Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServicesApplications(Engineering_Services_Applications Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Applications_Repository db = new Engineering_Services_Applications_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Applications_Repository db = new Engineering_Services_Applications_Repository();
+                Id = db.Delete(Engineering_Services_Applications_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region Engineering Services Gallery
+        public int SaveEngineeringServicesGallery(Engineering_Services_Gallery Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Gallery_Repository db = new Engineering_Services_Gallery_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services_Gallery> GetEngineeringServicesGallery(int? Engineering_Services_Gallery_Id, int? Engineering_Services_Id)
+        {
+            IList<Engineering_Services_Gallery> ListObj = new List<Engineering_Services_Gallery>();
+            try
+            {
+                Engineering_Services_Gallery_Repository db = new Engineering_Services_Gallery_Repository();
+                ListObj = db.ListEngineeringServicesGallery(Engineering_Services_Gallery_Id, Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServicesGallery(Engineering_Services_Gallery Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Gallery_Repository db = new Engineering_Services_Gallery_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Gallery_Repository db = new Engineering_Services_Gallery_Repository();
+                Id = db.Delete(Engineering_Services_Gallery_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region Engineering Services Tabs
+        public int SaveEngineeringServicesTabs(Engineering_Services_Tabs Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Tabs_Repository db = new Engineering_Services_Tabs_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services_Tabs> GetEngineeringServicesTabs(int? Engineering_Services_Tabs_Id, int? Engineering_Services_Id)
+        {
+            IList<Engineering_Services_Tabs> ListObj = new List<Engineering_Services_Tabs>();
+            try
+            {
+                Engineering_Services_Tabs_Repository db = new Engineering_Services_Tabs_Repository();
+                ListObj = db.ListEngineeringServicesTabs(Engineering_Services_Tabs_Id, Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServicesTabs(Engineering_Services_Tabs Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Tabs_Repository db = new Engineering_Services_Tabs_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServicesTabs(int Engineering_Services_Tabs_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_Tabs_Repository db = new Engineering_Services_Tabs_Repository();
+                Id = db.Delete(Engineering_Services_Tabs_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
+        #region Engineering Services SubTopic
+        public int SaveEngineeringServicesSubTopic(Engineering_Services_SubTopic Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_SubTopic_Repository db = new Engineering_Services_SubTopic_Repository();
+                Id = db.Add(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<Engineering_Services_SubTopic> GetEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int? Engineering_Services_Id)
+        {
+            IList<Engineering_Services_SubTopic> ListObj = new List<Engineering_Services_SubTopic>();
+            try
+            {
+                Engineering_Services_SubTopic_Repository db = new Engineering_Services_SubTopic_Repository();
+                ListObj = db.ListEngineeringServicesSubTopic(Engineering_Services_SubTopic_Id, Engineering_Services_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        public int UpdateEngineeringServicesSubTopic(Engineering_Services_SubTopic Object)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_SubTopic_Repository db = new Engineering_Services_SubTopic_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id)
+        {
+            int Id = 0;
+            try
+            {
+                Engineering_Services_SubTopic_Repository db = new Engineering_Services_SubTopic_Repository();
+                Id = db.Delete(Engineering_Services_SubTopic_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        #endregion
+
     }
 }

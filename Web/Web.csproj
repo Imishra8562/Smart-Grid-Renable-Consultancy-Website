@@ -135,6 +135,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IconCatalog.cs" />
     <Compile Include="Models\MasterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1054,6 +1055,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Home\" />
     <Folder Include="Upload\EngineeringServicesFeatures\IconClass\" />
+    <Folder Include="Upload\EngineeringServicesGallery\Image\" />
     <Folder Include="Upload\EngineeringServices\Image\" />
     <Folder Include="Upload\EngineeringServices\OGImage\" />
     <Folder Include="Upload\Index\IndexTeamMemberImage\" />
@@ -1102,6 +1104,10 @@
     <Content Include="Areas\Admin\Views\Admin\KnowledgeBaseCategory.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EngineeringServices.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EngineeringServicesFeatures.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServicesApplications.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServicesTabs.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServicesSubTopic.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngineeringServicesGallery.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />

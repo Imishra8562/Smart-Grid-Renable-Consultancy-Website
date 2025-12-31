@@ -105,12 +105,30 @@ namespace Web.Areas.Admin.Model
         #endregion
 
         #region Engineering Services Features
-
-        public HttpPostedFileBase Engineering_Services_Features_IconClass { get; set; }
         public Engineering_Services_Features Engineering_Services_Features_Obj { get; set; }
         public IList<Engineering_Services_Features> List_Engineering_Services_Features_Obj { get; set; }
-        // public Engineering_Services_Features_Business Engineering_Services_Features_Business_Obj { get; set; }
-        //public IList<Engineering_Services_Features_Business> List_Engineering_Services_Features_Business_Obj { get; set; }
+        #endregion
+
+        #region Engineering Services Applications
+        public Engineering_Services_Applications Engineering_Services_Applications_Obj { get; set; }
+        public IList<Engineering_Services_Applications> List_Engineering_Services_Applications_Obj { get; set; }
+        #endregion
+
+        #region Engineering Services Gallery
+
+        public HttpPostedFileBase Engineering_Services_Gallery_Image { get; set; }
+        public Engineering_Services_Gallery Engineering_Services_Gallery_Obj { get; set; }
+        public IList<Engineering_Services_Gallery> List_Engineering_Services_Gallery_Obj { get; set; }
+        #endregion
+
+        #region Engineering Services SubTopic
+        public Engineering_Services_SubTopic Engineering_Services_SubTopic_Obj { get; set; }
+        public IList<Engineering_Services_SubTopic> List_Engineering_Services_SubTopic_Obj { get; set; }
+        #endregion
+
+        #region Engineering Services Tabs
+        public Engineering_Services_Tabs Engineering_Services_Tabs_Obj { get; set; }
+        public IList<Engineering_Services_Tabs> List_Engineering_Services_Tabs_Obj { get; set; }
         #endregion
 
     }
