@@ -1978,7 +1978,6 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
             Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
             Model.List_Engineering_Services_Gallery_Obj = Manager.GetEngineeringServicesGallery(0, 0);
             if (Engineering_Services_Gallery_Id.HasValue)
@@ -2000,8 +1999,12 @@ namespace Web.Areas.Admin.Controllers
             int No = 0;
             if (Model.Engineering_Services_Gallery_Image != null)
             {
-                string fullPath = Request.MapPath("/Upload/EngineeringServicesGallery/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "*"));
+                string uploadPath = Request.MapPath("/Upload/EngineeringServicesGallery/Image/");
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                }
+                string[] files = System.IO.Directory.GetFiles(uploadPath, (Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
