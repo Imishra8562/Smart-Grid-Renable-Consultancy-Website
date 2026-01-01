@@ -70,6 +70,8 @@
     <Compile Include="Engineering\Engineering_Services_SubTopic_Business.cs" />
     <Compile Include="Engineering\Engineering_Services_Tabs.cs" />
     <Compile Include="Engineering\Engineering_Services_Tabs_Business.cs" />
+    <Compile Include="Engineering\EngSer_Gallery.cs" />
+    <Compile Include="Engineering\EngSer_Gallery_Business.cs" />
     <Compile Include="Knowledge\Knowledge_Base.cs" />
     <Compile Include="Admin\News.cs" />
     <Compile Include="Admin\Status.cs" />

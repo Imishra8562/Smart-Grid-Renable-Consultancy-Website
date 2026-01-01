@@ -58,6 +58,7 @@
     <Compile Include="Engineering-Services\Engineering_Services_Gallery_Repository.cs" />
     <Compile Include="Engineering-Services\Engineering_Services_SubTopic_Repository.cs" />
     <Compile Include="Engineering-Services\Engineering_Services_Tabs_Repository.cs" />
+    <Compile Include="Engineering-Services\EngSer_Gallery_Repository.cs" />
     <Compile Include="Index\Index_Features_Repository.cs" />
     <Compile Include="Index\Index_Seo_Repository.cs" />
     <Compile Include="Index\Index_Services_Repository.cs" />
