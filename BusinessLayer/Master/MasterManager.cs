@@ -1028,5 +1028,36 @@ namespace BusinessLayer
         }
         #endregion
 
+        #region EngSer Gallery
+        public int SaveEngSerGallery(EngSer_Gallery Object)
+        {
+            int Id = 0;
+            try
+            {
+                EngSer_Gallery_Repository db = new EngSer_Gallery_Repository();
+                Id = db.Add(Object);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public IList<EngSer_Gallery> GetEngSerGallery(int? EngSer_Gallery_Id, int? Engineering_Services_Id)
+        {
+            IList<EngSer_Gallery> ListObj = new List<EngSer_Gallery>();
+            try
+            {
+                EngSer_Gallery_Repository db = new EngSer_Gallery_Repository();
+                ListObj = db.ListEngSerGallery(EngSer_Gallery_Id, Engineering_Services_Id);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return ListObj;
+        }
+        #endregion
+
     }
 }

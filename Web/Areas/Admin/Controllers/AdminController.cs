@@ -2085,5 +2085,56 @@ namespace Web.Areas.Admin.Controllers
             return RedirectToAction("EngineeringServicesGallery");
         }
         #endregion
+
+        #region EngSer Gallery
+        public ActionResult EngSerGallery(int? EngSer_Gallery_Id)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager Manger = new MasterManager();
+            Model.List_Engineering_Services_Obj = Manger.GetEngineeringServices(0, null);
+            Model.List_EngSer_Gallery_Obj = Manger.GetEngSerGallery(0,0);
+            if (EngSer_Gallery_Id.HasValue)
+            {
+                Model.EngSer_Gallery_Obj = Manger.GetEngSerGallery(EngSer_Gallery_Id, 0).FirstOrDefault();
+            }
+           return View(Model);
+        }
+        public ActionResult SaveEngSerGallery(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.EngSer_Gallery_Obj.Created_By = 1;
+            Model.EngSer_Gallery_Obj.Created_IP = SystemIP();
+
+            // generate code
+            Random rnd = new Random();
+            int Code = rnd.Next(1000000, 9999999);
+            Model.EngSer_Gallery_Obj.EngSer_Gallery_Code = "ESGC-" + Code.ToString();
+            if (Model.EngSer_Gallery_Image_Url != null && Model.EngSer_Gallery_Image_Url.ContentLength > 0)
+            {
+                string folderPath = Server.MapPath("~/Upload/EngSerGallery/ImageUrl/");
+
+                // ensure directory exists
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                // count existing files for this code
+                string[] files = Directory.GetFiles(folderPath, Model.EngSer_Gallery_Obj.EngSer_Gallery_Code + "*");
+                int No = files.Length; // start with existing count
+
+                string extension = Path.GetExtension(Model.EngSer_Gallery_Image_Url.FileName) ?? "";
+                string fileName = $"{Model.EngSer_Gallery_Obj.EngSer_Gallery_Code}_{No}{extension}";
+                string fullSavePath = Path.Combine(folderPath, fileName);
+
+                // save file
+                Model.EngSer_Gallery_Image_Url.SaveAs(fullSavePath);
+
+                // store virtual path in model
+                Model.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url = "~/Upload/EngSerGallery/ImageUrl/" + fileName;
+            }
+            return RedirectToAction("EngSerGallery");
+        }
+        #endregion
     }
 }

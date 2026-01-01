@@ -131,5 +131,13 @@ namespace Web.Areas.Admin.Model
         public IList<Engineering_Services_Tabs> List_Engineering_Services_Tabs_Obj { get; set; }
         #endregion
 
+        #region EngSer Gallery
+        public HttpPostedFileBase EngSer_Gallery_Image_Url { get; set; }
+
+        public EngSer_Gallery EngSer_Gallery_Obj { get; set; }
+
+        public IList<EngSer_Gallery> List_EngSer_Gallery_Obj { get; set; }
+
+        #endregion
     }
 }

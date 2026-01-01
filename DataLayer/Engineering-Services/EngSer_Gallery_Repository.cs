@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-   public class EngSer_Gallery_Repository1: BaseRepository<EngSer_Gallery>
+   public class EngSer_Gallery_Repository: BaseRepository<EngSer_Gallery>
     {
 
         public IList<EngSer_Gallery> ListEngSerGallery(int? EngSer_Gallery_Id,int? Engineering_Services_Id)

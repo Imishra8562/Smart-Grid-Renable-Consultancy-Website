@@ -1108,6 +1108,7 @@
     <Content Include="Areas\Admin\Views\Admin\EngineeringServicesTabs.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EngineeringServicesSubTopic.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EngineeringServicesGallery.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\EngSerGallery.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
