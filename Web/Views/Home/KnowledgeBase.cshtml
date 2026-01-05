@@ -143,15 +143,7 @@
             { "@type", "ListItem" },
             { "position", position++ },
             { "name", item.Knowledge_Base_Name },
-            {
-                "url",
-                Url.Action(
-                    "KnowledgeBaseDetails",
-                    "Home",
-                    new { url = item.Knowledge_Base_Url_Link },
-                    Request.Url.Scheme
-                )
-            }
+            { "url",Url.Action("KnowledgeBaseDetails","Home",new { url = item.Knowledge_Base_Url_Link },Request.Url.Scheme)}
         });
     }
 
@@ -160,10 +152,7 @@
         { "@context", "https://schema.org" },
         { "@type", "ItemList" },
         { "name", "Knowledge Base" },
-        {
-            "url",
-            Url.Action("KnowledgeBase", "Home", null, Request.Url.Scheme)
-        },
+        { "url",Url.Action("KnowledgeBase", "Home", null, Request.Url.Scheme)},
         { "numberOfItems", itemList.Count },
         { "itemListElement", itemList }
     };

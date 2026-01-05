@@ -1,7 +1,16 @@
-﻿@{
+﻿@model Web.Areas.Admin.Model.MasterModel
+@using Newtonsoft.Json;
+@{
     ViewBag.Title = "EngineeringServices";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@section HeadContent {
+    <title>@ViewBag.Title - Smart Grid Renewable Consultancy</title>
+    <meta name="description" content="Professional engineering services by Smart Grid Renewable Consultancy, specializing in smart grid systems, renewable energy engineering, technical design, testing, analysis, and project implementation." />
+    <link rel="canonical" href="https://smartgridrenewable.com/EngineeringServices" />
+}
+
 <!-- ====== Page Title Section (Updated Style) ====== -->
 <section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
 
@@ -39,35 +48,57 @@
     </div>
 
     <!-- Services Cards -->
-    <div class="row g-4">
-        @foreach (var service in new[] {
-            new { Title = "Power System Studies", Text = "Comprehensive load flow, short-circuit, and stability studies to ensure optimal grid performance." },
-            new { Title = "HVDC & FACTS", Text = "Design, modeling, and analysis of HVDC systems and flexible AC transmission solutions." },
-            new { Title = "Renewable Energy Integration", Text = "Stable grid integration of solar, wind, and hybrid renewable energy systems." },
-            new { Title = "Electromagnetic Transient Studies", Text = "Detailed EMT analysis for insulation coordination, resonance, and switching transients." },
-            new { Title = "Power System Equipment Services", Text = "Performance testing and diagnostics for transformers, motors, and circuit breakers." },
-            new { Title = "Grid Analysis & Interconnection", Text = "Feasibility and impact studies for interconnecting generation and industrial loads." },
-            new { Title = "Transmission Planning & Operations", Text = "Transmission expansion planning, congestion analysis, and operational studies." },
-            new { Title = "Energy Storage", Text = "Battery system design and control for grid stability and peak management." },
-            new { Title = "Data Centres", Text = "Electrical system design and power quality management for data centers." },
-            new { Title = "Distributed Generation", Text = "Integration of distributed energy resources and microgrids." },
-            new { Title = "Electric Vehicle Integration", Text = "Grid impact assessments and charging infrastructure design for EVs." },
-            new { Title = "Cybersecurity", Text = "Protecting power systems using advanced cybersecurity frameworks." },
-            new { Title = "AI Applications for Modern Power Systems", Text = "Using AI for predictive analytics, fault detection, and system optimization." }
-        })
-        {
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold text-dark">@service.Title</h5>
-                        <p class="card-text text-muted">@service.Text</p>
-                    </div>
-                    <div class="card-footer bg-transparent border-0">
-                        <a href="@Url.Action("PowerSystemStudies","Home")" class="text-danger text-decoration-none fw-semibold">Learn More →</a>
-                    </div>
-                </div>
+    <section class="portal-types py-5" style="background-color: #f2f2f2;">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark display-6">Engineering Services We Serve</h2>
+                <p class="text-muted mt-3 mx-auto lead" style="max-width: 720px;">
+                    We deliver tailored engineering solutions across multiple industries, enhancing system performance, efficiency, reliability, and data-driven decision-making.
+                </p>
             </div>
-        }
-    </div>
+
+
+            <div class="row g-4">
+
+                @if (Model.List_Engineering_Services_Obj != null && Model.List_Engineering_Services_Obj.Count > 0)
+                {
+                    foreach (var item in Model.List_Engineering_Services_Obj)
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="p-4 text-center bg-white border-0 shadow rounded-4 h-100 transition-all hover-shadow">
+
+                                <!-- Title from DB -->
+                                <h5 class="fw-bold text-dark mb-3">
+                                    @item.Engineering_Services_Name
+                                </h5>
+
+                                <!-- Description from DB -->
+                                <p class="text-muted small mb-0">
+                                    @item.Engineering_Services_Page_Title
+                                </p>
+
+                                <!-- INDUSTRY IMAGE -->
+                                @if (!string.IsNullOrEmpty(item.Engineering_Services_Image))
+                                {
+                                    <div class="mt-3">
+                                        <img src="@Url.Content(item.Engineering_Services_Image)" class="img-fluid rounded" style="max-height:130px; object-fit:cover;" alt="@item.Engineering_Services_Image_Alt_Tag" />
+                                    </div>
+                                }
+
+                                <!-- PAGE URL BUTTON -->
+                                <div class="mt-3">
+                                    <a href="@Url.Action("IndustriesDetail", "Home", new { url = item.Engineering_Services_Url_Link })"
+                                       class="btn btn-warning btn-sm rounded-pill px-4">
+                                        View More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </section>
+
 </div>
 

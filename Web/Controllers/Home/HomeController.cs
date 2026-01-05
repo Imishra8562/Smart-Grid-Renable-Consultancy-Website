@@ -154,7 +154,18 @@ namespace Web.Controllers
         #region EngineeringServices
         public ActionResult EngineeringServices()
         {
-            return View();
+            MasterModel Model = new MasterModel();
+            IMasterManager MasterManager = new MasterManager();
+            Model.List_Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null);
+            return View(Model);
+        }
+        public ActionResult EngineeringServiesDetails(string url)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager MasterManager = new MasterManager();
+            Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null).FirstOrDefault();
+
+            return View(Model);
         }
         public ActionResult PowerSystemStudies()
         {
