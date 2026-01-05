@@ -2,138 +2,204 @@
 @{
     ViewBag.Title = "EngSerGallery";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var Type = TempData["AlertType"] ?? string.Empty;
+    var Title = TempData["AlertTitle"] ?? string.Empty;
+    var Message = TempData["AlertMessage"] ?? string.Empty;
+    int i = 0;
 }
-<div class="page-body">
-    <div class="container-fluid">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>Engineering Services Gallery</h3>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="#"><i data-feather="home"></i></a>
-                        </li>
-                        <li class="breadcrumb-item">Admin</li>
-                        <li class="breadcrumb-item active">Gallery</li>
-                    </ol>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3>Engineering Services Gallery</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#"><i data-feather="home"></i></a>
+                            </li>
+                            <li class="breadcrumb-item">Admin</li>
+                            <li class="breadcrumb-item active">Gallery</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- ================= ADD / EDIT FORM ================= -->
-    <div class="card">
-        <div class="card-header pb-0">
-            <h4>Gallery Details</h4>
-        </div>
-
-        <div class="card-body">
-            @using (Html.BeginForm("SaveEngSerGallery", "Admin", FormMethod.Post,new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
-            {
-                <div class="row g-3">
-
-                    <div class="col-md-6">
-                        <label class="form-label">Gallery Title</label>
-                        @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Title,new { @class = "form-control", required = "required" })
-                    </div>
-
-                    <div class="col-md-6">
-                        <label class="form-label">Gallery Description</label>
-                        @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Description, new { @class = "form-control", required = "required" })
-                    </div>
-
-                    <div class="col-md-12 mt-2">
-                        <label class="form-label">Gallery Image</label>
-                        @{
-                            var defaultImg = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
-                        }
-                        @Html.TextBoxFor(m => m.EngSer_Gallery_Image_Url,new { @class = "dropify", type = "file", data_default_file = defaultImg })
-                    </div>
-
+        @if (Model.EngSer_Gallery_Obj == null)
+        {
+            <!-- ================= ADD  ================= -->
+            <div class="card">
+                <div class="card-header pb-0">
+                    <h4>Add Gallery Details</h4>
                 </div>
 
-                @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Id)
-                @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Code)
-                @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url)
+                <div class="card-body">
+                    @using (Html.BeginForm("SaveEngSerGallery", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "needs-validation", novalidate = "novalidate" }))
+                    {
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Engineering Service</label>
+                                @Html.DropDownListFor(m => m.EngSer_Gallery_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
+                                <div class="invalid-feedback">
+                                    Please select an Engineering Service.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Gallery Title</label>
+                                @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Title, new { @class = "form-control", required = "required" })
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label class="form-label">Gallery Image</label>
+                                @{
+                                    var defaultImg = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                }
+                                @Html.TextBoxFor(m => m.EngSer_Gallery_Image_Url, new { @class = "dropify", type = "file", data_default_file = defaultImg })
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label class="form-label">Gallery Description</label>
+                                @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Description, new { @class = "form-control", required = "required" })
+                            </div>
 
-                <button class="btn btn-primary mt-3" type="submit">
-                    Save Gallery
-                </button>
-             }
-        </div>
-    </div>
+                        </div>
 
-    <!-- ================= LIST TABLE ================= -->
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header pb-0">
-                        <h4>Gallery List</h4>
-                    </div>
+                        @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Id)
+                        @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Code)
+                        @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url)
 
-                    <div class="card-body">
-                        <div class="table-responsive theme-scrollbar">
-                            <table class="display datatable" id="basic-1">
-                                <thead>
-                                    <tr>
-                                        <th>S.No</th>
-                                        <th>Title</th>
-                                        <th>Image</th>
-                                        <th>Order</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @if (Model.List_EngSer_Gallery_Obj != null &&Model.List_EngSer_Gallery_Obj.Count > 0)
-                                    {
-                                        foreach (var item in Model.List_EngSer_Gallery_Obj)
-                                        {
-                                            int i = 0;
+                        <button class="btn btn-primary mt-3" type="submit">
+                            Save Gallery
+                        </button>
+                    }
+                </div>
+            </div>
+
+            <!-- ================= LIST TABLE ================= -->
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <h4>Gallery List</h4>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="table-responsive theme-scrollbar">
+                                    <table class="display datatable" id="basic-1">
+                                        <thead>
                                             <tr>
-                                                <td>@(++i)</td>
-                                                <td>@item.EngSer_Gallery_Title</td>
-                                                <td>
-                                                    @if (!string.IsNullOrEmpty(item.EngSer_Gallery_Image_Url))
-                                                    {
-                                                        <img src="@Url.Content(item.EngSer_Gallery_Image_Url)"
-                                                             style="width:120px;height:80px;" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <span class="text-danger">No Image</span>
-                                                    }
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group">
-                                                        <a href="@Url.Action("EngSerGallery", "Admin",
-                                                            new { EngSerGallery_Id = item.EngSer_Gallery_Id })"
-                                                           class="btn btn-warning btn-sm">Edit</a>
-
-                                                        <a href="@Url.Action("DeleteEngSerGallery", "Admin",
-                                                            new { EngSerGallery_Id = item.EngSer_Gallery_Id })"
-                                                           class="btn btn-danger btn-sm"
-                                                           onclick="return confirm('Are you sure?');">
-                                                            Delete
-                                                        </a>
-                                                    </div>
-                                                </td>
+                                                <th>S.No</th>
+                                                <th>Engineering Service</th>
+                                                <th>Title</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
                                             </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model.List_EngSer_Gallery_Obj != null && Model.List_EngSer_Gallery_Obj.Count > 0)
+                                            {
+                                                foreach (var item in Model.List_EngSer_Gallery_Obj)
+                                                {
+                                                    <tr>
+                                                        <td>@(++i)</td>
+                                                        <td>
+                                                            @{
+                                                                var serviceName = Model.List_Engineering_Services_Obj.FirstOrDefault(x => x.Engineering_Services_Id == item.FK_Engineering_Services_Id).Engineering_Services_Name;
+                                                            }
+
+                                                            @serviceName
+                                                        </td>
+                                                        <td>@item.EngSer_Gallery_Title</td>
+                                                        <td>
+                                                            @if (!string.IsNullOrEmpty(item.EngSer_Gallery_Image_Url))
+                                                            {
+                                                                <img src="@Url.Content(item.EngSer_Gallery_Image_Url)"
+                                                                     style="width:120px;height:80px;" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="text-danger">No Image</span>
+                                                            }
+                                                        </td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <a href="@Url.Action("EngSerGallery", "Admin", new { EngSer_Gallery_Id = item.EngSer_Gallery_Id })" class="btn btn-warning btn-sm">Edit</a>
+
+                                                                <a href="@Url.Action("DeleteEngSerGallery", "Admin", new { EngSer_Gallery_Id = item.EngSer_Gallery_Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?');">Delete </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        }
+        else
+        {
+            <!-- ===================== EDIT FORM ======================= -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <h4>Edit Gallery Details</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-body">
+                                @using (Html.BeginForm("UpdateEngSerGallery", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
+                                {
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Engineering Service</label>
+                                            @Html.DropDownListFor(m => m.EngSer_Gallery_Obj.FK_Engineering_Services_Id, new SelectList(Model.List_Engineering_Services_Obj, "Engineering_Services_Id", "Engineering_Services_Name"), "-- Select Engineering Service --", new { @class = "form-control", required = "required" })
+                                            <div class="invalid-feedback">
+                                                Please select an Engineering Service.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Gallery Title</label>
+                                            @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Title, new { @class = "form-control", required = "required" })
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <label class="form-label">Gallery Image</label>
+                                            @{
+                                                var defaultImg = Url.Content("~/Areas/Admin/Content/Dropify/file-upload.png");
+                                            }
+                                            @Html.TextBoxFor(m => m.EngSer_Gallery_Image_Url, new { @class = "dropify", type = "file", data_default_file = defaultImg })
+                                        </div>
+                                        <div class="col-md-6 mt-2">
+                                            <label class="form-label">Gallery Description</label>
+                                            @Html.TextBoxFor(m => m.EngSer_Gallery_Obj.EngSer_Gallery_Description, new { @class = "form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                    <!-- Hidden Id -->
+                                    @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Id)
+                                    @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url)
+                                    @Html.HiddenFor(x => x.EngSer_Gallery_Obj.EngSer_Gallery_Code)
 
+                                    <!-- Submit -->
+                                    <div class="row g-3 mt-3">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-primary">
+                                                Update Engineering Service Gallery
+                                            </button>
+                                            <a href="@Url.Action("EngSeGallery", "Admin")" class="btn btn-secondary ms-2">Cancel</a>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 @section Scripts{
     <script>
         $(document).ready(function () {
@@ -144,6 +210,31 @@
                     responsive: true
                 });
             }
+             // Toast notifications
+             var Message = '@Message';
+             if (Message != '') {
+                 if ('@Type' == 'success') {
+                     iziToast.success({
+                         title: '@Title',
+                         message: '@Message',
+                         position: 'topRight'
+                     });
+                 }
+                 else if ('@Type' == 'warning') {
+                     iziToast.warning({
+                         title: '@Title',
+                         message: '@Message',
+                         position: 'topRight'
+                     });
+                 }
+                 else if ('@Type' == 'error') {
+                     iziToast.error({
+                         title: '@Title',
+                         message: '@Message',
+                         position: 'topRight'
+                     });
+                 }
+             }
         });
     </script>
 }

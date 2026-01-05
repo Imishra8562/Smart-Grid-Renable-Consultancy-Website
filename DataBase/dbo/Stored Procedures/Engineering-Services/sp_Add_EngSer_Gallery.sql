@@ -20,8 +20,10 @@ BEGIN TRY
      SELECT @EngSer_GalleryId = EngSer_Gallery_Id FROM tbl_EngSer_Gallery where EngSer_Gallery_Code=@EngSer_Gallery_Code AND @Is_Active=1
      IF @EngSer_GalleryId IS NULL
      BEGIN
-        INSERT INTO tbl_EngSer_Gallery (FK_Engineering_Services_Id,EngSer_Gallery_Code,EngSer_Gallery_Title,EngSer_Gallery_Description,EngSer_Gallery_Image_Url)
-        VALUES(@FK_Engineering_Services_Id,@EngSer_Gallery_Code,@EngSer_Gallery_Title,@EngSer_Gallery_Description,@EngSer_Gallery_Image_Url)
+        INSERT INTO tbl_EngSer_Gallery (FK_Engineering_Services_Id,EngSer_Gallery_Code,EngSer_Gallery_Title,EngSer_Gallery_Description,EngSer_Gallery_Image_Url,
+        Created_By,Created_IP)
+        VALUES(@FK_Engineering_Services_Id,@EngSer_Gallery_Code,@EngSer_Gallery_Title,@EngSer_Gallery_Description,@EngSer_Gallery_Image_Url,
+        @Created_By,@Created_IP)
         SELECT SCOPE_IDENTITY()
      END
 END TRY

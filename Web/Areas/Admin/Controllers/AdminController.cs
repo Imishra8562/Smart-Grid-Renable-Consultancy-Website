@@ -839,7 +839,7 @@ namespace Web.Areas.Admin.Controllers
 
         #region Knowledge Base Category
 
-       // [CookiesExpireFilter]
+        // [CookiesExpireFilter]
         public ActionResult KnowledgeBaseCategory(int? Knowledge_Base_Category_Id)
         {
             MasterModel Model = new MasterModel();
@@ -854,7 +854,7 @@ namespace Web.Areas.Admin.Controllers
 
             return View(Model);
         }
-       // [CookiesExpireFilter]
+        // [CookiesExpireFilter]
         public ActionResult SaveKnowledgeBaseCategory(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -876,7 +876,7 @@ namespace Web.Areas.Admin.Controllers
             }
             return RedirectToAction("KnowledgeBaseCategory");
         }
-       // [CookiesExpireFilter]
+        // [CookiesExpireFilter]
         public ActionResult UpdateKnowledgeBaseCategory(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
@@ -899,7 +899,7 @@ namespace Web.Areas.Admin.Controllers
             }
             return RedirectToAction("KnowledgeBaseCategory");
         }
-       // [CookiesExpireFilter]
+        // [CookiesExpireFilter]
         public ActionResult DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id)
         {
             IMasterManager Manger = new MasterManager();
@@ -921,7 +921,7 @@ namespace Web.Areas.Admin.Controllers
         }
 
         #endregion
-        
+
         #region Knowledge Base
         public ActionResult KnowledgeBase(int? Knowledge_Base_Id)
         {
@@ -960,7 +960,7 @@ namespace Web.Areas.Admin.Controllers
                 string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
                 Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
             }
-             No = 0;
+            No = 0;
             if (Model.Knowledge_Base_Image != null)
             {
                 string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
@@ -1068,7 +1068,7 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-           // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
             Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_Card_Business_Obj = Manager.GetKnowledgeCard(0, 0);
             if (Knowledge_Card_Id.HasValue)
@@ -1522,7 +1522,7 @@ namespace Web.Areas.Admin.Controllers
             Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
             if (Engineering_Services_Id.HasValue)
             {
-                Model.Engineering_Services_Obj = Manager.GetEngineeringServices(Engineering_Services_Id,null).FirstOrDefault();
+                Model.Engineering_Services_Obj = Manager.GetEngineeringServices(Engineering_Services_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
@@ -2092,12 +2092,12 @@ namespace Web.Areas.Admin.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager Manger = new MasterManager();
             Model.List_Engineering_Services_Obj = Manger.GetEngineeringServices(0, null);
-            Model.List_EngSer_Gallery_Obj = Manger.GetEngSerGallery(0,0);
+            Model.List_EngSer_Gallery_Obj = Manger.GetEngSerGallery(0, 0);
             if (EngSer_Gallery_Id.HasValue)
             {
                 Model.EngSer_Gallery_Obj = Manger.GetEngSerGallery(EngSer_Gallery_Id, 0).FirstOrDefault();
             }
-           return View(Model);
+            return View(Model);
         }
         public ActionResult SaveEngSerGallery(MasterModel Model)
         {
@@ -2133,8 +2133,80 @@ namespace Web.Areas.Admin.Controllers
                 // store virtual path in model
                 Model.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url = "~/Upload/EngSerGallery/ImageUrl/" + fileName;
             }
+            int Id = Manager.SaveEngSerGallery(Model.EngSer_Gallery_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Added Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Gallery!";
+            }
+            return RedirectToAction("EngSerGallery");
+        }
+
+        public ActionResult UpdateEngSerGallery(MasterModel Model)
+        {
+            IMasterManager Manager = new MasterManager();
+            Model.EngSer_Gallery_Obj.Modified_By = 1;
+            Model.EngSer_Gallery_Obj.Modified_On = DateTime.Now;
+            Model.EngSer_Gallery_Obj.Modified_IP = SystemIP();
+            if (Model.EngSer_Gallery_Image_Url != null && Model.EngSer_Gallery_Image_Url.ContentLength > 0)
+            {
+                string folderPath = Server.MapPath("~/Upload/EngSerGallery/ImageUrl/");
+                // ensure directory exists
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+                // count existing files for this code
+                string[] files = Directory.GetFiles(folderPath, Model.EngSer_Gallery_Obj.EngSer_Gallery_Code + "*");
+                int No = files.Length; // start with existing count
+                string extension = Path.GetExtension(Model.EngSer_Gallery_Image_Url.FileName) ?? "";
+                string fileName = $"{Model.EngSer_Gallery_Obj.EngSer_Gallery_Code}_{No}{extension}";
+                string fullSavePath = Path.Combine(folderPath, fileName);
+                // save file
+                Model.EngSer_Gallery_Image_Url.SaveAs(fullSavePath);
+                // store virtual path in model
+                Model.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url = "~/Upload/EngSerGallery/ImageUrl/" + fileName;
+            }
+            int Id = Manager.UpdateEngSerGallery(Model.EngSer_Gallery_Obj);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Update Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Gallery!";
+            }
             return RedirectToAction("EngSerGallery");
         }
         #endregion
+        public ActionResult DeleteEngSerGallery(int EngSer_Gallery_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteEngSerGallery(EngSer_Gallery_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Engineering Services Gallery Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Gallery!";
+            }
+            return RedirectToAction("EngSerGallery");
+        }
     }
 }

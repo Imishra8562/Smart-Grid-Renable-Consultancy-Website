@@ -12,7 +12,7 @@ namespace Domain
         [Identifier("EngSer_Gallery_Id")]
         public int EngSer_Gallery_Id { get; set; }
         public string EngSer_Gallery_Code { get; set; }
-        public int FK_Engeinering_Services_Id { get; set; }
+        public int FK_Engineering_Services_Id { get; set; }
         public string EngSer_Gallery_Title { get; set; }
         public string EngSer_Gallery_Description { get; set; }
         public string EngSer_Gallery_Image_Url { get; set; }

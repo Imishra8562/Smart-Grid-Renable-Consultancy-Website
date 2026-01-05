@@ -136,8 +136,8 @@ namespace BusinessLayer.Interface
         #region  EngSer Gallery
         int SaveEngSerGallery(EngSer_Gallery Object);
         IList<EngSer_Gallery> GetEngSerGallery(int? EngSer_Gallery_Id, int? Engineering_Services_Id);
-        //int UpdateEngSerGallery(EngSer_Gallery Object);
-        //int DeleteEngSer_Gallery(int EngSer_Gallery_Id);
+        int UpdateEngSerGallery(EngSer_Gallery Object);
+        int DeleteEngSerGallery(int EngSer_Gallery_Id);
 
         #endregion
 

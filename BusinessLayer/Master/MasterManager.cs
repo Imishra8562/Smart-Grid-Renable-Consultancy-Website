@@ -1057,6 +1057,35 @@ namespace BusinessLayer
             }
             return ListObj;
         }
+
+        public int UpdateEngSerGallery(EngSer_Gallery Object)
+        {
+            int Id = 0;
+            try
+            {
+                EngSer_Gallery_Repository db = new EngSer_Gallery_Repository();
+                Id = db.Update(Object);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
+        public int DeleteEngSerGallery(int EngSer_Gallery_Id)
+        {
+            int Id = 0;
+            try
+            {
+                EngSer_Gallery_Repository db = new EngSer_Gallery_Repository();
+                Id = db.Delete(EngSer_Gallery_Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Id;
+        }
         #endregion
 
     }
