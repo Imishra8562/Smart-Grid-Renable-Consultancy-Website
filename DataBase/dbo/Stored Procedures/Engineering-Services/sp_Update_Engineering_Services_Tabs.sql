@@ -16,9 +16,12 @@ BEGIN
 	  UPDATE tbl_Engineering_Services_Tabs SET 
 				 FK_Engineering_Services_Id = @FK_Engineering_Services_Id,
 				 Engineering_Services_Tabs_Title = @Engineering_Services_Tabs_Title,
-				 Engineering_Services_Tabs_Content = @Engineering_Services_Tabs_Content
+				 Engineering_Services_Tabs_Content = @Engineering_Services_Tabs_Content,
+	             Modified_On=@Modified_On,
+                 Modified_IP=@Modified_IP,
+                 Modified_By=@Modified_By
 		 WHERE Engineering_Services_Tabs_Id = @Engineering_Services_Tabs_Id;
-		 SELECT @FK_Engineering_Services_Id
+		 SELECT @Engineering_Services_Tabs_Id
 	END TRY
 	BEGIN CATCH    
 	DECLARE @ErrorMessage VARCHAR(MAX);    

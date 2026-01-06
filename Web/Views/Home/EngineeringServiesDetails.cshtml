@@ -33,8 +33,163 @@
         </div>
     </div>
 </section>
+<!-- ================= SIDEBAR PAGE CONTAINER ================= -->
+<div class="sidebar-page-container">
+    <div class="container">
+        <div class="row clearfix">
 
-<section class="my-5">
+            <!-- ================= TITLE SECTION (Dynamic) ================= -->
+            <div class="sec-title centered">
+
+                <!-- Service Name -->
+                <span class="title">
+                    @Model.Engineering_Services_Obj.Engineering_Services_Name
+                </span>
+
+                <!-- Page Heading -->
+                <h2>
+                    @Model.Engineering_Services_Obj.Engineering_Services_Page_Title
+                </h2>
+
+                <!-- Short Description -->
+                <p>
+                    @Html.Raw(Model.Engineering_Services_Obj.Engineering_Services_Description)
+                </p>
+            </div>
+
+            <!-- ================= SIDEBAR (LEFT) ================= -->
+            <div class="sidebar-side col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar default-sidebar">
+
+                    <!-- ===== Sidebar Tabs / Categories ===== -->
+                    <div class="sidebar-widget sidebar-blog-category">
+
+                        <ul class="blog-cat list-unstyled m-0 p-0">
+                            @foreach (var tab in Model.List_Engineering_Services_SubTopic_Obj)
+                            {
+                                <li class="tab-item mb-2"
+                                    data-target="content-@tab.Engineering_Services_SubTopic_Id">
+
+                                    <a href="javascript:void(0)"
+                                       class="d-block px-3 py-2 text-decoration-none">
+                                        @tab.Engineering_Services_SubTopic_Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <!-- ===== Banner Widget ===== -->
+                    <div class="sidebar-widget banner-widget mt-4">
+                        <div class="widget-content text-center p-4"
+                             style="background-image:url('@Url.Content("~/Content/images/About/logo-bg.jpg")')">
+
+                            <div class="logo mb-3">
+                                <img src="~/Content/images/logo-4.png" class="img-fluid" />
+                            </div>
+
+                            <div class="title fw-semibold">Advanced Engineering</div>
+                            <h4 class="fw-bold">PowerGrid</h4>
+
+                            <a href="contact.html"
+                               class="btn btn-primary mt-3">
+                                Contact Us
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ===== Contact Widget ===== -->
+                    <div class="sidebar-widget contact-widget mt-4">
+                        <div class="sidebar-title mb-3">
+                            <h5>Contact</h5>
+                        </div>
+
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-start mb-3">
+                                <span class="icon flaticon-map-1 me-3"></span>
+                                <span>
+                                    Electrical Engineering Division<br />
+                                    Patna, Bihar
+                                </span>
+                            </li>
+
+                            <li class="d-flex align-items-start mb-3">
+                                <span class="icon flaticon-phone-receiver me-3"></span>
+                                <span>
+                                    +91-98765-43210<br />
+                                    +91-91234-56789
+                                </span>
+                            </li>
+
+                            <li class="d-flex align-items-start">
+                                <span class="icon flaticon-comment me-3"></span>
+                                <span>support@powersystem.com</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </aside>
+            </div>
+
+
+            <!-- ================= CONTENT SIDE (RIGHT) ================= -->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="services-single">
+                    <div class="tab-content-wrapper">
+                        @foreach (var tab in Model.List_Engineering_Services_SubTopic_Obj)
+                        {
+                            <div id="content-@tab.Engineering_Services_SubTopic_Id" class="tab-content d-none">
+                                <h4 id="subTopicTitle">
+                                    @tab.Engineering_Services_SubTopic_Name
+                                </h4>
+                                @Html.Raw(tab.Engineering_Services_SubTopic_Description)
+                            </div>
+                        }
+                    </div>
+                    <!-- ================= IMAGE GALLERY ================= -->
+                    @if (Model.List_EngSer_Gallery_Obj != null && Model.List_EngSer_Gallery_Obj.Count > 0)
+                    {
+                        <div class="services-gallery">
+                            <div class="services-carousel owl-carousel owl-theme">
+
+                                @foreach (var img in Model.List_EngSer_Gallery_Obj)
+                                {
+                                    <div class="slide">
+                                        <div class="card h-100 shadow-sm border-0">
+
+                                            <!-- Image -->
+                                            <img src="@Url.Content(img.EngSer_Gallery_Image_Url)"
+                                                 class="card-img-top img-fluid"
+                                                 alt="@img.EngSer_Gallery_Title"
+                                                 style="height:260px; object-fit:cover;" />
+
+                                            <!-- Content -->
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title fw-bold">
+                                                    @img.EngSer_Gallery_Title
+                                                </h5>
+
+                                                <p class="card-text text-muted">
+                                                    @img.EngSer_Gallery_Description
+                                                </p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<section class="my-5" style="display:none;">
     <div class="container">
         <div class="row align-items-center p-4 p-md-5 rounded-5" style="background-color: #F0F6FF; border-radius: 30px;">
 
@@ -73,29 +228,31 @@
 </section>
 <section class="my-5">
     <div class="container">
-        <div class="row align-items-center p-4 p-md-5 rounded-5" style="background-color: #F0F6FF; border-radius: 30px;">
+        <div class="row align-items-center g-4 p-4 p-md-5 rounded-5"
+             style="background-color:#F0F6FF;">
 
-            <div class="col-12 col-md-7 d-flex flex-column justify-content-center text-center text-md-start">
-                <h2 class="fw-bold text-dark display-6">
-                    Do You Require a Detailed @Model.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Title ?
+            <!-- Text Content -->
+            <div class="col-12 col-md-7 text-center text-md-start">
+                <h2 class="fw-bold text-dark mb-3 display-6">
+                    Do You Require a Detailed
+                    <span class="text-primary">
+                        @Model.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Title
+                    </span>?
                 </h2>
-                <p>
+
+                <p class="text-muted fs-5 mb-0">
                     @Model.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Content
                 </p>
             </div>
-            <div class="col-12 col-md-5 text-center d-flex justify-content-center align-items-center">
-                <div class="col-12 col-md-5 text-center d-flex justify-content-center align-items-center">
-                    <img src="@Url.Content(Model.Engineering_Services_Obj.Engineering_Services_Image)"
-                         alt="Power System Studies"
-                         class="img-fluid"
-                         style="max-width: 400px; filter: drop-shadow(11px 12px 9px #000); border-radius: 12px;">
-                </div>
+
+            <!-- Image -->
+            <div class="col-12 col-md-5 d-flex justify-content-center">
+                <img src="@Url.Content(Model.Engineering_Services_Obj.Engineering_Services_Image)" alt="@Model.Engineering_Services_Tabs_Obj.Engineering_Services_Tabs_Title" class="img-fluid rounded-4 shadow-lg" style="max-width: 360px;">
             </div>
 
         </div>
     </div>
 </section>
-
 <section class="why-portal py-5" style="background-color: #f2f2f2;">
     <div class="container">
         <div class="text-center mb-5">
@@ -170,3 +327,41 @@
         }
     </div>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const tabs = document.querySelectorAll(".tab-item");
+        const contents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach(tab => {
+            tab.addEventListener("click", function () {
+
+                // Remove active states
+                tabs.forEach(t => t.classList.remove("active"));
+                contents.forEach(c => c.classList.add("d-none"));
+
+                // Activate current tab
+                this.classList.add("active");
+                const targetId = this.dataset.target;
+                document.getElementById(targetId).classList.remove("d-none");
+            });
+        });
+
+        // Auto-load first tab
+        if (tabs.length > 0) {
+            tabs[0].click();
+        }
+    });
+
+    $('.services-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: true,
+        dots: true,
+        responsive: {
+            0: { items: 1 },
+            768: { items: 2 },
+            1200: { items: 2 }
+        }
+    });
+</script>

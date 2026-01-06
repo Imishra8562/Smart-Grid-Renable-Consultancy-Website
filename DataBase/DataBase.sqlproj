@@ -274,7 +274,7 @@
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Add_EngSer_Gallery.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_EngSer_Gallery.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_EngSer_Gallery.sql" />
-    <Build Include="sp_Delete_EngSer_Gallery.sql" />
+    <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_EngSer_Gallery.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

@@ -164,14 +164,89 @@ namespace Web.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager MasterManager = new MasterManager();
             Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
+            Model.Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(0, null).FirstOrDefault();
             int EngSeId = Model.Engineering_Services_Obj.Engineering_Services_Id;
             Model.List_Engineering_Services_Applications_Obj = MasterManager.GetEngineeringServicesApplications(null, EngSeId);
-            Model.List_Engineering_Services_Features_Obj  = MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
-            Model.List_Engineering_Services_SubTopic_Obj  = MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
+            Model.List_Engineering_Services_Features_Obj = MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
+            Model.List_Engineering_Services_SubTopic_Obj = MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
             Model.List_Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(null, EngSeId);
             Model.List_EngSer_Gallery_Obj = MasterManager.GetEngSerGallery(null, EngSeId);
             return View(Model);
         }
+
+        //public ActionResult EngineeringServiesDetails(string url, int? tabId)
+        //{
+        //    MasterModel Model = new MasterModel();
+        //    IMasterManager MasterManager = new MasterManager();
+
+        //    // ================= MAIN ENGINEERING SERVICE =================
+        //    // Example: Power System Studies
+        //    Model.Engineering_Services_Obj =MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
+
+        //    if (Model.Engineering_Services_Obj == null)return HttpNotFound();
+
+        //    int EngSeId = Model.Engineering_Services_Obj.Engineering_Services_Id;
+
+        //    // ================= SIDEBAR TABS (LEFT MENU) =================
+        //    // Load all tabs related to this service
+        //    Model.List_Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(null, EngSeId);
+
+        //    // ================= SELECTED TAB (RIGHT CONTENT) =================
+        //    // If user clicks a tab → tabId comes from URL
+        //    // Else → load first tab by default
+        //    Model.Engineering_Services_Tabs_Obj = tabId.HasValue ? Model.List_Engineering_Services_Tabs_Obj.FirstOrDefault(x => x.Engineering_Services_Tabs_Id == tabId): Model.List_Engineering_Services_Tabs_Obj.FirstOrDefault();
+
+        //    // ================= APPLICATIONS =================
+        //    Model.List_Engineering_Services_Applications_Obj = MasterManager.GetEngineeringServicesApplications(null, EngSeId);
+
+        //    // ================= FEATURES =================
+        //    Model.List_Engineering_Services_Features_Obj = MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
+
+        //    // ================= SUB TOPICS (OPTIONAL) =================
+        //    Model.List_Engineering_Services_SubTopic_Obj = MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
+
+        //    // ================= GALLERY =================
+        //    Model.List_EngSer_Gallery_Obj = MasterManager.GetEngSerGallery(null, EngSeId);
+
+        //    return View(Model);
+        //}
+        //public ActionResult EngineeringServiesDetails(string url)
+        //{
+        //    MasterModel Model = new MasterModel();
+        //    IMasterManager MasterManager = new MasterManager();
+
+        //    // ================= MAIN SERVICE =================
+        //    Model.Engineering_Services_Obj =
+        //        MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
+
+        //    if (Model.Engineering_Services_Obj == null)
+        //        return HttpNotFound();
+
+        //    int EngSeId = Model.Engineering_Services_Obj.Engineering_Services_Id;
+
+        //    // ================= SUB TOPICS (LEFT SIDEBAR) =================
+        //    Model.List_Engineering_Services_SubTopic_Obj =
+        //        MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
+
+        //    // ================= DEFAULT SELECTED SUBTOPIC =================
+        //    // First subtopic will load on page load
+        //    Model.Engineering_Services_SubTopic_Obj =
+        //        Model.List_Engineering_Services_SubTopic_Obj.FirstOrDefault();
+
+        //    // ================= OTHER SECTIONS =================
+        //    Model.List_Engineering_Services_Applications_Obj =
+        //        MasterManager.GetEngineeringServicesApplications(null, EngSeId);
+
+        //    Model.List_Engineering_Services_Features_Obj =
+        //        MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
+
+        //    Model.List_EngSer_Gallery_Obj =
+        //        MasterManager.GetEngSerGallery(null, EngSeId);
+
+        //    return View(Model);
+        //}
+
+
         public ActionResult PowerSystemStudies()
         {
             return View();

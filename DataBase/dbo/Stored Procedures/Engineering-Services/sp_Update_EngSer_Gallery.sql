@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_EngSer_Gallery]
 @FK_Engineering_Services_Id INT=NULL,
+@EngSer_Gallery_Id INT=NULL,
 @EngSer_Gallery_Code         NVARCHAR(MAX)=NULL,
-@EngSer_Gallery_Image_Url        NVARCHAR(MAX)=NULL,
+@EngSer_Gallery_Image_Url    NVARCHAR(MAX)=NULL,
 @EngSer_Gallery_Title        NVARCHAR(MAX)=NULL, 
 @EngSer_Gallery_Description NVARCHAR(MAX)=NULL,
 
@@ -23,8 +24,8 @@ BEGIN TRY
                  Modified_On = @Modified_On,
                  Modified_By = @Modified_By,
                  Modified_IP = @Modified_IP
-        WHERE FK_Engineering_Services_Id = @FK_Engineering_Services_Id;
-        Select @FK_Engineering_Services_Id
+        WHERE EngSer_Gallery_Id = @EngSer_Gallery_Id;
+        Select @EngSer_Gallery_Id
 END TRY
 BEGIN CATCH    
    DECLARE @ErrorMessage VARCHAR(MAX);    
