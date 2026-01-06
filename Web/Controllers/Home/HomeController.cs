@@ -163,8 +163,13 @@ namespace Web.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager MasterManager = new MasterManager();
-            Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null).FirstOrDefault();
-
+            Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
+            int EngSeId = Model.Engineering_Services_Obj.Engineering_Services_Id;
+            Model.List_Engineering_Services_Applications_Obj = MasterManager.GetEngineeringServicesApplications(null, EngSeId);
+            Model.List_Engineering_Services_Features_Obj  = MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
+            Model.List_Engineering_Services_SubTopic_Obj  = MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
+            Model.List_Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(null, EngSeId);
+            Model.List_EngSer_Gallery_Obj = MasterManager.GetEngSerGallery(null, EngSeId);
             return View(Model);
         }
         public ActionResult PowerSystemStudies()
