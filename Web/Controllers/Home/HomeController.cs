@@ -39,14 +39,17 @@ namespace Web.Controllers
         #endregion
 
         #region about
+        [Route("about-us")]
         public ActionResult About()
         {
             return View();
         }
+        [Route("our-team")]
         public ActionResult OurTeam()
         {
             return View();
         }
+        [Route("company-overview")]
         public ActionResult Overview()
         {
             return View();
@@ -58,6 +61,8 @@ namespace Web.Controllers
         {
             return View();
         }
+        [Route("industries")]
+
         public ActionResult Industry()
         {
              AdminModel Model = new  AdminModel();
@@ -81,42 +86,49 @@ namespace Web.Controllers
         #endregion
 
         #region news & insight
+        [Route("newsroom")]
         public ActionResult Newsroom()
         {
             return View();
         }
+        [Route("press-releases")]
         public ActionResult PressReleases()
         {
             return View();
         }
+        [Route("insights")]
         public ActionResult Insights()
         {
             return View();
         }
+        [Route("pulse-journal")]
         public ActionResult PulseJournal()
         {
             return View();
         }
         #endregion
-
+        [Route("training")]
         #region Training,Events & Careers
         public ActionResult Training()
         {
             return View();
         }
+        [Route("events")]
         public ActionResult Event()
         {
             return View();
         }
+        [Route("courses")]
         public ActionResult Courses()
         {
             return View();
         }
+        [Route("past-webinars")]
         public ActionResult PastWebinars()
         {
             return View();
         }
-
+        [Route("careers")]
         public ActionResult Careers()
         {
             return View();
@@ -126,6 +138,8 @@ namespace Web.Controllers
 
 
         #region KnowledgeBase
+        [Route("knowledge-base")]
+
         public ActionResult KnowledgeBase()
         {
             MasterModel Model = new MasterModel();
@@ -152,6 +166,7 @@ namespace Web.Controllers
         #endregion
 
         #region EngineeringServices
+        [Route("engineering-services")]
         public ActionResult EngineeringServices()
         {
             MasterModel Model = new MasterModel();
@@ -159,6 +174,7 @@ namespace Web.Controllers
             Model.List_Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null);
             return View(Model);
         }
+        [Route("engineering-services/{url}")]
         public ActionResult EngineeringServiesDetails(string url)
         {
             MasterModel Model = new MasterModel();
@@ -254,10 +270,12 @@ namespace Web.Controllers
         #endregion
 
         #region InvestorRelations & Sustainability
+        [Route("investor-relations")]
         public ActionResult InvestorRelations()
         {
             return View();
         }
+        [Route("sustainability")]
         public ActionResult Sustainability()
         {
             return View();
@@ -265,10 +283,13 @@ namespace Web.Controllers
         #endregion
 
         #region ContactUs & TermAndCondition
+        [Route("contact-us")]
         public ActionResult ContactUs()
         {
             return View();
         }
+
+        [Route("terms-and-conditions")]
         public ActionResult TermAndCondition()
         {
             return View();
@@ -276,12 +297,12 @@ namespace Web.Controllers
         #endregion
 
         #region login & register
+        [Route("login")]
         public ActionResult Login()
         {
             return View();
         }
         #endregion
-
         #region Upload Image By Ck Editer
         public ActionResult UploadImage(HttpPostedFileBase upload)
         {

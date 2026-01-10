@@ -4,6 +4,54 @@
     ViewBag.Title = "EngineeringServiesDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section HeadContent {
+    <!-- ================= BASIC SEO ================= -->
+    <title>@Model.Engineering_Services_Obj.Engineering_Services_Page_Title</title>
+
+    <meta name="keywords" content="@Model.Engineering_Services_Obj.Engineering_Services_Meta_Keyword" />
+    <meta name="description" content="@Model.Engineering_Services_Obj.Engineering_Services_Meta_Description" />
+    <meta name="author" content="Smart Grid Renewable Consultancy" />
+    <meta name="robots" content="index, follow" />
+
+    <meta name="news_keywords" content="@Model.Engineering_Services_Obj.Engineering_Services_News_Keyword" />
+    <meta name="standout" content="@Model.Engineering_Services_Obj.Engineering_Services_Meta_Description" />
+
+    <!-- ================= CANONICAL ================= -->
+    <link rel="canonical" href="https://smartgridrenewable.com/@Model.Engineering_Services_Obj.Engineering_Services_Url_Link" />
+
+    <!-- ================= OPEN GRAPH ================= -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Smart Grid Renewable Consultancy" />
+
+    <meta property="og:url" content="https://smartgridrenewable.com/@Model.Engineering_Services_Obj.Engineering_Services_Url_Link" />
+    <meta property="og:title" content="@Model.Engineering_Services_Obj.Engineering_Services_Og_Title" />
+    <meta property="og:description" content="@Model.Engineering_Services_Obj.Engineering_Services_Og_Description" />
+
+    <meta property="og:image" content="https://smartgridrenewable.com/Content/assets/images/@Model.Engineering_Services_Obj.Engineering_Services_Og_Image" />
+    <meta property="og:image:url" content="https://smartgridrenewable.com/Content/assets/images/@Model.Engineering_Services_Obj.Engineering_Services_Og_Image" />
+    <meta property="og:image:secure_url" content="https://smartgridrenewable.com/Content/assets/images/@Model.Engineering_Services_Obj.Engineering_Services_Og_Image" />
+
+    <meta property="og:image:alt" content="@Model.Engineering_Services_Obj.Engineering_Services_Image_Alt_Tag" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta property="og:see_also" content="https://smartgridrenewable.com/engineering-servies" />
+    <meta property="og:see_also" content="https://smartgridrenewable.com/contact" />
+
+    <!-- ================= TWITTER ================= -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://smartgridrenewable.com/@Model.Engineering_Services_Obj.Engineering_Services_Url_Link" />
+
+    <meta name="twitter:title" content="@Model.Engineering_Services_Obj.Engineering_Services_Og_Title" />
+    <meta name="twitter:description" content="@Model.Engineering_Services_Obj.Engineering_Services_Og_Description" />
+    <meta name="twitter:image" content="https://smartgridrenewable.com/Content/assets/images/@Model.Engineering_Services_Obj.Engineering_Services_Og_Image" />
+
+    <meta name="twitter:image:width" content="1200" />
+    <meta name="twitter:image:height" content="630" />
+}
+
+
 <style>
     .app-card {
         transition: all 0.3s ease;

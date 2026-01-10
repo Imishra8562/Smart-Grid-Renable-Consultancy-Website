@@ -2,7 +2,7 @@
     ViewBag.Title = "Overview";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
+@section HeadContent {
     <meta charset="utf-8" />
 
     <!-- Viewport -->
@@ -40,115 +40,115 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
 
-</head>
-<!-- ====== Page Title Section (Updated Style) ====== -->
-<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
+    }
+    <!-- ====== Page Title Section (Updated Style) ====== -->
+    <section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
 
-    <div class="auto-container">
-        <div class="content text-white py-5" data-aos="fade-down">
-            <h1 class="display-5 fw-bold">Over<span class="text-warning">view</span></h1>
-            <ul class="page-breadcrumb list-inline mt-3">
+        <div class="auto-container">
+            <div class="content text-white py-5" data-aos="fade-down">
+                <h1 class="display-5 fw-bold">Over<span class="text-warning">view</span></h1>
+                <ul class="page-breadcrumb list-inline mt-3">
 
-                <li class="list-inline-item">
-                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
-                </li>
-                <li class="list-inline-item text-white">Overview</li>
-            </ul>
-        </div>
-    </div>
-</section>
-<!-- ====== COMPANY OVERVIEW ====== -->
-<section class="py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold text-dark">About <span class="text-danger">SGRC Consulting Services</span></h2>
-            <p class="text-muted mt-3">Delivering Excellence in Power Systems, Energy Transition & Cybersecurity</p>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <p>
-                    At <strong>SGRC Consulting Services</strong>, we bring comprehensive global experience in
-                    <strong>Power System Studies</strong> and deep technical knowledge in analyzing
-                    <strong>
-                        shunt and series compensation, SVCs, FACTS, HVDC, synchronous condensers,
-                        power plants, transmission system dynamic controls, data centers, electric vehicle
-                        charging infrastructure, and cybersecurity.
-                    </strong>
-                </p>
-                <p>
-                    Our consultants are proficient with leading tools including
-                    <strong>Siemens PSS®E, DigSILENT PowerFactory, ETAP, PSCAD, EMTP</strong>, and
-                    a range of proprietary in-house applications. We focus on the
-                    <strong>planning, design, and operation</strong> of complex and interconnected power systems.
-                </p>
-                <p>
-                    SGRC has strong expertise in <strong>voltage control and reactive power planning</strong>,
-                    applying the most effective tools and procedures to ensure stability and efficiency.
-                    We conduct <strong>steady-state, voltage, and transient stability studies</strong>
-                    across regional transmission systems, generation interconnections, renewable integration,
-                    and sub-synchronous resonance analysis.
-                </p>
-                <p>
-                    As organizations navigate the <strong>#EnergyTransition</strong>, SGRC stands ready with
-                    proven experience, cutting-edge tools, and strategic insights to support your path to a
-                    sustainable <strong>#FutureOfEnergy</strong>.
-                </p>
+                    <li class="list-inline-item">
+                        <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                    </li>
+                    <li class="list-inline-item text-white">Overview</li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- ====== COMPANY OVERVIEW ====== -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">About <span class="text-danger">SGRC Consulting Services</span></h2>
+                <p class="text-muted mt-3">Delivering Excellence in Power Systems, Energy Transition & Cybersecurity</p>
+            </div>
 
-<!-- ====== OUR EXPERTISE ====== -->
-<section class="py-5 bg-light">
-    <div class="container text-center">
-        <h2 class="fw-bold mb-5 text-dark">Our <span class="text-danger">Expertise</span></h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
-                    <i class="fa fa-bolt fa-2x text-danger mb-3"></i>
-                    <h5 class="fw-bold text-dark">Power System Studies</h5>
-                    <p class="text-muted">Advanced steady-state, dynamic, and transient analyses to optimize grid performance and reliability.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
-                    <i class="fa fa-plug fa-2x text-danger mb-3"></i>
-                    <h5 class="fw-bold text-dark">FACTS, HVDC & Compensation</h5>
-                    <p class="text-muted">Comprehensive modeling and optimization of FACTS, SVCs, and HVDC for efficient power transfer and stability.</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
-                    <i class="fa fa-shield-alt fa-2x text-danger mb-3"></i>
-                    <h5 class="fw-bold text-dark">Cybersecurity & Smart Infrastructure</h5>
-                    <p class="text-muted">Protecting energy systems, SCADA, and smart grids with robust cybersecurity assessments and monitoring.</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <p>
+                        At <strong>SGRC Consulting Services</strong>, we bring comprehensive global experience in
+                        <strong>Power System Studies</strong> and deep technical knowledge in analyzing
+                        <strong>
+                            shunt and series compensation, SVCs, FACTS, HVDC, synchronous condensers,
+                            power plants, transmission system dynamic controls, data centers, electric vehicle
+                            charging infrastructure, and cybersecurity.
+                        </strong>
+                    </p>
+                    <p>
+                        Our consultants are proficient with leading tools including
+                        <strong>Siemens PSS®E, DigSILENT PowerFactory, ETAP, PSCAD, EMTP</strong>, and
+                        a range of proprietary in-house applications. We focus on the
+                        <strong>planning, design, and operation</strong> of complex and interconnected power systems.
+                    </p>
+                    <p>
+                        SGRC has strong expertise in <strong>voltage control and reactive power planning</strong>,
+                        applying the most effective tools and procedures to ensure stability and efficiency.
+                        We conduct <strong>steady-state, voltage, and transient stability studies</strong>
+                        across regional transmission systems, generation interconnections, renewable integration,
+                        and sub-synchronous resonance analysis.
+                    </p>
+                    <p>
+                        As organizations navigate the <strong>#EnergyTransition</strong>, SGRC stands ready with
+                        proven experience, cutting-edge tools, and strategic insights to support your path to a
+                        sustainable <strong>#FutureOfEnergy</strong>.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ====== TOOLS & CAPABILITIES ====== -->
-<section class="py-5 text-center">
-    <div class="container">
-        <h2 class="fw-bold mb-4 text-dark">Tools & <span class="text-danger">Capabilities</span></h2>
-        <div class="row justify-content-center g-3">
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PSS®E</span></div>
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PowerFactory</span></div>
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">ETAP</span></div>
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PSCAD</span></div>
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">EMTP</span></div>
-            <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">In-house Tools</span></div>
+    <!-- ====== OUR EXPERTISE ====== -->
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5 text-dark">Our <span class="text-danger">Expertise</span></h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+                        <i class="fa fa-bolt fa-2x text-danger mb-3"></i>
+                        <h5 class="fw-bold text-dark">Power System Studies</h5>
+                        <p class="text-muted">Advanced steady-state, dynamic, and transient analyses to optimize grid performance and reliability.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+                        <i class="fa fa-plug fa-2x text-danger mb-3"></i>
+                        <h5 class="fw-bold text-dark">FACTS, HVDC & Compensation</h5>
+                        <p class="text-muted">Comprehensive modeling and optimization of FACTS, SVCs, and HVDC for efficient power transfer and stability.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 border rounded-4 h-100 bg-white shadow-sm">
+                        <i class="fa fa-shield-alt fa-2x text-danger mb-3"></i>
+                        <h5 class="fw-bold text-dark">Cybersecurity & Smart Infrastructure</h5>
+                        <p class="text-muted">Protecting energy systems, SCADA, and smart grids with robust cybersecurity assessments and monitoring.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ====== CALL TO ACTION ====== -->
-<section class="py-5 text-white text-center" style="background: linear-gradient(to right, #002D62, #0056A6);">
-    <div class="container">
-        <h3 class="fw-bold mb-3">Partner with SGRC for Expert Power System Consulting</h3>
-        <p class="mb-4">We help clients enhance reliability, enable renewable integration, and secure their energy infrastructure.</p>
-        <a href="/contact" class="btn btn-warning px-4 fw-semibold">Contact Us</a>
-    </div>
-</section>
+    <!-- ====== TOOLS & CAPABILITIES ====== -->
+    <section class="py-5 text-center">
+        <div class="container">
+            <h2 class="fw-bold mb-4 text-dark">Tools & <span class="text-danger">Capabilities</span></h2>
+            <div class="row justify-content-center g-3">
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PSS®E</span></div>
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PowerFactory</span></div>
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">ETAP</span></div>
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">PSCAD</span></div>
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">EMTP</span></div>
+                <div class="col-6 col-md-2"><span class="badge bg-primary p-3 fs-6">In-house Tools</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CALL TO ACTION ====== -->
+    <section class="py-5 text-white text-center" style="background: linear-gradient(to right, #002D62, #0056A6);">
+        <div class="container">
+            <h3 class="fw-bold mb-3">Partner with SGRC for Expert Power System Consulting</h3>
+            <p class="mb-4">We help clients enhance reliability, enable renewable integration, and secure their energy infrastructure.</p>
+            <a href="/contact" class="btn btn-warning px-4 fw-semibold">Contact Us</a>
+        </div>
+    </section>

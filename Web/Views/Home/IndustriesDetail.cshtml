@@ -3,7 +3,7 @@
     ViewBag.Title = "IndustriesDetail";
 }
 
-<Head>
+@section HeadContent {
     <meta name="description" content="@Model.Industries_Obj.Industries_Meta_Description" />
     <meta name="keywords" content="@Model.Industries_Obj.Industries_Meta_Keyword" />
     <meta name="author" content="SGRC" />
@@ -13,7 +13,7 @@
     <meta property="og:description" content="@Model.Industries_Obj.Industries_Page_Title" />
     <meta property="og:image" content="@Url.Content(Model.Industries_Obj.Industries_Image)" />
     <meta property="og:type" content="website" />
-</Head>
+}
 
 <!-- ====== Page Header / Banner ====== -->
 <section class="page-title" style="position: relative;  background-image: url('../../Content/images/background/8.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">

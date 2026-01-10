@@ -13,18 +13,10 @@ namespace Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "IndustriesDetail",
-                url: "industries/{industries}",
-                defaults: new { controller = "Home", action = "IndustriesDetail" }
-            );
-            routes.MapRoute(
-                name: "knowledgeBaseDetail",
-                url: "knowledge-base/{url}",
-                defaults: new { controller = "Home", action = "knowledgeBaseDetail" }
-            );
+            // ✅ Enable attribute routing
+            routes.MapMvcAttributeRoutes();
 
-
+            // ✅ Default fallback route ONLY
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
