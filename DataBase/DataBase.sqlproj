@@ -275,6 +275,11 @@
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_List_EngSer_Gallery.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Update_EngSer_Gallery.sql" />
     <Build Include="dbo\Stored Procedures\Engineering-Services\sp_Delete_EngSer_Gallery.sql" />
+    <Build Include="dbo\Tables\Customer\tbl_Career_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\sp_Add_Career_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\sp_Update_Career_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\sp_List_Career_Category.sql" />
+    <Build Include="dbo\Stored Procedures\Customer\sp_Delete_Career_Category.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DataBase.publish.xml" />

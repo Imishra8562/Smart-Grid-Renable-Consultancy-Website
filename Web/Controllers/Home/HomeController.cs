@@ -107,8 +107,9 @@ namespace Web.Controllers
             return View();
         }
         #endregion
-        [Route("training")]
+
         #region Training,Events & Careers
+        [Route("training")]
         public ActionResult Training()
         {
             return View();
@@ -175,7 +176,7 @@ namespace Web.Controllers
             return View(Model);
         }
         [Route("engineering-services/{url}")]
-        public ActionResult EngineeringServiesDetails(string url)
+        public ActionResult EngineeringServicesDetails(string url)
         {
             MasterModel Model = new MasterModel();
             IMasterManager MasterManager = new MasterManager();

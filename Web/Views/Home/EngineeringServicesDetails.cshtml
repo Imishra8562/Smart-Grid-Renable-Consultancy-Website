@@ -1,7 +1,7 @@
 ﻿@model Web.Areas.Admin.Model.MasterModel
 @using Newtonsoft.Json;
 @{
-    ViewBag.Title = "EngineeringServiesDetails";
+    ViewBag.Title = "EngineeringServicesDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section HeadContent {
@@ -412,4 +412,40 @@
             1200: { items: 2 }
         }
     });
+</script>
+<script type="application/ld+json">
+@{
+    var kbItem = Model.Engineering_Services_Obj;
+    if (kbItem != null)
+    {
+        // Remove HTML tags from description
+        string descriptionText = string.IsNullOrEmpty(kbItem.Engineering_Services_Description)? "": System.Text.RegularExpressions.Regex.Replace(kbItem.Engineering_Services_Description, "<.*?>", "").Trim();
+
+        // Absolute image URL
+        string imageUrl = !string.IsNullOrEmpty(kbItem.Engineering_Services_Image)? Url.Content(kbItem.Engineering_Services_Image) : Url.Content("/Content/images/default-og.png");
+
+        // Absolute URL for the Engineering Services page
+        string kbUrl = Url.Action("EngineeringServicesDetails", "Home", new { url = kbItem.Engineering_Services_Url_Link }, Request.Url.Scheme);
+
+        var schema = new Dictionary<string, object>
+        {
+            { "@context", "https://schema.org" },
+            { "@type", "Article" },
+            { "headline", kbItem.Engineering_Services_Name ?? "Knowledge Base Article" },
+            { "url", kbUrl },
+            { "description", descriptionText },
+            { "image", imageUrl },
+            { "datePublished", kbItem.Created_On },
+            { "dateModified", kbItem.Modified_On },
+            { "author", new Dictionary<string, object>
+                {
+                    { "@type", "Organization" },
+                    { "name", "Smart Grid Renewable Consultancy" }
+                }
+            }
+        };
+
+        @Html.Raw(JsonConvert.SerializeObject(schema, Formatting.Indented))
+    }
+}
 </script>

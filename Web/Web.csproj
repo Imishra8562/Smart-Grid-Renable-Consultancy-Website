@@ -1141,7 +1141,7 @@
     <Content Include="Views\Home\Power.cshtml" />
     <Content Include="Views\Home\IndustriesDetail.cshtml" />
     <Content Include="Views\Home\KnowledgeBaseDetails.cshtml" />
-    <Content Include="Views\Home\EngineeringServiesDetails.cshtml" />
+    <Content Include="Views\Home\EngineeringServicesDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">

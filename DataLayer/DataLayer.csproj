@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Career_Category_Repository.cs" />
     <Compile Include="Core\BaseRepository.cs" />
     <Compile Include="Engineering-Services\Engineering_Services_Applications_Repository.cs" />
     <Compile Include="Engineering-Services\Engineering_Services_Features_Repository.cs" />
@@ -102,8 +103,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Master\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
