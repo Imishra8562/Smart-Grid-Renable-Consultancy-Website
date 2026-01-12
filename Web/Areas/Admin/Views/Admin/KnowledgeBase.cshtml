@@ -36,13 +36,13 @@
                         @using (Html.BeginForm("SaveKnowledgeBase", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                         {
                             <div class="row g-3">
-                                <div class="col-md-4">
+                                @*<div class="col-md-4">
                                     <label class="form-label">Knowledge Base Category</label>
                                     @Html.DropDownListFor(m => m.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id, new SelectList(Model.List_Knowledge_Base_Category_Obj, "Knowledge_Base_Category_Id", "Category_Name"), "-- Knowledge Base Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
                                     <div class="invalid-feedback">
                                         Please enter Knowledge Base name.
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="col-md-4">
                                     <label class="form-label">Knowledge Base Name</label>
                                     @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name, new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
@@ -235,9 +235,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if (Model.List_Knowledge_Base_Business_Obj != null && Model.List_Knowledge_Base_Business_Obj.Count > 0)
+                            @if (Model.List_Knowledge_Base_Obj != null && Model.List_Knowledge_Base_Obj.Count > 0)
                             {
-                                foreach (var items in Model.List_Knowledge_Base_Business_Obj)
+                                foreach (var items in Model.List_Knowledge_Base_Obj)
                                 {
                                     <tr>
                                         <td>@(++i)</td>
@@ -302,13 +302,13 @@
                         @using (Html.BeginForm("UpdateKnowledgeBase", "Admin", FormMethod.Post, new { @class = "needs-validation", enctype = "multipart/form-data", novalidate = "novalidate" }))
                         {
                            <div class="row g-3">
-                               <div class="col-md-4">
+                               @*<div class="col-md-4">
                                    <label class="form-label">Knowledge Base Category</label>
                                    @Html.DropDownListFor(m => m.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id, new SelectList(Model.List_Knowledge_Base_Category_Obj, "Knowledge_Base_Category_Id", "Category_Name"), "-- Knowledge Base Category Name --", new { @class = "form-control", @id = "validationCustom01", @required = "required" })
                                    <div class="invalid-feedback">
                                        Please enter Knowledge Base name.
                                    </div>
-                               </div>
+                               </div>*@
                                <div class="col-md-4">
                                    <label class="form-label">Knowledge Base Name</label>
                                    @Html.TextBoxFor(m => m.Knowledge_Base_Obj.Knowledge_Base_Name, new { @class = "form-control", @placeholder = "Enter Knowledge Base name", @required = "required" })
@@ -423,7 +423,6 @@
                             </div>
 
                             @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Id)
-                            @Html.HiddenFor(x => x.Knowledge_Base_Obj.FK_Knowledge_Base_Category_Id)
                             @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Code)
                             @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Image)
                             @Html.HiddenFor(x => x.Knowledge_Base_Obj.Knowledge_Base_Og_Image)

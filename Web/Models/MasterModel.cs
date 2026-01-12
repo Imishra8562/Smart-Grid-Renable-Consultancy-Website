@@ -52,7 +52,6 @@ namespace Web.Models
         public IList<Industries> List_Industries_Obj { get; set; }
         #endregion
 
-
         #region Knowledge Base Category
         public Knowledge_Base_Category Knowledge_Base_Category_Obj { get; set; }
         public IList<Knowledge_Base_Category> List_Knowledge_Base_Category_Obj { get; set; }

@@ -389,13 +389,13 @@ namespace BusinessLayer
             }
             return Id;
         }
-        public IList<Knowledge_Base_Business> GetKnowledgeBase(int? Knowledge_Base_Id,int? Knowledge_Base_Category_Id ,string Knowledge_Base_Url_Link)
+        public IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id  ,string Knowledge_Base_Url_Link)
         {
-            IList<Knowledge_Base_Business> ListObj = new List<Knowledge_Base_Business>();
+            IList<Knowledge_Base> ListObj = new List<Knowledge_Base>();
             try
             {
                 Knowledge_Base_Repository db = new Knowledge_Base_Repository();
-                ListObj = db.ListKnowledgeBase(Knowledge_Base_Id, Knowledge_Base_Category_Id, Knowledge_Base_Url_Link);
+                ListObj = db.ListKnowledgeBase(Knowledge_Base_Id, Knowledge_Base_Url_Link);
             }
             catch (Exception ex)
             {

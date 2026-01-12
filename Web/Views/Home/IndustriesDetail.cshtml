@@ -24,89 +24,79 @@
         </div>
     </div>
 </section>
-
-<!-- ====== Industry Details Section ====== -->
-<section class="py-5 bg-light">
+<!-- ===== Main Layout ===== -->
+<section class="py-5 bg-white">
     <div class="container">
-        <div class="row g-5">
-            <!-- Left Content -->
-            <div class="col-lg-8">
-                <h2 class="fw-bold mb-3">@Model.Industries_Obj.Industries_Name</h2>
-                <p class="text-muted fs-6">@Html.Raw(Model.Industries_Obj.Industries_Description)</p>
-            </div>
+        <div class="row g-4">
 
-            <!-- Sidebar -->
-            <div class="col-lg-4">
-                <div class="p-4 bg-white rounded shadow-sm">
-                    <!-- Search -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Search Industries</h5>
-                        <input type="text" id="IndustriesearchInput" class="form-control mb-2" placeholder="Search here..." onkeyup="filterIndustries()">
-                        <div id="searchResults" class="search-results-box border rounded p-2 d-none"></div>
-                    </div>
+            <!-- LEFT SIDEBAR -->
+            <aside class="col-lg-3">
+                <div class="border rounded p-4">
+                    <h6 class="fw-bold text-uppercase mb-3 border-bottom pb-2">
+                        Industries
+                    </h6>
 
-                    <!-- Recent Posts -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Industrie where we are working </h5>
-                        <ul class="list-unstyled">
-
-                            @if (Model.List_Industries_Obj != null && Model.List_Industries_Obj.Count > 0)
-                            {
-                                foreach (var item in Model.List_Industries_Obj.Take(5))
-                                {
-                                    <li class="mb-2">
-                                        <a href="@Url.Action("IndustriesDetail", "Home" , new { industries=item.Industries_Url_Link })"
-                                           class="d-block text-decoration-none">
-                                            <div class="d-flex gap-2">
-                                                <div>
-                                                    <h6 class="mb-1">@item.Industries_Name</h6>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-
-                                }
-                            }
-                            else
-                            {
-                                <li><small class="text-muted">No recent posts available.</small></li>
-                            }
-
-                        </ul>
-                    </div>
-
-
-                    <!-- Categories -->
-                    <div class="mb-4">
-                        <h5 class="mb-3">Post Categories</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="/category/health-and-medical" class="d-flex justify-content-between text-decoration-none mb-1">Health & Medical <i class="bi bi-chevron-right"></i></a></li>
-                            <li><a href="/category/government" class="d-flex justify-content-between text-decoration-none mb-1">Government <i class="bi bi-chevron-right"></i></a></li>
-                            <li><a href="/category/it-technology" class="d-flex justify-content-between text-decoration-none mb-1">IT Technology <i class="bi bi-chevron-right"></i></a></li>
-                            <!-- Add more categories -->
-                        </ul>
-                    </div>
-
-                    <!-- Social Follow -->
-                    <div class="mb-4">
-                        <h5 class="mb-2">Follow Us</h5>
-                        <p class="text-muted small">Follow us on social networks</p>
-                        <div class="d-flex gap-3">
-                            <a href="https://www.facebook.com/sgrc" target="_blank" class="text-dark"><i class="bx bxl-facebook"></i></a>
-                            <a href="https://x.com/sgrc" target="_blank" class="text-dark"><i class="bx bxl-twitter"></i></a>
-                            <a href="https://www.linkedin.com/company/sgrc-pvt-ltd/?viewAsMember=true" target="_blank" class="text-dark"><i class="bx bxl-linkedin-square"></i></a>
-                            <a href="https://www.youtube.com/channel/UCVZFfMNjik60TgOYwC7KOig" target="_blank" class="text-dark"><i class="bx bxl-youtube"></i></a>
-                            <a href="https://www.instagram.com/sgrc/" target="_blank" class="text-dark"><i class="bx bxl-instagram"></i></a>
-                            <a href="https://in.pinterest.com/sgrcsoftwarepvtltd/" target="_blank" class="text-dark"><i class="bx bxl-pinterest"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Industry Image -->
-                    <div class="text-center mt-4">
-                        <img src="@Url.Content(Model.Industries_Obj.Industries_Image)" alt="@Model.Industries_Obj.Industries_Image_Alt_Tag" class="img-fluid rounded shadow">
-                    </div>
+                    <ul class="list-unstyled mb-0">
+                        @foreach (var item in Model.List_Industries_Obj)
+                        {
+                            <li class="mb-2">
+                                <a href="@Url.Action("IndustriesDetail","Home", new { industries = item.Industries_Url_Link })"
+                                   class="d-flex justify-content-between align-items-center text-decoration-none @(item.Industries_Id == Model.Industries_Obj.Industries_Id? "fw-semibold text-warning": "text-dark")">
+                                    <span>@item.Industries_Name</span>
+                                    <i class="bi bi-chevron-right small"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
                 </div>
-            </div>
+            </aside>
+
+            <!-- CENTER CONTENT -->
+            <main class="col-lg-6">
+                <h4 class="fw-semibold mb-3">
+                    @Model.Industries_Obj.Industries_Page_Title
+                </h4>
+
+                <div class="text-muted lh-lg">
+                    @Html.Raw(Model.Industries_Obj.Industries_Description)
+                </div>
+
+                <div class="mt-4">
+                    <a href="@Url.Action("KnowledgeBase","Home")" class="fw-semibold text-warning text-decoration-none"> Browse our Knowledge Directory →
+                    </a>
+                </div>
+
+                <p class="small mt-3 text-muted">
+                    For further assistance, contact us at
+                    <a href="mailto:engineering@sgrc.co.in">engineering@sgrc.co.in</a>
+                </p>
+            </main>
+
+            <!-- RIGHT SIDEBAR -->
+            <aside class="col-lg-3 d-none d-lg-block">
+                <div class="mb-4 text-center">
+                    <img src="@Url.Content(Model.Industries_Obj.Industries_Image)" alt="@Model.Industries_Obj.Industries_Image_Alt_Tag" class="img-fluid rounded border">
+                </div>
+
+                <div class="mb-4">
+                    <h6 class="fw-bold text-uppercase border-bottom pb-2">
+                        Knowledge Base
+                    </h6>
+                    <p class="small text-muted mt-2">
+                        A support repository with hundreds of technical insights.
+                    </p>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold text-uppercase border-bottom pb-2">
+                        Training
+                    </h6>
+                    <p class="small text-muted mt-2">
+                        Professional courses designed to enhance expertise.
+                    </p>
+                </div>
+            </aside>
+
         </div>
     </div>
 </section>

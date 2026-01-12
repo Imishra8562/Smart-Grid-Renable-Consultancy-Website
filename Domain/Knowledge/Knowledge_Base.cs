@@ -8,7 +8,6 @@ namespace Domain
     {
         [Identifier("Knowledge_Base_Id")]
         public int Knowledge_Base_Id { get; set; }
-        public int FK_Knowledge_Base_Category_Id { get; set; }
         public string Knowledge_Base_Code { get; set; }
         public string Knowledge_Base_Name { get; set; }
         public string Knowledge_Base_Page_Title { get; set; }

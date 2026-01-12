@@ -927,11 +927,10 @@ namespace Web.Areas.Admin.Controllers
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
-            Model.List_Knowledge_Base_Category_Obj = Manager.GetKnowledgeBaseCategory(0, null);
+            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0,null);
             if (Knowledge_Base_Id.HasValue)
             {
-                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, 0, null).FirstOrDefault();
+                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
@@ -1069,7 +1068,6 @@ namespace Web.Areas.Admin.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
             // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_Card_Business_Obj = Manager.GetKnowledgeCard(0, 0);
             if (Knowledge_Card_Id.HasValue)
             {
@@ -1181,7 +1179,6 @@ namespace Web.Areas.Admin.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
             // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_FailureMode_Business_Obj = Manager.GetKnowledgeFailureMode(0, 0);
             if (Knowledge_FailureMode_Id.HasValue)
             {
@@ -1294,7 +1291,6 @@ namespace Web.Areas.Admin.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
             // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(0, 0);
             if (Knowledge_RelatedSolution_Id.HasValue)
             {
@@ -1407,7 +1403,6 @@ namespace Web.Areas.Admin.Controllers
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
             // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_Base_Business_Obj = Manager.GetKnowledgeBase(0, 0, null);
             Model.List_Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(0, 0);
             if (Knowledge_WorkflowStep_Id.HasValue)
             {

@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Add_Knowledge_Base]
-@FK_Knowledge_Base_Category_Id INT= NULL,
+--@FK_Knowledge_Base_Category_Id INT= NULL,
 @Knowledge_Base_Code NVARCHAR(MAX)=NULL,
 @Knowledge_Base_Name NVARCHAR(MAX)=NULL,
 @Knowledge_Base_Page_Title NVARCHAR(MAX)=NULL,
@@ -32,11 +32,11 @@ BEGIN TRY
 		 
    IF @Knowledge_BaseId IS NULL
       BEGIN
-         INSERT INTO tbl_Knowledge_Base(FK_Knowledge_Base_Category_Id,Knowledge_Base_Code,Knowledge_Base_Name,Knowledge_Base_Page_Title,Knowledge_Base_Meta_Keyword,Knowledge_Base_Meta_Description,Knowledge_Base_News_Keyword,Knowledge_Base_News_Description,
+	  INSERT INTO tbl_Knowledge_Base(Knowledge_Base_Code,Knowledge_Base_Name,Knowledge_Base_Page_Title,Knowledge_Base_Meta_Keyword,Knowledge_Base_Meta_Description,Knowledge_Base_News_Keyword,Knowledge_Base_News_Description,
 									Knowledge_Base_Og_Image,Knowledge_Base_Og_Title,Knowledge_Base_Og_Description,Knowledge_Base_Image,Knowledge_Base_Image_Alt_Tag,Knowledge_Base_Description,Knowledge_Base_Url_Link,Created_By,Created_IP)
-		 VALUES(@FK_Knowledge_Base_Category_Id,@Knowledge_Base_Code,@Knowledge_Base_Name,@Knowledge_Base_Page_Title,@Knowledge_Base_Meta_Keyword,@Knowledge_Base_Meta_Description,@Knowledge_Base_News_Keyword,@Knowledge_Base_News_Description,
+	  VALUES(@Knowledge_Base_Code,@Knowledge_Base_Name,@Knowledge_Base_Page_Title,@Knowledge_Base_Meta_Keyword,@Knowledge_Base_Meta_Description,@Knowledge_Base_News_Keyword,@Knowledge_Base_News_Description,
 				@Knowledge_Base_Og_Image,@Knowledge_Base_Og_Title,@Knowledge_Base_Og_Description,@Knowledge_Base_Image,@Knowledge_Base_Image_Alt_Tag,@Knowledge_Base_Description,@Knowledge_Base_Url_Link,@Created_By,@Created_IP)
-		 SELECT SCOPE_IDENTITY()
+      SELECT SCOPE_IDENTITY()
       END
 
 END TRY   
@@ -46,3 +46,8 @@ BEGIN CATCH
    RAISERROR (@ErrorMessage, 16, 1)   
 END CATCH
 END
+--INSERT INTO tbl_Knowledge_Base(FK_Knowledge_Base_Category_Id,Knowledge_Base_Code,Knowledge_Base_Name,Knowledge_Base_Page_Title,Knowledge_Base_Meta_Keyword,Knowledge_Base_Meta_Description,Knowledge_Base_News_Keyword,Knowledge_Base_News_Description,
+									--Knowledge_Base_Og_Image,Knowledge_Base_Og_Title,Knowledge_Base_Og_Description,Knowledge_Base_Image,Knowledge_Base_Image_Alt_Tag,Knowledge_Base_Description,Knowledge_Base_Url_Link,Created_By,Created_IP)
+		 --VALUES(@FK_Knowledge_Base_Category_Id,@Knowledge_Base_Code,@Knowledge_Base_Name,@Knowledge_Base_Page_Title,@Knowledge_Base_Meta_Keyword,@Knowledge_Base_Meta_Description,@Knowledge_Base_News_Keyword,@Knowledge_Base_News_Description,
+			--	@Knowledge_Base_Og_Image,@Knowledge_Base_Og_Title,@Knowledge_Base_Og_Description,@Knowledge_Base_Image,@Knowledge_Base_Image_Alt_Tag,@Knowledge_Base_Description,@Knowledge_Base_Url_Link,@Created_By,@Created_IP)
+	

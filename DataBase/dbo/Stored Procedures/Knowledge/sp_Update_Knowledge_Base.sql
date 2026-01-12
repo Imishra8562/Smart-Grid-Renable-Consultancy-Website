@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[sp_Update_Knowledge_Base]
-@FK_Knowledge_Base_Category_Id INT=NULL,
+--@FK_Knowledge_Base_Category_Id INT=NULL,
 @Knowledge_Base_Id INT=NULL,
 @Knowledge_Base_Code NVARCHAR(MAX)=NULL,
 @Knowledge_Base_Name NVARCHAR(MAX)=NULL,
@@ -29,7 +29,7 @@ BEGIN
 BEGIN TRY  
 	   
    UPDATE tbl_Knowledge_Base SET 
-                                FK_Knowledge_Base_Category_Id=@FK_Knowledge_Base_Category_Id,
+                                --FK_Knowledge_Base_Category_Id=@FK_Knowledge_Base_Category_Id,
                                 Knowledge_Base_Name=@Knowledge_Base_Name,
                                 Knowledge_Base_Page_Title=@Knowledge_Base_Page_Title,
                                 Knowledge_Base_Meta_Keyword=@Knowledge_Base_Meta_Keyword,

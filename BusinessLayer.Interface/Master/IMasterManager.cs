@@ -57,7 +57,7 @@ namespace BusinessLayer.Interface
 
         #region  Knowledge Base
         int SaveKnowledgeBase(Knowledge_Base Object);
-        IList<Knowledge_Base_Business> GetKnowledgeBase(int? Knowledge_Base_Id,int? Knowledge_Base_Category_Id, string Knowledge_Base_Url_Link);
+        IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link);
         int UpdateKnowledgeBase(Knowledge_Base Object);
         int DeleteKnowledgeBase(int Knowledge_Base_Id);
         #endregion

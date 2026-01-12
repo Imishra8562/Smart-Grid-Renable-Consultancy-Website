@@ -9,6 +9,7 @@ namespace Web.Areas.Admin.Model
 {
 	public class MasterModel
 	{
+        
         #region Index Seo
         public HttpPostedFileBase Index_Seo_Og_Image { get; set; }
         public Index_Seo Index_Seo_Obj { get; set; }
@@ -137,6 +138,15 @@ namespace Web.Areas.Admin.Model
         public EngSer_Gallery EngSer_Gallery_Obj { get; set; }
 
         public IList<EngSer_Gallery> List_EngSer_Gallery_Obj { get; set; }
+
+        #endregion
+
+        #region Industries
+
+        public HttpPostedFileBase Industries_Image { get; set; }
+        public HttpPostedFileBase Industries_Og_Image { get; set; }
+        public Industries Industries_Obj { get; set; }
+        public IList<Industries> List_Industries_Obj { get; set; }
 
         #endregion
     }
