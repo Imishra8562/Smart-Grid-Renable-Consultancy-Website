@@ -230,48 +230,78 @@
         </div>
     </div>
 </section>
+<!-- ================= CONTENT ================= -->
 <section class="py-5 bg-light">
     <div class="container">
-        <div class="row align-items-center g-5">
+        <div class="row g-4">
 
-            <!-- ===== LEFT CONTENT ===== -->
-            <div class="col-lg-7">
-                <span class="badge bg-warning text-dark text-uppercase mb-3 px-3 py-2">
-                    Core Competency
-                </span>
+            <!-- ===== LEFT SIDEBAR : KNOWLEDGE LIST ===== -->
+            <div class="col-lg-3">
 
-                <h2 class="fw-bold text-dark mb-4" style="font-size: 2.3rem;">
-                    @Model.Knowledge_Base_Obj.Knowledge_Base_Page_Title
-                </h2>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-3">
 
-                <div class="text-muted fs-6 lh-lg">
-                    @Html.Raw(Model.Knowledge_Base_Obj.Knowledge_Base_Description)
+                        <h6 class="fw-bold mb-3 text-uppercase">
+                            Knowledge Base
+                        </h6>
+
+                        <div class="list-group list-group-flush small">
+
+                            @if (Model.List_Knowledge_Base_Obj != null && Model.List_Knowledge_Base_Obj.Any())
+                            {
+                                foreach (var item in Model.List_Knowledge_Base_Obj)
+                                {
+                                    bool isActive = Model.Knowledge_Base_Obj.Knowledge_Base_Id == item.Knowledge_Base_Id;
+
+                                    <a href="@Url.Action("KnowledgeBaseDetails", "Home",new { url = item.Knowledge_Base_Url_Link })"class="list-group-item list-group-item-action @(isActive ? "active bg-warning text-dark fw-semibold border-0" : "")">
+                                        @item.Knowledge_Base_Name
+                                    </a>
+                                }
+                            }
+                        </div>
+
+                    </div>
                 </div>
+
+            </div>
+
+            <!-- ===== CENTER CONTENT ===== -->
+            <div class="col-lg-6">
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+
+                        <span class="badge bg-warning text-dark mb-3">
+                            Expert Insight
+                        </span>
+
+                        <h2 class="fw-bold mb-4">
+                            @Model.Knowledge_Base_Obj.Knowledge_Base_Page_Title
+                        </h2>
+
+                        <div class="text-muted lh-lg">
+                            @Html.Raw(Model.Knowledge_Base_Obj.Knowledge_Base_Description)
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
             <!-- ===== RIGHT IMAGE ===== -->
-            <div class="col-lg-5">
-                <div class="position-relative text-center">
+            <div class="col-lg-3">
 
-                    <!-- Decorative Shape -->
-                    <div class="position-absolute top-0 end-0 translate-middle
-                    bg-warning opacity-25 rounded-circle"
-                         style="width:100px; height:100px; z-index:0;">
-                    </div>
-
-                    <div class="p-3 bg-white rounded-4 shadow position-relative" style="z-index:1;">
-                        <img src="@Url.Content(Model.Knowledge_Base_Obj.Knowledge_Base_Image)"
-                             alt="@Model.Knowledge_Base_Obj.Knowledge_Base_Image_Alt_Tag"
-                             class="img-fluid rounded-4"
-                             style="max-height:420px; object-fit:cover;">
-                    </div>
+                <div class="card border-0 shadow-sm sticky-top" style="top:100px;">
+                    <img src="@Url.Content(Model.Knowledge_Base_Obj.Knowledge_Base_Image)"
+                         class="img-fluid rounded"
+                         alt="@Model.Knowledge_Base_Obj.Knowledge_Base_Image_Alt_Tag" />
                 </div>
+
             </div>
+
         </div>
     </div>
 </section>
-
-
 <script type="application/ld+json">
 @{
     var kbItem = Model.Knowledge_Base_Obj;

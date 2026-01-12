@@ -32,10 +32,10 @@ namespace Web.Controllers
         {
             MasterModel model = new MasterModel();
             IAdminManager adminManager = new AdminManager();
-            IMasterManager masterManager = new MasterManager();
+            IMasterManager MasterManager = new MasterManager();
             model.List_Industries_Obj = adminManager.GetIndustries(0, null);
-            model.List_Engineering_Services_Obj = masterManager.GetEngineeringServices(0, null);
-
+            model.List_Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null);
+            model.List_Knowledge_Base_Obj = MasterManager.GetKnowledgeBase(0, null);
             return PartialView("_Header", model);
         }
 
@@ -163,11 +163,12 @@ namespace Web.Controllers
             IMasterManager manager = new MasterManager();
             // Get Knowledge Base by URL
             Model.Knowledge_Base_Obj = manager .GetKnowledgeBase(0, url).FirstOrDefault();
-            int knowledgeBaseId = Model.Knowledge_Base_Obj.Knowledge_Base_Id;
-            Model.List_Knowledge_Card_Business_Obj = manager.GetKnowledgeCard(0, knowledgeBaseId);
-            Model.List_Knowledge_FailureMode_Business_Obj = manager.GetKnowledgeFailureMode(0, knowledgeBaseId);
-            Model.List_Knowledge_RelatedSolution_Business_Obj = manager.GetKnowledgeRelatedSolution(0, knowledgeBaseId);
-            Model.List_Knowledge_WorkflowStep_Business_Obj = manager.GetKnowledgeWorkflowStep(0, knowledgeBaseId);
+            Model.List_Knowledge_Base_Obj = manager.GetKnowledgeBase(0, null);
+            //int knowledgeBaseId = Model.Knowledge_Base_Obj.Knowledge_Base_Id;
+            //Model.List_Knowledge_Card_Business_Obj = manager.GetKnowledgeCard(0, knowledgeBaseId);
+            //Model.List_Knowledge_FailureMode_Business_Obj = manager.GetKnowledgeFailureMode(0, knowledgeBaseId);
+            //Model.List_Knowledge_RelatedSolution_Business_Obj = manager.GetKnowledgeRelatedSolution(0, knowledgeBaseId);
+            //Model.List_Knowledge_WorkflowStep_Business_Obj = manager.GetKnowledgeWorkflowStep(0, knowledgeBaseId);
             return View(Model);
         }
 
