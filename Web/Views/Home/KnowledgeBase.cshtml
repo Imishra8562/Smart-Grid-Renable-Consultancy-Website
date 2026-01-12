@@ -44,10 +44,9 @@
         </div>
 
         <div class="row g-4">
-            @if (Model.List_Knowledge_Base_Business_Obj != null &&
-                 Model.List_Knowledge_Base_Business_Obj.Count > 0)
+            @if (Model.List_Knowledge_Base_Obj != null && Model.List_Knowledge_Base_Obj.Count > 0)
             {
-                foreach (var item in Model.List_Knowledge_Base_Business_Obj)
+                foreach (var item in Model.List_Knowledge_Base_Obj)
                 {
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">
                         <div class="card kb-card h-100 border-0 shadow-sm">
@@ -83,14 +82,7 @@
                     </div>
                 }
             }
-            else
-            {
-                <div class="col-12 text-center text-muted">
-                    No knowledge base articles found.
-                </div>
-            }
         </div>
-
     </div>
 </section>
 
@@ -111,7 +103,7 @@
     }
 </style>
 
-<script type="application/ld+json">
+@*<script type="application/ld+json">
 @{
     // Safely get the list or an empty list
     var kbItems = Model.List_Knowledge_Base_Business_Obj;
@@ -140,5 +132,5 @@
     };
 }
 @Html.Raw(JsonConvert.SerializeObject(schema, Formatting.Indented))
-</script>
+</script>*@
 
