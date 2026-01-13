@@ -131,6 +131,7 @@
     <Compile Include="Areas\Admin\Model\Security\SecurityModel.cs" />
     <Compile Include="Controllers\Core\HasPermissionAttribute.cs" />
     <Compile Include="Controllers\Core\SessionExpireFilterAttribute.cs" />
+    <Compile Include="Controllers\Error\ErrorController.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1138,6 +1139,10 @@
     <Content Include="Views\Home\IndustriesDetail.cshtml" />
     <Content Include="Views\Home\KnowledgeBaseDetails.cshtml" />
     <Content Include="Views\Home\EngineeringServicesDetails.cshtml" />
+    <Content Include="Views\Error\General.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Error\ServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer.Interface\BusinessLayer.Interface.csproj">
