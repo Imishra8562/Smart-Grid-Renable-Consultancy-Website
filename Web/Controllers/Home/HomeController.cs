@@ -65,20 +65,7 @@ namespace Web.Controllers
         }
         #endregion
 
-        #region Industries
-        public ActionResult Industries()
-        {
-            return View();
-        }
-        [Route("industries")]
-
-        public ActionResult Industry()
-        {
-             AdminModel Model = new  AdminModel();
-            IAdminManager AdminMangerobj = new AdminManager();
-            Model.List_Industries_Obj = AdminMangerobj.GetIndustries(0, null);
-            return View(Model);
-        }
+        #region Industries 
         [Route("industries/{industries}")]
         public ActionResult IndustriesDetail(string industries)
         {
@@ -90,6 +77,31 @@ namespace Web.Controllers
         }
 
 
+        #endregion
+
+        #region Knowledge Base
+        [Route("knowledge-base/{url}")]
+        public ActionResult KnowledgeBaseDetails(string url)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager manager = new MasterManager();
+            Model.Knowledge_Base_Obj = manager.GetKnowledgeBase(0, url).FirstOrDefault();
+            Model.List_Knowledge_Base_Obj = manager.GetKnowledgeBase(0, null);
+            return View(Model);
+        }
+
+        #endregion
+
+        #region EngineeringServices
+        [Route("engineering-services/{url}")]
+        public ActionResult EngineeringServicesDetails(string url)
+        {
+            MasterModel Model = new MasterModel();
+            IMasterManager MasterManager = new MasterManager();
+            Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
+            Model.List_Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null);
+            return View(Model);
+        }
         #endregion
 
         #region news & insight
@@ -144,62 +156,6 @@ namespace Web.Controllers
 
         #endregion
 
-
-        #region KnowledgeBase
-        [Route("knowledge-base")]
-
-        public ActionResult KnowledgeBase()
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager MasterManager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = MasterManager.GetKnowledgeBase(0,  null);
-            //Model.List_Knowledge_Base_Category_Obj = MasterManager.GetKnowledgeBaseCategory(0, null);
-            return View(Model);
-        }
-        [Route("knowledge-base/{url}")]
-        public ActionResult KnowledgeBaseDetails(string url)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager manager = new MasterManager();
-            // Get Knowledge Base by URL
-            Model.Knowledge_Base_Obj = manager .GetKnowledgeBase(0, url).FirstOrDefault();
-            Model.List_Knowledge_Base_Obj = manager.GetKnowledgeBase(0, null);
-            //int knowledgeBaseId = Model.Knowledge_Base_Obj.Knowledge_Base_Id;
-            //Model.List_Knowledge_Card_Business_Obj = manager.GetKnowledgeCard(0, knowledgeBaseId);
-            //Model.List_Knowledge_FailureMode_Business_Obj = manager.GetKnowledgeFailureMode(0, knowledgeBaseId);
-            //Model.List_Knowledge_RelatedSolution_Business_Obj = manager.GetKnowledgeRelatedSolution(0, knowledgeBaseId);
-            //Model.List_Knowledge_WorkflowStep_Business_Obj = manager.GetKnowledgeWorkflowStep(0, knowledgeBaseId);
-            return View(Model);
-        }
-
-        #endregion
-
-        #region EngineeringServices
-        [Route("engineering-services")]
-        public ActionResult EngineeringServices()
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager MasterManager = new MasterManager();
-            Model.List_Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, null);
-            return View(Model);
-        }
-        [Route("engineering-services/{url}")]
-        public ActionResult EngineeringServicesDetails(string url)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager MasterManager = new MasterManager();
-            Model.Engineering_Services_Obj = MasterManager.GetEngineeringServices(0, url).FirstOrDefault();
-            Model.Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(0, null).FirstOrDefault();
-            int EngSeId = Model.Engineering_Services_Obj.Engineering_Services_Id;
-            Model.List_Engineering_Services_Applications_Obj = MasterManager.GetEngineeringServicesApplications(null, EngSeId);
-            Model.List_Engineering_Services_Features_Obj = MasterManager.GetEngineeringServicesFeatures(null, EngSeId);
-            Model.List_Engineering_Services_SubTopic_Obj = MasterManager.GetEngineeringServicesSubTopic(null, EngSeId);
-            Model.List_Engineering_Services_Tabs_Obj = MasterManager.GetEngineeringServicesTabs(null, EngSeId);
-            Model.List_EngSer_Gallery_Obj = MasterManager.GetEngSerGallery(null, EngSeId);
-            return View(Model);
-        }
-        #endregion
-
         #region InvestorRelations & Sustainability
         [Route("investor-relations")]
         public ActionResult InvestorRelations()
@@ -234,6 +190,7 @@ namespace Web.Controllers
             return View();
         }
         #endregion
+
         #region Upload Image By Ck Editer
         public ActionResult UploadImage(HttpPostedFileBase upload)
         {

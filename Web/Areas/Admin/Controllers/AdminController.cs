@@ -837,678 +837,6 @@ namespace Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Knowledge Base Category
-
-        // [CookiesExpireFilter]
-        public ActionResult KnowledgeBaseCategory(int? Knowledge_Base_Category_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manger = new MasterManager();
-
-            Model.List_Knowledge_Base_Category_Obj = Manger.GetKnowledgeBaseCategory(0, null);
-
-            if (Knowledge_Base_Category_Id.HasValue)
-            {
-                Model.Knowledge_Base_Category_Obj = Manger.GetKnowledgeBaseCategory(Knowledge_Base_Category_Id, null).FirstOrDefault();
-            }
-
-            return View(Model);
-        }
-        // [CookiesExpireFilter]
-        public ActionResult SaveKnowledgeBaseCategory(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-
-            Model.Knowledge_Base_Category_Obj.Created_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
-            Model.Knowledge_Base_Category_Obj.Created_IP = SystemIP();
-            int Id = Manger.SaveKnowledgeBaseCategory(Model.Knowledge_Base_Category_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Category Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Base Category!";
-            }
-            return RedirectToAction("KnowledgeBaseCategory");
-        }
-        // [CookiesExpireFilter]
-        public ActionResult UpdateKnowledgeBaseCategory(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-
-            Model.Knowledge_Base_Category_Obj.Modified_By = Convert.ToInt32(CookiesStateManager.Cookies_Logged_User_Id);
-            Model.Knowledge_Base_Category_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_Base_Category_Obj.Modified_IP = SystemIP();
-            int Id = Manger.UpdateKnowledgeBaseCategory(Model.Knowledge_Base_Category_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Category Updated Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Base Category!";
-            }
-            return RedirectToAction("KnowledgeBaseCategory");
-        }
-        // [CookiesExpireFilter]
-        public ActionResult DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id)
-        {
-            IMasterManager Manger = new MasterManager();
-
-            int Id = Manger.DeleteKnowledgeBaseCategory(Knowledge_Base_Category_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Category Deleted Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Base Category !";
-            }
-            return RedirectToAction("KnowledgeBaseCategory");
-        }
-
-        #endregion
-
-        #region Knowledge Base
-        public ActionResult KnowledgeBase(int? Knowledge_Base_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0,null);
-            if (Knowledge_Base_Id.HasValue)
-            {
-                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, null).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveKnowledgeBase(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Knowledge_Base_Obj.Created_By = 1;
-            Model.Knowledge_Base_Obj.Created_IP = SystemIP();
-
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_Base_Obj.Knowledge_Base_Code = "KBC-" + Code.ToString();
-            int No = 0;
-            if (Model.Knowledge_Base_Og_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
-                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
-            }
-            No = 0;
-            if (Model.Knowledge_Base_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
-                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
-            }
-
-            int Id = Manger.SaveKnowledgeBase(Model.Knowledge_Base_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Base!";
-            }
-            return RedirectToAction("KnowledgeBase");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateKnowledgeBase(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Knowledge_Base_Obj.Modified_By = 1;
-            Model.Knowledge_Base_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_Base_Obj.Modified_IP = SystemIP();
-
-            int No = 0;
-            if (Model.Knowledge_Base_Og_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
-                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
-            }
-            No = 0;
-            if (Model.Knowledge_Base_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
-                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
-                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateKnowledgeBase(Model.Knowledge_Base_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Base!";
-            }
-            return RedirectToAction("KnowledgeBase");
-        }
-        public ActionResult DeleteKnowledgeBase(int Knowledge_Base_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteKnowledgeBase(Knowledge_Base_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Base Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Base!";
-            }
-            return RedirectToAction("KnowledgeBase");
-        }
-        #endregion
-
-        #region Knowledge Card
-
-        public ActionResult KnowledgeCard(int? Knowledge_Card_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_Card_Business_Obj = Manager.GetKnowledgeCard(0, 0);
-            if (Knowledge_Card_Id.HasValue)
-            {
-                Model.Knowledge_Card_Obj = Manager.GetKnowledgeCard(Knowledge_Card_Id, null).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveKnowledgeCard(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Knowledge_Card_Obj.Created_By = 1;
-            Model.Knowledge_Card_Obj.Created_IP = SystemIP();
-
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_Card_Obj.Knowledge_Card_Code = "KCC-" + Code.ToString();
-            int No = 0;
-            if (Model.Knowledge_Card_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeCard/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Card_Image.FileName);
-                Model.Knowledge_Card_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
-                Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
-            }
-            int Id = Manger.SaveKnowledgeCard(Model.Knowledge_Card_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Card Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Card!";
-            }
-            return RedirectToAction("KnowledgeCard");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateKnowledgeCard(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Knowledge_Card_Obj.Modified_By = 1;
-            Model.Knowledge_Card_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_Card_Obj.Modified_IP = SystemIP();
-
-            int No = 0;
-            if (Model.Knowledge_Card_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeCard/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Card_Obj.Knowledge_Card_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_Card_Image.FileName);
-                Model.Knowledge_Card_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeCard/Image/" + Model.Knowledge_Card_Obj.Knowledge_Card_Code + "_" + No + extension;
-                Model.Knowledge_Card_Obj.Knowledge_Card_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateKnowledgeCard(Model.Knowledge_Card_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Card Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Card!";
-            }
-            return RedirectToAction("KnowledgeCard");
-        }
-        public ActionResult DeleteKnowledgeCard(int Knowledge_Card_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteKnowledgeCard(Knowledge_Card_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Card Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Card!";
-            }
-            return RedirectToAction("KnowledgeCard");
-        }
-        #endregion
-
-        #region Knowledge FailureMode
-        public ActionResult KnowledgeFailureMode(int? Knowledge_FailureMode_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_FailureMode_Business_Obj = Manager.GetKnowledgeFailureMode(0, 0);
-            if (Knowledge_FailureMode_Id.HasValue)
-            {
-                Model.Knowledge_FailureMode_Obj = Manager.GetKnowledgeFailureMode(Knowledge_FailureMode_Id, null).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveKnowledgeFailureMode(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Knowledge_FailureMode_Obj.Created_By = 1;
-            Model.Knowledge_FailureMode_Obj.Created_IP = SystemIP();
-
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code = "KFMC-" + Code.ToString();
-            int No = 0;
-            if (Model.Knowledge_FailureMode_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeFailureMode/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_FailureMode_Image.FileName);
-                Model.Knowledge_FailureMode_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension;
-                Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = FilePathForPhoto;
-            }
-            int Id = Manger.SaveKnowledgeFailureMode(Model.Knowledge_FailureMode_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Failure Mode Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Failure Mode!";
-            }
-            return RedirectToAction("KnowledgeFailureMode");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateKnowledgeFailureMode(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Knowledge_FailureMode_Obj.Modified_By = 1;
-            Model.Knowledge_FailureMode_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_FailureMode_Obj.Modified_IP = SystemIP();
-
-            int No = 0;
-
-            if (Model.Knowledge_FailureMode_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeFailureMode/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_FailureMode_Image.FileName);
-                Model.Knowledge_FailureMode_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeFailureMode/Image/" + Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Code + "_" + No + extension;
-                Model.Knowledge_FailureMode_Obj.Knowledge_FailureMode_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateKnowledgeFailureMode(Model.Knowledge_FailureMode_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Failure Mode Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update KnowledgeFailureMode!";
-            }
-            return RedirectToAction("KnowledgeFailureMode");
-        }
-        public ActionResult DeleteKnowledgeFailureMode(int Knowledge_FailureMode_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteKnowledgeFailureMode(Knowledge_FailureMode_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Failure Mode Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Failure Mode!";
-            }
-            return RedirectToAction("KnowledgeFailureMode");
-        }
-        #endregion
-
-        #region Knowledge RelatedSolution
-        public ActionResult KnowledgeRelatedSolution(int? Knowledge_RelatedSolution_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_RelatedSolution_Business_Obj = Manager.GetKnowledgeRelatedSolution(0, 0);
-            if (Knowledge_RelatedSolution_Id.HasValue)
-            {
-                Model.Knowledge_RelatedSolution_Obj = Manager.GetKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id, null).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveKnowledgeRelatedSolution(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Knowledge_RelatedSolution_Obj.Created_By = 1;
-            Model.Knowledge_RelatedSolution_Obj.Created_IP = SystemIP();
-
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code = "KRSC-" + Code.ToString();
-            int No = 0;
-            if (Model.Knowledge_RelatedSolution_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
-            }
-            int Id = Manger.SaveKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Related Solution Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Related Solution!";
-            }
-            return RedirectToAction("KnowledgeRelatedSolution");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateKnowledgeRelatedSolution(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Knowledge_RelatedSolution_Obj.Modified_By = 1;
-            Model.Knowledge_RelatedSolution_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_RelatedSolution_Obj.Modified_IP = SystemIP();
-
-            int No = 0;
-
-            if (Model.Knowledge_RelatedSolution_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeRelatedSolution/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_RelatedSolution_Image.FileName);
-                Model.Knowledge_RelatedSolution_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeRelatedSolution/Image/" + Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Code + "_" + No + extension;
-                Model.Knowledge_RelatedSolution_Obj.Knowledge_RelatedSolution_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateKnowledgeRelatedSolution(Model.Knowledge_RelatedSolution_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Related Solution Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Related Solution!";
-            }
-            return RedirectToAction("KnowledgeRelatedSolution");
-        }
-        public ActionResult DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteKnowledgeRelatedSolution(Knowledge_RelatedSolution_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Related Solution Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Related olution!";
-            }
-            return RedirectToAction("KnowledgeRelatedSolution");
-        }
-        #endregion
-
-        #region Knowledge WorkflowStep
-        public ActionResult KnowledgeWorkflowStep(int? Knowledge_WorkflowStep_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            // Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
-            Model.List_Knowledge_WorkflowStep_Business_Obj = Manager.GetKnowledgeWorkflowStep(0, 0);
-            if (Knowledge_WorkflowStep_Id.HasValue)
-            {
-                Model.Knowledge_WorkflowStep_Obj = Manager.GetKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id, null).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveKnowledgeWorkflowStep(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Knowledge_WorkflowStep_Obj.Created_By = 1;
-            Model.Knowledge_WorkflowStep_Obj.Created_IP = SystemIP();
-
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code = "KWFC-" + Code.ToString();
-            int No = 0;
-            if (Model.Knowledge_WorkflowStep_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeWorkflowStep/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
-                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
-                Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
-            }
-            int Id = Manger.SaveKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Workflow Step Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Workflow Step!";
-            }
-            return RedirectToAction("KnowledgeWorkflowStep");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateKnowledgeWorkflowStep(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Knowledge_WorkflowStep_Obj.Modified_By = 1;
-            Model.Knowledge_WorkflowStep_Obj.Modified_On = DateTime.Now;
-            Model.Knowledge_WorkflowStep_Obj.Modified_IP = SystemIP();
-
-            int No = 0;
-
-            if (Model.Knowledge_WorkflowStep_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/KnowledgeWorkflowStep/Image/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "*"));
-                foreach (string f in files)
-                {
-                    No += 1;
-                }
-                string extension = System.IO.Path.GetExtension(Model.Knowledge_WorkflowStep_Image.FileName);
-                Model.Knowledge_WorkflowStep_Image.SaveAs(Server.MapPath("~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/KnowledgeWorkflowStep/Image/" + Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Code + "_" + No + extension;
-                Model.Knowledge_WorkflowStep_Obj.Knowledge_WorkflowStep_Image = FilePathForPhoto;
-            }
-            int Id = Manager.UpdateKnowledgeWorkflowStep(Model.Knowledge_WorkflowStep_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Work flow Step Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Work flow Step!";
-            }
-            return RedirectToAction("KnowledgeWorkflowStep");
-        }
-        public ActionResult DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteKnowledgeWorkflowStep(Knowledge_WorkflowStep_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Knowledge Work flow Step Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Work flow Step!";
-            }
-            return RedirectToAction("KnowledgeWorkflowStep");
-        }
-        #endregion
-
         #region Engineering Services
         public ActionResult EngineeringServices(int? Engineering_Services_Id)
         {
@@ -1645,563 +973,143 @@ namespace Web.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Engineering Services Features
-
-        public ActionResult EngineeringServicesFeatures(int? Engineering_Services_Features_Id)
+        #region Knowledge Base
+        public ActionResult KnowledgeBase(int? Knowledge_Base_Id)
         {
             MasterModel Model = new MasterModel();
             IMasterManager Manager = new MasterManager();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
-            Model.List_Engineering_Services_Features_Obj = Manager.GetEngineeringServicesFeatures(0, 0);
-            if (Engineering_Services_Features_Id.HasValue)
+            Model.List_Knowledge_Base_Obj = Manager.GetKnowledgeBase(0, null);
+            if (Knowledge_Base_Id.HasValue)
             {
-                Model.Engineering_Services_Features_Obj = Manager.GetEngineeringServicesFeatures(Engineering_Services_Features_Id, 0).FirstOrDefault();
+                Model.Knowledge_Base_Obj = Manager.GetKnowledgeBase(Knowledge_Base_Id, null).FirstOrDefault();
             }
             return View(Model);
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult SaveEngineeringServicesFeatures(MasterModel Model)
+        public ActionResult SaveKnowledgeBase(MasterModel Model)
         {
             IMasterManager Manger = new MasterManager();
-            Model.Engineering_Services_Features_Obj.Created_By = 1;
-            Model.Engineering_Services_Features_Obj.Created_IP = SystemIP();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            int Id = Manger.SaveEngineeringServicesFeatures(Model.Engineering_Services_Features_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Features Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Features!";
-            }
-            return RedirectToAction("EngineeringServicesFeatures");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateEngineeringServicesFeatures(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Engineering_Services_Features_Obj.Modified_By = 1;
-            Model.Engineering_Services_Features_Obj.Modified_On = DateTime.Now;
-            Model.Engineering_Services_Features_Obj.Modified_IP = SystemIP();
-            int Id = Manager.UpdateEngineeringServicesFeatures(Model.Engineering_Services_Features_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Features Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Features!";
-            }
-            return RedirectToAction("EngineeringServicesFeatures");
-        }
-        public ActionResult DeleteEngineeringServicesFeatures(int Engineering_Services_Features_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngineeringServicesFeatures(Engineering_Services_Features_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Features Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Features!";
-            }
-            return RedirectToAction("EngineeringServicesFeatures");
-        }
-        #endregion
+            Model.Knowledge_Base_Obj.Created_By = 1;
+            Model.Knowledge_Base_Obj.Created_IP = SystemIP();
 
-        #region Engineering Services Applications
-
-        public ActionResult EngineeringServicesApplications(int? Engineering_Services_Applications_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
-            Model.List_Engineering_Services_Applications_Obj = Manager.GetEngineeringServicesApplications(0, 0);
-            if (Engineering_Services_Applications_Id.HasValue)
-            {
-                Model.Engineering_Services_Applications_Obj = Manager.GetEngineeringServicesApplications(Engineering_Services_Applications_Id, 0).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveEngineeringServicesApplications(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Engineering_Services_Applications_Obj.Created_By = 1;
-            Model.Engineering_Services_Applications_Obj.Created_IP = SystemIP();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            int Id = Manger.SaveEngineeringServicesApplications(Model.Engineering_Services_Applications_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Applications Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Applications!";
-            }
-            return RedirectToAction("EngineeringServicesApplications");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateEngineeringServicesApplications(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Engineering_Services_Applications_Obj.Modified_By = 1;
-            Model.Engineering_Services_Applications_Obj.Modified_On = DateTime.Now;
-            Model.Engineering_Services_Applications_Obj.Modified_IP = SystemIP();
-            int Id = Manager.UpdateEngineeringServicesApplications(Model.Engineering_Services_Applications_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Applications Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Applications!";
-            }
-            return RedirectToAction("EngineeringServicesApplications");
-        }
-        public ActionResult DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngineeringServicesApplications(Engineering_Services_Applications_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Applications Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Applications!";
-            }
-            return RedirectToAction("EngineeringServicesApplications");
-        }
-        #endregion
-
-        #region Engineering Services Tabs
-
-        public ActionResult EngineeringServicesTabs(int? Engineering_Services_Tabs_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
-            Model.List_Engineering_Services_Tabs_Obj = Manager.GetEngineeringServicesTabs(0, 0);
-            if (Engineering_Services_Tabs_Id.HasValue)
-            {
-                Model.Engineering_Services_Tabs_Obj = Manager.GetEngineeringServicesTabs(Engineering_Services_Tabs_Id, 0).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveEngineeringServicesTabs(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Engineering_Services_Tabs_Obj.Created_By = 1;
-            Model.Engineering_Services_Tabs_Obj.Created_IP = SystemIP();
-            int Id = Manger.SaveEngineeringServicesTabs(Model.Engineering_Services_Tabs_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Tabs Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Tabs!";
-            }
-            return RedirectToAction("EngineeringServicesTabs");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateEngineeringServicesTabs(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Engineering_Services_Tabs_Obj.Modified_By = 1;
-            Model.Engineering_Services_Tabs_Obj.Modified_On = DateTime.Now;
-            Model.Engineering_Services_Tabs_Obj.Modified_IP = SystemIP();
-            int Id = Manager.UpdateEngineeringServicesTabs(Model.Engineering_Services_Tabs_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Tabs Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Tabs!";
-            }
-            return RedirectToAction("EngineeringServicesTabs");
-        }
-        public ActionResult DeleteEngineeringServicesTabs(int Engineering_Services_Tabs_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngineeringServicesTabs(Engineering_Services_Tabs_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Tabs Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Tabs!";
-            }
-            return RedirectToAction("EngineeringServicesTabs");
-        }
-        #endregion
-
-        #region Engineering Services SubTopic
-
-        public ActionResult EngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
-            Model.List_Engineering_Services_SubTopic_Obj = Manager.GetEngineeringServicesSubTopic(0, 0);
-            if (Engineering_Services_SubTopic_Id.HasValue)
-            {
-                Model.Engineering_Services_SubTopic_Obj = Manager.GetEngineeringServicesSubTopic(Engineering_Services_SubTopic_Id, 0).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveEngineeringServicesSubTopic(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Engineering_Services_SubTopic_Obj.Created_By = 1;
-            Model.Engineering_Services_SubTopic_Obj.Created_IP = SystemIP();
-            ViewBag.IconList = IconCatalog.FeatureIcons;
-            int Id = Manger.SaveEngineeringServicesSubTopic(Model.Engineering_Services_SubTopic_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services SubTopic Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services SubTopic!";
-            }
-            return RedirectToAction("EngineeringServicesSubTopic");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateEngineeringServicesSubTopic(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Engineering_Services_SubTopic_Obj.Modified_By = 1;
-            Model.Engineering_Services_SubTopic_Obj.Modified_On = DateTime.Now;
-            Model.Engineering_Services_SubTopic_Obj.Modified_IP = SystemIP();
-            int Id = Manager.UpdateEngineeringServicesSubTopic(Model.Engineering_Services_SubTopic_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services SubTopic Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services SubTopic!";
-            }
-            return RedirectToAction("EngineeringServicesSubTopic");
-        }
-        public ActionResult DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngineeringServicesSubTopic(Engineering_Services_SubTopic_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services SubTopic Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services SubTopic!";
-            }
-            return RedirectToAction("EngineeringServicesSubTopic");
-        }
-        #endregion
-
-        #region Engineering Services Gallery
-
-        public ActionResult EngineeringServicesGallery(int? Engineering_Services_Gallery_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manager = new MasterManager();
-            Model.List_Engineering_Services_Obj = Manager.GetEngineeringServices(0, null);
-            Model.List_Engineering_Services_Gallery_Obj = Manager.GetEngineeringServicesGallery(0, 0);
-            if (Engineering_Services_Gallery_Id.HasValue)
-            {
-                Model.Engineering_Services_Gallery_Obj = Manager.GetEngineeringServicesGallery(Engineering_Services_Gallery_Id, 0).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult SaveEngineeringServicesGallery(MasterModel Model)
-        {
-            IMasterManager Manger = new MasterManager();
-            Model.Engineering_Services_Gallery_Obj.Created_By = 1;
-            Model.Engineering_Services_Gallery_Obj.Created_IP = SystemIP();
             Random rnd = new Random();
             int Code = rnd.Next(1000000, 9999999);
-            Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code = "ESG-" + Code.ToString();
+            Model.Knowledge_Base_Obj.Knowledge_Base_Code = "KBC-" + Code.ToString();
             int No = 0;
-            if (Model.Engineering_Services_Gallery_Image != null)
+            if (Model.Knowledge_Base_Og_Image != null)
             {
-                string uploadPath = Request.MapPath("/Upload/EngineeringServicesGallery/Image/");
-                if (!Directory.Exists(uploadPath))
-                {
-                    Directory.CreateDirectory(uploadPath);
-                }
-                string[] files = System.IO.Directory.GetFiles(uploadPath, (Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "*"));
+                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
-                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Gallery_Image.FileName);
-                Model.Engineering_Services_Gallery_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServicesGallery/Image/" + Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/EngineeringServicesGallery/Image/" + Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image_Code + "_" + No + extension;
-                Model.Engineering_Services_Gallery_Obj.Engineering_Services_Gallery_Image = FilePathForPhoto;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
             }
-            int Id = Manger.SaveEngineeringServicesGallery(Model.Engineering_Services_Gallery_Obj);
-            if (Id != 0 && Id > 0)
+            No = 0;
+            if (Model.Knowledge_Base_Image != null)
             {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Gallery!";
-            }
-            return RedirectToAction("EngineeringServicesGallery");
-        }
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult UpdateEngineeringServicesGallery(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.Engineering_Services_Gallery_Obj.Modified_By = 1;
-            Model.Engineering_Services_Gallery_Obj.Modified_On = DateTime.Now;
-            Model.Engineering_Services_Gallery_Obj.Modified_IP = SystemIP();
-            int No = 0;
-            if (Model.Engineering_Services_Og_Image != null)
-            {
-                string fullPath = Request.MapPath("/Upload/EngineeringServices/OGImage/");
-                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Engineering_Services_Obj.Engineering_Services_Code + "*"));
+                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
                 foreach (string f in files)
                 {
                     No += 1;
                 }
-                string extension = System.IO.Path.GetExtension(Model.Engineering_Services_Og_Image.FileName);
-                Model.Engineering_Services_Og_Image.SaveAs(Server.MapPath("~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension));
-                string FilePathForPhoto = "~/Upload/EngineeringServices/OGImage/" + Model.Engineering_Services_Obj.Engineering_Services_Code + "_" + No + extension;
-                Model.Engineering_Services_Obj.Engineering_Services_Og_Image = FilePathForPhoto;
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
+                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
             }
-            int Id = Manager.UpdateEngineeringServicesGallery(Model.Engineering_Services_Gallery_Obj);
+
+            int Id = Manger.SaveKnowledgeBase(Model.Knowledge_Base_Obj);
             if (Id != 0 && Id > 0)
             {
                 TempData["AlertType"] = "success";
                 TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Update Successfully !";
+                TempData["AlertMessage"] = "Knowledge Base Added Successfully !";
             }
             else
             {
                 TempData["AlertType"] = "error";
                 TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Gallery!";
+                TempData["AlertMessage"] = "Sorry, Failed to Add Knowledge Base!";
             }
-            return RedirectToAction("EngineeringServicesGallery");
+            return RedirectToAction("KnowledgeBase");
         }
-        public ActionResult DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id)
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult UpdateKnowledgeBase(MasterModel Model)
         {
             IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngineeringServicesGallery(Engineering_Services_Gallery_Id);
+            Model.Knowledge_Base_Obj.Modified_By = 1;
+            Model.Knowledge_Base_Obj.Modified_On = DateTime.Now;
+            Model.Knowledge_Base_Obj.Modified_IP = SystemIP();
+
+            int No = 0;
+            if (Model.Knowledge_Base_Og_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/OGImage/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Og_Image.FileName);
+                Model.Knowledge_Base_Og_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/OGImage/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Og_Image = FilePathForPhoto;
+            }
+            No = 0;
+            if (Model.Knowledge_Base_Image != null)
+            {
+                string fullPath = Request.MapPath("/Upload/Knowledge/Image/");
+                string[] files = System.IO.Directory.GetFiles(fullPath, (Model.Knowledge_Base_Obj.Knowledge_Base_Code + "*"));
+                foreach (string f in files)
+                {
+                    No += 1;
+                }
+                string extension = System.IO.Path.GetExtension(Model.Knowledge_Base_Image.FileName);
+                Model.Knowledge_Base_Image.SaveAs(Server.MapPath("~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension));
+                string FilePathForPhoto = "~/Upload/Knowledge/Image/" + Model.Knowledge_Base_Obj.Knowledge_Base_Code + "_" + No + extension;
+                Model.Knowledge_Base_Obj.Knowledge_Base_Image = FilePathForPhoto;
+            }
+            int Id = Manager.UpdateKnowledgeBase(Model.Knowledge_Base_Obj);
             if (Id != 0 && Id > 0)
             {
                 TempData["AlertType"] = "success";
                 TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Delete Successfully !";
+                TempData["AlertMessage"] = "Knowledge Base Update Successfully !";
             }
             else
             {
                 TempData["AlertType"] = "error";
                 TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Gallery!";
+                TempData["AlertMessage"] = "Sorry, Failed to Update Knowledge Base!";
             }
-            return RedirectToAction("EngineeringServicesGallery");
+            return RedirectToAction("KnowledgeBase");
+        }
+        public ActionResult DeleteKnowledgeBase(int Knowledge_Base_Id)
+        {
+            IMasterManager Manager = new MasterManager();
+            int Id = Manager.DeleteKnowledgeBase(Knowledge_Base_Id);
+            if (Id != 0 && Id > 0)
+            {
+                TempData["AlertType"] = "success";
+                TempData["AlertTitle"] = "SUCCESS";
+                TempData["AlertMessage"] = "Knowledge Base Delete Successfully !";
+            }
+            else
+            {
+                TempData["AlertType"] = "error";
+                TempData["AlertTitle"] = "FAILED";
+                TempData["AlertMessage"] = "Sorry, Failed to Delete Knowledge Base!";
+            }
+            return RedirectToAction("KnowledgeBase");
         }
         #endregion
-
-        #region EngSer Gallery
-        public ActionResult EngSerGallery(int? EngSer_Gallery_Id)
-        {
-            MasterModel Model = new MasterModel();
-            IMasterManager Manger = new MasterManager();
-            Model.List_Engineering_Services_Obj = Manger.GetEngineeringServices(0, null);
-            Model.List_EngSer_Gallery_Obj = Manger.GetEngSerGallery(0, 0);
-            if (EngSer_Gallery_Id.HasValue)
-            {
-                Model.EngSer_Gallery_Obj = Manger.GetEngSerGallery(EngSer_Gallery_Id, 0).FirstOrDefault();
-            }
-            return View(Model);
-        }
-        public ActionResult SaveEngSerGallery(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.EngSer_Gallery_Obj.Created_By = 1;
-            Model.EngSer_Gallery_Obj.Created_IP = SystemIP();
-
-            // generate code
-            Random rnd = new Random();
-            int Code = rnd.Next(1000000, 9999999);
-            Model.EngSer_Gallery_Obj.EngSer_Gallery_Code = "ESGC-" + Code.ToString();
-            if (Model.EngSer_Gallery_Image_Url != null && Model.EngSer_Gallery_Image_Url.ContentLength > 0)
-            {
-                string folderPath = Server.MapPath("~/Upload/EngSerGallery/ImageUrl/");
-
-                // ensure directory exists
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                // count existing files for this code
-                string[] files = Directory.GetFiles(folderPath, Model.EngSer_Gallery_Obj.EngSer_Gallery_Code + "*");
-                int No = files.Length; // start with existing count
-
-                string extension = Path.GetExtension(Model.EngSer_Gallery_Image_Url.FileName) ?? "";
-                string fileName = $"{Model.EngSer_Gallery_Obj.EngSer_Gallery_Code}_{No}{extension}";
-                string fullSavePath = Path.Combine(folderPath, fileName);
-
-                // save file
-                Model.EngSer_Gallery_Image_Url.SaveAs(fullSavePath);
-
-                // store virtual path in model
-                Model.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url = "~/Upload/EngSerGallery/ImageUrl/" + fileName;
-            }
-            int Id = Manager.SaveEngSerGallery(Model.EngSer_Gallery_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Added Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Add Engineering Services Gallery!";
-            }
-            return RedirectToAction("EngSerGallery");
-        }
-
-        public ActionResult UpdateEngSerGallery(MasterModel Model)
-        {
-            IMasterManager Manager = new MasterManager();
-            Model.EngSer_Gallery_Obj.Modified_By = 1;
-            Model.EngSer_Gallery_Obj.Modified_On = DateTime.Now;
-            Model.EngSer_Gallery_Obj.Modified_IP = SystemIP();
-            if (Model.EngSer_Gallery_Image_Url != null && Model.EngSer_Gallery_Image_Url.ContentLength > 0)
-            {
-                string folderPath = Server.MapPath("~/Upload/EngSerGallery/ImageUrl/");
-                // ensure directory exists
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                // count existing files for this code
-                string[] files = Directory.GetFiles(folderPath, Model.EngSer_Gallery_Obj.EngSer_Gallery_Code + "*");
-                int No = files.Length; // start with existing count
-                string extension = Path.GetExtension(Model.EngSer_Gallery_Image_Url.FileName) ?? "";
-                string fileName = $"{Model.EngSer_Gallery_Obj.EngSer_Gallery_Code}_{No}{extension}";
-                string fullSavePath = Path.Combine(folderPath, fileName);
-                // save file
-                Model.EngSer_Gallery_Image_Url.SaveAs(fullSavePath);
-                // store virtual path in model
-                Model.EngSer_Gallery_Obj.EngSer_Gallery_Image_Url = "~/Upload/EngSerGallery/ImageUrl/" + fileName;
-            }
-            int Id = Manager.UpdateEngSerGallery(Model.EngSer_Gallery_Obj);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Update Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Update Engineering Services Gallery!";
-            }
-            return RedirectToAction("EngSerGallery");
-        }
-        #endregion
-        public ActionResult DeleteEngSerGallery(int EngSer_Gallery_Id)
-        {
-            IMasterManager Manager = new MasterManager();
-            int Id = Manager.DeleteEngSerGallery(EngSer_Gallery_Id);
-            if (Id != 0 && Id > 0)
-            {
-                TempData["AlertType"] = "success";
-                TempData["AlertTitle"] = "SUCCESS";
-                TempData["AlertMessage"] = "Engineering Services Gallery Delete Successfully !";
-            }
-            else
-            {
-                TempData["AlertType"] = "error";
-                TempData["AlertTitle"] = "FAILED";
-                TempData["AlertMessage"] = "Sorry, Failed to Delete Engineering Services Gallery!";
-            }
-            return RedirectToAction("EngSerGallery");
-        }
     }
 }

@@ -137,19 +137,20 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Engineering Services Description</label>
-                                    @Html.TextAreaFor(m => m.Engineering_Services_Obj.Engineering_Services_Description, new { @class = "form-control", @rows = "5", @id = "Engineering_Services_Description" })
-                                    <div class="invalid-feedback">
-                                        Please enter Engineering Services description.
-                                    </div>
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Engineering_Services_Obj.Engineering_Services_Url_Link, new { @class = "form-control", @placeholder = "Enter URL link" })
+                                  
                                 </div>
 
                             </div>
 
                             <div class="row g-3 mt-2">
                                 <div class="col-md-12">
-                                    <label class="form-label">Page URL Link</label>
-                                    @Html.TextBoxFor(m => m.Engineering_Services_Obj.Engineering_Services_Url_Link, new { @class = "form-control", @placeholder = "Enter URL link" })
+                                    <label class="form-label">Engineering Services Description</label>
+                                    @Html.TextAreaFor(m => m.Engineering_Services_Obj.Engineering_Services_Description, new { @class = "form-control", @rows = "5", @id = "Engineering_Services_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Engineering Services description.
+                                    </div>
                                 </div>
                             </div>
 
@@ -169,10 +170,10 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4 class="mb-0 text-nowrap">Engineering Services</h4>
-                <div class="d-flex align-items-center gap-2">
+                <!--<div class="d-flex align-items-center gap-2">-->
 
                     <!-- Visible Buttons (First 3) -->
-                    <a href="@Url.Action("EngineeringServices", "Admin")"
+                    <!--<a href="@Url.Action("EngineeringServices", "Admin")"
                        class="btn btn-primary btn-sm text-nowrap">
                         <i class="fa fa-plus me-1"></i> Add Base
                     </a>
@@ -185,10 +186,10 @@
                     <a href="@Url.Action("KnowledgeFailureMode", "Admin")"
                        class="btn btn-info btn-sm text-nowrap">
                         <i class="fa fa-plus me-1"></i> Failure Mode
-                    </a>
+                    </a>-->
 
                     <!-- Dropdown -->
-                    <div class="dropdown">
+                    <!--<div class="dropdown">
                         <button class="btn btn-secondary btn-sm dropdown-toggle"
                                 type="button"
                                 data-bs-toggle="dropdown"
@@ -212,7 +213,7 @@
                         </ul>
                     </div>
 
-                </div>
+                </div>-->
             </div>
 
             <div class="card-body">
@@ -390,18 +391,18 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Engineering Services Description</label>
-                                    @Html.TextAreaFor(m => m.Engineering_Services_Obj.Engineering_Services_Description, new { @class = "form-control", @rows = "5", @id = "Engineering_Services_Description" })
-                                    <div class="invalid-feedback">
-                                        Please enter Engineering Services description.
-                                    </div>
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Engineering_Services_Obj.Engineering_Services_Url_Link, new { @class = "form-control", @placeholder = "Enter URL link" })
                                 </div>
                             </div>
 
                             <div class="row g-3 mt-2">
                                 <div class="col-md-12">
-                                    <label class="form-label">Page URL Link</label>
-                                    @Html.TextBoxFor(m => m.Engineering_Services_Obj.Engineering_Services_Url_Link, new { @class = "form-control", @placeholder = "Enter URL link" })
+                                    <label class="form-label">Engineering Services Description</label>
+                                    @Html.TextAreaFor(m => m.Engineering_Services_Obj.Engineering_Services_Description, new { @class = "form-control", @rows = "5", @id = "Engineering_Services_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Engineering Services description.
+                                    </div>
                                 </div>
                             </div>
 

@@ -231,17 +231,13 @@
 
                         <ul class="dropdown-menu" aria-labelledby="KnowledgeBaseDropdown">
 
-                            @if (Model != null
-                                && Model.List_Knowledge_Base_Obj != null
-                                && Model.List_Knowledge_Base_Obj.Any())
+                            @if (Model != null && Model.List_Knowledge_Base_Obj != null && Model.List_Knowledge_Base_Obj.Any())
                             {
                                 foreach (var item in Model.List_Knowledge_Base_Obj)
                                 {
                                     <li>
                                         <a class="dropdown-item"
-                                           href="@Url.Action("KnowledgeBaseDetails", "Home",
-                        new { url = item.Knowledge_Base_Url_Link })">
-                                            @item.Knowledge_Base_Name
+                                           href="@Url.Action("KnowledgeBaseDetails", "Home", new { url = item.Knowledge_Base_Url_Link })"> @item.Knowledge_Base_Name
                                         </a>
                                     </li>
                                 }
@@ -262,8 +258,7 @@
                                     {
                                         <li>
                                             <a class="dropdown-item"
-                                               href="@Url.Action("EngineeringServicesDetails", "Home", new { url = item.Engineering_Services_Url_Link })">
-                                                @item.Engineering_Services_Name
+                                               href="@Url.Action("EngineeringServicesDetails", "Home", new { url = item.Engineering_Services_Url_Link })"> @item.Engineering_Services_Name
                                             </a>
                                         </li>
                                     }
@@ -280,8 +275,7 @@
                                     {
                                         <li>
                                             <a class="dropdown-item"
-                                               href="@Url.Action("IndustriesDetail", "Home", new { industries = item.Industries_Url_Link })">
-                                                @item.Industries_Name
+                                               href="@Url.Action("IndustriesDetail", "Home", new { industries = item.Industries_Url_Link })">@item.Industries_Name
                                             </a>
                                         </li>
                                     }

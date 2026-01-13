@@ -165,20 +165,21 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="form-label">Industries Description</label>
-                                    @Html.TextAreaFor(m => m.Industries_Obj.Industries_Description, new { @class = "form-control", @rows = "5", @id = "Industries_Description" })
-                                    <div class="invalid-feedback">
-                                        Please enter Industries description.
-                                    </div>
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Industries_Obj.Industries_Url_Link,
+                                        new { @class = "form-control", @placeholder = "Enter URL link" })
+                                   
                                 </div>
 
                             </div>
 
                             <div class="row g-3 mt-2">
                                 <div class="col-md-12">
-                                    <label class="form-label">Page URL Link</label>
-                                    @Html.TextBoxFor(m => m.Industries_Obj.Industries_Url_Link,
-                                        new { @class = "form-control", @placeholder = "Enter URL link" })
+                                    <label class="form-label">Industries Description</label>
+                                    @Html.TextAreaFor(m => m.Industries_Obj.Industries_Description, new { @class = "form-control", @rows = "5", @id = "Industries_Description" })
+                                    <div class="invalid-feedback">
+                                        Please enter Industries description.
+                                    </div>
                                 </div>
                             </div>
 
@@ -415,20 +416,19 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <label class="form-label">Page URL Link</label>
+                                    @Html.TextBoxFor(m => m.Industries_Obj.Industries_Url_Link, new { @class = "form-control", @placeholder = "Enter URL link" })
+                                </div>
+                            </div>
+
+                            <div class="row g-3 mt-2">
+                                <div class="col-md-12">
                                     <label class="form-label">Industries Description</label>
                                     @Html.TextAreaFor(m => m.Industries_Obj.Industries_Description,
                                         new { @class = "form-control", @rows = "5", @id = "Industries_Description" })
                                     <div class="invalid-feedback">
                                         Please enter Industries description.
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="row g-3 mt-2">
-                                <div class="col-md-12">
-                                    <label class="form-label">Page URL Link</label>
-                                    @Html.TextBoxFor(m => m.Industries_Obj.Industries_Url_Link,
-                                        new { @class = "form-control", @placeholder = "Enter URL link" })
                                 </div>
                             </div>
 

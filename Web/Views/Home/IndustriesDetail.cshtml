@@ -1,102 +1,246 @@
 ﻿@model Web.Areas.Admin.Model.AdminModel
+@using Newtonsoft.Json;
 @{
     ViewBag.Title = "IndustriesDetail";
 }
 
 @section HeadContent {
-    <meta name="description" content="@Model.Industries_Obj.Industries_Meta_Description" />
-    <meta name="keywords" content="@Model.Industries_Obj.Industries_Meta_Keyword" />
-    <meta name="author" content="SGRC" />
+    <title>@Model.Industries_Obj.Industries_Page_Title</title>
 
-    <!-- OG Tags -->
-    <meta property="og:title" content="@Model.Industries_Obj.Industries_Name" />
-    <meta property="og:description" content="@Model.Industries_Obj.Industries_Page_Title" />
-    <meta property="og:image" content="@Url.Content(Model.Industries_Obj.Industries_Image)" />
-    <meta property="og:type" content="website" />
+    <meta name="keywords" content="@Model.Industries_Obj.Industries_Meta_Keyword" />
+    <meta name="description" content="@Model.Industries_Obj.Industries_Meta_Description" />
+    <meta name="author" content="Smart Grid Renewable Consultancy" />
+    <meta name="robots" content="index, follow" />
+
+    <meta name="news_keywords" content="@Model.Industries_Obj.Industries_News_Keyword" />
+    <meta name="standout" content="@Model.Industries_Obj.Industries_Meta_Description" />
+
+    <!-- ================= CANONICAL ================= -->
+    <link rel="canonical" href="https://smartgridrenewable.com/@Model.Industries_Obj.Industries_Url_Link" />
+
+    <!-- ================= OPEN GRAPH ================= -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Smart Grid Renewable Consultancy" />
+
+    <meta property="og:url" content="https://smartgridrenewable.com/@Model.Industries_Obj.Industries_Url_Link" />
+    <meta property="og:title" content="@Model.Industries_Obj.Industries_Og_Title" />
+    <meta property="og:description" content="@Model.Industries_Obj.Industries_Og_Description" />
+
+    <meta property="og:image" content="https://smartgridrenewable.com/Content/assets/images/@Model.Industries_Obj.Industries_Og_Image" />
+    <meta property="og:image:url" content="https://smartgridrenewable.com/Content/assets/images/@Model.Industries_Obj.Industries_Og_Image" />
+    <meta property="og:image:secure_url" content="https://smartgridrenewable.com/Content/assets/images/@Model.Industries_Obj.Industries_Og_Image" />
+
+    <meta property="og:image:alt" content="@Model.Industries_Obj.Industries_Image_Alt_Tag" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta property="og:see_also" content="https://smartgridrenewable.com/engineering-servies" />
+    <meta property="og:see_also" content="https://smartgridrenewable.com/contact" />
+
+    <!-- ================= TWITTER ================= -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://smartgridrenewable.com/@Model.Industries_Obj.Industries_Url_Link" />
+
+    <meta name="twitter:title" content="@Model.Industries_Obj.Industries_Og_Title" />
+    <meta name="twitter:description" content="@Model.Industries_Obj.Industries_Og_Description" />
+    <meta name="twitter:image" content="https://smartgridrenewable.com/Content/assets/images/@Model.Industries_Obj.Industries_Og_Image" />
+
+    <meta name="twitter:image:width" content="1200" />
+    <meta name="twitter:image:height" content="630" />
+
+
+
+    <!-- ===== JSON-LD : INDUSTRIES PAGE ===== -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "WebPage",
+      "name": "@Model.Industries_Obj.Industries_Name",
+      "description": "@Model.Industries_Obj.Industries_Meta_Description",
+      "url": "@(Request.Url.Scheme + "://" + Request.Url.Authority + "/industries/" + Model.Industries_Obj.Industries_Url_Link)",
+      "publisher": {
+        "@@type": "Organization",
+        "name": "SGRC - Smart Global Renewable & Consultancy",
+        "logo": {
+          "@@type": "ImageObject",
+          "url": "@(Request.Url.Scheme + "://" + Request.Url.Authority + "/Content/images/logo.png")"
+        }
+      }
+    }
+    </script>
+
+    <!-- ===== JSON-LD : BREADCRUMB ===== -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "@(Request.Url.Scheme + "://" + Request.Url.Authority)"
+        },
+        {
+          "@@type": "ListItem",
+          "position": 2,
+          "name": "Industries",
+          "item": "@(Request.Url.Scheme + "://" + Request.Url.Authority + "/industries")"
+        },
+        {
+          "@@type": "ListItem",
+          "position": 3,
+          "name": "@Model.Industries_Obj.Industries_Name",
+          "item": "@(Request.Url.Scheme + "://" + Request.Url.Authority + "/industries/" + Model.Industries_Obj.Industries_Url_Link)"
+        }
+      ]
+    }
+    </script>
 }
 
+
 <!-- ====== Page Header / Banner ====== -->
-<section class="page-title" style="position: relative;  background-image: url('../../Content/images/background/8.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+<!--<section class="page-title" style="position: relative;  background-image: url('../../Content/images/background/8.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="auto-container py-5">
         <div class="content text-white" data-aos="fade-down">
             <h1 class="display-5 fw-bold">@Model.Industries_Obj.Industries_Name</h1>
             <p class="lead mt-3">@Model.Industries_Obj.Industries_Page_Title</p>
         </div>
     </div>
+</section>-->
+<section class="page-title" style="position:relative; background-image:url('@Url.Content("~/Content/images/background/8.jpg")'); background-size:cover; background-position:center;">
+
+    <div class="auto-container">
+        <div class="content text-white py-5" data-aos="fade-down">
+            <h1 class="display-5 fw-bold">
+                @Model.Industries_Obj.Industries_Name
+            </h1>
+            <ul class="page-breadcrumb list-inline mt-3">
+
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index","Home")" class="text-white text-decoration-none">Home</a>
+                </li>
+                <li class="list-inline-item text-white">Industries</li>
+            </ul>
+        </div>
+    </div>
 </section>
-<!-- ===== Main Layout ===== -->
-<section class="py-5 bg-white">
+<!-- ================= CONTENT ================= -->
+<section class="py-5 bg-light">
     <div class="container">
         <div class="row g-4">
 
-            <!-- LEFT SIDEBAR -->
-            <aside class="col-lg-3">
-                <div class="border rounded p-4">
-                    <h6 class="fw-bold text-uppercase mb-3 border-bottom pb-2">
-                        Industries
-                    </h6>
+            <!-- ===== LEFT SIDEBAR : KNOWLEDGE LIST ===== -->
+            <div class="col-lg-3">
 
-                    <ul class="list-unstyled mb-0">
-                        @foreach (var item in Model.List_Industries_Obj)
-                        {
-                            <li class="mb-2">
-                                <a href="@Url.Action("IndustriesDetail","Home", new { industries = item.Industries_Url_Link })"
-                                   class="d-flex justify-content-between align-items-center text-decoration-none @(item.Industries_Id == Model.Industries_Obj.Industries_Id? "fw-semibold text-warning": "text-dark")">
-                                    <span>@item.Industries_Name</span>
-                                    <i class="bi bi-chevron-right small"></i>
-                                </a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            </aside>
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-3">
 
-            <!-- CENTER CONTENT -->
-            <main class="col-lg-6">
-                <h4 class="fw-semibold mb-3">
-                    @Model.Industries_Obj.Industries_Page_Title
-                </h4>
+                        <h6 class="fw-bold mb-3 text-uppercase">
+                            industries
+                        </h6>
 
-                <div class="text-muted lh-lg">
-                    @Html.Raw(Model.Industries_Obj.Industries_Description)
+                        <div class="list-group list-group-flush small">
+                            @if (Model.List_Industries_Obj != null && Model.List_Industries_Obj.Any())
+                            {
+                                foreach (var item in Model.List_Industries_Obj)
+                                {
+                                    bool isActive = Model.Industries_Obj.Industries_Id == item.Industries_Id;
+
+                                    <a href="@Url.Action("IndustriesDetail", "Home",new { industries = item.Industries_Url_Link })" class="list-group-item list-group-item-action @(isActive ? "active bg-warning text-dark fw-semibold border-0" : "")">
+                                        @item.Industries_Name
+                                    </a>
+                                }
+                            }
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="mt-4">
-                    <a href="@Url.Action("KnowledgeBase","Home")" class="fw-semibold text-warning text-decoration-none"> Browse our Knowledge Directory →
+            </div>
+
+            <!-- ===== CENTER CONTENT ===== -->
+            <div class="col-lg-6">
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4">
+
+                        <span class="badge bg-warning text-dark mb-3">
+                            Expert Insight
+                        </span>
+
+                        <h2 class="fw-bold mb-4">
+                            @Model.Industries_Obj.Industries_Page_Title
+                        </h2>
+
+                        <div class="text-muted lh-lg">
+                            @Html.Raw(Model.Industries_Obj.Industries_Description)
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- ===== RIGHT IMAGE  other page Link ===== -->
+            <div class="col-lg-3">
+
+                <div class="sticky-top" style="top:100px;">
+
+                    <!-- Image -->
+                    <img src="@Url.Content(Model.Industries_Obj.Industries_Image)" class="img-fluid rounded mb-4" alt="@Model.Industries_Obj.Industries_Image_Alt_Tag" />
+
+                    <!-- engineering-services -->
+                    <a href="@Url.Action("EngineeringServicesDetails", "Home", new { url = "power-system-studies" })"
+                       class="d-flex align-items-start gap-3 py-3 border-top text-decoration-none text-dark">
+
+                        <div class="icon-circle">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-1 fw-semibold text-uppercase">Engineering Services</h6>
+                            <p class="mb-0 small text-muted">
+                                Expert engineering solutions including power system studies, design analysis,
+                                testing, and technical consultancy services.
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- knowledge-base-->
+                    <a href="@Url.Action("KnowledgeBaseDetails", "Home", new { url = "battery-and-charger" })"
+                       class="d-flex align-items-start gap-3 py-3 border-top text-decoration-none text-dark">
+
+                        <div class="icon-circle">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-1 fw-semibold text-uppercase">Knowledge Base</h6>
+                            <p class="mb-0 small text-muted">
+                                Explore technical articles, engineering insights, documentation, and best practices
+                                to support informed decisions and project success.
+                            </p>
+                        </div>
+
+                    </a>
+                    <!-- Training -->
+                    <a href="@Url.Action("Training", "Home")"
+                       class="d-flex align-items-start gap-3 py-3 border-top text-decoration-none text-dark">
+
+                        <div class="icon-circle">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-1 fw-semibold text-uppercase">Training</h6>
+                            <p class="mb-0 small text-muted">
+                                Professional training programs to enhance skills and technical expertise.
+                            </p>
+                        </div>
                     </a>
                 </div>
-
-                <p class="small mt-3 text-muted">
-                    For further assistance, contact us at
-                    <a href="mailto:engineering@sgrc.co.in">engineering@sgrc.co.in</a>
-                </p>
-            </main>
-
-            <!-- RIGHT SIDEBAR -->
-            <aside class="col-lg-3 d-none d-lg-block">
-                <div class="mb-4 text-center">
-                    <img src="@Url.Content(Model.Industries_Obj.Industries_Image)" alt="@Model.Industries_Obj.Industries_Image_Alt_Tag" class="img-fluid rounded border">
-                </div>
-
-                <div class="mb-4">
-                    <h6 class="fw-bold text-uppercase border-bottom pb-2">
-                        Knowledge Base
-                    </h6>
-                    <p class="small text-muted mt-2">
-                        A support repository with hundreds of technical insights.
-                    </p>
-                </div>
-
-                <div>
-                    <h6 class="fw-bold text-uppercase border-bottom pb-2">
-                        Training
-                    </h6>
-                    <p class="small text-muted mt-2">
-                        Professional courses designed to enhance expertise.
-                    </p>
-                </div>
-            </aside>
-
+            </div>
         </div>
     </div>
 </section>

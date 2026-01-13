@@ -46,48 +46,11 @@ namespace BusinessLayer.Interface
         int DeleteIndexTeam(int Index_Team_Id);
         #endregion
 
-        #region Knowledge Base Category
-
-        int SaveKnowledgeBaseCategory(Knowledge_Base_Category Object);
-        IList<Knowledge_Base_Category> GetKnowledgeBaseCategory(int? Knowledge_Base_Category_Id, string Category_Url_Link);
-        int UpdateKnowledgeBaseCategory(Knowledge_Base_Category Object);
-        int DeleteKnowledgeBaseCategory(int Knowledge_Base_Category_Id);
-
-        #endregion
-
         #region  Knowledge Base
         int SaveKnowledgeBase(Knowledge_Base Object);
         IList<Knowledge_Base> GetKnowledgeBase(int? Knowledge_Base_Id, string Knowledge_Base_Url_Link);
         int UpdateKnowledgeBase(Knowledge_Base Object);
         int DeleteKnowledgeBase(int Knowledge_Base_Id);
-        #endregion
-
-        #region  Knowledge Card
-        int SaveKnowledgeCard(Knowledge_Card Object);
-        IList<Knowledge_Card_Business> GetKnowledgeCard(int? Knowledge_Card_Id, int? Knowledge_Base_Id);
-        int UpdateKnowledgeCard(Knowledge_Card Object);
-        int DeleteKnowledgeCard(int Knowledge_Card_Id);
-        #endregion
-
-        #region  Knowledge FailureMode
-        int SaveKnowledgeFailureMode(Knowledge_FailureMode Object);
-        IList<Knowledge_FailureMode_Business> GetKnowledgeFailureMode(int? Knowledge_FailureMode_Id, int? Knowledge_Base_Id);
-        int UpdateKnowledgeFailureMode(Knowledge_FailureMode Object);
-        int DeleteKnowledgeFailureMode(int Knowledge_FailureMode_Id);
-        #endregion
-
-        #region  Knowledge RelatedSolution
-        int SaveKnowledgeRelatedSolution(Knowledge_RelatedSolution Object);
-        IList<Knowledge_RelatedSolution_Business> GetKnowledgeRelatedSolution(int? Knowledge_RelatedSolution_Id, int? Knowledge_Base_Id);
-        int UpdateKnowledgeRelatedSolution(Knowledge_RelatedSolution Object);
-        int DeleteKnowledgeRelatedSolution(int Knowledge_RelatedSolution_Id);
-        #endregion
-
-        #region  Knowledge WorkflowStep
-        int SaveKnowledgeWorkflowStep(Knowledge_WorkflowStep Object);
-        IList<Knowledge_WorkflowStep_Business> GetKnowledgeWorkflowStep(int? Knowledge_WorkflowStep_Id, int? Knowledge_Base_Id);
-        int UpdateKnowledgeWorkflowStep(Knowledge_WorkflowStep Object);
-        int DeleteKnowledgeWorkflowStep(int Knowledge_WorkflowStep_Id);
         #endregion
 
         #region  Engineering Services
@@ -97,50 +60,7 @@ namespace BusinessLayer.Interface
         int DeleteEngineeringServices(int Engineering_Services_Id);
         #endregion
 
-        #region Engineering Services Features
-
-        int SaveEngineeringServicesFeatures(Engineering_Services_Features Object);
-        IList<Engineering_Services_Features> GetEngineeringServicesFeatures(int? Engineering_Services_Features_Id, int? Engineering_Services_Id);
-        int UpdateEngineeringServicesFeatures(Engineering_Services_Features Object);
-        int DeleteEngineeringServicesFeatures(int Engineering_Services_Features_Id);
-        #endregion
-
-        #region Engineering Services SubTopic
-        int SaveEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
-        IList<Engineering_Services_SubTopic> GetEngineeringServicesSubTopic(int? Engineering_Services_SubTopic_Id, int? Engineering_Services_Id);
-        int UpdateEngineeringServicesSubTopic(Engineering_Services_SubTopic Object);
-        int DeleteEngineeringServicesSubTopic(int Engineering_Services_SubTopic_Id);
-        #endregion
-
-        #region Engineering Services Gallery
-        int SaveEngineeringServicesGallery(Engineering_Services_Gallery Object);
-        IList<Engineering_Services_Gallery> GetEngineeringServicesGallery(int? Engineering_Services_Gallery_Id, int? Engineering_Services_Id);
-        int UpdateEngineeringServicesGallery(Engineering_Services_Gallery Object);
-        int DeleteEngineeringServicesGallery(int Engineering_Services_Gallery_Id);
-        #endregion
-
-        #region Engineering Services Applications
-        int SaveEngineeringServicesApplications(Engineering_Services_Applications Object);
-        IList<Engineering_Services_Applications> GetEngineeringServicesApplications(int? Engineering_Services_Applications_Id, int? Engineering_Services_Id);
-        int UpdateEngineeringServicesApplications(Engineering_Services_Applications Object);
-        int DeleteEngineeringServicesApplications(int Engineering_Services_Applications_Id);
-        #endregion
-
-        #region Engineering Services Tabs
-        int SaveEngineeringServicesTabs(Engineering_Services_Tabs Object);
-        IList<Engineering_Services_Tabs> GetEngineeringServicesTabs(int? Engineering_Services_Tabs_Id, int? Engineering_Services_Id);
-        int UpdateEngineeringServicesTabs(Engineering_Services_Tabs Object);
-        int DeleteEngineeringServicesTabs(int Engineering_Services_Tabs_Id);
-        #endregion
-
-        #region  EngSer Gallery
-        int SaveEngSerGallery(EngSer_Gallery Object);
-        IList<EngSer_Gallery> GetEngSerGallery(int? EngSer_Gallery_Id, int? Engineering_Services_Id);
-        int UpdateEngSerGallery(EngSer_Gallery Object);
-        int DeleteEngSerGallery(int EngSer_Gallery_Id);
-
-        #endregion
-
+        
     }
 
 }
